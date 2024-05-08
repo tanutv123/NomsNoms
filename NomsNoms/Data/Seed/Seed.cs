@@ -92,5 +92,19 @@ namespace NomsNoms.Data.Seed
             await _userManager.CreateAsync(staff, "Pa$$w0rd");
             await _userManager.AddToRoleAsync(staff, "Staff");
         }
+
+        public static async Task SeedMealPlanType(DataContext _context)
+        {
+            if(await _context.MealPlanTypes.AnyAsync()) { return; }
+
+            var mealPlanType = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/MealPlanType.json");
+            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var mpt = JsonSerializer.Deserialize<List<MealPlanType>>(mealPlanType, jsonOptions);
+
+            foreach(var mealType in mpt)
+            {
+                await _context.MealPlanTypes.AddAsync(mealType);
+            }
+        }
     }
 }
