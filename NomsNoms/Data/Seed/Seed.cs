@@ -73,82 +73,87 @@ namespace NomsNoms.Data.Seed
                 CreatedDate = DateTime.Now,
                 LastActive = DateTime.Now,
                 Introduction = "I am the best Chef of the world! You donut!!!!",
+                UserPhoto = new UserPhoto
+                {
+                    Url = "https://randomuser.me/api/portraits/men/27.jpg",
+                    IsMain = true
+                },
                 EmailConfirmed = true,
             };
 
-            await _userManager.CreateAsync(cook, "Pa$$w0rd");
-            await _userManager.AddToRoleAsync(cook, "Cook");
+    await _userManager.CreateAsync(cook, "Pa$$w0rd");
+    await _userManager.AddToRoleAsync(cook, "Cook");
 
-            var staff = new AppUser
-            {
-                UserName = "staff@gmail.com",
-                KnownAs = "Thang Jack",
-                Email = "staff@gmail.com",
-                CreatedDate = DateTime.Now,
-                LastActive = DateTime.Now,
-                EmailConfirmed = true,
-            };
+    var staff = new AppUser
+    {
+        UserName = "staff@gmail.com",
+        KnownAs = "Thang Jack",
+        Email = "staff@gmail.com",
+        CreatedDate = DateTime.Now,
+        LastActive = DateTime.Now,
+        EmailConfirmed = true,
+    };
 
-            await _userManager.CreateAsync(staff, "Pa$$w0rd");
-            await _userManager.AddToRoleAsync(staff, "Staff");
-        }
-        public static async Task SeedSubscription(DataContext _context)
-        {
-            if (await _context.Subscriptions.AnyAsync()) { return; }
+    await _userManager.CreateAsync(staff, "Pa$$w0rd");
+    await _userManager.AddToRoleAsync(staff, "Staff");
+}
+public static async Task SeedSubscription(DataContext _context)
+{
+    if (await _context.Subscriptions.AnyAsync()) { return; }
 
-            var subscription = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/SubscriptionSeed.json");
-            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var sub = JsonSerializer.Deserialize<List<Subscription>>(subscription, jsonOptions);
+    var subscription = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/SubscriptionSeed.json");
+    var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+    var sub = JsonSerializer.Deserialize<List<Subscription>>(subscription, jsonOptions);
 
-            foreach (var subs in sub)
-            {
-                await _context.Subscriptions.AddAsync(subs);
-                await _context.SaveChangesAsync();
-            }
-        }
+    foreach (var subs in sub)
+    {
+        await _context.Subscriptions.AddAsync(subs);
+        await _context.SaveChangesAsync();
+    }
+}
 
-        public static async Task SeedMealPlanType(DataContext _context)
-        {
-            if(await _context.MealPlanTypes.AnyAsync()) { return; }
+public static async Task SeedMealPlanType(DataContext _context)
+{
+    if (await _context.MealPlanTypes.AnyAsync()) { return; }
 
-            var mealPlanType = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/MealPlanType.json");
-            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var mpt = JsonSerializer.Deserialize<List<MealPlanType>>(mealPlanType, jsonOptions);
+    var mealPlanType = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/MealPlanType.json");
+    var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+    var mpt = JsonSerializer.Deserialize<List<MealPlanType>>(mealPlanType, jsonOptions);
 
-            foreach(var mealType in mpt)
-            {
-                await _context.MealPlanTypes.AddAsync(mealType);
-                await _context.SaveChangesAsync();
-            }
-        }
-        public static async Task SeedMealPlan(DataContext _context)
-        {
-            if (await _context.MealPlans.AnyAsync()) { return; }
+    foreach (var mealType in mpt)
+    {
+        await _context.MealPlanTypes.AddAsync(mealType);
+        await _context.SaveChangesAsync();
+    }
+}
+public static async Task SeedMealPlan(DataContext _context)
+{
+    if (await _context.MealPlans.AnyAsync()) { return; }
 
-            var mealPlan = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/MealPlanSeed.json");
-            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var mp = JsonSerializer.Deserialize<List<MealPlan>>(mealPlan, jsonOptions);
+    var mealPlan = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/MealPlanSeed.json");
+    var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+    var mp = JsonSerializer.Deserialize<List<MealPlan>>(mealPlan, jsonOptions);
 
-            foreach (var mealPlans in mp)
-            {
-                await _context.MealPlans.AddAsync(mealPlans);
-                await _context.SaveChangesAsync();
-            }
-        }
+    foreach (var mealPlans in mp)
+    {
+        await _context.MealPlans.AddAsync(mealPlans);
+        await _context.SaveChangesAsync();
+    }
+}
 
-        public static async Task SeedIngredient(DataContext _context)
-        {
-            if(await _context.Ingredients.AnyAsync()) { return; }
+public static async Task SeedIngredient(DataContext _context)
+{
+    if (await _context.Ingredients.AnyAsync()) { return; }
 
-            var ingredient = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/IngredientSeed.json");
-            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var ing = JsonSerializer.Deserialize<List<Ingredient>>(ingredient, jsonOptions);
+    var ingredient = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/IngredientSeed.json");
+    var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+    var ing = JsonSerializer.Deserialize<List<Ingredient>>(ingredient, jsonOptions);
 
-            foreach(var i in ing)
-            {
-                await _context.Ingredients.AddAsync(i);
-                await _context.SaveChangesAsync();
-            }
-        }
+    foreach (var i in ing)
+    {
+        await _context.Ingredients.AddAsync(i);
+        await _context.SaveChangesAsync();
+    }
+}
     }
 }
