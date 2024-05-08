@@ -92,6 +92,20 @@ namespace NomsNoms.Data.Seed
             await _userManager.CreateAsync(staff, "Pa$$w0rd");
             await _userManager.AddToRoleAsync(staff, "Staff");
         }
+        public static async Task SeedSubscription(DataContext _context)
+        {
+            if (await _context.Subscriptions.AnyAsync()) { return; }
+
+            var subscription = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/SubscriptionSeed.json");
+            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var sub = JsonSerializer.Deserialize<List<Subscription>>(subscription, jsonOptions);
+
+            foreach (var subs in sub)
+            {
+                await _context.Subscriptions.AddAsync(subs);
+                await _context.SaveChangesAsync();
+            }
+        }
 
         public static async Task SeedMealPlanType(DataContext _context)
         {
@@ -104,6 +118,7 @@ namespace NomsNoms.Data.Seed
             foreach(var mealType in mpt)
             {
                 await _context.MealPlanTypes.AddAsync(mealType);
+                await _context.SaveChangesAsync();
             }
         }
     }
