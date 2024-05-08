@@ -18,5 +18,7 @@ namespace NomsNoms.Entities
         public ICollection<UserFavorite> UserFavorites { get; set; }
         public ICollection<UserCollection> UserCollections { get; set; }
         public ICollection<UserSubscription> UserSubscriptions { get; set; }
+        public ICollection<Recipe> Recipes { get; set; }
+
     }
 }

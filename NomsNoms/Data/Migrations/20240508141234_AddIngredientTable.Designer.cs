@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NomsNoms.Data;
 
@@ -11,9 +12,11 @@ using NomsNoms.Data;
 namespace NomsNoms.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240508141234_AddIngredientTable")]
+    partial class AddIngredientTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -393,9 +396,6 @@ namespace NomsNoms.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AppUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -411,12 +411,7 @@ namespace NomsNoms.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
 
                     b.HasIndex("RecipeImageId");
 
@@ -777,10 +772,6 @@ namespace NomsNoms.Data.Migrations
 
             modelBuilder.Entity("NomsNoms.Entities.Recipe", b =>
                 {
-                    b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
-                        .WithMany("Recipes")
-                        .HasForeignKey("AppUserId");
-
                     b.HasOne("NomsNoms.Entities.RecipeImage", "RecipeImage")
                         .WithMany()
                         .HasForeignKey("RecipeImageId");
@@ -790,8 +781,6 @@ namespace NomsNoms.Data.Migrations
                         .HasForeignKey("RecipeStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AppUser");
 
                     b.Navigation("RecipeImage");
 
@@ -976,8 +965,6 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("FollowedUsers");
 
                     b.Navigation("LikedRecipes");
-
-                    b.Navigation("Recipes");
 
                     b.Navigation("UserCollections");
 

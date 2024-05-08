@@ -9,5 +9,6 @@
         public DateTime CreatedDate { get; set; }
         public MealPlanType MealPlanType { get; set; }
         public ICollection<UserMealPlan> UserMealPlans { get; set; }
+        public ICollection<MealPlanIngredient> MealPlanIngredients { get; set; }
     }
 }

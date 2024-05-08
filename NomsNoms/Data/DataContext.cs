@@ -39,6 +39,9 @@ namespace NomsNoms.Data
         public DbSet<UserSubscription> UserSubscriptions{ get; set; }
         public DbSet<Question> Questions{ get; set; }
         public DbSet<UserFavorite> UserFavorites { get; set; }
+        public DbSet<Ingredient> Ingredients{ get; set; }
+        public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
+        public DbSet<MealPlanIngredient> MealPlanIngredients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -83,6 +86,29 @@ namespace NomsNoms.Data
                 .HasOne(rc => rc.Category)
                 .WithMany(r => r.RecipeCategories)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<RecipeIngredient>()
+                .HasKey(k => new { k.RecipeId, k.IngredientId });
+            builder.Entity<RecipeIngredient>()
+                .HasOne(rc => rc.Recipe)
+                .WithMany(r => r.RecipeIngredients)
+                .OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<RecipeIngredient>()
+                .HasOne(rc => rc.Ingredient)
+                .WithMany(r => r.RecipeIngredient)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<MealPlanIngredient>()
+                .HasKey(k => new { k.MealPlanId, k.IngredientId });
+            builder.Entity<MealPlanIngredient>()
+                .HasOne(rc => rc.MeanPlan)
+                .WithMany(r => r.MealPlanIngredients)
+                .OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<MealPlanIngredient>()
+                .HasOne(rc => rc.Ingredient)
+                .WithMany(r => r.MealPlanIngredients)
+                .OnDelete(DeleteBehavior.NoAction);
+
             builder.Entity<CollectionRecipe>()
                 .HasKey(k => new { k.RecipeId, k.UserCollectionId });
             builder.Entity<CollectionRecipe>()
