@@ -44,6 +44,8 @@ try
     await Seed.SeedUser(userManager, roleManager);
     await Seed.SeedSubscription(context);
     await Seed.SeedMealPlanType(context);
+    await Seed.SeedMealPlan(context);
+    await Seed.SeedIngredient(context);
 }
 catch (Exception ex)
 {
