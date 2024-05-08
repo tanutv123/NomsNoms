@@ -1,0 +1,14 @@
+[
+  {
+    "Price": 20000,
+    "Duration": 30
+  },
+  {
+    "Price": 50000,
+    "Duration": 30
+  },
+  {
+    "Price": 100000,
+    "Duration": 30
+  }
+]
