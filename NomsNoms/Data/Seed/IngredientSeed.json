@@ -1,0 +1,52 @@
+[
+  {
+    "Name": "Cà rốt",
+    "Description": "Cà rốt là một loại rau phổ biến, có màu sắc từ cam đến đỏ. Chúng thường được dùng trong nấu ăn và là nguồn cung cấp vitamin A tốt.",
+    "Calories": 41.35
+  },
+  {
+    "Name": "Hành tây",
+    "Description": "Hành tây có hương vị đặc trưng, thường được dùng làm gia vị trong nhiều món ăn. Chúng cung cấp nhiều chất chống oxi hóa và vitamin C.",
+    "Calories": 40.18
+  },
+  {
+    "Name": "Tỏi",
+    "Description": "Tỏi là một loại thực phẩm phổ biến, thường được dùng làm gia vị. Tỏi cung cấp nhiều lợi ích cho sức khỏe như tăng cường hệ miễn dịch.",
+    "Calories": 149.00
+  },
+  {
+    "Name": "Cà chua",
+    "Description": "Cà chua là một loại trái cây phổ biến trong nấu ăn. Chúng cung cấp nhiều vitamin C và lycopene, một chất chống oxi hóa mạnh.",
+    "Calories": 18.00
+  },
+  {
+    "Name": "Khoai tây",
+    "Description": "Khoai tây là một loại củ phổ biến, thường được chế biến thành nhiều món ăn khác nhau như khoai tây chiên, nấu súp. Chúng cung cấp nhiều vitamin C và kali.",
+    "Calories": 77.58
+  },
+  {
+    "Name": "Ớt",
+    "Description": "Ớt là một loại gia vị cay, thường được dùng để tăng hương vị cho món ăn. Chúng cung cấp nhiều vitamin C và chất chống oxi hóa.",
+    "Calories": 40.00
+  },
+  {
+    "Name": "Bắp cải",
+    "Description": "Bắp cải là một loại rau xanh, thường được dùng trong nấu ăn và làm salad. Chúng cung cấp nhiều vitamin K và vitamin C.",
+    "Calories": 25.00
+  },
+  {
+    "Name": "Dưa chuột",
+    "Description": "Dưa chuột là một loại rau mát, thường được dùng làm salad hoặc ăn kèm với các món khác. Chúng chứa nhiều nước và cung cấp một lượng nhỏ vitamin K.",
+    "Calories": 15.54
+  },
+  {
+    "Name": "Cần tây",
+    "Description": "Cần tây là một loại rau có hương vị đặc trưng, thường được dùng trong nấu ăn và làm nước ép. Chúng cung cấp nhiều vitamin K và chất chống oxi hóa.",
+    "Calories": 16.00
+  },
+  {
+    "Name": "Bí ngô",
+    "Description": "Bí ngô là một loại rau phổ biến, thường được dùng trong nấu ăn và làm bánh. Chúng cung cấp nhiều vitamin A và chất chống oxi hóa.",
+    "Calories": 26.00
+  }
+]

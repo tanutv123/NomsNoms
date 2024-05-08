@@ -121,5 +121,34 @@ namespace NomsNoms.Data.Seed
                 await _context.SaveChangesAsync();
             }
         }
+        public static async Task SeedMealPlan(DataContext _context)
+        {
+            if (await _context.MealPlans.AnyAsync()) { return; }
+
+            var mealPlan = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/MealPlanSeed.json");
+            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var mp = JsonSerializer.Deserialize<List<MealPlan>>(mealPlan, jsonOptions);
+
+            foreach (var mealPlans in mp)
+            {
+                await _context.MealPlans.AddAsync(mealPlans);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public static async Task SeedIngredient(DataContext _context)
+        {
+            if(await _context.Ingredients.AnyAsync()) { return; }
+
+            var ingredient = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/IngredientSeed.json");
+            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var ing = JsonSerializer.Deserialize<List<Ingredient>>(ingredient, jsonOptions);
+
+            foreach(var i in ing)
+            {
+                await _context.Ingredients.AddAsync(i);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
