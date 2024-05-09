@@ -7,5 +7,6 @@ namespace NomsNoms.Interfaces
     {
         IQueryable<AppUser> GetAllUserToken();
         Task<List<UserAdminDTO>> GetAllUserAdmin();
+        Task UpdateUserDetail(AppUser user);
     }
 }

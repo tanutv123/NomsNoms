@@ -6,6 +6,7 @@ using NomsNoms.Data;
 using NomsNoms.Data.Seed;
 using NomsNoms.Entities;
 using NomsNoms.Extensions;
+using NomsNoms.Helpers;
 using NomsNoms.Interfaces;
 using NomsNoms.Services;
 using System.Data;
@@ -43,10 +44,12 @@ builder.Services.AddAuthorization(options =>
         policy.RequireAssertion(context =>
             context.User.IsInRole("Admin") || context.User.IsInRole("Manager")));
 });
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IImageService, ImageService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

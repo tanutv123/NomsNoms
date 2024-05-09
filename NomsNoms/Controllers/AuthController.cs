@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NomsNoms.DTOs;
+using NomsNoms.Entities;
 using NomsNoms.Interfaces;
 
 namespace NomsNoms.Controllers
@@ -12,10 +14,14 @@ namespace NomsNoms.Controllers
     {
         private readonly IAuthRepository _authRepository;
         private readonly ITokenService _tokenService;
-        public AuthController(IAuthRepository authRepository, ITokenService tokenService)
+        private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
+        public AuthController(IAuthRepository authRepository, ITokenService tokenService, IMapper mapper, IUserRepository userRepository)
         {
             _authRepository = authRepository;
             _tokenService = tokenService;
+            _mapper = mapper;
+            _userRepository = userRepository;   
         }
 
         [HttpPost("register")]
@@ -58,5 +64,20 @@ namespace NomsNoms.Controllers
             }
             return BadRequest("Invalid username or password");
         }
+        /*[HttpPut("edit-profile")]
+        [Authorize]
+        public async Task<IActionResult> EditUserProfile([FromBody]UserProfileDTO profileDTO)
+        {
+            try
+            {
+                var user = _mapper.Map<AppUser>(UserProfileDTO);
+                await _userRepository.UpdateUserDetail(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok();
+        }*/
     }
 }
