@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './recipe-card.component.html',
   styleUrls: ['./recipe-card.component.scss']
 })
-export class RecipeCardComponent {
+export class RecipeCardRecipeComponent {
 
 }
