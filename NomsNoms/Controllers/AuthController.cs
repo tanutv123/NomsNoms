@@ -1,0 +1,59 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using NomsNoms.DTOs;
+using NomsNoms.Interfaces;
+
+namespace NomsNoms.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuthController : ControllerBase
+    {
+        private readonly IAuthRepository _authRepository;
+        private readonly ITokenService _tokenService;
+        public AuthController(IAuthRepository authRepository, ITokenService tokenService)
+        {
+            _authRepository = authRepository;
+            _tokenService = tokenService;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterDTO registerDTO)
+        {
+            try
+            {
+                var result = await _authRepository.Register(registerDTO);
+                if (result.Succeeded)
+                {
+                    var loginDTO = new LoginDTO
+                    {
+                        Email = registerDTO.Email,
+                        Password = registerDTO.Password
+                    };
+                    var tokenString = await _tokenService.GenerateTokenString(loginDTO);
+                    var userDTO = await _authRepository.GetUserDTO(loginDTO.Email, tokenString);
+                    return Ok(userDTO);
+                }
+                return BadRequest(result.Errors);
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDTO loginDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            if(await _authRepository.Login(loginDTO))
+            {
+                var tokenString = await _tokenService.GenerateTokenString(loginDTO);
+                var userDTO = await _authRepository.GetUserDTO(loginDTO.Email, tokenString);
+                return Ok(userDTO);
+            }
+            return BadRequest("Invalid username or password");
+        }
+    }
+}

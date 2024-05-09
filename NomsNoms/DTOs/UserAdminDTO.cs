@@ -1,0 +1,28 @@
+﻿using NomsNoms.Entities;
+using System.ComponentModel.DataAnnotations;
+
+namespace NomsNoms.DTOs
+{
+    public class UserAdminDTO
+    {
+        public int Id { get; set; }
+        [Required]
+        [RegularExpression(@"^[a-zA-Z0-9 ]*$", ErrorMessage = "Name can only contain letters, digits, and spaces.")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        public string KnownAs { get; set; }
+        [Required]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be 10 digits")]
+        public string PhoneNumber { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "Introduction must be at least 1 character long and max is 100 characters", MinimumLength = 1)]
+        public string Introduction { get; set; }
+        [Required]
+        public int SubscriptionId { get; set; }
+        [Required]
+        public string Role { get; set; }
+    }
+}
