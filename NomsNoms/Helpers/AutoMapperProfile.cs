@@ -12,6 +12,8 @@ namespace NomsNoms.Helpers
             CreateMap<AppUser, UserAdminDTO>()
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.UserRoles.First().AppRole.Name))
                 .ReverseMap();
+            CreateMap<AppUser, UserProfileDTO>()
+                .ReverseMap();
         }
     }
 }
