@@ -9,6 +9,7 @@ namespace NomsNoms.Entities
         public DateTime LastActive { get; set; }
         public string Introduction { get; set; }
         public int? SubscriptionId { get; set; }
+        public int? TasteProfileId { get; set; }
         public ICollection<UserFollow> FollowedUsers { get; set; }
         public ICollection<UserFollow> FollowedByUsers { get; set; }
         public ICollection<RecipeLike> LikedRecipes { get; set; }
@@ -20,6 +21,7 @@ namespace NomsNoms.Entities
         public ICollection<UserSubscription> UserSubscriptions { get; set; }
         public ICollection<Recipe> Recipes { get; set; }
         public UserPhoto UserPhoto { get; set; }
+        public TasteProfile TasteProfile { get; set; }
 
     }
 }

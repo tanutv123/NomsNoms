@@ -5,6 +5,7 @@ import {MealPlanComponent} from "./components/meal-plan/meal-plan.component";
 import {MealPlanBoughtComponent} from "./components/meal-plan-bought/meal-plan-bought.component";
 import {RecipeDetailComponent} from "./components/recipe/recipe-detail/recipe-detail.component";
 import {RecipeStepListComponent} from "./components/recipe-step-list/recipe-step-list.component";
+import {ProfileComponent} from "./components/user/profile/profile.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
     {path: 'meal-plan-bought', component: MealPlanBoughtComponent},
     {path: 'recipe-detail', component: RecipeDetailComponent},
     {path: 'recipe-step-list', component: RecipeStepListComponent},
+    {path: 'profile', component: ProfileComponent},
   ]
   }
 ];
