@@ -1,52 +1,116 @@
 [
   {
+    "Name": "Apple",
+    "Description": "An Apple",
+    "Weight": 100,
+    "Calories": 52
+  },
+  {
+    "Name": "Mayonnaise",
+    "Description": "Mayonnaise",
+    "Weight": 7.75,
+    "Calories": 31
+  },
+  {
+    "Name": "Hot Sauce",
+    "Description": "Spicy Sauce",
+    "Weight": 28,
+    "Calories": 0.8
+  },
+  {
+    "Name": "Baguette",
+    "Description": "Pa-te",
+    "Weight": 82,
+    "Calories": 223
+  },
+  {
+    "Name": "Cilantro",
+    "Description": "Cilantro",
+    "Weight": 3,
+    "Calories": 0.1
+  },
+  {
+    "Name": "Cucumber",
+    "Description": "An Cucumber",
+    "Weight": 50.25,
+    "Calories": 6
+  },
+  {
+    "Name": "Pork's Meat'",
+    "Description": "Pork Pork",
+    "Weight": 157,
+    "Calories": 328
+  },
+  {
+    "Name": "Lime Juice",
+    "Description": "Lime juicy",
+    "Weight": 15.13,
+    "Calories": 3.8
+  },
+  {
+    "Name": "Red Onion",
+    "Description": "An Apple",
+    "Weight": 17.15,
+    "Calories": 7
+  },
+  {
     "Name": "Cà rốt",
     "Description": "Cà rốt là một loại rau phổ biến, có màu sắc từ cam đến đỏ. Chúng thường được dùng trong nấu ăn và là nguồn cung cấp vitamin A tốt.",
+    "Weight": 15.13,
     "Calories": 41.35
   },
   {
     "Name": "Hành tây",
     "Description": "Hành tây có hương vị đặc trưng, thường được dùng làm gia vị trong nhiều món ăn. Chúng cung cấp nhiều chất chống oxi hóa và vitamin C.",
+    "Weight": 15.13,
     "Calories": 40.18
   },
   {
     "Name": "Tỏi",
     "Description": "Tỏi là một loại thực phẩm phổ biến, thường được dùng làm gia vị. Tỏi cung cấp nhiều lợi ích cho sức khỏe như tăng cường hệ miễn dịch.",
+    "Weight": 15.13,
     "Calories": 149.00
   },
   {
     "Name": "Cà chua",
     "Description": "Cà chua là một loại trái cây phổ biến trong nấu ăn. Chúng cung cấp nhiều vitamin C và lycopene, một chất chống oxi hóa mạnh.",
+    "Weight": 15.13,
     "Calories": 18.00
   },
   {
     "Name": "Khoai tây",
     "Description": "Khoai tây là một loại củ phổ biến, thường được chế biến thành nhiều món ăn khác nhau như khoai tây chiên, nấu súp. Chúng cung cấp nhiều vitamin C và kali.",
+    "Weight": 15.13,
     "Calories": 77.58
   },
   {
     "Name": "Ớt",
     "Description": "Ớt là một loại gia vị cay, thường được dùng để tăng hương vị cho món ăn. Chúng cung cấp nhiều vitamin C và chất chống oxi hóa.",
+    "Weight": 15.13,
     "Calories": 40.00
   },
   {
     "Name": "Bắp cải",
     "Description": "Bắp cải là một loại rau xanh, thường được dùng trong nấu ăn và làm salad. Chúng cung cấp nhiều vitamin K và vitamin C.",
+    "Weight": 15.13,
     "Calories": 25.00
   },
   {
     "Name": "Dưa chuột",
     "Description": "Dưa chuột là một loại rau mát, thường được dùng làm salad hoặc ăn kèm với các món khác. Chúng chứa nhiều nước và cung cấp một lượng nhỏ vitamin K.",
+    "Weight": 15.13,
     "Calories": 15.54
   },
   {
     "Name": "Cần tây",
     "Description": "Cần tây là một loại rau có hương vị đặc trưng, thường được dùng trong nấu ăn và làm nước ép. Chúng cung cấp nhiều vitamin K và chất chống oxi hóa.",
+    "Weight": 15.13,
     "Calories": 16.00
   },
   {
     "Name": "Bí ngô",
     "Description": "Bí ngô là một loại rau phổ biến, thường được dùng trong nấu ăn và làm bánh. Chúng cung cấp nhiều vitamin A và chất chống oxi hóa.",
+    "Weight": 15.13,
     "Calories": 26.00
   }
 ]

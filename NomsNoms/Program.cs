@@ -46,6 +46,9 @@ try
     await Seed.SeedMealPlanType(context);
     await Seed.SeedMealPlan(context);
     await Seed.SeedIngredient(context);
+    await Seed.SeedCategory(context);
+    await Seed.SeedRecipe(context);
+
 }
 catch (Exception ex)
 {

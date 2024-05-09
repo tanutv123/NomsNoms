@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "Miền Nam",
+    "Description": "Các món ăn đậm chất miền Nam"
+  },
+  {
+    "Name": "Miền Bắc",
+    "Description": "Các món ăn đậm chất miền Bắc"
+  },
+  {
+    "Name": "Miền Trung",
+    "Description": "Các món ăn đậm chất miền Trung"
+  },
+  {
+    "Name": "Trung Hoa",
+    "Description": "Các món ăn có vị cay nồng đặc trưng đặc biệt của ớt bột Trung Quốc"
+  },
+  {
+    "Name": "Ấn Độ",
+    "Description": "Các món ăn có nhiều hương vị đặc trưng của Ấn Độ"
+  },
+  {
+    "Name": "Châu Âu",
+    "Description": "Các món ăn đậm chất Châu Âu"
+  }
+]

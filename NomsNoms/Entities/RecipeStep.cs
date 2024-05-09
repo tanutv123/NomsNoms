@@ -7,5 +7,6 @@
         public int RecipeId { get; set; }
         public Recipe Recipe { get; set; }
         public string Description { get; set; }
+        public ICollection<RecipeImage> RecipeStepImages { get; set; }
     }
 }

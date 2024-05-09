@@ -155,5 +155,46 @@ public static async Task SeedIngredient(DataContext _context)
         await _context.SaveChangesAsync();
     }
 }
-    }
+
+    public static async Task SeedCategory(DataContext _context)
+        {
+            if (await _context.Categories.AnyAsync()) { return; }
+
+            var categories = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/CategorySeed.json");
+            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var cate = JsonSerializer.Deserialize<List<Category>>(categories, jsonOptions);
+
+            foreach (var category in cate)
+            {
+                await _context.Categories.AddAsync(category);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public static async Task SeedRecipe(DataContext _context)
+        {
+            if (await _context.Recipes.AnyAsync()) { return; }
+
+            var recipes = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/RecipeSeed.json");
+            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var rep = JsonSerializer.Deserialize<List<Recipe>>(recipes, jsonOptions);
+
+            var status = new List<RecipeStatus>
+            {
+                new RecipeStatus {Name = "Hidden"},
+                new RecipeStatus {Name = "Normal"},
+                new RecipeStatus {Name = "Pending"},
+                new RecipeStatus {Name = "Deleted"}
+            };
+
+            foreach (var state in status)
+            {
+                await _context.RecipeStatuses.AddAsync(state);
+            }
+
+            foreach (var recipe in rep)
+            {
+                await _context.Recipes.AddAsync(recipe);
+                await _context.SaveChangesAsync();
+            }
+        }
 }
