@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NomsNoms.DTOs;
 using NomsNoms.Interfaces;
@@ -18,6 +19,7 @@ namespace NomsNoms.Controllers
         }
 
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterDTO registerDTO)
         {
             try
@@ -41,6 +43,7 @@ namespace NomsNoms.Controllers
             }
         }
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
             if (!ModelState.IsValid)
