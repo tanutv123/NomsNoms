@@ -1,0 +1,56 @@
+[
+  {
+    "Name": "Apple",
+    "Description": "An Apple",
+    "Weight": 100,
+    "Calories": 52
+  },
+  {
+    "Name": "Mayonnaise",
+    "Description": "Mayonnaise",
+    "Weight": 7.75,
+    "Calories": 31
+  },
+  {
+    "Name": "Hot Sauce",
+    "Description": "Spicy Sauce",
+    "Weight": 28,
+    "Calories": 0.8
+  },
+  {
+    "Name": "Baguette",
+    "Description": "Pa-te",
+    "Weight": 82,
+    "Calories": 223
+  },
+  {
+    "Name": "Cilantro",
+    "Description": "Cilantro",
+    "Weight": 3,
+    "Calories": 0.1
+  },
+  {
+    "Name": "Cucumber",
+    "Description": "An Cucumber",
+    "Weight": 50.25,
+    "Calories": 6
+  },
+  {
+    "Name": "Pork's Meat'",
+    "Description": "Pork Pork",
+    "Weight": 157,
+    "Calories": 328
+  },
+  {
+    "Name": "Lime Juice",
+    "Description": "Lime juicy",
+    "Weight": 15.13,
+    "Calories": 3.8
+  },
+  {
+    "Name": "Red Onion",
+    "Description": "An Apple",
+    "Weight": 17.15,
+    "Calories": 7
+  }
+]

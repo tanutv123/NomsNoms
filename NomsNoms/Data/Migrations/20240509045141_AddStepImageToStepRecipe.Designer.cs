@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NomsNoms.Data;
 
@@ -11,9 +12,11 @@ using NomsNoms.Data;
 namespace NomsNoms.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240509045141_AddStepImageToStepRecipe")]
+    partial class AddStepImageToStepRecipe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -454,15 +457,10 @@ namespace NomsNoms.Data.Migrations
                     b.Property<string>("PublicId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RecipeStepId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RecipeStepId");
 
                     b.ToTable("RecipeImages");
                 });
@@ -528,6 +526,9 @@ namespace NomsNoms.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StepImageId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -825,13 +826,6 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("Recipe");
                 });
 
-            modelBuilder.Entity("NomsNoms.Entities.RecipeImage", b =>
-                {
-                    b.HasOne("NomsNoms.Entities.RecipeStep", null)
-                        .WithMany("RecipeStepImages")
-                        .HasForeignKey("RecipeStepId");
-                });
-
             modelBuilder.Entity("NomsNoms.Entities.RecipeIngredient", b =>
                 {
                     b.HasOne("NomsNoms.Entities.Ingredient", "Ingredient")
@@ -1042,11 +1036,6 @@ namespace NomsNoms.Data.Migrations
             modelBuilder.Entity("NomsNoms.Entities.RecipeStatus", b =>
                 {
                     b.Navigation("Recipes");
-                });
-
-            modelBuilder.Entity("NomsNoms.Entities.RecipeStep", b =>
-                {
-                    b.Navigation("RecipeStepImages");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.Subscription", b =>
