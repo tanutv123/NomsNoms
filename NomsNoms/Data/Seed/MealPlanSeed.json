@@ -1,0 +1,38 @@
+[
+  {
+    "Price": 100000,
+    "CreatedDate": "2024-01-26T09:54:29",
+    "Duration": 30,
+    "MealPlanTypeId": 1
+  },
+  {
+    "Price": 100000,
+    "CreatedDate": "2024-01-26T09:54:29",
+    "Duration": 30,
+    "MealPlanTypeId": 2
+  },
+  {
+    "Price": 100000,
+    "CreatedDate": "2024-01-26T09:54:29",
+    "Duration": 30,
+    "MealPlanTypeId": 3
+  },
+  {
+    "Price": 100000,
+    "CreatedDate": "2024-01-26T09:54:29",
+    "Duration": 30,
+    "MealPlanTypeId": 4
+  },
+  {
+    "Price": 100000,
+    "CreatedDate": "2024-01-26T09:54:29",
+    "Duration": 30,
+    "MealPlanTypeId": 5
+  },
+  {
+    "Price": 100000,
+    "CreatedDate": "2024-01-26T09:54:29",
+    "Duration": 30,
+    "MealPlanTypeId": 6
+  }
+]

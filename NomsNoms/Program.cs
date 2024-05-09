@@ -42,9 +42,13 @@ try
     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
     await context.Database.MigrateAsync();
     await Seed.SeedUser(userManager, roleManager);
-    await Seed.SeedCategory(context);
+    await Seed.SeedSubscription(context);
+    await Seed.SeedMealPlanType(context);
+    await Seed.SeedMealPlan(context);
     await Seed.SeedIngredient(context);
+    await Seed.SeedCategory(context);
     await Seed.SeedRecipe(context);
+
 }
 catch (Exception ex)
 {

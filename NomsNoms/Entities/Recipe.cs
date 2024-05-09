@@ -10,6 +10,7 @@
         public int UserId { get; set; }
         public bool IsExclusive { get; set; }
         public int? RecipeImageId { get; set; }
+        public int? TasteProfileId { get; set; }
         public ICollection<RecipeStep> RecipeSteps { get; set; }
         public ICollection<RecipeLike> RecipeLikes { get; set; }
         public ICollection<CollectionRecipe> CollectionRecipes { get; set; }
@@ -18,6 +19,7 @@
         public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
         public AppUser AppUser { get; set; }
         public RecipeStatus RecipeStatus{ get; set; }
+        public TasteProfile TastProfile { get; set; }
 
     }
 }

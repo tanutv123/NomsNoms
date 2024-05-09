@@ -203,6 +203,9 @@ namespace NomsNoms.Data.Migrations
                     b.Property<int?>("SubscriptionId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TasteProfileId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -221,6 +224,8 @@ namespace NomsNoms.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.HasIndex("SubscriptionId");
+
+                    b.HasIndex("TasteProfileId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -411,6 +416,9 @@ namespace NomsNoms.Data.Migrations
                     b.Property<int>("RecipeStatusId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TasteProfileId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -424,6 +432,8 @@ namespace NomsNoms.Data.Migrations
                     b.HasIndex("RecipeImageId");
 
                     b.HasIndex("RecipeStatusId");
+
+                    b.HasIndex("TasteProfileId");
 
                     b.ToTable("Recipes");
                 });
@@ -556,6 +566,31 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("Subscriptions");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.TasteProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Saltiness")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Sauce")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Spiciness")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Sweetness")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TasteProfiles");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.UserCollection", b =>
                 {
                     b.Property<int>("Id")
@@ -647,7 +682,8 @@ namespace NomsNoms.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId")
+                        .IsUnique();
 
                     b.ToTable("UserPhotos");
                 });
@@ -712,7 +748,13 @@ namespace NomsNoms.Data.Migrations
                         .WithMany()
                         .HasForeignKey("SubscriptionId");
 
+                    b.HasOne("NomsNoms.Entities.TasteProfile", "TasteProfile")
+                        .WithMany()
+                        .HasForeignKey("TasteProfileId");
+
                     b.Navigation("Subscription");
+
+                    b.Navigation("TasteProfile");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.AppUserRole", b =>
@@ -799,11 +841,17 @@ namespace NomsNoms.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NomsNoms.Entities.TasteProfile", "TastProfile")
+                        .WithMany()
+                        .HasForeignKey("TasteProfileId");
+
                     b.Navigation("AppUser");
 
                     b.Navigation("RecipeImage");
 
                     b.Navigation("RecipeStatus");
+
+                    b.Navigation("TastProfile");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.RecipeCategory", b =>
@@ -952,8 +1000,8 @@ namespace NomsNoms.Data.Migrations
             modelBuilder.Entity("NomsNoms.Entities.UserPhoto", b =>
                 {
                     b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
+                        .WithOne("UserPhoto")
+                        .HasForeignKey("NomsNoms.Entities.UserPhoto", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -999,6 +1047,8 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("UserFavorites");
 
                     b.Navigation("UserMealPlans");
+
+                    b.Navigation("UserPhoto");
 
                     b.Navigation("UserRoles");
 
