@@ -153,5 +153,92 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
+        public async Task Follow(string email,int userid)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(email);
+                var cookId = user.Id;
+                var isFollow = await _context.UserFollows.AnyAsync(a => a.TargetUserId == cookId && a.SourceUserId == userid);
+                if (cookId != null && userid != null && isFollow)
+                {
+                    var index = await _context.UserFollows.Where(a => a.TargetUserId == cookId && a.SourceUserId == userid).FirstOrDefaultAsync();
+                    _context.UserFollows.Remove(index);
+                    await _context.SaveChangesAsync();
+                }
+                else if (cookId != null && userid != null)
+                {
+                    var follow = new UserFollow
+                    {
+                        TargetUserId = cookId,
+                        SourceUserId = userid
+                    };
+                    await _context.UserFollows.AddAsync(follow);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<AppUser> GetUserById(int id)
+        {
+            AppUser users = null;
+            try
+            {
+                var list = await _context.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return users;
+        }
+
+        public async Task<List<UserFollowToShowDTO>> GetCountFollower()
+        {
+            try
+            {
+                var users = await _context.Users.Include(u => u.UserPhoto).ToListAsync();
+                int count = users.Count();
+                List<UserFollowToShowDTO> followers = new List<UserFollowToShowDTO>();
+                for (int i = 0; i < count; i++)
+                {
+                    var user = users[i];
+                    var countFollower = _context.UserFollows.Where(u => u.SourceUserId == user.Id).Count();
+                    UserFollowToShowDTO follower = new UserFollowToShowDTO
+                    {
+                        AppUserId = user.Id,
+                        FollowerCount = countFollower,
+                        Name = user.UserName,
+                        KnownAs = user.KnownAs                  
+                };
+                    followers.Add(follower);
+                }
+                return followers;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return null;
+        }
+
+        public async Task<List<UserFollowToShowDTO>> GetTopCookByFollower()
+        {
+            try
+            {
+                var list = await GetCountFollower();
+                var orderList = list.OrderByDescending(f => f.FollowerCount).Take(10).ToList();
+
+                return orderList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

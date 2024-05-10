@@ -11,5 +11,7 @@ namespace NomsNoms.Interfaces
         Task CreateUserAdmin(AppUser user);
         Task DeleteUserAdmin(AppUser user);
         Task UpdateUserAdmin(AppUser user);
+        Task Follow(string email, int userid);
+        Task<List<UserFollowToShowDTO>> GetTopCookByFollower();
     }
 }
