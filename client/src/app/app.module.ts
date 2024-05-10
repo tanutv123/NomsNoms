@@ -23,6 +23,19 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { RecipeListComponent } from './components/user/recipe-list/recipe-list.component';
 import {RecipeCardComponent} from "./components/recipe/recipe-card/recipe-card.component";
 import { RecipeCardProfileComponent } from './components/user/recipe-list/recipe-card-profile/recipe-card-profile.component';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './components/account/login/login.component';
+import { RegisterComponent } from './components/account/register/register.component';
+import {ToastrModule} from "ngx-toastr";
+import {NgxSpinnerModule} from "ngx-spinner";
+import { TestErrorComponent } from './components/error/test-error/test-error.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {ErrorInterceptor} from "./_interceptors/error.interceptor";
+import {LoadingInterceptor} from "./_interceptors/loading.interceptor";
+import { ServerErrorComponent } from './components/error/server-error/server-error.component';
+import { NotfoundErrorComponent } from './components/error/notfound-error/notfound-error.component';
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 // register Swiper custom elements
 register();
 @NgModule({
@@ -43,16 +56,32 @@ register();
     RecipeStepListComponent,
     ProfileComponent,
     RecipeListComponent,
-    RecipeCardProfileComponent
+    RecipeCardProfileComponent,
+    TextInputComponent,
+    LoginComponent,
+    RegisterComponent,
+    TestErrorComponent,
+    ServerErrorComponent,
+    NotfoundErrorComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
     AppRoutingModule,
     FontAwesomeModule,
-    LucideAngularModule.pick({File, Home, Menu, UserCheck, RefreshCcw, TrendingUp, Wheat, Heart, Eye, Star, Clock, Zap }),
-    BrowserAnimationsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
+    NgxSpinnerModule.forRoot({ type: 'line-scale-party' }),
+    LucideAngularModule.pick({File, Home, Menu, UserCheck, RefreshCcw, TrendingUp, Wheat, Heart, Eye, Star, Clock, Zap })
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

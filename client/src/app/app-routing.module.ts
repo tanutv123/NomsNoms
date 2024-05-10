@@ -6,9 +6,17 @@ import {MealPlanBoughtComponent} from "./components/meal-plan-bought/meal-plan-b
 import {RecipeDetailComponent} from "./components/recipe/recipe-detail/recipe-detail.component";
 import {RecipeStepListComponent} from "./components/recipe-step-list/recipe-step-list.component";
 import {ProfileComponent} from "./components/user/profile/profile.component";
+import {LoginComponent} from "./components/account/login/login.component";
+import {RegisterComponent} from "./components/account/register/register.component";
+import {TestErrorComponent} from "./components/error/test-error/test-error.component";
+import {ServerErrorComponent} from "./components/error/server-error/server-error.component";
+import {NotfoundErrorComponent} from "./components/error/notfound-error/notfound-error.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'test-error', component: TestErrorComponent},
   {path:'',
   children: [
     {path: 'meal-plan', component: MealPlanComponent},
@@ -17,7 +25,10 @@ const routes: Routes = [
     {path: 'recipe-step-list', component: RecipeStepListComponent},
     {path: 'profile', component: ProfileComponent},
   ]
-  }
+  },
+  { path: 'server-error', component: ServerErrorComponent },
+
+  { path: '**', component: NotfoundErrorComponent },
 ];
 
 @NgModule({
