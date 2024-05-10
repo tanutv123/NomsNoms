@@ -68,7 +68,7 @@
     "RecipeSteps": [
       {
         "No": 1,
-        "RecipeId": 1,
+        "RecipeId": 2,
         "Description": "Sơ chế các nguyên liệu",
         "RecipeStepImages": [
           {
@@ -83,12 +83,14 @@
       },
       {
         "No": 2,
-        "RecipeId": 1,
+        "RecipeId": 2,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
       }
     ]
   },
@@ -99,7 +101,7 @@
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
-    "CompletionTime": 30,
+    "CompletionTime": 60,
     "IsExclusive": false,
     "RecipeStatusId": 1,
     "RecipeImage": {
@@ -113,7 +115,7 @@
       },
       {
         "RecipeId": 2,
-        "CategoryId": 3
+        "CategoryId": 2
       }
     ],
     "RecipeIngredients": [
@@ -178,568 +180,12 @@
         "No": 2,
         "RecipeId": 2,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
-      }
-    ]
-  },
-  {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "AppUserId": 4,
-    "RecipeComplexityId": 2,
-    "CreateDate": "2023-09-06",
-    "NumberOfViews": 1500,
-    "CompletionTime": 45,
-    "IsExclusive": false,
-    "RecipeStatusId": 1,
-    "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-    },
-    "RecipeCategories": [
-      {
-        "RecipeId": 3,
-        "CategoryId": 1
-      },
-      {
-        "RecipeId": 3,
-        "CategoryId": 3
-      }
-    ],
-    "RecipeIngredients": [
-      {
-        "RecipeId": 3,
-        "IngredientId": 1,
-        "IngredientServing": 50
-      },
-      {
-        "RecipeId": 3,
-        "IngredientId": 2,
-        "IngredientServing": 100
-      },
-      {
-        "RecipeId": 3,
-        "IngredientId": 3,
-        "IngredientServing": 500
-      },
-      {
-        "RecipeId": 3,
-        "IngredientId": 4,
-        "IngredientServing": 150
-      },
-      {
-        "RecipeId": 3,
-        "IngredientId": 5,
-        "IngredientServing": 45
-      },
-      {
-        "RecipeId": 3,
-        "IngredientId": 6,
-        "IngredientServing": 510
-      },
-      {
-        "RecipeId": 3,
-        "IngredientId": 7,
-        "IngredientServing": 15
-      },
-      {
-        "RecipeId": 3,
-        "IngredientId": 8,
-        "IngredientServing": 20
-      }
-    ],
-    "RecipeSteps": [
-      {
-        "No": 1,
-        "RecipeId": 3,
-        "Description": "Sơ chế các nguyên liệu",
         "RecipeStepImages": [
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          },
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
           }
         ]
-      },
-      {
-        "No": 2,
-        "RecipeId": 3,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
-      }
-    ]
-  },
-  {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "AppUserId": 5,
-    "RecipeComplexityId": 3,
-    "CreateDate": "2023-09-06",
-    "NumberOfViews": 20200,
-    "CompletionTime": 90,
-    "IsExclusive": false,
-    "RecipeStatusId": 1,
-    "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-    },
-    "RecipeCategories": [
-      {
-        "RecipeId": 4,
-        "CategoryId": 1
-      },
-      {
-        "RecipeId": 4,
-        "CategoryId": 3
-      }
-    ],
-    "RecipeIngredients": [
-      {
-        "RecipeId": 4,
-        "IngredientId": 1,
-        "IngredientServing": 50
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 2,
-        "IngredientServing": 100
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 3,
-        "IngredientServing": 500
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 4,
-        "IngredientServing": 150
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 5,
-        "IngredientServing": 45
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 6,
-        "IngredientServing": 510
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 7,
-        "IngredientServing": 15
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 8,
-        "IngredientServing": 20
-      }
-    ],
-    "RecipeSteps": [
-      {
-        "No": 1,
-        "RecipeId": 4,
-        "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImages": [
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          },
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          }
-        ]
-      },
-      {
-        "No": 2,
-        "RecipeId": 4,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
-      }
-    ]
-  },
-  {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "AppUserId": 6,
-    "RecipeComplexityId": 1,
-    "CreateDate": "2023-09-06",
-    "NumberOfViews": 2000,
-    "CompletionTime": 30,
-    "IsExclusive": false,
-    "RecipeStatusId": 1,
-    "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-    },
-    "RecipeCategories": [
-      {
-        "RecipeId": 5,
-        "CategoryId": 1
-      },
-      {
-        "RecipeId": 5,
-        "CategoryId": 3
-      }
-    ],
-    "RecipeIngredients": [
-      {
-        "RecipeId": 5,
-        "IngredientId": 1,
-        "IngredientServing": 50
-      },
-      {
-        "RecipeId": 5,
-        "IngredientId": 2,
-        "IngredientServing": 100
-      },
-      {
-        "RecipeId": 5,
-        "IngredientId": 3,
-        "IngredientServing": 500
-      },
-      {
-        "RecipeId": 5,
-        "IngredientId": 4,
-        "IngredientServing": 150
-      },
-      {
-        "RecipeId": 5,
-        "IngredientId": 5,
-        "IngredientServing": 45
-      },
-      {
-        "RecipeId": 5,
-        "IngredientId": 6,
-        "IngredientServing": 510
-      },
-      {
-        "RecipeId": 5,
-        "IngredientId": 7,
-        "IngredientServing": 15
-      },
-      {
-        "RecipeId": 5,
-        "IngredientId": 8,
-        "IngredientServing": 20
-      }
-    ],
-    "RecipeSteps": [
-      {
-        "No": 1,
-        "RecipeId": 5,
-        "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImages": [
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          },
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          }
-        ]
-      },
-      {
-        "No": 2,
-        "RecipeId": 5,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
-      }
-    ]
-  },
-  {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "AppUserId": 7,
-    "RecipeComplexityId": 1,
-    "CreateDate": "2023-09-06",
-    "NumberOfViews": 2000,
-    "CompletionTime": 30,
-    "IsExclusive": false,
-    "RecipeStatusId": 1,
-    "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-    },
-    "RecipeCategories": [
-      {
-        "RecipeId": 6,
-        "CategoryId": 1
-      },
-      {
-        "RecipeId": 6,
-        "CategoryId": 3
-      }
-    ],
-    "RecipeIngredients": [
-      {
-        "RecipeId": 6,
-        "IngredientId": 1,
-        "IngredientServing": 50
-      },
-      {
-        "RecipeId": 6,
-        "IngredientId": 2,
-        "IngredientServing": 100
-      },
-      {
-        "RecipeId": 6,
-        "IngredientId": 3,
-        "IngredientServing": 500
-      },
-      {
-        "RecipeId": 6,
-        "IngredientId": 4,
-        "IngredientServing": 150
-      },
-      {
-        "RecipeId": 6,
-        "IngredientId": 5,
-        "IngredientServing": 45
-      },
-      {
-        "RecipeId": 6,
-        "IngredientId": 6,
-        "IngredientServing": 510
-      },
-      {
-        "RecipeId": 6,
-        "IngredientId": 7,
-        "IngredientServing": 15
-      },
-      {
-        "RecipeId": 6,
-        "IngredientId": 8,
-        "IngredientServing": 20
-      }
-    ],
-    "RecipeSteps": [
-      {
-        "No": 1,
-        "RecipeId": 6,
-        "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImages": [
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          },
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          }
-        ]
-      },
-      {
-        "No": 2,
-        "RecipeId": 6,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
-      }
-    ]
-  },
-  {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "AppUserId": 1,
-    "RecipeComplexityId": 1,
-    "CreateDate": "2023-09-06",
-    "NumberOfViews": 2000,
-    "CompletionTime": 30,
-    "IsExclusive": false,
-    "RecipeStatusId": 1,
-    "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-    },
-    "RecipeCategories": [
-      {
-        "RecipeId": 7,
-        "CategoryId": 1
-      },
-      {
-        "RecipeId": 7,
-        "CategoryId": 3
-      }
-    ],
-    "RecipeIngredients": [
-      {
-        "RecipeId": 7,
-        "IngredientId": 1,
-        "IngredientServing": 50
-      },
-      {
-        "RecipeId": 7,
-        "IngredientId": 2,
-        "IngredientServing": 100
-      },
-      {
-        "RecipeId": 7,
-        "IngredientId": 3,
-        "IngredientServing": 500
-      },
-      {
-        "RecipeId": 7,
-        "IngredientId": 4,
-        "IngredientServing": 150
-      },
-      {
-        "RecipeId": 7,
-        "IngredientId": 5,
-        "IngredientServing": 45
-      },
-      {
-        "RecipeId": 7,
-        "IngredientId": 6,
-        "IngredientServing": 510
-      },
-      {
-        "RecipeId": 7,
-        "IngredientId": 7,
-        "IngredientServing": 15
-      },
-      {
-        "RecipeId": 7,
-        "IngredientId": 8,
-        "IngredientServing": 20
-      }
-    ],
-    "RecipeSteps": [
-      {
-        "No": 1,
-        "RecipeId": 7,
-        "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImages": [
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          },
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          }
-        ]
-      },
-      {
-        "No": 2,
-        "RecipeId": 7,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
-      }
-    ]
-  },
-  {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "AppUserId": 2,
-    "RecipeComplexityId": 1,
-    "CreateDate": "2023-09-06",
-    "NumberOfViews": 21000,
-    "CompletionTime": 15,
-    "IsExclusive": false,
-    "RecipeStatusId": 1,
-    "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-    },
-    "RecipeCategories": [
-      {
-        "RecipeId": 8,
-        "CategoryId": 1
-      },
-      {
-        "RecipeId": 8,
-        "CategoryId": 3
-      }
-    ],
-    "RecipeIngredients": [
-      {
-        "RecipeId": 8,
-        "IngredientId": 1,
-        "IngredientServing": 50
-      },
-      {
-        "RecipeId": 8,
-        "IngredientId": 2,
-        "IngredientServing": 100
-      },
-      {
-        "RecipeId": 8,
-        "IngredientId": 3,
-        "IngredientServing": 500
-      },
-      {
-        "RecipeId": 8,
-        "IngredientId": 4,
-        "IngredientServing": 150
-      },
-      {
-        "RecipeId": 8,
-        "IngredientId": 5,
-        "IngredientServing": 45
-      },
-      {
-        "RecipeId": 8,
-        "IngredientId": 6,
-        "IngredientServing": 510
-      },
-      {
-        "RecipeId": 8,
-        "IngredientId": 7,
-        "IngredientServing": 15
-      },
-      {
-        "RecipeId": 8,
-        "IngredientId": 8,
-        "IngredientServing": 20
-      }
-    ],
-    "RecipeSteps": [
-      {
-        "No": 1,
-        "RecipeId": 8,
-        "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImages": [
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          },
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          }
-        ]
-      },
-      {
-        "No": 2,
-        "RecipeId": 8,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
       }
     ]
   },
@@ -750,7 +196,7 @@
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
-    "CompletionTime": 30,
+    "CompletionTime": 60,
     "IsExclusive": false,
     "RecipeStatusId": 1,
     "RecipeImage": {
@@ -759,52 +205,52 @@
     },
     "RecipeCategories": [
       {
-        "RecipeId": 9,
+        "RecipeId": 3,
         "CategoryId": 1
       },
       {
-        "RecipeId": 9,
-        "CategoryId": 3
+        "RecipeId": 3,
+        "CategoryId": 2
       }
     ],
     "RecipeIngredients": [
       {
-        "RecipeId": 9,
+        "RecipeId": 3,
         "IngredientId": 1,
         "IngredientServing": 50
       },
       {
-        "RecipeId": 9,
+        "RecipeId": 3,
         "IngredientId": 2,
         "IngredientServing": 100
       },
       {
-        "RecipeId": 9,
+        "RecipeId": 3,
         "IngredientId": 3,
         "IngredientServing": 500
       },
       {
-        "RecipeId": 9,
+        "RecipeId": 3,
         "IngredientId": 4,
         "IngredientServing": 150
       },
       {
-        "RecipeId": 9,
+        "RecipeId": 3,
         "IngredientId": 5,
         "IngredientServing": 45
       },
       {
-        "RecipeId": 9,
+        "RecipeId": 3,
         "IngredientId": 6,
         "IngredientServing": 510
       },
       {
-        "RecipeId": 9,
+        "RecipeId": 3,
         "IngredientId": 7,
         "IngredientServing": 15
       },
       {
-        "RecipeId": 9,
+        "RecipeId": 3,
         "IngredientId": 8,
         "IngredientServing": 20
       }
@@ -812,7 +258,7 @@
     "RecipeSteps": [
       {
         "No": 1,
-        "RecipeId": 9,
+        "RecipeId": 3,
         "Description": "Sơ chế các nguyên liệu",
         "RecipeStepImages": [
           {
@@ -827,23 +273,595 @@
       },
       {
         "No": 2,
-        "RecipeId": 9,
+        "RecipeId": 3,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
       }
     ]
   },
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "AppUserId": 8,
+    "AppUserId": 3,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
-    "NumberOfViews": 19000,
-    "CompletionTime": 49,
+    "NumberOfViews": 2000,
+    "CompletionTime": 60,
+    "IsExclusive": false,
+    "RecipeStatusId": 1,
+    "RecipeImage": {
+      "PublicId": "asp-net7/c6xswokamykw54sgplef",
+      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+    },
+    "RecipeCategories": [
+      {
+        "RecipeId": 4,
+        "CategoryId": 1
+      },
+      {
+        "RecipeId": 4,
+        "CategoryId": 2
+      }
+    ],
+    "RecipeIngredients": [
+      {
+        "RecipeId": 4,
+        "IngredientId": 1,
+        "IngredientServing": 50
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 2,
+        "IngredientServing": 100
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 3,
+        "IngredientServing": 500
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 4,
+        "IngredientServing": 150
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 5,
+        "IngredientServing": 45
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 6,
+        "IngredientServing": 510
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 7,
+        "IngredientServing": 15
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 8,
+        "IngredientServing": 20
+      }
+    ],
+    "RecipeSteps": [
+      {
+        "No": 1,
+        "RecipeId": 4,
+        "Description": "Sơ chế các nguyên liệu",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          },
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      },
+      {
+        "No": 2,
+        "RecipeId": 4,
+        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Title": "Hướng dẫn làm bánh mì",
+    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
+    "AppUserId": 3,
+    "RecipeComplexityId": 1,
+    "CreateDate": "2023-09-06",
+    "NumberOfViews": 2000,
+    "CompletionTime": 60,
+    "IsExclusive": false,
+    "RecipeStatusId": 1,
+    "RecipeImage": {
+      "PublicId": "asp-net7/c6xswokamykw54sgplef",
+      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+    },
+    "RecipeCategories": [
+      {
+        "RecipeId": 5,
+        "CategoryId": 1
+      },
+      {
+        "RecipeId": 5,
+        "CategoryId": 2
+      }
+    ],
+    "RecipeIngredients": [
+      {
+        "RecipeId": 5,
+        "IngredientId": 1,
+        "IngredientServing": 50
+      },
+      {
+        "RecipeId": 5,
+        "IngredientId": 2,
+        "IngredientServing": 100
+      },
+      {
+        "RecipeId": 5,
+        "IngredientId": 3,
+        "IngredientServing": 500
+      },
+      {
+        "RecipeId": 5,
+        "IngredientId": 4,
+        "IngredientServing": 150
+      },
+      {
+        "RecipeId": 5,
+        "IngredientId": 5,
+        "IngredientServing": 45
+      },
+      {
+        "RecipeId": 5,
+        "IngredientId": 6,
+        "IngredientServing": 510
+      },
+      {
+        "RecipeId": 5,
+        "IngredientId": 7,
+        "IngredientServing": 15
+      },
+      {
+        "RecipeId": 5,
+        "IngredientId": 8,
+        "IngredientServing": 20
+      }
+    ],
+    "RecipeSteps": [
+      {
+        "No": 1,
+        "RecipeId": 5,
+        "Description": "Sơ chế các nguyên liệu",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          },
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      },
+      {
+        "No": 2,
+        "RecipeId": 5,
+        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Title": "Hướng dẫn làm bánh mì",
+    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
+    "AppUserId": 3,
+    "RecipeComplexityId": 1,
+    "CreateDate": "2023-09-06",
+    "NumberOfViews": 2000,
+    "CompletionTime": 60,
+    "IsExclusive": false,
+    "RecipeStatusId": 1,
+    "RecipeImage": {
+      "PublicId": "asp-net7/c6xswokamykw54sgplef",
+      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+    },
+    "RecipeCategories": [
+      {
+        "RecipeId": 6,
+        "CategoryId": 1
+      },
+      {
+        "RecipeId": 6,
+        "CategoryId": 2
+      }
+    ],
+    "RecipeIngredients": [
+      {
+        "RecipeId": 6,
+        "IngredientId": 1,
+        "IngredientServing": 50
+      },
+      {
+        "RecipeId": 6,
+        "IngredientId": 2,
+        "IngredientServing": 100
+      },
+      {
+        "RecipeId": 6,
+        "IngredientId": 3,
+        "IngredientServing": 500
+      },
+      {
+        "RecipeId": 6,
+        "IngredientId": 4,
+        "IngredientServing": 150
+      },
+      {
+        "RecipeId": 6,
+        "IngredientId": 5,
+        "IngredientServing": 45
+      },
+      {
+        "RecipeId": 6,
+        "IngredientId": 6,
+        "IngredientServing": 510
+      },
+      {
+        "RecipeId": 6,
+        "IngredientId": 7,
+        "IngredientServing": 15
+      },
+      {
+        "RecipeId": 6,
+        "IngredientId": 8,
+        "IngredientServing": 20
+      }
+    ],
+    "RecipeSteps": [
+      {
+        "No": 1,
+        "RecipeId": 6,
+        "Description": "Sơ chế các nguyên liệu",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          },
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      },
+      {
+        "No": 2,
+        "RecipeId": 6,
+        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Title": "Hướng dẫn làm bánh mì",
+    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
+    "AppUserId": 3,
+    "RecipeComplexityId": 1,
+    "CreateDate": "2023-09-06",
+    "NumberOfViews": 2000,
+    "CompletionTime": 60,
+    "IsExclusive": false,
+    "RecipeStatusId": 1,
+    "RecipeImage": {
+      "PublicId": "asp-net7/c6xswokamykw54sgplef",
+      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+    },
+    "RecipeCategories": [
+      {
+        "RecipeId": 7,
+        "CategoryId": 1
+      },
+      {
+        "RecipeId": 7,
+        "CategoryId": 2
+      }
+    ],
+    "RecipeIngredients": [
+      {
+        "RecipeId": 7,
+        "IngredientId": 1,
+        "IngredientServing": 50
+      },
+      {
+        "RecipeId": 7,
+        "IngredientId": 2,
+        "IngredientServing": 100
+      },
+      {
+        "RecipeId": 7,
+        "IngredientId": 3,
+        "IngredientServing": 500
+      },
+      {
+        "RecipeId": 7,
+        "IngredientId": 4,
+        "IngredientServing": 150
+      },
+      {
+        "RecipeId": 7,
+        "IngredientId": 5,
+        "IngredientServing": 45
+      },
+      {
+        "RecipeId": 7,
+        "IngredientId": 6,
+        "IngredientServing": 510
+      },
+      {
+        "RecipeId": 7,
+        "IngredientId": 7,
+        "IngredientServing": 15
+      },
+      {
+        "RecipeId": 7,
+        "IngredientId": 8,
+        "IngredientServing": 20
+      }
+    ],
+    "RecipeSteps": [
+      {
+        "No": 1,
+        "RecipeId": 7,
+        "Description": "Sơ chế các nguyên liệu",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          },
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      },
+      {
+        "No": 2,
+        "RecipeId": 7,
+        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Title": "Hướng dẫn làm bánh mì",
+    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
+    "AppUserId": 3,
+    "RecipeComplexityId": 1,
+    "CreateDate": "2023-09-06",
+    "NumberOfViews": 2000,
+    "CompletionTime": 60,
+    "IsExclusive": false,
+    "RecipeStatusId": 1,
+    "RecipeImage": {
+      "PublicId": "asp-net7/c6xswokamykw54sgplef",
+      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+    },
+    "RecipeCategories": [
+      {
+        "RecipeId": 8,
+        "CategoryId": 1
+      },
+      {
+        "RecipeId": 8,
+        "CategoryId": 2
+      }
+    ],
+    "RecipeIngredients": [
+      {
+        "RecipeId": 8,
+        "IngredientId": 1,
+        "IngredientServing": 50
+      },
+      {
+        "RecipeId": 8,
+        "IngredientId": 2,
+        "IngredientServing": 100
+      },
+      {
+        "RecipeId": 8,
+        "IngredientId": 3,
+        "IngredientServing": 500
+      },
+      {
+        "RecipeId": 8,
+        "IngredientId": 4,
+        "IngredientServing": 150
+      },
+      {
+        "RecipeId": 8,
+        "IngredientId": 5,
+        "IngredientServing": 45
+      },
+      {
+        "RecipeId": 8,
+        "IngredientId": 6,
+        "IngredientServing": 510
+      },
+      {
+        "RecipeId": 8,
+        "IngredientId": 7,
+        "IngredientServing": 15
+      },
+      {
+        "RecipeId": 8,
+        "IngredientId": 8,
+        "IngredientServing": 20
+      }
+    ],
+    "RecipeSteps": [
+      {
+        "No": 1,
+        "RecipeId": 8,
+        "Description": "Sơ chế các nguyên liệu",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          },
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      },
+      {
+        "No": 2,
+        "RecipeId": 8,
+        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Title": "Hướng dẫn làm bánh mì",
+    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
+    "AppUserId": 3,
+    "RecipeComplexityId": 1,
+    "CreateDate": "2023-09-06",
+    "NumberOfViews": 2000,
+    "CompletionTime": 60,
+    "IsExclusive": false,
+    "RecipeStatusId": 1,
+    "RecipeImage": {
+      "PublicId": "asp-net7/c6xswokamykw54sgplef",
+      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+    },
+    "RecipeCategories": [
+      {
+        "RecipeId": 9,
+        "CategoryId": 1
+      },
+      {
+        "RecipeId": 9,
+        "CategoryId": 2
+      }
+    ],
+    "RecipeIngredients": [
+      {
+        "RecipeId": 9,
+        "IngredientId": 1,
+        "IngredientServing": 50
+      },
+      {
+        "RecipeId": 9,
+        "IngredientId": 2,
+        "IngredientServing": 100
+      },
+      {
+        "RecipeId": 9,
+        "IngredientId": 3,
+        "IngredientServing": 500
+      },
+      {
+        "RecipeId": 9,
+        "IngredientId": 4,
+        "IngredientServing": 150
+      },
+      {
+        "RecipeId": 9,
+        "IngredientId": 5,
+        "IngredientServing": 45
+      },
+      {
+        "RecipeId": 9,
+        "IngredientId": 6,
+        "IngredientServing": 510
+      },
+      {
+        "RecipeId": 9,
+        "IngredientId": 7,
+        "IngredientServing": 15
+      },
+      {
+        "RecipeId": 9,
+        "IngredientId": 8,
+        "IngredientServing": 20
+      }
+    ],
+    "RecipeSteps": [
+      {
+        "No": 1,
+        "RecipeId": 9,
+        "Description": "Sơ chế các nguyên liệu",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          },
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      },
+      {
+        "No": 2,
+        "RecipeId": 9,
+        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Title": "Hướng dẫn làm bánh mì",
+    "Decription": "Bánh mì từ những nguyên liệu đơn giản",
+    "AppUserId": 3,
+    "RecipeComplexityId": 1,
+    "CreateDate": "2023-09-06",
+    "NumberOfViews": 2000,
+    "CompletionTime": 60,
     "IsExclusive": false,
     "RecipeStatusId": 1,
     "RecipeImage": {
@@ -857,7 +875,7 @@
       },
       {
         "RecipeId": 10,
-        "CategoryId": 3
+        "CategoryId": 2
       }
     ],
     "RecipeIngredients": [
@@ -922,12 +940,13 @@
         "No": 2,
         "RecipeId": 10,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImages": {
-          "PublicId": "asp-net7/c6xswokamykw54sgplef",
-          "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-        }
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
       }
     ]
   }
-
 ]

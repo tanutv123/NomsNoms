@@ -12,8 +12,8 @@ using NomsNoms.Data;
 namespace NomsNoms.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240510142908_UpdateRecipeTable")]
-    partial class UpdateRecipeTable
+    [Migration("20240510145423_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,6 +202,9 @@ namespace NomsNoms.Data.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint");
 
                     b.Property<int?>("SubscriptionId")
                         .HasColumnType("int");
@@ -491,15 +494,10 @@ namespace NomsNoms.Data.Migrations
                     b.Property<string>("PublicId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RecipeStepId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RecipeStepId");
 
                     b.ToTable("RecipeImages");
                 });
@@ -575,6 +573,30 @@ namespace NomsNoms.Data.Migrations
                     b.HasIndex("RecipeId");
 
                     b.ToTable("RecipeSteps");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.RecipeStepImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RecipeStepId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipeStepId");
+
+                    b.ToTable("RecipeStepImages");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.Subscription", b =>
@@ -913,13 +935,6 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("Recipe");
                 });
 
-            modelBuilder.Entity("NomsNoms.Entities.RecipeImage", b =>
-                {
-                    b.HasOne("NomsNoms.Entities.RecipeStep", null)
-                        .WithMany("RecipeStepImages")
-                        .HasForeignKey("RecipeStepId");
-                });
-
             modelBuilder.Entity("NomsNoms.Entities.RecipeIngredient", b =>
                 {
                     b.HasOne("NomsNoms.Entities.Ingredient", "Ingredient")
@@ -967,6 +982,17 @@ namespace NomsNoms.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.RecipeStepImage", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.RecipeStep", "RecipeStep")
+                        .WithMany("RecipeStepImages")
+                        .HasForeignKey("RecipeStepId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RecipeStep");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.UserCollection", b =>
