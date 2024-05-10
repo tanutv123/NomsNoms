@@ -52,5 +52,14 @@ namespace NomsNoms.Data
                                                             userParams.PageNumber,
                                                             userParams.PageSize);
         }
+
+        public async Task<List<RecipeDTO>> GetTrendingRecipe()
+        {
+            var query = await _context.Recipes
+                .OrderByDescending(r => r.RecipeLikes.Count)
+                .Take(5)
+                .ToListAsync();
+            return _mapper.Map<List<RecipeDTO>>(query);
+        }
     }
 }

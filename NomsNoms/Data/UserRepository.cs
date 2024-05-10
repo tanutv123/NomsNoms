@@ -68,5 +68,90 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task CreateUserAdmin(AppUser user)
+        {
+            try
+            {
+                var u = await _userManager.FindByEmailAsync(user.Email);
+                if (u == null)
+                {
+                    string password = "Pa$$w0rd";
+                    if (await IsPhoneExistAsync(user.PhoneNumber))
+                    {
+                        throw new Exception("Phone is exist");
+                    }
+                    var result = await _userManager.CreateAsync(user, password);
+                    if (!result.Succeeded)
+                    {
+                        throw new Exception("User creation failed");
+                    }
+                }
+                else
+                {
+                    throw new Exception("User is exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task UpdateUserAdmin(AppUser user)
+        {
+            try
+            {
+                var u = await _userManager.FindByEmailAsync(user.Email);
+                if (u != null)
+                {
+                    if (u.PhoneNumber != user.PhoneNumber && await IsPhoneExistAsync(user.PhoneNumber))
+                    {
+                        throw new Exception("Phone is exist");
+                    }
+                    u.KnownAs = user.KnownAs;
+                    u.Email = user.Email;
+                    u.PhoneNumber = user.PhoneNumber;
+                    u.UserRoles = user.UserRoles;
+                    u.UserPhoto = user.UserPhoto;
+                    u.Introduction = user.Introduction;
+                    u.Status = user.Status;
+                    u.SubscriptionId = user.SubscriptionId;
+                    u.TasteProfileId = user.TasteProfileId;
+                    u.CreatedDate = DateTime.Now;
+                    u.LastActive = DateTime.Now;
+                    await _userManager.UpdateAsync(u);
+                }
+                else
+                {
+                    throw new Exception("User is not exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task DeleteUserAdmin(AppUser user)
+        {
+            try
+            {
+                var u = await _userManager.FindByEmailAsync(user.Email);
+                if (u != null)
+                {
+                    u.Status = 0;
+                    await _userManager.UpdateAsync(u);
+                }
+                else
+                {
+                    throw new Exception("User is not exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -9,7 +9,6 @@ namespace NomsNoms.DTOs
         public string Email { get; set; }
         [Required]
         [RegularExpression(@"^[a-zA-Z\u00C0-\u1EF9 ]*$", ErrorMessage = "Fullname can only contain letters, spaces, and Vietnamese characters.")]
-
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 5)]
         public string Name { get; set; }
         [Required]
