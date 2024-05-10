@@ -2,7 +2,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 3,
+    "AppUserId": 3,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
@@ -95,7 +95,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 3,
+    "AppUserId": 3,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
@@ -188,7 +188,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 4,
+    "AppUserId": 4,
     "RecipeComplexityId": 2,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 1500,
@@ -281,7 +281,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 5,
+    "AppUserId": 5,
     "RecipeComplexityId": 3,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 20200,
@@ -374,7 +374,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 6,
+    "AppUserId": 6,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
@@ -467,7 +467,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 7,
+    "AppUserId": 7,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
@@ -560,7 +560,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 1,
+    "AppUserId": 1,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
@@ -653,7 +653,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 2,
+    "AppUserId": 2,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 21000,
@@ -746,7 +746,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 3,
+    "AppUserId": 3,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
@@ -839,7 +839,7 @@
   {
     "Title": "Hướng dẫn làm bánh mì",
     "Decription": "Bánh mì từ những nguyên liệu đơn giản",
-    "UserId": 8,
+    "AppUserId": 8,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 19000,

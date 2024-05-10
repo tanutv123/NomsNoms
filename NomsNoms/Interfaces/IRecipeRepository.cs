@@ -8,5 +8,6 @@ namespace NomsNoms.Interfaces
     {
         Task<PagedList<RecipeDTO>> GetRecipesAsync(UserParams userParams);
         Task<List<Category>> GetCategoriesAsync();
+        Task<RecipeDTO> GetRecipeAsync(int id);
     }
 }

@@ -12,8 +12,8 @@ using NomsNoms.Data;
 namespace NomsNoms.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240506191733_Init")]
-    partial class Init
+    [Migration("20240510142908_UpdateRecipeTable")]
+    partial class UpdateRecipeTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -206,6 +206,9 @@ namespace NomsNoms.Data.Migrations
                     b.Property<int?>("SubscriptionId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TasteProfileId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -224,6 +227,8 @@ namespace NomsNoms.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.HasIndex("SubscriptionId");
+
+                    b.HasIndex("TasteProfileId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -277,6 +282,31 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("CollectionRecipes");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.Ingredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<float>("Calories")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Weight")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ingredients");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.MealPlan", b =>
                 {
                     b.Property<int>("Id")
@@ -304,6 +334,21 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("MealPlans");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanIngredient", b =>
+                {
+                    b.Property<int>("MealPlanId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MealPlanId", "IngredientId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.ToTable("MealPlanIngredients");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.MealPlanType", b =>
                 {
                     b.Property<int>("Id")
@@ -320,6 +365,37 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("MealPlanTypes");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Saltiness")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Sauce")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Spiciness")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Sweetness")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.Recipe", b =>
                 {
                     b.Property<int>("Id")
@@ -328,14 +404,23 @@ namespace NomsNoms.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Ingredients")
+                    b.Property<int>("CompletionTime")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsExclusive")
                         .HasColumnType("bit");
+
+                    b.Property<int>("NumberOfViews")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecipeComplexityId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("RecipeImageId")
                         .HasColumnType("int");
@@ -343,14 +428,23 @@ namespace NomsNoms.Data.Migrations
                     b.Property<int>("RecipeStatusId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TasteProfileId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("RecipeComplexityId");
+
                     b.HasIndex("RecipeImageId");
 
                     b.HasIndex("RecipeStatusId");
+
+                    b.HasIndex("TasteProfileId");
 
                     b.ToTable("Recipes");
                 });
@@ -370,6 +464,22 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("RecipeCategories");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.RecipeComplexity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RecipeComplexities");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.RecipeImage", b =>
                 {
                     b.Property<int>("Id")
@@ -381,12 +491,35 @@ namespace NomsNoms.Data.Migrations
                     b.Property<string>("PublicId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RecipeStepId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RecipeStepId");
+
                     b.ToTable("RecipeImages");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.RecipeIngredient", b =>
+                {
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("IngredientServing")
+                        .HasColumnType("real");
+
+                    b.HasKey("RecipeId", "IngredientId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.ToTable("RecipeIngredients");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.RecipeLike", b =>
@@ -463,6 +596,31 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("Subscriptions");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.TasteProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Saltiness")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Sauce")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Spiciness")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Sweetness")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TasteProfiles");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.UserCollection", b =>
                 {
                     b.Property<int>("Id")
@@ -482,6 +640,21 @@ namespace NomsNoms.Data.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("UserCollections");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.UserFavorite", b =>
+                {
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AppUserId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("UserFavorites");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.UserFollow", b =>
@@ -539,7 +712,8 @@ namespace NomsNoms.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId")
+                        .IsUnique();
 
                     b.ToTable("UserPhotos");
                 });
@@ -604,7 +778,13 @@ namespace NomsNoms.Data.Migrations
                         .WithMany()
                         .HasForeignKey("SubscriptionId");
 
+                    b.HasOne("NomsNoms.Entities.TasteProfile", "TasteProfile")
+                        .WithMany()
+                        .HasForeignKey("TasteProfileId");
+
                     b.Navigation("Subscription");
+
+                    b.Navigation("TasteProfile");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.AppUserRole", b =>
@@ -656,8 +836,39 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("MealPlanType");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanIngredient", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.Ingredient", "Ingredient")
+                        .WithMany("MealPlanIngredients")
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("NomsNoms.Entities.MealPlan", "MeanPlan")
+                        .WithMany("MealPlanIngredients")
+                        .HasForeignKey("MealPlanId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("MeanPlan");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.Recipe", b =>
                 {
+                    b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
+                        .WithMany("Recipes")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NomsNoms.Entities.RecipeComplexity", "RecipeComplexity")
+                        .WithMany("Recipes")
+                        .HasForeignKey("RecipeComplexityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("NomsNoms.Entities.RecipeImage", "RecipeImage")
                         .WithMany()
                         .HasForeignKey("RecipeImageId");
@@ -668,9 +879,19 @@ namespace NomsNoms.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NomsNoms.Entities.TasteProfile", "TastProfile")
+                        .WithMany()
+                        .HasForeignKey("TasteProfileId");
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("RecipeComplexity");
+
                     b.Navigation("RecipeImage");
 
                     b.Navigation("RecipeStatus");
+
+                    b.Navigation("TastProfile");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.RecipeCategory", b =>
@@ -688,6 +909,32 @@ namespace NomsNoms.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.RecipeImage", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.RecipeStep", null)
+                        .WithMany("RecipeStepImages")
+                        .HasForeignKey("RecipeStepId");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.RecipeIngredient", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.Ingredient", "Ingredient")
+                        .WithMany("RecipeIngredient")
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("NomsNoms.Entities.Recipe", "Recipe")
+                        .WithMany("RecipeIngredients")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Ingredient");
 
                     b.Navigation("Recipe");
                 });
@@ -733,6 +980,25 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.UserFavorite", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
+                        .WithMany("UserFavorites")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("NomsNoms.Entities.Category", "Category")
+                        .WithMany("UserFavorites")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.UserFollow", b =>
                 {
                     b.HasOne("NomsNoms.Entities.AppUser", "SourceUser")
@@ -774,8 +1040,8 @@ namespace NomsNoms.Data.Migrations
             modelBuilder.Entity("NomsNoms.Entities.UserPhoto", b =>
                 {
                     b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
+                        .WithOne("UserPhoto")
+                        .HasForeignKey("NomsNoms.Entities.UserPhoto", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -814,9 +1080,15 @@ namespace NomsNoms.Data.Migrations
 
                     b.Navigation("LikedRecipes");
 
+                    b.Navigation("Recipes");
+
                     b.Navigation("UserCollections");
 
+                    b.Navigation("UserFavorites");
+
                     b.Navigation("UserMealPlans");
+
+                    b.Navigation("UserPhoto");
 
                     b.Navigation("UserRoles");
 
@@ -826,10 +1098,21 @@ namespace NomsNoms.Data.Migrations
             modelBuilder.Entity("NomsNoms.Entities.Category", b =>
                 {
                     b.Navigation("RecipeCategories");
+
+                    b.Navigation("UserFavorites");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.Ingredient", b =>
+                {
+                    b.Navigation("MealPlanIngredients");
+
+                    b.Navigation("RecipeIngredient");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.MealPlan", b =>
                 {
+                    b.Navigation("MealPlanIngredients");
+
                     b.Navigation("UserMealPlans");
                 });
 
@@ -839,14 +1122,26 @@ namespace NomsNoms.Data.Migrations
 
                     b.Navigation("RecipeCategories");
 
+                    b.Navigation("RecipeIngredients");
+
                     b.Navigation("RecipeLikes");
 
                     b.Navigation("RecipeSteps");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.RecipeComplexity", b =>
+                {
+                    b.Navigation("Recipes");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.RecipeStatus", b =>
                 {
                     b.Navigation("Recipes");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.RecipeStep", b =>
+                {
+                    b.Navigation("RecipeStepImages");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.Subscription", b =>
