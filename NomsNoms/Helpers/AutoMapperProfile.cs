@@ -10,7 +10,7 @@ namespace NomsNoms.Helpers
         {
             CreateMap<AppUser, UserDTO>().ReverseMap();
             CreateMap<AppUser, UserAdminDTO>()
-                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.UserRoles.First().AppRole.Name))
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.UserRoles.FirstOrDefault().AppRole.Name))
                 .ReverseMap();
             CreateMap<AppUser, UserProfileDTO>()
                 .ReverseMap();

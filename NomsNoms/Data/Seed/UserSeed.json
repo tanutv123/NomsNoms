@@ -9,7 +9,8 @@
     "UserPhoto": {
       "Url": "https://randomuser.me/api/portraits/men/97.jpg",
       "IsMain": true
-    }
+    },
+    "Status": 1
   },
   {
     "KnownAs": "Gail",
@@ -21,7 +22,8 @@
     "UserPhoto": {
       "Url": "https://randomuser.me/api/portraits/men/28.jpg",
       "IsMain": true
-    }
+    },
+    "Status": 1
   },
   {
     "KnownAs": "Drake",
@@ -33,7 +35,8 @@
     "UserPhoto": {
       "Url": "https://randomuser.me/api/portraits/men/66.jpg",
       "IsMain": true
-    }
+    },
+    "Status": 1
   },
   {
     "KnownAs": "Peck",
@@ -45,7 +48,8 @@
     "UserPhoto": {
       "Url": "https://randomuser.me/api/portraits/men/78.jpg",
       "IsMain": true
-    }
+    },
+    "Status": 1
   },
   {
     "KnownAs": "Pearl",
@@ -57,7 +61,8 @@
     "UserPhoto": {
       "Url": "https://randomuser.me/api/portraits/men/41.jpg",
       "IsMain": true
-    }
+    },
+    "Status": 1
   },
   {
     "KnownAs": "Buckner",
@@ -69,7 +74,8 @@
     "UserPhoto": {
       "Url": "https://randomuser.me/api/portraits/men/72.jpg",
       "IsMain": true
-    }
+    },
+    "Status": 1
   },
   {
     "KnownAs": "Elsie",
@@ -81,6 +87,7 @@
     "UserPhoto": {
       "Url": "https://randomuser.me/api/portraits/men/64.jpg",
       "IsMain": true
-    }
+    },
+    "Status": 1
   }
 ]

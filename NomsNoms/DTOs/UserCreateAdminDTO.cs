@@ -1,15 +1,13 @@
-﻿using NomsNoms.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace NomsNoms.DTOs
 {
-    public class UserAdminDTO
+    public class UserCreateAdminDTO
     {
-        public int Id { get; set; }
         [Required]
         [RegularExpression(@"^[a-zA-Z\u00C0-\u1EF9 ]*$", ErrorMessage = "Fullname can only contain letters, spaces, and Vietnamese characters.")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        public string KnownAs { get; set; }
+        public string Name { get; set; }
         [Required]
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be 10 digits")]
         public string PhoneNumber { get; set; }
@@ -21,8 +19,6 @@ namespace NomsNoms.DTOs
         [StringLength(100, ErrorMessage = "Introduction must be at least 1 character long and max is 100 characters", MinimumLength = 1)]
         public string Introduction { get; set; }
         [Required]
-        public string Role { get; set; }
-        [Required]
-        public byte Status { get; set; }
+        public int Role { get; set; }
     }
 }

@@ -46,6 +46,7 @@ namespace NomsNoms.Data.Seed
                 CreatedDate = DateTime.Now,
                 LastActive = DateTime.Now,
                 EmailConfirmed = true,
+                Status = 1
             };
 
             var resultAdmin = await _userManager.CreateAsync(admin, "Pa$$w0rd");
@@ -59,6 +60,7 @@ namespace NomsNoms.Data.Seed
                 CreatedDate = DateTime.Now,
                 LastActive = DateTime.Now,
                 EmailConfirmed = true,
+                Status = 1
             };
 
             await _userManager.CreateAsync(manager, "Pa$$w0rd");
@@ -79,6 +81,7 @@ namespace NomsNoms.Data.Seed
                     IsMain = true
                 },
                 EmailConfirmed = true,
+                Status = 1
             };
 
             await _userManager.CreateAsync(cook, "Pa$$w0rd");
@@ -92,6 +95,7 @@ namespace NomsNoms.Data.Seed
                 CreatedDate = DateTime.Now,
                 LastActive = DateTime.Now,
                 EmailConfirmed = true,
+                Status = 1
             };
 
             await _userManager.CreateAsync(staff, "Pa$$w0rd");
