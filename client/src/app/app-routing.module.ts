@@ -4,13 +4,14 @@ import {RecipeComponent} from "./components/recipe/recipe.component";
 import {MealPlanComponent} from "./components/meal-plan/meal-plan.component";
 import {MealPlanBoughtComponent} from "./components/meal-plan-bought/meal-plan-bought.component";
 import {RecipeDetailComponent} from "./components/recipe/recipe-detail/recipe-detail.component";
-import {RecipeStepListComponent} from "./components/recipe-step-list/recipe-step-list.component";
+import {RecipeStepListComponent} from "./components/recipe/recipe-step-list/recipe-step-list.component";
 import {ProfileComponent} from "./components/user/profile/profile.component";
 import {LoginComponent} from "./components/account/login/login.component";
 import {RegisterComponent} from "./components/account/register/register.component";
 import {TestErrorComponent} from "./components/error/test-error/test-error.component";
 import {ServerErrorComponent} from "./components/error/server-error/server-error.component";
 import {NotfoundErrorComponent} from "./components/error/notfound-error/notfound-error.component";
+import {ListOfRecipeComponent} from "./components/recipe/list-of-recipe/list-of-recipe.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
     {path: 'meal-plan-bought', component: MealPlanBoughtComponent},
     {path: 'recipe-detail', component: RecipeDetailComponent},
     {path: 'recipe-step-list', component: RecipeStepListComponent},
+    {path: 'list', component: ListOfRecipeComponent},
     {path: 'profile', component: ProfileComponent},
   ]
   },

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NomsNoms.DTOs;
+using NomsNoms.Entities;
 using NomsNoms.Extensions;
 using NomsNoms.Helpers;
 using NomsNoms.Interfaces;
@@ -32,6 +33,12 @@ namespace NomsNoms.Controllers
                                                                 recipes.TotalPage));
             return Ok(recipes);
 
+        }
+        [HttpGet("category")]
+        public async Task<ActionResult<List<Category>>> GetCategories()
+        {
+            var result = await _recipeRepository.GetCategoriesAsync();
+            return Ok(result);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NomsNoms.DTOs;
+using NomsNoms.Entities;
 using NomsNoms.Helpers;
 
 namespace NomsNoms.Interfaces
@@ -6,5 +7,6 @@ namespace NomsNoms.Interfaces
     public interface IRecipeRepository
     {
         Task<PagedList<RecipeDTO>> GetRecipesAsync(UserParams userParams);
+        Task<List<Category>> GetCategoriesAsync();
     }
 }
