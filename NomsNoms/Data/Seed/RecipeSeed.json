@@ -70,7 +70,7 @@
         "No": 1,
         "RecipeId": 1,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -85,7 +85,7 @@
         "No": 2,
         "RecipeId": 1,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }
@@ -163,7 +163,7 @@
         "No": 1,
         "RecipeId": 2,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -178,7 +178,7 @@
         "No": 2,
         "RecipeId": 2,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }
@@ -256,7 +256,7 @@
         "No": 1,
         "RecipeId": 3,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -271,7 +271,7 @@
         "No": 2,
         "RecipeId": 3,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }
@@ -349,7 +349,7 @@
         "No": 1,
         "RecipeId": 4,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -364,7 +364,7 @@
         "No": 2,
         "RecipeId": 4,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }
@@ -442,7 +442,7 @@
         "No": 1,
         "RecipeId": 5,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -457,7 +457,7 @@
         "No": 2,
         "RecipeId": 5,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }
@@ -535,7 +535,7 @@
         "No": 1,
         "RecipeId": 6,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -550,7 +550,7 @@
         "No": 2,
         "RecipeId": 6,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }
@@ -628,7 +628,7 @@
         "No": 1,
         "RecipeId": 7,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -643,7 +643,7 @@
         "No": 2,
         "RecipeId": 7,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }
@@ -721,7 +721,7 @@
         "No": 1,
         "RecipeId": 8,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -736,7 +736,7 @@
         "No": 2,
         "RecipeId": 8,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }
@@ -814,7 +814,7 @@
         "No": 1,
         "RecipeId": 9,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -829,7 +829,7 @@
         "No": 2,
         "RecipeId": 9,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }
@@ -907,7 +907,7 @@
         "No": 1,
         "RecipeId": 10,
         "Description": "Sơ chế các nguyên liệu",
-        "RecipeStepImage": [
+        "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -922,7 +922,7 @@
         "No": 2,
         "RecipeId": 10,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
-        "RecipeStepImage": {
+        "RecipeStepImages": {
           "PublicId": "asp-net7/c6xswokamykw54sgplef",
           "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
         }

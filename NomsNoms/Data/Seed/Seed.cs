@@ -178,7 +178,7 @@ namespace NomsNoms.Data.Seed
         {
             if (await _context.Recipes.AnyAsync()) { return; }
 
-            var recipes = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/RecipeSeed.json");
+            var recipes = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/recipe.json");
             var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var rep = JsonSerializer.Deserialize<List<Recipe>>(recipes, jsonOptions);
 
