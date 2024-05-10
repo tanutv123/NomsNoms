@@ -26,6 +26,19 @@ namespace NomsNoms.Controllers
             {
                 userParams.OrderByCompletionTime = "asc";
             }
+            string categoryString = Request.Query["categories"];
+            if(!string.IsNullOrEmpty(categoryString))
+            {
+                try
+                {
+                    int[] categoryIds = categoryString.Split(',').Select(int.Parse).ToArray();
+                    userParams.CategoryIds = categoryIds;
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest("Invalid categories");
+                }
+            }
             var recipes = await _recipeRepository.GetRecipesAsync(userParams);
             Response.AddPaginationHeader(new PaginationHeader(recipes.CurrentPage,
                                                                 recipes.PageSize,
