@@ -43,6 +43,7 @@ namespace NomsNoms.Data
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
         public DbSet<MealPlanIngredient> MealPlanIngredients { get; set; }
         public DbSet<TasteProfile> TasteProfiles{ get; set; }
+        public DbSet<RecipeComplexity> RecipeComplexities{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

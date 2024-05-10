@@ -8,6 +8,7 @@ using NomsNoms.Entities;
 using NomsNoms.Extensions;
 using NomsNoms.Helpers;
 using NomsNoms.Interfaces;
+using NomsNoms.Middleware;
 using NomsNoms.Services;
 using System.Data;
 using System.Text;
@@ -50,6 +51,7 @@ builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IImageService, ImageService>();
+builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -60,6 +62,8 @@ builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionMiddleware>();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -73,6 +77,12 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseCors(builder => builder
+.AllowAnyHeader()
+.AllowAnyMethod()
+.AllowCredentials()
+.WithOrigins("https://localhost:4200"));
 
 app.MapControllers();
 
@@ -90,6 +100,7 @@ try
     await Seed.SeedMealPlan(context);
     await Seed.SeedIngredient(context);
     await Seed.SeedCategory(context);
+    await Seed.SeedComplexity(context);
     await Seed.SeedRecipe(context);
 
 }
