@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using NomsNoms.DTOs;
+using NomsNoms.Entities;
 using NomsNoms.Helpers;
 using NomsNoms.Interfaces;
 
@@ -17,6 +18,12 @@ namespace NomsNoms.Data
             _context = context;
             _mapper = mapper;
         }
+
+        public async Task<List<Category>> GetCategoriesAsync()
+        {
+            return await _context.Categories.ToListAsync();
+        }
+
         public async Task<PagedList<RecipeDTO>> GetRecipesAsync(UserParams userParams)
         {
             var query = _context.Recipes.Include(x => x.RecipeCategories).AsQueryable();
