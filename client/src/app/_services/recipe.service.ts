@@ -63,6 +63,12 @@ export class RecipeService {
       })
     );
   }
+  getRecipe(id: number) {
+    const recipe = [...this.recipeCache.values()]
+      .reduce((arr, elm) => arr.concat(elm.result), []).find((recipe: Recipe) => recipe.id == id);
+    if (recipe) return of(recipe);
+    return this.http.get<Recipe>(this.baseUrl + 'recipe/' + id);
+  }
   getCategories() {
     return this.http.get<Category[]>(this.baseUrl + 'recipe/category');
   }

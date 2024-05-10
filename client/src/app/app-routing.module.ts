@@ -12,6 +12,7 @@ import {TestErrorComponent} from "./components/error/test-error/test-error.compo
 import {ServerErrorComponent} from "./components/error/server-error/server-error.component";
 import {NotfoundErrorComponent} from "./components/error/notfound-error/notfound-error.component";
 import {ListOfRecipeComponent} from "./components/recipe/list-of-recipe/list-of-recipe.component";
+import {recipeDetailResolver} from "./_resolvers/recipe-detail.resolver";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -22,8 +23,12 @@ const routes: Routes = [
   children: [
     {path: 'meal-plan', component: MealPlanComponent},
     {path: 'meal-plan-bought', component: MealPlanBoughtComponent},
-    {path: 'recipe-detail', component: RecipeDetailComponent},
     {path: 'recipe-step-list', component: RecipeStepListComponent},
+    {
+      path: 'recipe/:id',
+      component: RecipeDetailComponent,
+      resolve: {recipe: recipeDetailResolver}
+    },
     {path: 'list', component: ListOfRecipeComponent},
     {path: 'profile', component: ProfileComponent},
   ]

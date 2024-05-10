@@ -24,6 +24,13 @@ namespace NomsNoms.Data
             return await _context.Categories.ToListAsync();
         }
 
+        public async Task<RecipeDTO> GetRecipeAsync(int id)
+        {
+            return await _context.Recipes.Where(x => x.Id == id)
+                .ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<PagedList<RecipeDTO>> GetRecipesAsync(UserParams userParams)
         {
             var query = _context.Recipes.Include(x => x.RecipeCategories).AsQueryable();
