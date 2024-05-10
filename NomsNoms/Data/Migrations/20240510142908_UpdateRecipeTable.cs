@@ -197,6 +197,7 @@ namespace NomsNoms.Data.Migrations
                     LastActive = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Introduction = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SubscriptionId = table.Column<int>(type: "int", nullable: true),
+                    Status = table.Column<byte>(type: "int", nullable:false),
                     TasteProfileId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
