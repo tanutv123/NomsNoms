@@ -24,7 +24,7 @@ import { RecipeListComponent } from './components/user/recipe-list/recipe-list.c
 import {RecipeCardComponent} from "./components/recipe/recipe-card/recipe-card.component";
 import { RecipeCardProfileComponent } from './components/user/recipe-list/recipe-card-profile/recipe-card-profile.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './components/account/login/login.component';
 import { RegisterComponent } from './components/account/register/register.component';
 import {ToastrModule} from "ngx-toastr";
@@ -38,6 +38,7 @@ import { NotfoundErrorComponent } from './components/error/notfound-error/notfou
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import { ListOfRecipeComponent } from './components/recipe/list-of-recipe/list-of-recipe.component';
 import { RecipeCategoryComponent } from './components/recipe/recipe-category/recipe-category.component';
+import {PaginationModule} from "ngx-bootstrap/pagination";
 // register Swiper custom elements
 register();
 @NgModule({
@@ -72,9 +73,11 @@ register();
     BrowserModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    PaginationModule.forRoot(),
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'

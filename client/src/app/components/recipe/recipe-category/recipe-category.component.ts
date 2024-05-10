@@ -9,10 +9,5 @@ import {Router} from "@angular/router";
 })
 export class RecipeCategoryComponent {
   @Input('category') category : Category | undefined;
-  constructor(private router: Router) {
-  }
 
-  goToRecipeList() {
-    this.router.navigate(['/list'], {queryParams: {categoryId: this.category?.id}});
-  }
 }

@@ -14,17 +14,19 @@ export class RecipeService {
   baseUrl = environment.apiUrl;
   userParams: UserParams = {
     orderByCompletionTime: 'asc',
+    orderByComplexity: 'asc',
     pageNumber: 1,
-    pageSize: 8,
+    pageSize: 6,
     search: '',
-    categoryId: 1
+    categoryIds: [1]
   };
   defaultUserParams: UserParams = {
     orderByCompletionTime: 'asc',
+    orderByComplexity: 'asc',
     pageNumber: 1,
-    pageSize: 8,
+    pageSize: 6,
     search: '',
-    categoryId: 1
+    categoryIds: [1]
   };
   recipeCache = new Map();
   recipe: Recipe[] = [];
@@ -49,7 +51,10 @@ export class RecipeService {
     if (response) return of(response);
     let params = getPaginationHeaders(userParam.pageNumber, userParam.pageSize);
     params = params.append('orderByCompletionTime', userParam.orderByCompletionTime);
-    params = params.append('categoryId', userParam.categoryId);
+    params = params.append('search', userParam.search);
+    if (userParam.categoryIds.length > 0) {
+      params = params.append('categories', userParam.categoryIds.join(','));
+    }
     //Use map() method in this GET method in order to set a key-value pairs for our cache value
     return getPaginatedResult<Recipe[]>(this.baseUrl + "recipe", params, this.http).pipe(
       map(response   => {

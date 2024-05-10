@@ -1,1 +1,88 @@
-<p *ngFor="let recipe of recipes">{{recipe.id}}</p>
+<form #filterForm="ngForm" (ngSubmit)="loadRecipe()" autocomplete="off" *ngIf="userParams">
+  <div class="m-2 max-w-screen">
+    <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
+      <h2 class="text-stone-700 text-xl font-bold">Bộ lọc</h2>
+      <p class="mt-1 text-sm">Dùng bộ lọc để tìm kiếm món bạn muốn</p>
+      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div class="flex flex-col">
+          <label for="name" class="text-stone-600 text-sm font-medium">Tên món ăn</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="canh chua cá lóc"
+            name="search"
+            [(ngModel)]="userParams.search"
+            class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="completionTime" class="text-stone-600 text-sm font-medium">Thời gian thực hiện</label>
+
+          <select
+            id="completionTime"
+            [(ngModel)]="userParams.orderByCompletionTime"
+            name="orderByCompletionTime"
+            class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          >
+            <option *ngFor="let completionTime of orderByTime" [value]="completionTime.value">
+              {{completionTime.display}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
+        <button type="button" class="active:scale-95 rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-600 outline-none focus:ring hover:opacity-90">Làm mới bộ lọc</button>
+        <button type="submit" class="active:scale-95 rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none focus:ring hover:opacity-90">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<div class="p-4 bg-white">
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <!-- Example of a single filter button -->
+        <div
+          *ngFor="let category of categories"
+          (click)="onCategorySelected(category.id)"
+          [ngClass]="isSelectedCategory(category.id) ? 'border-red-600' : 'border-gray-400'"
+          class="cursor-pointer flex flex-col items-center justify-center border-2 p-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+        >
+          <div class="bg-green-500 p-2 rounded-full">
+            <!-- Icon placeholder (use your actual icon here) -->
+            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <span class="mt-2 text-sm font-semibold text-black">{{category.name}}</span>
+        </div>
+    <!-- Repeat the above block for each category, changing the background color, icon, and category name accordingly -->
+  </div>
+</div>
+
+
+
+<div class="px-4 mt-8" *ngIf="pagination && userParams">
+  <p class="text-sm text-gray-500">Đang hiện <span class="font-bold"> {{pagination.totalItems < pagination.itemsPerPage ? pagination.totalItems : pagination.currentPage * pagination.itemsPerPage}} </span> trong <span class="text-red-600 font-bold">{{pagination.totalItems}}</span> công thức</p>
+</div>
+<app-recipe-list [recipes]="recipes"></app-recipe-list>
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+  <div class="flex justify-items-center" *ngIf="pagination">
+    <pagination [boundaryLinks]="true"
+                [totalItems]="pagination.totalItems"
+                [itemsPerPage]="pagination.itemsPerPage"
+                [maxSize]="10"
+                [(ngModel)]="pagination.currentPage"
+                (pageChanged)="pageChanged($event)"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;">
+    </pagination>
+  </div>
+

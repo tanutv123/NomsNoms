@@ -1,12 +1,11 @@
-<div class="bg-white shadow-md p-4 rounded">
-  <h2 class="text-lg font-bold mb-2">Cơm chiên tỏi thơm</h2>
-  <img src="/assets/recipe31966-cook-step1-636651165278360534.jpg" alt="">
-  <p class="text-gray-400 text-sm py-2">Xử lý cơm nguội còn sót lại bằng cách chiên với tỏi là nhanh gọn và lạ</p>
+<div class="bg-white shadow-md p-4 rounded" *ngIf="recipe">
+  <h2 class="text-lg font-bold mb-2">{{recipe.title}}</h2>
+  <img src="{{recipe.recipeImageUrl}}" alt="">
+  <p class="text-gray-400 text-sm py-2">{{recipe.description}}</p>
   <br class="font-bold">
   <div class="text-sm text-gray-500">
-    <fa-icon [icon]="faClockIcon"></fa-icon> 25 ph |
-    <fa-icon [icon]="faBolt"></fa-icon> dễ |
-    <fa-icon [icon]="faChartSimple"></fa-icon> 2.8k lượt xem
+    <fa-icon [icon]="faClockIcon"></fa-icon> {{recipe.completionTime}} phút |
+    <fa-icon [icon]="faBolt"></fa-icon> {{recipe.recipeComplexityName}} |
+    <fa-icon [icon]="faChartSimple"></fa-icon> {{recipe.numberOfViews}} lượt xem
   </div>
-  <!-- Add more dish cards here -->
 </div>
