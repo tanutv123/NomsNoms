@@ -64,20 +64,6 @@ namespace NomsNoms.Controllers
             }
             return BadRequest("Invalid username or password");
         }
-        /*[HttpPut("edit-profile")]
-        [Authorize]
-        public async Task<IActionResult> EditUserProfile([FromBody]UserProfileDTO profileDTO)
-        {
-            try
-            {
-                var user = _mapper.Map<AppUser>(UserProfileDTO);
-                await _userRepository.UpdateUserDetail(user);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            return Ok();
-        }*/
+        
     }
 }
