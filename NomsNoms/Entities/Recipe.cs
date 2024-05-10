@@ -10,7 +10,7 @@
         public int CompletionTime { get; set; }
         /*public string Ingredients { get; set; }*/
         public int RecipeStatusId { get; set; }
-        public int UserId { get; set; }
+        public int AppUserId { get; set; }
         public bool IsExclusive { get; set; }
         public int? RecipeImageId { get; set; }
         public int? TasteProfileId { get; set; }

@@ -1,4 +1,5 @@
 ﻿using NomsNoms.DTOs;
+using NomsNoms.Entities;
 using NomsNoms.Helpers;
 
 namespace NomsNoms.Interfaces
@@ -7,5 +8,7 @@ namespace NomsNoms.Interfaces
     {
         Task<PagedList<RecipeDTO>> GetRecipesAsync(UserParams userParams);
         Task<List<RecipeDTO>> GetTrendingRecipe();
+        Task<List<Category>> GetCategoriesAsync();
+        Task<RecipeDTO> GetRecipeAsync(int id);
     }
 }

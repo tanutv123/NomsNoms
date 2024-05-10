@@ -404,7 +404,7 @@ namespace NomsNoms.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AppUserId")
+                    b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
                     b.Property<int>("CompletionTime")
@@ -433,9 +433,6 @@ namespace NomsNoms.Data.Migrations
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -862,7 +859,9 @@ namespace NomsNoms.Data.Migrations
                 {
                     b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
                         .WithMany("Recipes")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NomsNoms.Entities.RecipeComplexity", "RecipeComplexity")
                         .WithMany("Recipes")

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Recipe} from "../../../_model/recipe.model";
 
 @Component({
   selector: 'app-recipe-list',
@@ -6,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent {
-
+  @Input('recipes') recipes: Recipe[] = [];
 
 }
