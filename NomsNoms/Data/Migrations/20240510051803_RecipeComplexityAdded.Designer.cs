@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NomsNoms.Data;
 
@@ -11,9 +12,11 @@ using NomsNoms.Data;
 namespace NomsNoms.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240510051803_RecipeComplexityAdded")]
+    partial class RecipeComplexityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -404,17 +407,11 @@ namespace NomsNoms.Data.Migrations
                     b.Property<int?>("AppUserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CompletionTime")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsExclusive")
                         .HasColumnType("bit");
-
-                    b.Property<int>("NumberOfViews")
-                        .HasColumnType("int");
 
                     b.Property<int>("RecipeComplexityId")
                         .HasColumnType("int");
@@ -511,9 +508,6 @@ namespace NomsNoms.Data.Migrations
 
                     b.Property<int>("IngredientId")
                         .HasColumnType("int");
-
-                    b.Property<float>("IngredientServing")
-                        .HasColumnType("real");
 
                     b.HasKey("RecipeId", "IngredientId");
 

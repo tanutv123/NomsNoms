@@ -31,4 +31,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\EXE201\NomsNoms\NomsNoms\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\EXE201\NomsNoms\NomsNoms\.editorconfig" />
+  </ItemGroup>
+
 </Project>

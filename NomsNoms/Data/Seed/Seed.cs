@@ -197,5 +197,20 @@ namespace NomsNoms.Data.Seed
                 await _context.SaveChangesAsync();
             }
         }
+        public static async Task SeedComplexity(DataContext _context)
+        {
+            var complexities = new List<RecipeComplexity>
+            {
+                new RecipeComplexity {Name = "Dễ"},
+                new RecipeComplexity {Name = "Khó"},
+                new RecipeComplexity {Name = "Trung bình"}
+            };
+
+            foreach (var complexity in complexities)
+            {
+                await _context.RecipeComplexities.AddAsync(complexity);
+            }
+            await _context.SaveChangesAsync();
+        }
     }
 }
