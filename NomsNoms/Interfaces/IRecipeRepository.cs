@@ -6,5 +6,6 @@ namespace NomsNoms.Interfaces
     public interface IRecipeRepository
     {
         Task<PagedList<RecipeDTO>> GetRecipesAsync(UserParams userParams);
+        Task<List<RecipeDTO>> GetTrendingRecipe();
     }
 }

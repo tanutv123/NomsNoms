@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using NomsNoms.DTOs;
+using NomsNoms.Entities;
 using NomsNoms.Helpers;
 using NomsNoms.Interfaces;
 
@@ -33,6 +34,15 @@ namespace NomsNoms.Data
             return await PagedList<RecipeDTO>.CreateAsync(query.AsNoTracking().ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider),
                                                             userParams.PageNumber,
                                                             userParams.PageSize);
+        }
+
+        public async Task<List<RecipeDTO>> GetTrendingRecipe()
+        {
+            var query = await _context.Recipes
+                .OrderByDescending(r => r.RecipeLikes.Count)
+                .Take(5)
+                .ToListAsync();
+            return _mapper.Map<List<RecipeDTO>>(query);
         }
     }
 }
