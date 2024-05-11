@@ -60,6 +60,13 @@ namespace NomsNoms.Controllers
             if(result == null) return BadRequest("Không tìm thấy công thức");
             return Ok(result);
         }
+        [HttpGet("recipe-steps/{id}")]
+        public async Task<ActionResult<RecipeDTO>> GetRecipeSteps(int id)
+        {
+            var result = await _recipeRepository.GetRecipeStepAsync(id);
+            if (result == null) return BadRequest("Không tìm thấy nội dung");
+            return Ok(result);
+        }
         [HttpGet("category")]
         public async Task<ActionResult<List<Category>>> GetCategories()
         {
