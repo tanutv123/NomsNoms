@@ -24,6 +24,9 @@ namespace NomsNoms.Helpers
             CreateMap<RecipeIngredient, RecipeIngredientDTO>()
                 .ForMember(dest => dest.IngredientName, opt => opt.MapFrom(src => src.Ingredient.Name))
                 .ForMember(dest => dest.IngredientServing, opt => opt.MapFrom(src => src.IngredientServing));
+            CreateMap<RecipeStep, RecipeStepDTO>() .ReverseMap();
+            CreateMap<RecipeStepImage, RecipeStepImageDTO>()
+                .ReverseMap();
         }
     }
 }

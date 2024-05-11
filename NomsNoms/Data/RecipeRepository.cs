@@ -53,6 +53,11 @@ namespace NomsNoms.Data
                                                             userParams.PageSize);
         }
 
+        public async Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id)
+        {
+            return await _context.RecipeSteps.Where(x => x.RecipeId == id).ProjectTo<RecipeStepDTO>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
         public async Task<List<RecipeDTO>> GetTrendingRecipe()
         {
             var query = await _context.Recipes

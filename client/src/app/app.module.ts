@@ -39,6 +39,7 @@ import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import { ListOfRecipeComponent } from './components/recipe/list-of-recipe/list-of-recipe.component';
 import { RecipeCategoryComponent } from './components/recipe/recipe-category/recipe-category.component';
 import {PaginationModule} from "ngx-bootstrap/pagination";
+
 // register Swiper custom elements
 register();
 @NgModule({
