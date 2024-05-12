@@ -68,7 +68,7 @@
     "RecipeSteps": [
       {
         "No": 1,
-        "RecipeId": 2,
+        "RecipeId": 1,
         "Description": "Sơ chế các nguyên liệu",
         "RecipeStepImages": [
           {
@@ -83,7 +83,7 @@
       },
       {
         "No": 2,
-        "RecipeId": 2,
+        "RecipeId": 1,
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
         "RecipeStepImages": [
           {
