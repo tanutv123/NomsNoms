@@ -24,6 +24,12 @@ namespace NomsNoms.Helpers
             CreateMap<RecipeIngredient, RecipeIngredientDTO>()
                 .ForMember(dest => dest.IngredientName, opt => opt.MapFrom(src => src.Ingredient.Name))
                 .ForMember(dest => dest.IngredientServing, opt => opt.MapFrom(src => src.IngredientServing));
+            CreateMap<Recipe, RecipeLikeToShowDTO>()
+                .ForMember(dest => dest.RecipeStatusName, opt => opt.MapFrom(src => src.RecipeStatus.Name))
+                .ForMember(dest => dest.RecipeImageUrl, opt => opt.MapFrom(src => src.RecipeImage.Url))
+                .ForMember(dest => dest.UserKnownAs, opt => opt.MapFrom(src => src.AppUser.KnownAs));
+            CreateMap<AppUserSubscriptionRecord, SubscriptionRecordDTO>()
+                .ReverseMap();
         }
     }
 }

@@ -50,5 +50,32 @@ namespace NomsNoms.Controllers
         {
             return Ok(await _userRepository.GetTopCookByFollower());
         }
+        [HttpGet("followers/{id}")]
+        public async Task<IActionResult> GetFollowers(int id)
+        {
+            return Ok(await _userRepository.GetFollowerByCookId(id));
+        }
+        [HttpPost("subsctiption/buy/{subcriptionTypeId}")]
+        [Authorize]
+        public async Task<IActionResult> BuySubscription(string cookEmail, int subcriptionTypeId)
+        {
+            if (cookEmail == User.GetEmail()) return BadRequest("You cannot buy your own subscription");
+            await _userRepository.BuySubscription(cookEmail ,User.GetEmail(), subcriptionTypeId);
+            return Ok(new { message = "Buying Subscription successfully." });
+        }
+        [HttpGet("subsctiption/{cookEmail}")]
+        [Authorize]
+        public async Task<IActionResult> HasSubed(string cookEmail)
+        {
+            return Ok(await _userRepository.HasUserHasAlreadySub(cookEmail, User.GetEmail()));
+        }
+        [HttpGet("view/{recipeId}")]
+        [Authorize]
+        public async Task<IActionResult> ViewRecipe(int recipeId)
+        {
+            await _userRepository.RecipeView(recipeId);
+            return Ok();
+        }
+
     }
 }

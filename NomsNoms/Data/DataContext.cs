@@ -45,6 +45,7 @@ namespace NomsNoms.Data
         public DbSet<TasteProfile> TasteProfiles{ get; set; }
         public DbSet<RecipeComplexity> RecipeComplexities{ get; set; }
         public DbSet<RecipeStepImage> RecipeStepImages{ get; set; }
+        public DbSet<AppUserSubscriptionRecord> AppUserSubscriptionRecords { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -152,6 +153,19 @@ namespace NomsNoms.Data
             builder.Entity<UserFollow>()
                 .HasOne(fl => fl.TargetUser)
                 .WithMany(u => u.FollowedByUsers)
+                .HasForeignKey(u => u.TargetUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<AppUserSubscriptionRecord>()
+                .HasKey(k => new { k.SourceUserId, k.TargetUserId });
+            builder.Entity<AppUserSubscriptionRecord>()
+                .HasOne(fl => fl.SourceUser)
+                .WithMany(u => u.SubedUsers)
+                .HasForeignKey(u => u.SourceUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<AppUserSubscriptionRecord>()
+                .HasOne(fl => fl.TargetUser)
+                .WithMany(u => u.SubByUsers)
                 .HasForeignKey(u => u.TargetUserId)
                 .OnDelete(DeleteBehavior.NoAction);
         }

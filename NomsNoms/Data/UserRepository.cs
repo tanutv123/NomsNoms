@@ -240,5 +240,90 @@ namespace NomsNoms.Data
             }
         }
 
+        public async Task<List<AppUser>> GetFollowerByCookId(int userId)
+        {
+            try
+            {
+                List<AppUser> list = new List<AppUser>();
+                var follow = await _context.UserFollows.Where(u => u.SourceUserId != userId).ToListAsync();
+                foreach (var follower in follow)
+                {
+                    AppUser appUser = new AppUser();
+                    appUser = await GetUserById(follower.SourceUserId);
+                    list.Add(appUser);
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<bool> BuySubscription(string cookEmail, string email, int subscriptionId)
+        {
+            try
+            {
+                var sourceUser = await _userManager.FindByEmailAsync(email);
+                var targetUser = await _userManager.FindByEmailAsync(cookEmail);
+                var subscription = _context.Subscriptions.Where(S => S.Id == subscriptionId).FirstOrDefault();
+                /*if (sourceUser.Money >= subscription.Price)
+                {
+                    sourceUser.SubscriptionId = subscription.Id;
+                    await _context.SaveChangesAsync();
+
+                    var record = new SubscriptionRecordDTO()
+                    {
+                        SourceUserId = sourceUser.Id,
+                        TargetUserId = targetUser.Id,
+                        SubscriptionId = subscription.Id,
+                        SubscriptionDuration = DateTime.Now
+                    };
+                    await _context.AppUserSubscriptionRecords.AddAsync(_mapper.Map<AppUserSubscriptionRecord>(record));
+                    await _context.SaveChangesAsync();
+
+                    return true;
+                }*/
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<bool> HasUserHasAlreadySub(string cookEmail, string email)
+        {
+            try
+            {
+                var sourceUser = await _userManager.FindByEmailAsync(email);
+                var targetUser = await _userManager.FindByEmailAsync(cookEmail);
+                var isSubed = await _context.AppUserSubscriptionRecords.AnyAsync(u => u.SourceUserId == sourceUser.Id && u.TargetUserId == targetUser.Id);
+
+                return isSubed;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task RecipeView(int recipeId)
+        {
+            try
+            {
+                var recipeView = await _context.Recipes.Where(re => re.Id == recipeId).FirstOrDefaultAsync();
+                recipeView.NumberOfViews += 1;
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+
     }
 }
