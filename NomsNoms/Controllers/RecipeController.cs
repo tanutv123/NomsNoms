@@ -51,7 +51,8 @@ namespace NomsNoms.Controllers
         [HttpGet("trending")]
         public async Task<IActionResult> GetTrendingRecipe()
         {
-            return Ok(await _recipeRepository.GetTrendingRecipe());
+            var result = await _recipeRepository.GetTrendingRecipe();
+            return Ok(result);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeDTO>> GetRecipe(int id)

@@ -39,6 +39,8 @@ import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import { ListOfRecipeComponent } from './components/recipe/list-of-recipe/list-of-recipe.component';
 import { RecipeCategoryComponent } from './components/recipe/recipe-category/recipe-category.component';
 import {PaginationModule} from "ngx-bootstrap/pagination";
+import { SwiperDirective } from './_directives/swiper.directive';
+import { StepsComponent } from './components/recipe/recipe-step-list/steps/steps.component';
 
 // register Swiper custom elements
 register();
@@ -68,7 +70,9 @@ register();
     ServerErrorComponent,
     NotfoundErrorComponent,
     ListOfRecipeComponent,
-    RecipeCategoryComponent
+    RecipeCategoryComponent,
+    SwiperDirective,
+    StepsComponent
   ],
   imports: [
     BrowserModule,

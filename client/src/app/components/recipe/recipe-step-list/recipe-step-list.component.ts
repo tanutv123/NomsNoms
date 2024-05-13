@@ -3,6 +3,8 @@ import Swiper from "swiper";
 import {ActivatedRoute} from "@angular/router";
 import {RecipeService} from "../../../_services/recipe.service";
 import {RecipeStep} from "../../../_model/recipeStep.model";
+import {SwiperContainer} from "swiper/swiper-element";
+import {SwiperOptions} from "swiper/types";
 @Component({
   selector: 'app-recipe-step-list',
   templateUrl: './recipe-step-list.component.html',
@@ -11,7 +13,7 @@ import {RecipeStep} from "../../../_model/recipeStep.model";
 export class RecipeStepListComponent implements OnInit, AfterViewInit{
   id = 0;
   steps : RecipeStep[] = [];
-  @ViewChild('swiperContainer', { static: false }) swiperContainerRef?: ElementRef;
+  @ViewChild('swiperContainer') swiperContainerRef!: ElementRef<SwiperContainer>;
 
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService) {
@@ -23,24 +25,10 @@ export class RecipeStepListComponent implements OnInit, AfterViewInit{
     this.recipeService.getRecipeSteps(this.id).subscribe({
       next: steps => {
         this.steps = steps;
-        console.log(this.steps);
       }
     });
   }
 
   ngAfterViewInit() {
-    this.initSwiper();
-  }
-  private initSwiper(): void {
-    const mySwiper = new Swiper('.mySwiper', {
-      // Swiper configuration options
-      pagination: {
-        el: '.swiper-pagination',
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
   }
 }

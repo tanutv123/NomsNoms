@@ -23,7 +23,7 @@ const routes: Routes = [
   children: [
     {path: 'meal-plan', component: MealPlanComponent},
     {path: 'meal-plan-bought', component: MealPlanBoughtComponent},
-    {path: 'recipe-steps/:id', component: RecipeStepListComponent},
+    {path: 'steps/:id', component: RecipeStepListComponent},
     {
       path: 'recipe/:id',
       component: RecipeDetailComponent,

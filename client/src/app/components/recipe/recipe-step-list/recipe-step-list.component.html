@@ -1,17 +1,16 @@
-<div class="lg:h-screen">
-  <swiper-container class="mySwiper" pagination="true" pagination-type="progressbar" navigation="true">
-    <ng-container *ngFor="let step of steps">
-      <swiper-slide>
-        <p>
-          {{step.description}}
-        </p>
-        <img src="{{stepImage.url}}" style="width: 100px; height: 100px" *ngFor="let stepImage of step.recipeStepImages">
-      </swiper-slide>
-    </ng-container>
+<section>
+  <app-steps [steps]="steps"></app-steps>
+</section>
 
-
-  </swiper-container>
-</div>
+<!--  <div #swiperContainer>-->
+<!--    <div>-->
+<!--      Slide 1-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      Slide 2-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <!--    <swiper-slide>-->
 <!--      <p>Adu sao deo dc</p>-->
 <!--    </swiper-slide>-->
