@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NomsNoms.Entities;
+using NomsNoms.Interfaces;
 
 namespace NomsNoms.Data
 {
