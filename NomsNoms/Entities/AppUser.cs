@@ -26,6 +26,8 @@ namespace NomsNoms.Entities
         [JsonIgnore]
         public UserPhoto UserPhoto { get; set; }
         public TasteProfile TasteProfile { get; set; }
+        public ICollection<AppUserSubscriptionRecord> SubedUsers { get; set; }
+        public ICollection<AppUserSubscriptionRecord> SubByUsers { get; set; }
 
     }
 }

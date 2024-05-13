@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NomsNoms.Data;
 using NomsNoms.DTOs;
 using NomsNoms.Entities;
 using NomsNoms.Extensions;
@@ -51,7 +53,8 @@ namespace NomsNoms.Controllers
         [HttpGet("trending")]
         public async Task<IActionResult> GetTrendingRecipe()
         {
-            return Ok(await _recipeRepository.GetTrendingRecipe());
+            var result = await _recipeRepository.GetTrendingRecipe();
+            return Ok(result);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeDTO>> GetRecipe(int id)
@@ -60,10 +63,33 @@ namespace NomsNoms.Controllers
             if(result == null) return BadRequest("Không tìm thấy công thức");
             return Ok(result);
         }
+        [HttpGet("recipe-steps/{id}")]
+        public async Task<ActionResult<RecipeDTO>> GetRecipeSteps(int id)
+        {
+            var result = await _recipeRepository.GetRecipeStepAsync(id);
+            if (result == null) return BadRequest("Không tìm thấy nội dung");
+            return Ok(result);
+        }
         [HttpGet("category")]
         public async Task<ActionResult<List<Category>>> GetCategories()
         {
             var result = await _recipeRepository.GetCategoriesAsync();
+            return Ok(result);
+        }
+        [HttpPost("like/{recipeId}")]
+        [Authorize]
+        public async Task<IActionResult> RecipeLike(int recipeId)
+        {
+            string email = User.GetEmail();
+            await _recipeRepository.Like(email, recipeId);
+            return Ok(new { message = "User followed successfully." });
+        }
+        [HttpGet("recipeLiked")]
+        [Authorize]
+        public async Task<ActionResult<List<RecipeLikeToShowDTO>>> GetRecipeHasLiked()
+        {
+            var email = User.GetEmail();
+            var result = await _recipeRepository.GetRecipeLikeByUserEmail(email);
             return Ok(result);
         }
     }

@@ -6,6 +6,7 @@ import {UserParams} from "../_model/userParams.model";
 import {Recipe} from "../_model/recipe.model";
 import {map, of} from "rxjs";
 import {getPaginatedResult, getPaginationHeaders} from "./pagination-helper.service";
+import {RecipeStep} from "../_model/recipeStep.model";
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,12 @@ export class RecipeService {
       .reduce((arr, elm) => arr.concat(elm.result), []).find((recipe: Recipe) => recipe.id == id);
     if (recipe) return of(recipe);
     return this.http.get<Recipe>(this.baseUrl + 'recipe/' + id);
+  }
+  getRecipeSteps(id: number) {
+    return this.http.get<RecipeStep[]>(this.baseUrl + 'recipe/recipe-steps/' + id);
+  }
+  getTrendingRecipes() {
+    return this.http.get<Recipe[]>(this.baseUrl + 'recipe/trending');
   }
   getCategories() {
     return this.http.get<Category[]>(this.baseUrl + 'recipe/category');

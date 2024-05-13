@@ -10,5 +10,11 @@ namespace NomsNoms.Interfaces
         Task<List<RecipeDTO>> GetTrendingRecipe();
         Task<List<Category>> GetCategoriesAsync();
         Task<RecipeDTO> GetRecipeAsync(int id);
+
+        Task Like(string email, int recipeid);
+        Task<List<RecipeLikeToShowDTO>> GetRecipeLikeByUserEmail(string email);
+
+        Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id);
+
     }
 }
