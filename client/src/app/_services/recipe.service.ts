@@ -73,6 +73,9 @@ export class RecipeService {
   getRecipeSteps(id: number) {
     return this.http.get<RecipeStep[]>(this.baseUrl + 'recipe/recipe-steps/' + id);
   }
+  getTrendingRecipes() {
+    return this.http.get<Recipe[]>(this.baseUrl + 'recipe/trending');
+  }
   getCategories() {
     return this.http.get<Category[]>(this.baseUrl + 'recipe/category');
   }

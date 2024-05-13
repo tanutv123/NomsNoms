@@ -65,9 +65,10 @@ namespace NomsNoms.Data
         {
             var query = await _context.Recipes
                 .OrderByDescending(r => r.RecipeLikes.Count)
-                .Take(5)
+                .Take(10)
+                .ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider)
                 .ToListAsync();
-            return _mapper.Map<List<RecipeDTO>>(query);
+            return query;
         }
         public async Task Like(string email, int recipeid)
         {

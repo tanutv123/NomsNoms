@@ -1,10 +1,11 @@
 <a routerLink="/list" [queryParams]="{categoryId: category.id}" *ngIf="category">
   <div class="cursor-pointer flex flex-col items-center justify-center p-2 bg-gray-200 rounded-lg hover:bg-gray-300" *ngIf="category">
-    <div class="bg-green-500 p-2 rounded-full">
+    <div class="p-2 rounded-full">
       <!-- Icon placeholder (use your actual icon here) -->
-      <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-      </svg>
+<!--      <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+<!--        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>-->
+<!--      </svg>-->
+      <img src="/assets/roast-chicken-free-vector.jpg" alt="">
     </div>
     <span class="mt-2 text-sm font-semibold text-black">{{category.name}}</span>
   </div>
