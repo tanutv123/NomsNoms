@@ -135,9 +135,11 @@ namespace NomsNoms.Data
             }
         }
 
-        public Task<RecipeDTO> AddRecipeAsync(Recipe recipe)
+        public async Task AddRecipeAsync(Recipe recipe)
         {
             recipe.RecipeStatusId = 3;
+            _context.Recipes.Add(recipe);
+            await _context.SaveChangesAsync();
         }
         public async Task<List<Recipe>> GetAllRecipes()
         {
