@@ -10,7 +10,8 @@
       "Url": "https://randomuser.me/api/portraits/men/97.jpg",
       "IsMain": true
     },
-    "Status": 1
+    "Status": 1,
+    "TasteProfileId": 1
   },
   {
     "KnownAs": "Gail",
@@ -23,7 +24,8 @@
       "Url": "https://randomuser.me/api/portraits/men/28.jpg",
       "IsMain": true
     },
-    "Status": 1
+    "Status": 1,
+    "TasteProfileId": 2
   },
   {
     "KnownAs": "Drake",

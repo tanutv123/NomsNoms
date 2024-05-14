@@ -216,5 +216,19 @@ namespace NomsNoms.Data.Seed
             }
             await _context.SaveChangesAsync();
         }
+
+        public static async Task SeedTasteProfile(DataContext _context)
+        {
+            if(await _context.TasteProfiles.AnyAsync()) { return; }
+            var tasteProfile = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/TasteProfileSeed.json");
+            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var taste = JsonSerializer.Deserialize<List<TasteProfile>>(tasteProfile, jsonOptions);
+
+            foreach(var i in taste)
+            {
+                await _context.TasteProfiles.AddAsync(i);
+            }
+            await _context.SaveChangesAsync();
+        }
     }
 }
