@@ -37,6 +37,8 @@ namespace NomsNoms.Helpers
             CreateMap<AddRecipeDTO, Recipe>().ReverseMap();
             CreateMap<AddRecipeIngredientDTO, RecipeIngredient>().ReverseMap();
             CreateMap<AddRecipeStepDTO, RecipeStep>().ReverseMap();
+            CreateMap<AddRecipeCategoryDTO, RecipeCategory>().ReverseMap();
+            CreateMap<AddRecipeImageDTO, RecipeImage>().ReverseMap();
         }
     }
 }
