@@ -41,6 +41,9 @@ import { RecipeCategoryComponent } from './components/recipe/recipe-category/rec
 import {PaginationModule} from "ngx-bootstrap/pagination";
 import { SwiperDirective } from './_directives/swiper.directive';
 import { StepsComponent } from './components/recipe/recipe-step-list/steps/steps.component';
+import { NewRecipeComponent } from './components/user/new-recipe/new-recipe.component';
+import {FileUploadModule} from "ng2-file-upload";
+import { PhotoEditorComponent } from './components/photo-editor/photo-editor.component';
 
 // register Swiper custom elements
 register();
@@ -72,7 +75,9 @@ register();
     ListOfRecipeComponent,
     RecipeCategoryComponent,
     SwiperDirective,
-    StepsComponent
+    StepsComponent,
+    NewRecipeComponent,
+    PhotoEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +89,7 @@ register();
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    FileUploadModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),

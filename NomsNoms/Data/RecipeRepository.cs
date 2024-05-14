@@ -134,5 +134,11 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
+
+        public Task<RecipeDTO> AddRecipeAsync(Recipe recipe)
+        {
+            recipe.RecipeStatusId = 3;
+
+        }
     }
 }
