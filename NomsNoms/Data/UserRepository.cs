@@ -323,7 +323,20 @@ namespace NomsNoms.Data
             }
         }
 
+        public async Task<TasteProfile> GetUserTasteProfile(string email)
+        {
+            // Get the user from the database along with the TasteProfile
+            var user = await _userManager.Users
+                .Include(u => u.TasteProfile)
+                .SingleOrDefaultAsync(u => u.Email == email);
 
+            if (user == null)
+            {
+                // Handle the case where the user was not found
+                return null;
+            }
 
+            return user.TasteProfile;
+        }
     }
 }

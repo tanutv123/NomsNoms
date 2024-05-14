@@ -138,7 +138,18 @@ namespace NomsNoms.Data
         public Task<RecipeDTO> AddRecipeAsync(Recipe recipe)
         {
             recipe.RecipeStatusId = 3;
-
+        }
+        public async Task<List<Recipe>> GetAllRecipes()
+        {
+            List<Recipe> list = null;
+            try
+            {
+                list = await _context.Recipes.Include(u => u.TastProfile).ToListAsync();
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
         }
     }
 }
