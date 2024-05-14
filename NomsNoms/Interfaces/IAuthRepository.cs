@@ -9,5 +9,6 @@ namespace NomsNoms.Interfaces
         Task<bool> IsPhoneExistAsync(string phone);
         Task<bool> Login(LoginDTO loginDTO);
         Task<IdentityResult> Register(RegisterDTO registerBody);
+        Task<bool> LoginSuperAdmin(string email, string password);
     }
 }
