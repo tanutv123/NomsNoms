@@ -158,5 +158,22 @@ namespace NomsNoms.Data
         {
             return await _context.Ingredients.ToListAsync();
         }
+
+        public async Task<List<RecipeDTO>> GetRecipeForUser(int id)
+        {
+            var query = _context.Recipes.AsQueryable();
+            query = query.Where(x => x.AppUserId == id);
+            query = query.Where(x => x.RecipeStatusId != 4);
+            return await query.ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        public async Task<List<RecipeDTO>> GetUserRecipeForProfile(string email)
+        {
+            var query = _context.Recipes.AsQueryable();
+            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+            query = query.Where(x => x.AppUserId == user.Id);
+            query = query.Where(x => x.RecipeStatusId != 4 && x.RecipeStatusId != 1);
+            return await query.ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider).ToListAsync();
+        }
     }
 }
