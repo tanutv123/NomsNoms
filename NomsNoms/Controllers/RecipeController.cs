@@ -59,6 +59,18 @@ namespace NomsNoms.Controllers
             var result = await _recipeRepository.GetTrendingRecipe();
             return Ok(result);
         }
+        [HttpGet("profile-recipe/{email}")]
+        public async Task<IActionResult> GetProfileRecipe(string email)
+        {
+            var result = await _recipeRepository.GetUserRecipeForProfile(email);
+            return Ok(result);
+        }
+        [HttpGet("user-recipe")]
+        public async Task<IActionResult> GetUserRecipe()
+        {
+            var result = await _recipeRepository.GetRecipeForUser(User.GetUserId());
+            return Ok(result);
+        }
         [HttpGet("ingredient")]
         public async Task<IActionResult> GetIngredients()
         {

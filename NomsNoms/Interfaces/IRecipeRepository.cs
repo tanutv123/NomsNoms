@@ -14,6 +14,8 @@ namespace NomsNoms.Interfaces
 
         Task Like(string email, int recipeid);
         Task<List<RecipeLikeToShowDTO>> GetRecipeLikeByUserEmail(string email);
+        Task<List<RecipeDTO>> GetRecipeForUser(int id);
+        Task<List<RecipeDTO>> GetUserRecipeForProfile(string email);
 
         Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id);
         Task AddRecipeAsync(Recipe recipe);
