@@ -1,9 +1,10 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FileUploader} from "ng2-file-upload";
 import {environment} from "../../../environments/environment";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs";
 import {User} from "../../_model/user.model";
+import {Image} from "../../_model/image.model";
 
 @Component({
   selector: 'app-photo-editor',
@@ -11,14 +12,14 @@ import {User} from "../../_model/user.model";
   styleUrls: ['./photo-editor.component.scss']
 })
 export class PhotoEditorComponent implements OnInit{
-  @Input() canUploadMultiple = true;
+  @Input() canUploadMultiple = false;
   uploader: FileUploader | undefined;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   // artwork: Artwork | undefined;
   user: User | undefined;
   // images: ArtworkImage[] = [];
-  // @Output() artworkImagesAdded = new EventEmitter<ArtworkImage>();
+  @Output() imagesAdded = new EventEmitter<Image>();
 
 
   constructor(private accountService: AccountService) {
@@ -51,6 +52,14 @@ export class PhotoEditorComponent implements OnInit{
     }
     this.uploader.onSuccessItem = (item, response, status, headers) => {
 
+      if (response) {
+        const photo = JSON.parse(response);
+        var image = {
+          url : photo.link,
+          publicId: photo.publicId
+        } as Image;
+        this.imagesAdded.emit(image);
+      }
     }
   }
 }

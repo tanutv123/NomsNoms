@@ -1,4 +1,4 @@
-export interface RecipeStepImage {
+export interface Image {
   url: string;
   publicId: string;
 }

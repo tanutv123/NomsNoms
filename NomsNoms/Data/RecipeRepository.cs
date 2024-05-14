@@ -153,5 +153,10 @@ namespace NomsNoms.Data
             }
             return list;
         }
+
+        public async Task<List<Ingredient>> GetIngredientsAsync()
+        {
+            return await _context.Ingredients.ToListAsync();
+        }
     }
 }

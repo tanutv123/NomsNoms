@@ -9,6 +9,7 @@ namespace NomsNoms.Interfaces
         Task<PagedList<RecipeDTO>> GetRecipesAsync(UserParams userParams);
         Task<List<RecipeDTO>> GetTrendingRecipe();
         Task<List<Category>> GetCategoriesAsync();
+        Task<List<Ingredient>> GetIngredientsAsync();
         Task<RecipeDTO> GetRecipeAsync(int id);
 
         Task Like(string email, int recipeid);
