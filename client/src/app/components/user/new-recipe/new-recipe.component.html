@@ -10,15 +10,40 @@
     <div class="grid grid-cols-1 gap-x-16 gap-y-8">
 
       <div class="rounded-lg bg-white p-8 shadow-lg lg:p-12">
-
-        <form #recipeForm="ngForm" (ngSubmit)="onAddRecipe()" class="space-y-4">
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <p
-                class="w-full rounded-lg border-gray-200 p-3 font-bold text-xl"
-              >
-                Đăng công thức
-              </p>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <p
+              class="w-full rounded-lg border-gray-200 p-3 font-bold text-xl"
+            >
+              Đăng công thức
+            </p>
+          </div>
+        </div>
+        <div>
+          <p
+            class="w-full rounded-lg border-gray-200 p-3 font-bold text-xl"
+          >
+            Chọn ảnh cho công thức của bạn
+          </p>
+        </div>
+        <div>
+          <app-photo-editor (imagesAdded)="onRecipeImageAdded($event)"></app-photo-editor>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4" *ngIf="recipe.recipeImage">
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src="{{recipe.recipeImage.url}}" alt="">
+          </div>
+        </div>
+        <form #recipeForm="ngForm" (ngSubmit)="onAddRecipe()" class="space-y-4 pt-4">
+          <div>
+            <div class="flex items-center mb-4">
+              <input
+                id="default-checkbox"
+                type="checkbox"
+                [(ngModel)]="recipe.isExclusive"
+                name="isExclusive"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Chỉ dành cho hội viên</label>
             </div>
           </div>
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2" *ngIf="validationErrors.length > 0">
@@ -200,7 +225,7 @@
               type="submit"
               class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
               [disabled]="categoryForm.invalid"
-              [ngClass]="categoryForm.invalid ? 'bg-red-400 text-gray-400' : null"
+              [ngClass]="categoryForm.invalid ? 'bg-red-300 text-gray-400' : null"
             >
               Thêm thể loại
             </button>
@@ -255,7 +280,7 @@
                 [ngClass]="serving.invalid && serving.touched ? 'border-red-600' : null"
                 required
                 name="serving"
-                type="text"
+                type="number"
               />
               <span class="text-red-600" *ngIf="serving.invalid && serving.touched">Hãy nhập khẩu phần</span>
             </div>
@@ -264,7 +289,7 @@
                 type="submit"
                 class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
                 [disabled]="ingredientForm.invalid"
-                [ngClass]="ingredientForm.invalid ? 'bg-red-400 text-gray-400' : null"
+                [ngClass]="ingredientForm.invalid ? 'bg-red-300 text-gray-400' : null"
               >
                 Thêm nguyên liệu
               </button>
@@ -275,7 +300,7 @@
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <p
-              class="w-full rounded-lg border-gray-200 p-3 text-sm font-bold text-xl"
+              class="w-full rounded-lg border-gray-200 p-3 font-bold text-xl"
             >
               Các bước thực hiện:
             </p>
@@ -336,7 +361,7 @@
                   type="submit"
                   class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
                   [disabled]="addStepForm.invalid"
-                  [ngClass]="addStepForm.invalid ? 'bg-red-400 text-gray-400' : null"
+                  [ngClass]="addStepForm.invalid ? 'bg-red-300 text-gray-400' : null"
                 >
                   Thêm bước
                 </button>
@@ -349,12 +374,11 @@
               (click)="recipeForm.ngSubmit.emit()"
               class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
               [disabled]="recipeForm.invalid"
-              [ngClass]="recipeForm.invalid ? 'bg-red-400 text-gray-400' : null"
+              [ngClass]="recipeForm.invalid ? 'bg-red-300 text-gray-400' : null"
             >
               Đăng công thức
             </button>
           </div>
-
       </div>
     </div>
   </div>

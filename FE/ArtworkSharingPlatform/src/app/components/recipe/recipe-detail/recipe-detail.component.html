@@ -1,0 +1,82 @@
+<section *ngIf="recipe">
+  <div class="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:h-screen lg:grid-cols-2">
+      <div class="relative z-10 lg:py-16">
+        <div  class="block rounded-lg p-4 shadow-sm shadow-indigo-100">
+          <img
+            alt=""
+            src="{{recipe.recipeImageUrl}}"
+            class="h-56 w-full rounded-md object-cover"
+          />
+
+          <div class="mt-2">
+            <dl>
+              <div>
+                <dt class="sr-only">Price</dt>
+
+                <dd class="text-sm text-gray-500">bởi <a href="#" class="underline">{{recipe.userKnownAs}}</a></dd>
+              </div>
+              <div>
+                <dt class="sr-only">Address</dt>
+
+                <dd class="font-medium">{{recipe.title}}</dd>
+              </div>
+            </dl>
+
+            <div class="mt-6 flex items-center gap-8 text-xs">
+              <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                <lucide-icon name="star" [size]="16" [color]="'#f8b008'"></lucide-icon>
+                <div class="mt-1.5 sm:mt-0">
+                  <p class="text-gray-500">Độ khó</p>
+
+                  <p class="font-medium">{{recipe.recipeComplexityName}}</p>
+                </div>
+              </div>
+
+              <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                <lucide-icon name="heart" [size]="16" [color]="'red'"></lucide-icon>
+
+                <div class="mt-1.5 sm:mt-0">
+                  <p class="text-gray-500">Lượt thích</p>
+
+                  <p class="font-medium">2</p>
+                </div>
+              </div>
+
+              <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                <lucide-icon name="eye" [size]="16"></lucide-icon>
+                <div class="mt-1.5 sm:mt-0">
+                  <p class="text-gray-500">Lượt xem</p>
+
+                  <p class="font-medium">{{recipe.numberOfViews}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative flex items-center bg-gray-100">
+        <span
+          class="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-gray-100"
+        ></span>
+
+        <div class="p-8 sm:p-16 lg:p-24">
+          <h2 class="text-2xl font-bold sm:text-3xl">
+            Thành phần
+          </h2>
+          <div class="w-full text-gray-600 mt-4">
+            <p *ngFor="let ingredient of recipe.recipeIngredients">{{ingredient.ingredientName}} - {{ingredient.ingredientServing}} gr</p>
+          </div>
+
+          <a
+            routerLink="/steps/{{recipe.id}}"
+            class="mt-8 inline-block rounded border border-red-600 bg-red-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-red-600 focus:outline-none focus:ring active:text-red-500"
+          >
+            Bắt đầu nấu
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

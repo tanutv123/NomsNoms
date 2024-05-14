@@ -1,0 +1,36 @@
+<div class="bg-gray-100 p-6 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-lg rounded-lg p-6 max-w-lg w-full">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-2xl font-bold">Today's Meal Plan</h1>
+      <button class="flex items-center bg-blue-500 text-white px-4 py-2 rounded-full">
+        <!-- Insert refresh icon here -->
+        <lucide-icon name="refresh-ccw" [size]="16"></lucide-icon> <span> Regenerate</span>
+      </button>
+    </div>
+
+    <div class="mb-4">
+      <!-- Insert pie chart graphic here -->
+      <p class="text-xl text-black mb-1">1001 Calories</p>
+      <!-- Insert information icon here -->
+    </div>
+
+    <!-- Meal Sections -->
+    <div>
+      <!-- Example for Breakfast section -->
+      <h2 class="font-bold text-lg mb-2">Breakfast (300 cal)</h2>
+      <div class="flex items-center justify-between mb-4">
+        <img class="rounded-full w-12 h-12 mr-4" src="path/to/breakfast_image" alt="Breakfast">
+        <div>
+          <p class="font-bold">Oatmeal</p>
+          <p class="text-gray-600">1 bowl</p>
+        </div>
+        <lucide-icon name="refresh-ccw" [size]="16"></lucide-icon>
+        <!-- Insert refresh icon here -->
+      </div>
+      <!-- Repeat for each meal -->
+
+      <!-- Lunch Section -->
+      <!-- Dinner Section -->
+    </div>
+  </div>
+</div>
