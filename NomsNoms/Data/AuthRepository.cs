@@ -59,6 +59,14 @@ namespace NomsNoms.Data
             return await _userManager.CheckPasswordAsync(user, loginDTO.Password);
         }
 
+        public async Task<bool> LoginSuperAdmin(string email, string password)
+        {
+            var superAdminEmail = _configuration["SuperAdminCredential:Email"];
+            var superAdminPassword = _configuration["SuperAdminCredential:Password"];
+
+            return email == superAdminEmail && password == superAdminPassword;
+        }
+
         public async Task<UserDTO> GetUserDTO(string email, string tokenString)
         {
             var user = await _userRepository.GetAllUserToken().Where(x => x.Email == email).ProjectTo<UserDTO>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();

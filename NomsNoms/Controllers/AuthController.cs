@@ -62,8 +62,11 @@ namespace NomsNoms.Controllers
                 var userDTO = await _authRepository.GetUserDTO(loginDTO.Email, tokenString);
                 return Ok(userDTO);
             }
+            if(await _authRepository.LoginSuperAdmin(loginDTO.Email, loginDTO.Password))
+            {
+                return Ok();
+            }
             return BadRequest("Invalid username or password");
         }
-        
     }
 }
