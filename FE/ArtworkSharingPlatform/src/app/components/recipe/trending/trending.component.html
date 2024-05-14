@@ -1,0 +1,63 @@
+<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+  <header>
+    <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">Món ăn đang hot!</h2>
+    <lucide-icon name="trending-up" [color]="'red'" [size]="48"></lucide-icon>
+    <lucide-icon name="star" [size]="48" color="'red'"></lucide-icon>
+
+  </header>
+  <div class="w-full">
+    <swiper-container appSwiper #swiperContainer [config]="swiperConfig" thumbs-swiper=".mySwiper2" (slideChange)="slideChange($event)">
+      <swiper-slide *ngFor="let recipe of recipes">
+        <a routerLink="/recipe/{{recipe.id}}" class="group relative block h-64 sm:h-80 lg:h-96">
+          <span class="absolute inset-0 border-2 border-dashed border-black"></span>
+
+          <div
+            class="relative flex h-full transform items-end border-2 border-black bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2"
+          >
+            <div
+              class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8"
+            >
+              <img src="{{recipe.recipeImageUrl}}" alt="" style="width: 300px; height: 250px; border-radius: 50px">
+
+              <h2 class="mt-4 text-xl font-medium sm:text-2xl">{{recipe.title}}</h2>
+            </div>
+
+            <div
+              class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8"
+            >
+              <h3 class="mt-4 text-xl font-medium sm:text-2xl">{{recipe.title}}</h3>
+
+              <p class="mt-4 text-sm sm:text-base">
+                {{recipe.description}}
+              </p>
+              <div class="text-sm text-gray-500">
+                <fa-icon [icon]="faClockIcon"></fa-icon> {{recipe.completionTime}} phút |
+                <fa-icon [icon]="faBolt1"></fa-icon> {{recipe.recipeComplexityName}} |
+                <fa-icon [icon]="faChartSimple1"></fa-icon> {{recipe.numberOfViews}} lượt xem
+              </div>
+
+              <p class="mt-8 font-bold">Xem công thức</p>
+            </div>
+          </div>
+        </a>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+<!--  <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">-->
+<!--    <li *ngFor="let recipe of recipes">-->
+<!--      <a href="#" class="group block overflow-hidden">-->
+<!--        <img-->
+<!--          src="{{recipe.recipeImageUrl}}"-->
+<!--          alt=""-->
+<!--          class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"-->
+<!--        />-->
+
+<!--        <div class="relative bg-white pt-3">-->
+<!--          <h3 class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">-->
+<!--            {{recipe.title}}-->
+<!--          </h3>-->
+<!--        </div>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--  </ul>-->
+</div>
