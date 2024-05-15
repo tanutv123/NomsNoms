@@ -40,7 +40,10 @@ namespace NomsNoms.Helpers
             CreateMap<AddRecipeStepDTO, RecipeStep>().ReverseMap();
             CreateMap<AddRecipeCategoryDTO, RecipeCategory>().ReverseMap();
             CreateMap<AddRecipeImageDTO, RecipeImage>().ReverseMap();
-
+            CreateMap<UserPhoto, UserPhotoDTO>()
+                .ReverseMap();
+            CreateMap<Transaction, TransactionDTO>()
+                .ReverseMap();
         }
     }
 }

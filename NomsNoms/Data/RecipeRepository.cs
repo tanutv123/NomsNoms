@@ -204,6 +204,7 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
+        
         public async Task DeleteRecipe(RecipeUpdateDTO recipeDto)
         {
             try
@@ -258,6 +259,64 @@ namespace NomsNoms.Data
             query = query.Where(x => x.AppUserId == user.Id);
             query = query.Where(x => x.RecipeStatusId != 4 && x.RecipeStatusId != 1);
             return await query.ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+        
+        
+        public async Task HideRecipe(int recipeid)
+        {            
+            try
+            {
+                var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
+                if (recipe.RecipeStatusId == 1)
+                {
+                    recipe.RecipeStatusId = 2;
+                    _context.Recipes.Update(recipe);
+                    await _context.SaveChangesAsync();
+                } else if (recipe.RecipeStatusId == 2)
+                {
+                    recipe.RecipeStatusId = 1;
+                    _context.Recipes.Update(recipe);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task DeletedRecipe(int recipeid)
+        {
+            try
+            {
+                var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
+                    recipe.RecipeStatusId = 4;
+                    _context.Recipes.Update(recipe);
+                    await _context.SaveChangesAsync();
+                    }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<bool> IsOwnerRecipe(int recipeid, string userEmail)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(userEmail);
+                var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
+                if (user != null && recipe != null && recipe.AppUserId == user.Id) 
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                } 
+                }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

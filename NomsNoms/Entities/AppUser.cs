@@ -28,6 +28,7 @@ namespace NomsNoms.Entities
         public TasteProfile TasteProfile { get; set; }
         public ICollection<AppUserSubscriptionRecord> SubedUsers { get; set; }
         public ICollection<AppUserSubscriptionRecord> SubByUsers { get; set; }
+        public List<Transaction> TransactionSents { get; set; }
 
     }
 }
