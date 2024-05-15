@@ -14,10 +14,12 @@ namespace NomsNoms.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        public AdminController(IUserRepository userRepository, IMapper mapper) 
+        private readonly IRecipeRepository _recipeRepository;
+        public AdminController(IUserRepository userRepository, IMapper mapper, IRecipeRepository recipeRepository) 
         {
             _userRepository = userRepository;
             _mapper = mapper;
+            _recipeRepository = recipeRepository;
         }
 
         [HttpGet("users")]
@@ -90,6 +92,40 @@ namespace NomsNoms.Controllers
         {
             var user = _mapper.Map<AppUser>(userDto);
             await _userRepository.DeleteUserAdmin(user);
+            return Ok("Deleted Successfully");
+        }
+
+        [HttpGet("recipes")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> GetAllRecipeAdmin()
+        {
+            return Ok(await _recipeRepository.GetAllRecipeAdmin());
+        }
+        [HttpGet("recipes/{id}")]
+        public async Task<IActionResult> GetRecipeById(int id)
+        {
+            return Ok(await _recipeRepository.GetRecipeById(id));
+        }
+
+        [HttpPut("recipes/update-recipe")]
+        public async Task<IActionResult> UpdateRecipe([FromBody] RecipeUpdateDTO recipe)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _recipeRepository.UpdateRecipe(recipe);
+            return Ok("Updated successfully");
+        }
+
+        [HttpDelete("recipes/delete-recipe")]
+        public async Task<IActionResult> DeleteRecipe([FromBody] RecipeUpdateDTO recipe)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _recipeRepository.DeleteRecipe(recipe);
             return Ok("Deleted Successfully");
         }
     }

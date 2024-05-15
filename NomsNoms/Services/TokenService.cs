@@ -27,7 +27,7 @@ namespace NomsNoms.Services
             {
                 new Claim(JwtRegisteredClaimNames.Email,loginDTO.Email),
                 new Claim(JwtRegisteredClaimNames.UniqueName,loginDTO.Email),
-                            new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString())
+                new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString())
             };
             var roles = await _userManager.GetRolesAsync(user);
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));

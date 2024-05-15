@@ -35,7 +35,7 @@ namespace NomsNoms.Controllers
             TasteProfile userTaste = await _userRepository.GetUserTasteProfile(email);
             if (userTaste == null)
             {
-                return NotFound("User not found");
+                return NotFound("User taste profile not found");
             }
 
             // Get all recipes from the repository
