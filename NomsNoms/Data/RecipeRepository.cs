@@ -154,6 +154,90 @@ namespace NomsNoms.Data
             return list;
         }
 
+        public async Task<List<RecipeDTO>> GetAllRecipeAdmin()
+        {
+            List<RecipeDTO> list = null;
+            try
+            {
+                var l = await _context.Recipes.ToListAsync();
+                list = _mapper.Map<List<RecipeDTO>>(l);
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
+
+        public async Task<RecipeUpdateDTO> GetRecipeById(int id)
+        {
+            RecipeUpdateDTO recipe = null;
+            try
+            {
+                var r = await _context.Recipes.FirstOrDefaultAsync(r => r.Id == id);
+                recipe = _mapper.Map<RecipeUpdateDTO>(r);
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return recipe;
+        }
+
+
+        public async Task UpdateRecipe(RecipeUpdateDTO recipeDto)
+        {
+            try
+            {
+                var existingRecipe = await _context.Recipes.FirstOrDefaultAsync(r => r.Id == recipeDto.Id);
+                if (existingRecipe != null)
+                {
+                    existingRecipe.RecipeStatusId = recipeDto.RecipeStatusId;
+                    _mapper.Map(recipeDto, existingRecipe);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new Exception($"Recipe with Id {recipeDto.Id} not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task DeleteRecipe(RecipeUpdateDTO recipeDto)
+        {
+            try
+            {
+                var existingRecipe = await _context.Recipes.FirstOrDefaultAsync(r => r.Id == recipeDto.Id);
+                if (existingRecipe != null)
+                {
+                    recipeDto.RecipeStatusId = 4;
+                    _mapper.Map(recipeDto, existingRecipe);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new Exception($"Recipe with Id {recipeDto.Id} not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<RecipeStatus>> GetAllRecipeStatus()
+        {
+            List<RecipeStatus> list = null;
+            try
+            {
+                list = await _context.RecipeStatuses.ToListAsync();
+            }catch(Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
+            return list;
+            }
         public async Task<List<Ingredient>> GetIngredientsAsync()
         {
             return await _context.Ingredients.ToListAsync();

@@ -20,6 +20,10 @@ namespace NomsNoms.Interfaces
         Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id);
         Task AddRecipeAsync(Recipe recipe);
         Task<List<Recipe>> GetAllRecipes();
-
+        Task<List<RecipeDTO>> GetAllRecipeAdmin();
+        Task UpdateRecipe(RecipeUpdateDTO recipe);
+        Task DeleteRecipe(RecipeUpdateDTO recipeDto);
+        Task<List<RecipeStatus>> GetAllRecipeStatus();
+        Task<RecipeUpdateDTO> GetRecipeById(int id);
     }
 }
