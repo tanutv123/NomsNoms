@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NomsNoms.Data;
@@ -15,10 +16,12 @@ namespace NomsNoms.Controllers
     public class RecipeController : ControllerBase
     {
         private readonly IRecipeRepository _recipeRepository;
+        private readonly IMapper _mapper;
 
-        public RecipeController(IRecipeRepository recipeRepository)
+        public RecipeController(IRecipeRepository recipeRepository, IMapper mapper)
         {
             _recipeRepository = recipeRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -56,6 +59,24 @@ namespace NomsNoms.Controllers
             var result = await _recipeRepository.GetTrendingRecipe();
             return Ok(result);
         }
+        [HttpGet("profile-recipe/{email}")]
+        public async Task<IActionResult> GetProfileRecipe(string email)
+        {
+            var result = await _recipeRepository.GetUserRecipeForProfile(email);
+            return Ok(result);
+        }
+        [HttpGet("user-recipe")]
+        public async Task<IActionResult> GetUserRecipe()
+        {
+            var result = await _recipeRepository.GetRecipeForUser(User.GetUserId());
+            return Ok(result);
+        }
+        [HttpGet("ingredient")]
+        public async Task<IActionResult> GetIngredients()
+        {
+            var result = await _recipeRepository.GetIngredientsAsync();
+            return Ok(result);
+        }
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeDTO>> GetRecipe(int id)
         {
@@ -91,6 +112,21 @@ namespace NomsNoms.Controllers
             var email = User.GetEmail();
             var result = await _recipeRepository.GetRecipeLikeByUserEmail(email);
             return Ok(result);
+        }
+        [HttpPost("add-recipe")]
+        public async Task<IActionResult> AddRecipe(AddRecipeDTO addRecipeDTO)
+        {
+            var recipe = _mapper.Map<Recipe>(addRecipeDTO);
+            recipe.AppUserId = User.GetUserId();
+            try
+            {
+                await _recipeRepository.AddRecipeAsync(recipe);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Lỗi khi tạo công thức");
+            }
+            return Ok();
         }
     }
 }

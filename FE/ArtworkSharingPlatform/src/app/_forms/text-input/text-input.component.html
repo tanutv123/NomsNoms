@@ -1,0 +1,28 @@
+<!--<div class="form-floating mb-3">-->
+<!--  <input-->
+<!--    type="{{type}}"-->
+<!--    class="form-control"-->
+<!--    placeholder="{{label}}"-->
+<!--    [formControl]="control"-->
+<!--    [ngClass]="(control.touched) ? control.invalid ? 'is-invalid' : 'is-valid' : null"-->
+<!--  >-->
+<!--  <label >{{label}}</label>-->
+<!--</div>-->
+
+<div>
+  <label class="sr-only">{{label}}</label>
+
+  <div class="relative">
+    <input
+      type="{{type}}"
+      class="w-full border rounded-lg p-4 pe-12 text-sm shadow-sm"
+      placeholder="{{label}}"
+      [formControl]="control"
+      [ngClass]="(control.touched && control.invalid) ? 'border-red-600' : 'border-gray-200'"
+    />
+  </div>
+  <div class="text-red-600" *ngIf="control.touched && control.errors?.['required']">Please enter {{label}}</div>
+  <div *ngIf="control.touched && control.errors?.['email']" class="text-red-600">Invalid email</div>
+  <div *ngIf="control.touched && control.errors?.['pattern']" class="text-red-600">Password is not complex enough</div>
+  <div *ngIf="control.touched && control.errors?.['emailExists']" class="text-red-600">Email already in use</div>
+</div>

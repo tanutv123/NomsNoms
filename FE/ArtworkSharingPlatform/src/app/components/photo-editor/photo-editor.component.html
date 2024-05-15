@@ -1,0 +1,66 @@
+<div class="row flex">
+  <div class="col-3">
+    <div ng2FileDrop
+         [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+         (fileOver)="fileOverBase($event)"
+         [uploader]="uploader"
+         class="card bg-white p-3 text-center mb-3 my-drop-zone">
+      <i class="fa fa-upload fa-3x"></i>
+      <span class="font-bold">Kéo ảnh vào đây</span>
+      hoặc
+      <span class="font-bold"> chọn ảnh ở dưới</span>
+    </div>
+
+    <ng-container *ngIf="canUploadMultiple">
+      Nhiều ảnh
+      <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+    </ng-container>
+
+    1 ảnh
+    <input type="file" ng2FileSelect [uploader]="uploader" />
+  </div>
+
+  <div class="align-content-end" style="margin-bottom: 40px" *ngIf="uploader?.queue?.length">
+
+    <h3>Upload queue</h3>
+    <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th width="50%">Name</th>
+        <th>Size</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of uploader?.queue">
+        <td><strong>{{ item?.file?.name }}</strong></td>
+        <td *ngIf="uploader?.options?.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <div>
+        Queue progress:
+        <div class="progress" style="">
+          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader?.progress + '%' }"></div>
+        </div>
+      </div>
+      <button type="button" class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+              (click)="uploader?.uploadAll()" [disabled]="!uploader?.getNotUploadedItems()?.length">
+        <span class="fa fa-upload"></span> Tải
+      </button>
+      <button type="button" class="bg-transparent hover:bg-orange-300 text-orange-300 font-semibold hover:text-white py-2 px-4 border border-orange-300 hover:border-transparent rounded"
+              (click)="uploader?.cancelAll()" [disabled]="!uploader?.isUploading">
+        <span class="fa fa-ban"></span> Hủy
+      </button>
+      <button type="button" class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
+              (click)="uploader?.clearQueue()" [disabled]="!uploader?.queue?.length">
+        <span class="fa fa-trash"></span> Xóa
+      </button>
+    </div>
+
+  </div>
+
+</div>

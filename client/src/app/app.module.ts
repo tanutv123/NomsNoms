@@ -41,7 +41,11 @@ import { RecipeCategoryComponent } from './components/recipe/recipe-category/rec
 import {PaginationModule} from "ngx-bootstrap/pagination";
 import { SwiperDirective } from './_directives/swiper.directive';
 import { StepsComponent } from './components/recipe/recipe-step-list/steps/steps.component';
-
+import { NewRecipeComponent } from './components/user/new-recipe/new-recipe.component';
+import {FileUploadModule} from "ng2-file-upload";
+import { PhotoEditorComponent } from './components/photo-editor/photo-editor.component';
+import {JwtInterceptor} from "./_interceptors/jwt.interceptor";
+import { MyRecipeComponent } from './components/user/my-recipe/my-recipe.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -72,7 +76,10 @@ register();
     ListOfRecipeComponent,
     RecipeCategoryComponent,
     SwiperDirective,
-    StepsComponent
+    StepsComponent,
+    NewRecipeComponent,
+    PhotoEditorComponent,
+    MyRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +91,7 @@ register();
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    FileUploadModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
@@ -92,7 +100,8 @@ register();
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
