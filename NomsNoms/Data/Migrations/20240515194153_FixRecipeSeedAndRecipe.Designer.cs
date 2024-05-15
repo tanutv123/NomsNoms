@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NomsNoms.Data;
 
@@ -11,9 +12,11 @@ using NomsNoms.Data;
 namespace NomsNoms.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240515194153_FixRecipeSeedAndRecipe")]
+    partial class FixRecipeSeedAndRecipe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -666,33 +669,6 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("TasteProfiles");
                 });
 
-            modelBuilder.Entity("NomsNoms.Entities.Transaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReportName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SenderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("Transactions");
-                });
-
             modelBuilder.Entity("NomsNoms.Entities.UserCollection", b =>
                 {
                     b.Property<int>("Id")
@@ -1072,17 +1048,6 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("RecipeStep");
                 });
 
-            modelBuilder.Entity("NomsNoms.Entities.Transaction", b =>
-                {
-                    b.HasOne("NomsNoms.Entities.AppUser", "Sender")
-                        .WithMany("TransactionSents")
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Sender");
-                });
-
             modelBuilder.Entity("NomsNoms.Entities.UserCollection", b =>
                 {
                     b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
@@ -1199,8 +1164,6 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("SubByUsers");
 
                     b.Navigation("SubedUsers");
-
-                    b.Navigation("TransactionSents");
 
                     b.Navigation("UserCollections");
 

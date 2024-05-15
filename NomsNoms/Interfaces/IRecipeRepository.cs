@@ -16,5 +16,8 @@ namespace NomsNoms.Interfaces
 
         Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id);
         Task<List<Recipe>> GetAllRecipes();
+        Task HideRecipe(int recipeid);
+        Task<bool> IsOwnerRecipe(int recipeid, string userEmail);
+        Task DeletedRecipe(int recipeid);
     }
 }

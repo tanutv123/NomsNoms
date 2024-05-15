@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using NomsNoms.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace NomsNoms.Data
 {
@@ -46,6 +47,7 @@ namespace NomsNoms.Data
         public DbSet<RecipeComplexity> RecipeComplexities{ get; set; }
         public DbSet<RecipeStepImage> RecipeStepImages{ get; set; }
         public DbSet<AppUserSubscriptionRecord> AppUserSubscriptionRecords { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -168,6 +170,14 @@ namespace NomsNoms.Data
                 .WithMany(u => u.SubByUsers)
                 .HasForeignKey(u => u.TargetUserId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Transaction>()
+                .HasKey(k => new { k.Id });
+            builder.Entity<Transaction>()
+                .HasOne(t => t.Sender)
+                .WithMany(u => u.TransactionSents)
+                .HasForeignKey(t => t.SenderId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
     }

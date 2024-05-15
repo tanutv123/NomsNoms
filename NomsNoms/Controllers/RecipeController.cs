@@ -92,5 +92,36 @@ namespace NomsNoms.Controllers
             var result = await _recipeRepository.GetRecipeLikeByUserEmail(email);
             return Ok(result);
         }
+        [HttpPut("hideRecipe/{recipeId}")]
+        [Authorize]
+        public async Task<IActionResult> HideRecipe(int recipeId)
+        {
+            var email = User.GetEmail();
+            var isOwner = await _recipeRepository.IsOwnerRecipe(recipeId, email);
+            if (isOwner)
+            {
+                await _recipeRepository.HideRecipe(recipeId);
+                return Ok(new {message = "Others people now can't see your recipe"});
+            } else
+            {
+                return BadRequest("Bạn không có quyền truy cập vào nội dung này !!!");
+            }
+        }
+        [HttpPut("deleteRecipe/{recipeId}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteRecipe(int recipeId)
+        {
+            var email = User.GetEmail();
+            var isOwner = await _recipeRepository.IsOwnerRecipe(recipeId, email);
+            if (isOwner)
+            {
+                await _recipeRepository.DeletedRecipe(recipeId);
+                return Ok(new { message = "Others people now can't see your recipe" });
+            }
+            else
+            {
+                return BadRequest("Bạn không có quyền truy cập vào nội dung này !!!");
+            }
+        }
     }
 }
