@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8" *ngIf="user">
   <div class="rounded-lg h-auto">
     <div
       class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
@@ -10,10 +10,10 @@
       <div class="sm:flex sm:justify-between sm:gap-4">
         <div>
           <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
-            Tài Võ
+            {{user.knownAs}}
           </h3>
 
-          <p class="mt-1 text-xs font-medium text-gray-600">Người dùng</p>
+          <p class="mt-1 text-xs font-medium text-gray-600">{{user.roles}}</p>
         </div>
 
         <div class="hidden sm:block sm:shrink-0">
@@ -27,7 +27,7 @@
 
       <div class="mt-4">
         <p class="text-pretty text-sm text-gray-500">
-          Tôi thích nấu những món ăn cay và nóng
+          {{user.introduction}}
         </p>
       </div>
 
@@ -65,9 +65,34 @@
             </a>
           </li>
         </ul>
-        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded" *ngIf="openTab == 1">
           <!-- HTML -->
-            <app-recipe-list></app-recipe-list>
+            <app-recipe-list *ngIf="recipes.length > 0" [recipes]="recipes"></app-recipe-list>
+            <p class="font-bold text-xl" *ngIf="recipes.length <= 0">Người dùng này chưa đăng công thức nào</p>
+        </div>
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded" *ngIf="openTab == 2">
+          <!-- HTML -->
+          <p>Tính năng này chưa được hỗ trợ. Xin lỗi vì sự bất tiện này</p>
+        </div>
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded" *ngIf="openTab == 3">
+          <ng-container *ngIf="followers.length > 0">
+            <!-- component -->
+            <!-- This is an example component -->
+            <a *ngFor="let follower of followers" routerLink="/profile/{{follower.email}}">
+              <div class="max-w-full">
+                <div class="p-3 flex items-center justify-between border-t cursor-pointer hover:bg-gray-200">
+                  <div class="flex items-center">
+                    <img class="rounded-full h-10 w-10" src="{{follower.imageUrl || './assets/user.png'}}">
+                    <div class="ml-2 flex flex-col">
+                      <div class="leading-snug text-sm text-gray-900 font-bold">{{follower.knownAs}}</div>
+                      <div class="leading-snug text-xs text-gray-600">{{follower.email}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </ng-container>
+          <p class="font-bold text-xl" *ngIf="followers.length <= 0">Hiện người này chưa có lượt theo dõi</p>
         </div>
       </div>
     </div>

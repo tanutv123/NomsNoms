@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NomsNoms.DTOs;
@@ -240,17 +241,21 @@ namespace NomsNoms.Data
             }
         }
 
-        public async Task<List<AppUser>> GetFollowerByCookId(int userId)
+        public async Task<List<UserProfileDTO>> GetFollowerByCookId(string email)
         {
             try
             {
-                List<AppUser> list = new List<AppUser>();
-                var follow = await _context.UserFollows.Where(u => u.SourceUserId != userId).ToListAsync();
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+                List<UserProfileDTO> list = new List<UserProfileDTO>();
+                var follow = await _context.UserFollows.Where(u => u.SourceUserId != user.Id).ToListAsync();
                 foreach (var follower in follow)
                 {
-                    AppUser appUser = new AppUser();
-                    appUser = await GetUserById(follower.SourceUserId);
-                    list.Add(appUser);
+                    list.Add(
+                        await _context.Users
+                        .Where(x => x.Id == follower.SourceUserId)
+                        .ProjectTo<UserProfileDTO>(_mapper.ConfigurationProvider)
+                        .FirstOrDefaultAsync()
+                        );
                 }
 
                 return list;
@@ -337,6 +342,15 @@ namespace NomsNoms.Data
             }
 
             return user.TasteProfile;
+        }
+
+        public async Task<UserProfileDTO> GetUserProfile(string email)
+        {
+            var user = await _context.Users
+                .Where(x => x.Email == email)
+                .ProjectTo<UserProfileDTO>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+            return user;
         }
     }
 }

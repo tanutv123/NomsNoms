@@ -21,7 +21,12 @@ namespace NomsNoms.Controllers
             _mapper = mapper;
             _userRepository = userRepository;
         }
-
+        [HttpGet("profile/{email}")]
+        public async Task<IActionResult> GetUserProfile(string email)
+        {
+            var user = await _userRepository.GetUserProfile(email);
+            return Ok(user);
+        }
         [HttpPut("edit-profile")]
         /*[Authorize]*/
         public async Task<IActionResult> EditUserProfile([FromBody] UserProfileDTO profileDTO)
@@ -50,10 +55,10 @@ namespace NomsNoms.Controllers
         {
             return Ok(await _userRepository.GetTopCookByFollower());
         }
-        [HttpGet("followers/{id}")]
-        public async Task<IActionResult> GetFollowers(int id)
+        [HttpGet("followers/{email}")]
+        public async Task<IActionResult> GetFollowers(string email)
         {
-            return Ok(await _userRepository.GetFollowerByCookId(id));
+            return Ok(await _userRepository.GetFollowerByCookId(email));
         }
         [HttpPost("subsctiption/buy/{subcriptionTypeId}")]
         [Authorize]

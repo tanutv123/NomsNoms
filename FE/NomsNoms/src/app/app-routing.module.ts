@@ -15,6 +15,7 @@ import {ListOfRecipeComponent} from "./components/recipe/list-of-recipe/list-of-
 import {recipeDetailResolver} from "./_resolvers/recipe-detail.resolver";
 import {NewRecipeComponent} from "./components/user/new-recipe/new-recipe.component";
 import {MyRecipeComponent} from "./components/user/my-recipe/my-recipe.component";
+import {userDetailResolver} from "./_resolvers/user-detail.resolver";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -34,7 +35,7 @@ const routes: Routes = [
     {path: 'new-recipe', component: NewRecipeComponent},
     {path: 'my-recipe', component: MyRecipeComponent},
     {path: 'list', component: ListOfRecipeComponent},
-    {path: 'profile', component: ProfileComponent},
+    {path: 'profile/:email', component: ProfileComponent, resolve: {user: userDetailResolver}},
   ]
   },
   { path: 'server-error', component: ServerErrorComponent },

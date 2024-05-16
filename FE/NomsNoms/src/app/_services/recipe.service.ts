@@ -87,4 +87,10 @@ export class RecipeService {
   getIngredients() {
     return this.http.get<Ingredient[]>(this.baseUrl + 'recipe/ingredient');
   }
+  getUserRecipe() {
+    return this.http.get<Recipe[]>(this.baseUrl + 'recipe/user-recipe');
+  }
+  getUserProfileRecipe(email: string) {
+    return this.http.get<Recipe[]>(this.baseUrl + 'recipe/profile-recipe/' + email);
+  }
 }

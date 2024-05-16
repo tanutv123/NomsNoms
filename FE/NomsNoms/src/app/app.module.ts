@@ -47,6 +47,8 @@ import { PhotoEditorComponent } from './components/photo-editor/photo-editor.com
 import {JwtInterceptor} from "./_interceptors/jwt.interceptor";
 import { MyRecipeComponent } from './components/user/my-recipe/my-recipe.component';
 import {DataTablesModule} from "angular-datatables";
+import { HasRoleDirective } from './_directives/has-role.directive';
+import { UserManagementComponent } from './components/admin/user-management/user-management.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -80,7 +82,9 @@ register();
     StepsComponent,
     NewRecipeComponent,
     PhotoEditorComponent,
-    MyRecipeComponent
+    MyRecipeComponent,
+    HasRoleDirective,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,
