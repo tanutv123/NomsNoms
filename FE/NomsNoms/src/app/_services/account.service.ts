@@ -31,6 +31,13 @@ export class AccountService {
     );
   }
 
+  getUserProfile(email: string) {
+    return this.http.get<User>(this.baseUrl + 'user/profile/' + email);
+  }
+
+  getFollowers(email: string) {
+    return this.http.get<User[]>(this.baseUrl + 'user/followers/' + email);
+  }
 
   getCurrentUser() {
     const userJson = localStorage.getItem('user');
@@ -38,16 +45,18 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
-    console.log(user.token);
     const expiry = this.getDecodedToken(user.token).exp;
     const now = Math.floor(new Date().getTime() / 1000);
     if (expiry < now) {
       localStorage.removeItem('user');
       this.router.navigateByUrl('/login');
     } else {
-      user.roles = [];
+      user.roles = '';
       const roles = this.getDecodedToken(user.token).role;
-      Array.isArray(roles) ? (user.roles = roles) : user.roles.push(roles);
+      if (typeof roles == "string") {
+        user.roles = roles;
+      }
+      console.log(user);
       localStorage.setItem('user', JSON.stringify(user));
       this.currentUserSource.next(user);
     }

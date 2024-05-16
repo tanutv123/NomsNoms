@@ -46,6 +46,7 @@ import {FileUploadModule} from "ng2-file-upload";
 import { PhotoEditorComponent } from './components/photo-editor/photo-editor.component';
 import {JwtInterceptor} from "./_interceptors/jwt.interceptor";
 import { MyRecipeComponent } from './components/user/my-recipe/my-recipe.component';
+import { TestsComponent } from './components/tests/tests.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -79,7 +80,8 @@ register();
     StepsComponent,
     NewRecipeComponent,
     PhotoEditorComponent,
-    MyRecipeComponent
+    MyRecipeComponent,
+    TestsComponent
   ],
   imports: [
     BrowserModule,

@@ -15,10 +15,12 @@ import {ListOfRecipeComponent} from "./components/recipe/list-of-recipe/list-of-
 import {recipeDetailResolver} from "./_resolvers/recipe-detail.resolver";
 import {NewRecipeComponent} from "./components/user/new-recipe/new-recipe.component";
 import {MyRecipeComponent} from "./components/user/my-recipe/my-recipe.component";
+import {TestsComponent} from "./components/tests/tests.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'test', component: TestsComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'test-error', component: TestErrorComponent},
   {path:'',
