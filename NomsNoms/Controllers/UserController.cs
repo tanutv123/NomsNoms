@@ -82,5 +82,32 @@ namespace NomsNoms.Controllers
             return Ok();
         }
 
+        [HttpPut("profile/userphoto")]
+        [Authorize]
+        public async Task<IActionResult> UpdateAvatar([FromBody] UserPhotoDTO userPhotoDTO)
+        {
+            userPhotoDTO.AppUserId = User.GetUserId();
+            await _userRepository.UpdateUserPhoto(userPhotoDTO);
+            return Ok(new { message = "Update Avatar successfully." });
+        }
+
+        [HttpGet("transaction")]
+        [Authorize]
+        public async Task<ActionResult<List<Transaction>>> GetUserTranstion()
+        {
+            var email = User.GetEmail();
+            var transaction = await _userRepository.GetUserTransaction(email);
+            return Ok(transaction);
+        }
+        [HttpPost("transaction")]
+        [Authorize]
+        public async Task<IActionResult> AddTransaction([FromBody] TransactionDTO transaction)
+        {
+            var email = User.GetEmail();
+            transaction.SenderId = User.GetUserId();
+            transaction.CreateDate = DateTime.Now;
+            await _userRepository.AddTransaction(transaction);
+            return Ok(new { message = "Thanh toán thành công." });
+        }
     }
 }

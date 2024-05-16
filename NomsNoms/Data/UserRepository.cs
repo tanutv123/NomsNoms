@@ -352,5 +352,57 @@ namespace NomsNoms.Data
                 .FirstOrDefaultAsync();
             return user;
         }
+        public async Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO)
+        {
+            try
+            {
+                
+                var userphoto = _mapper.Map<UserPhoto>(userPhotoDTO);
+                _context.Update(userphoto);
+                
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<UserPhoto> GetUserPhotoByUserEmail(string email)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(email);
+                return user.UserPhoto;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<List<Transaction>> GetUserTransaction(string email)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(email);
+                return user.TransactionSents;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task AddTransaction(TransactionDTO transactionDTO)
+        {
+            try
+            {
+                var transaction = _mapper.Map<Transaction>(transactionDTO);
+                await _context.Transactions.AddAsync(transaction);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

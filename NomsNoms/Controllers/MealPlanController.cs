@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NomsNoms.Data;
 using NomsNoms.Entities;
+using NomsNoms.Extensions;
 using NomsNoms.Interfaces;
 
 namespace NomsNoms.Controllers
@@ -26,14 +27,15 @@ namespace NomsNoms.Controllers
             return Ok(await _mealPlanRepository.GetAllType());
         }
 
-        [HttpGet("recommendations/{email}")]
-        public async Task<IActionResult> GetRecommendedRecipes(string email)
+        [HttpGet("recommendations")]
+        public async Task<IActionResult> GetRecommendedRecipes()
         {
             // Get the user's taste profile from the repository
+            var email = User.GetEmail();
             TasteProfile userTaste = await _userRepository.GetUserTasteProfile(email);
             if (userTaste == null)
             {
-                return NotFound("User not found");
+                return NotFound("User taste profile not found");
             }
 
             // Get all recipes from the repository
