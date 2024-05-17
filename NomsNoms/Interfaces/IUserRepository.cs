@@ -19,5 +19,6 @@ namespace NomsNoms.Interfaces
         Task<bool> HasUserHasAlreadySub(string cookEmail, string email);
         Task RecipeView(int recipeId);
         Task<TasteProfile> GetUserTasteProfile(string email);
+        Task EnableUserAdmin(AppUser user);
     }
 }

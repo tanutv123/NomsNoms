@@ -338,5 +338,26 @@ namespace NomsNoms.Data
 
             return user.TasteProfile;
         }
+
+        public async Task EnableUserAdmin(AppUser user)
+        {
+            try
+            {
+                var u = await _userManager.FindByEmailAsync(user.Email);
+                if (u != null)
+                {
+                    u.Status = 1;
+                    await _userManager.UpdateAsync(u);
+                }
+                else
+                {
+                    throw new Exception("User is not exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
