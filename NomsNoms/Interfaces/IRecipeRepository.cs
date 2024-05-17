@@ -27,6 +27,8 @@ namespace NomsNoms.Interfaces
         Task DeleteRecipe(RecipeUpdateDTO recipeDto);
         Task<List<RecipeStatus>> GetAllRecipeStatus();
         Task<RecipeUpdateDTO> GetRecipeById(int id);
+        Task<List<RecipeDTO>> GetAllPendingRecipeAdmin();
+        Task SetTatseProfileAndStatus(int recipeId, TasteProfile tp);
         Task HideRecipe(int recipeid);
         Task<bool> IsOwnerRecipe(int recipeid, string userEmail);
         Task DeletedRecipe(int recipeid);

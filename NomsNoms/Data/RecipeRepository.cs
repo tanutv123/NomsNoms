@@ -135,12 +135,6 @@ namespace NomsNoms.Data
             }
         }
 
-        public async Task AddRecipeAsync(Recipe recipe)
-        {
-            recipe.RecipeStatusId = 3;
-            _context.Recipes.Add(recipe);
-            await _context.SaveChangesAsync();
-        }
         public async Task<List<Recipe>> GetAllRecipes()
         {
             List<Recipe> list = null;
@@ -161,7 +155,8 @@ namespace NomsNoms.Data
             {
                 var l = await _context.Recipes.ToListAsync();
                 list = _mapper.Map<List<RecipeDTO>>(l);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -204,7 +199,6 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
-        
         public async Task DeleteRecipe(RecipeUpdateDTO recipeDto)
         {
             try
@@ -238,7 +232,66 @@ namespace NomsNoms.Data
                 throw new Exception($"{ex.Message}");
             }
             return list;
+        }
+        public async Task<List<RecipeDTO>> GetAllPendingRecipeAdmin()
+        {
+            List<RecipeDTO> list = null;
+            try
+            {
+                var l = await _context.Recipes.Where(r => r.RecipeStatusId == 3).ToListAsync();
+                list = _mapper.Map<List<RecipeDTO>>(l);
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
+
+        public async Task<TasteProfile> GetTasteProfileById(int id)
+        {
+            TasteProfile tp = null;
+            try
+            {
+                tp = await _context.TasteProfiles.FirstOrDefaultAsync(t => t.Id == id);
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return tp;
+        }
+
+        public async Task SetTatseProfileAndStatus(int recipeId, TasteProfile tp)
+        {
+            try
+            {
+                var profile = await GetTasteProfileById(tp.Id);
+                if(profile == null)
+                {
+                    await _context.TasteProfiles.AddAsync(tp);
+                    await _context.SaveChangesAsync();
+
+                    var recipe = await _context.Recipes.FirstOrDefaultAsync(r => r.Id == recipeId);
+                    if(recipe != null || recipe.RecipeStatusId != 3)
+                    {
+                        recipe.TasteProfileId = tp.Id;
+                        recipe.RecipeStatusId = 1;
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        throw new Exception("Recipe not found");
+                    }
+                }
+                else
+                {
+                    throw new Exception("TasteProfile is existed");
+                }
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<List<Ingredient>> GetIngredientsAsync()
         {
             return await _context.Ingredients.ToListAsync();
@@ -260,10 +313,10 @@ namespace NomsNoms.Data
             query = query.Where(x => x.RecipeStatusId != 4 && x.RecipeStatusId != 1);
             return await query.ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider).ToListAsync();
         }
-        
-        
+
+
         public async Task HideRecipe(int recipeid)
-        {            
+        {
             try
             {
                 var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
@@ -272,7 +325,8 @@ namespace NomsNoms.Data
                     recipe.RecipeStatusId = 2;
                     _context.Recipes.Update(recipe);
                     await _context.SaveChangesAsync();
-                } else if (recipe.RecipeStatusId == 2)
+                }
+                else if (recipe.RecipeStatusId == 2)
                 {
                     recipe.RecipeStatusId = 1;
                     _context.Recipes.Update(recipe);
@@ -290,10 +344,10 @@ namespace NomsNoms.Data
             try
             {
                 var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
-                    recipe.RecipeStatusId = 4;
-                    _context.Recipes.Update(recipe);
-                    await _context.SaveChangesAsync();
-                    }
+                recipe.RecipeStatusId = 4;
+                _context.Recipes.Update(recipe);
+                await _context.SaveChangesAsync();
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -305,14 +359,15 @@ namespace NomsNoms.Data
             {
                 var user = await _userManager.FindByEmailAsync(userEmail);
                 var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
-                if (user != null && recipe != null && recipe.AppUserId == user.Id) 
+                if (user != null && recipe != null && recipe.AppUserId == user.Id)
                 {
                     return true;
-                } else
+                }
+                else
                 {
                     return false;
-                } 
                 }
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -329,6 +384,12 @@ namespace NomsNoms.Data
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
             var result = await _context.RecipeLikes.AnyAsync(x => x.RecipeId == recipeid && x.AppUserId == user.Id);
             return result;
+        }
+        public async Task AddRecipeAsync(Recipe recipe)
+        {
+            recipe.RecipeStatusId = 3;
+            _context.Recipes.Add(recipe);
+            await _context.SaveChangesAsync();
         }
     }
 }
