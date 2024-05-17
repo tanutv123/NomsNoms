@@ -144,6 +144,20 @@ namespace NomsNoms.Data.Seed
                 await _context.SaveChangesAsync();
             }
         }
+        public static async Task SeedMealPlanSubscription(DataContext _context)
+        {
+            if (await _context.MealPlans.AnyAsync()) { return; }
+
+            var mealPlan = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/MealPlanSubscriptionSeed.json");
+            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var mp = JsonSerializer.Deserialize<List<MealPlanSubscription>>(mealPlan, jsonOptions);
+
+            foreach (var mealPlans in mp)
+            {
+                await _context.MealPlanSubscriptions.AddAsync(mealPlans);
+                await _context.SaveChangesAsync();
+            }
+        }
 
         public static async Task SeedIngredient(DataContext _context)
         {

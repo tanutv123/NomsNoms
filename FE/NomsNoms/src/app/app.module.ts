@@ -49,6 +49,9 @@ import { MyRecipeComponent } from './components/user/my-recipe/my-recipe.compone
 import {DataTablesModule} from "angular-datatables";
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { UserManagementComponent } from './components/admin/user-management/user-management.component';
+import { PaymentTestsComponent } from './components/payment-tests/payment-tests.component';
+import { SuccessComponent } from './components/payment/success/success.component';
+import { FailComponent } from './components/payment/fail/fail.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -84,7 +87,10 @@ register();
     PhotoEditorComponent,
     MyRecipeComponent,
     HasRoleDirective,
-    UserManagementComponent
+    UserManagementComponent,
+    PaymentTestsComponent,
+    SuccessComponent,
+    FailComponent
   ],
   imports: [
     BrowserModule,

@@ -83,5 +83,10 @@ namespace NomsNoms.Data
 
             return topRecipes;
         }
+
+        public async Task<List<MealPlanSubscription>> GetMealPlanSubscriptionsAsync()
+        {
+            return await _context.MealPlanSubscriptions.ToListAsync();
+        }
     }
 }

@@ -20,6 +20,11 @@ namespace NomsNoms.Controllers
             _recipeRepository = recipeRepository;
             _userRepository = userRepository;
         }
+        [HttpGet]
+        public async Task<IActionResult> GetMealPlanSubscriptions()
+        {
+            return Ok(await _mealPlanRepository.GetMealPlanSubscriptionsAsync());
+        }
 
         [HttpGet("type")]
         public async Task<IActionResult> GetAllType()
