@@ -52,6 +52,10 @@ import { UserManagementComponent } from './components/admin/user-management/user
 import { PaymentTestsComponent } from './components/payment-tests/payment-tests.component';
 import { SuccessComponent } from './components/payment/success/success.component';
 import { FailComponent } from './components/payment/fail/fail.component';
+import { ProfileEditComponent } from './components/user/profile-edit/profile-edit.component';
+import { TruncatePipe } from './_pipes/truncate.pipe';
+import { RecipeManagementComponent } from './components/admin/recipe-management/recipe-management.component';
+import { RecipeDetailAdminComponent } from './components/admin/recipe-management/recipe-detail-admin/recipe-detail-admin.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -90,7 +94,11 @@ register();
     UserManagementComponent,
     PaymentTestsComponent,
     SuccessComponent,
-    FailComponent
+    FailComponent,
+    ProfileEditComponent,
+    TruncatePipe,
+    RecipeManagementComponent,
+    RecipeDetailAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +112,7 @@ register();
     HttpClientModule,
     FileUploadModule,
     DataTablesModule,
+    BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),

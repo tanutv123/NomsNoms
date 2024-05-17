@@ -28,7 +28,7 @@ namespace NomsNoms.Controllers
                 ItemData item = new ItemData(body.productName, 1, body.price);
                 List<ItemData> items = new List<ItemData>();
                 items.Add(item);
-                PaymentData paymentData = new PaymentData(orderCode, body.price, body.description + User.GetEmail(), items, body.cancelUrl, body.returnUrl);
+                PaymentData paymentData = new PaymentData(orderCode, body.price, body.description, items, body.cancelUrl, body.returnUrl);
 
                 CreatePaymentResult createPayment = await _payOS.createPaymentLink(paymentData);
                 _logger.LogInformation($"Don duoc tao: {createPayment.orderCode}");

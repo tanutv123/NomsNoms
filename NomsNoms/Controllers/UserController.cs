@@ -33,6 +33,7 @@ namespace NomsNoms.Controllers
         {
             try
             {
+                profileDTO.Email = User.GetEmail();
                 var user = _mapper.Map<AppUser>(profileDTO);
                 await _userRepository.UpdateUserDetail(user);
             }

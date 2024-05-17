@@ -318,5 +318,10 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<ViewRecipeAdminDTO> GetRecipeAdminAsync(int id)
+        {
+            return await _context.Recipes.Where(x => x.Id == id).ProjectTo<ViewRecipeAdminDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
+        }
     }
 }

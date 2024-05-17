@@ -15,7 +15,7 @@
 
       <div class="md:flex md:items-center md:gap-12">
         <nav aria-label="Global" class="hidden md:block">
-          <ul class="flex items-center gap-6 text-sm">
+          <ul class="flex items-center gap-6 text-sm" *appHasRole="'Client'">
             <li>
               <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Home </a>
             </li>
@@ -44,7 +44,7 @@
               class="rounded-md bg-red-600 px-5 py-2.5 text-sm font-medium text-white shadow"
               routerLink="/login"
             >
-              Login
+              Đăng nhập
             </a>
 
             <div class="hidden sm:flex">
@@ -52,11 +52,11 @@
                 class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-red-600"
                 routerLink="/register"
               >
-                Register
+                Đăng ký
               </a>
             </div>
           </div>
-          <div *ngIf="(accountService.currentUser$ | async) as user" class="relative inline-block text-left border border-red-600">
+          <div dropdown *ngIf="(accountService.currentUser$ | async) as user" class="relative inline-block text-left border border-red-600">
             <div>
               <span class="rounded-md shadow-sm">
                 <button type="button" (click)="showDropdown = !showDropdown"
@@ -72,24 +72,37 @@
               </span>
             </div>
 
-            <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg" *ngIf="showDropdown">
-              <div class="rounded-md bg-white ring-1 ring-black ring-opacity-5">
+            <div *appHasRole="'Client'" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
+              <div *ngIf="showDropdown" class="rounded-md bg-white ring-1 ring-black ring-opacity-5">
                 <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                  <a *appHasRole="'Admin'" routerLink="/admin-page" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                     role="menuitem">Admin Page</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                     role="menuitem">Account settings</a>
+                  <a routerLink="/profile-edit/{{user.email}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Cài đặt tài khoản</a>
                   <a routerLink="/new-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                     role="menuitem">Upload your recipe</a>
+                     role="menuitem">Đăng công thức</a>
                   <a routerLink="/my-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                     role="menuitem">Your recipe</a>
+                     role="menuitem">Công thức của bạn</a>
                   <a (click)="logout()" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                     role="menuitem">Logout</a>
+                     role="menuitem">Đăng xuất</a>
+                </div>
+              </div>
+            </div>
+            <div *appHasRole="'Admin'" class="origin-top-right absolute z-50 right-0 mt-2 w-56 rounded-md shadow-lg">
+              <div  class="rounded-md bg-white ring-1 ring-black ring-opacity-5" *ngIf="showDropdown">
+                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <a routerLink="/profile-edit/{{user.email}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Cài đặt tài khoản</a>
+                  <a routerLink="/user-management" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Quản lý người dùng</a>
+                  <a routerLink="/my-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Quản lý công thức nấu ăn</a>
+                  <a routerLink="/my-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Danh sách công thức chờ duyệt</a>
+                  <a (click)="logout()" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Đăng xuất</a>
                 </div>
               </div>
             </div>
           </div>
-
 
           <div class="block md:hidden">
             <button class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
