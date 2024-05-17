@@ -20,6 +20,7 @@ namespace NomsNoms.Interfaces
         Task<bool> HasUserHasAlreadySub(string cookEmail, string email);
         Task RecipeView(int recipeId);
         Task<TasteProfile> GetUserTasteProfile(string email);
+        Task EnableUserAdmin(AppUser user);
         Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO);
         Task<UserPhoto> GetUserPhotoByUserEmail(string email);
         Task AddTransaction(TransactionDTO transactionDTO);

@@ -345,6 +345,26 @@ namespace NomsNoms.Data
             return user.TasteProfile;
         }
 
+
+        public async Task EnableUserAdmin(AppUser user)
+        {
+            try
+            {
+                var u = await _userManager.FindByEmailAsync(user.Email);
+                if (u != null)
+                {
+                    u.Status = 1;
+                    await _userManager.UpdateAsync(u);
+                }
+                else
+                {
+                    throw new Exception("User is not exist");
+                }
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<UserProfileDTO> GetUserProfile(string email)
         {
             var user = await _context.Users
@@ -368,6 +388,7 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
+
         public async Task<UserPhoto> GetUserPhotoByUserEmail(string email)
         {
             try
