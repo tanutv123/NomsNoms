@@ -7,6 +7,7 @@ import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {environment} from "../../environments/environment";
 import {Image} from "../_model/image.model";
+import {Register} from "../_model/register.model";
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +84,10 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+  }
+
+  register(user: Register) {
+    return this.http.post<User>(this.baseUrl + 'auth/register', user);
   }
 
   getDecodedToken(token: string): DecodedToken {

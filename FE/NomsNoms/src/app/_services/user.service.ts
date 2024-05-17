@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../_model/user.model";
 import {UserAdmin} from "../_model/Admin/userAdmin.model";
+import {TopFollow} from "../_model/topFollow.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,9 @@ export class UserService {
   }
   deleteUser(user: UserAdmin) {
     return this.http.delete<any>(this.baseUrl + 'admin/users/delete-user', {body: user});
+  }
+
+  getTopUser() {
+    return this.http.get<TopFollow[]>(this.baseUrl + 'user/top10');
   }
 }

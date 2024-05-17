@@ -56,6 +56,8 @@ import { ProfileEditComponent } from './components/user/profile-edit/profile-edi
 import { TruncatePipe } from './_pipes/truncate.pipe';
 import { RecipeManagementComponent } from './components/admin/recipe-management/recipe-management.component';
 import { RecipeDetailAdminComponent } from './components/admin/recipe-management/recipe-detail-admin/recipe-detail-admin.component';
+import {TimeagoModule} from "ngx-timeago";
+import { Top10UserComponent } from './components/recipe/top-10-user/top-10-user.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -98,7 +100,8 @@ register();
     ProfileEditComponent,
     TruncatePipe,
     RecipeManagementComponent,
-    RecipeDetailAdminComponent
+    RecipeDetailAdminComponent,
+    Top10UserComponent
   ],
   imports: [
     BrowserModule,
@@ -112,6 +115,7 @@ register();
     HttpClientModule,
     FileUploadModule,
     DataTablesModule,
+    TimeagoModule.forRoot(),
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'

@@ -24,5 +24,6 @@ namespace NomsNoms.Interfaces
         Task<UserPhoto> GetUserPhotoByUserEmail(string email);
         Task AddTransaction(TransactionDTO transactionDTO);
         Task<List<Transaction>> GetUserTransaction(string email);
+        Task UpdateUserLastActive(int id);
     }
 }

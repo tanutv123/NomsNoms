@@ -33,16 +33,17 @@
       <dl class="mt-6 flex gap-4 sm:gap-6">
         <div class="flex flex-col-reverse">
           <dt class="text-sm font-medium text-gray-600">Tham gia</dt>
-          <dd class="text-xs text-gray-500">30/3/2023</dd>
+          <dd class="text-xs text-gray-500">{{user.createdDate | date: 'shortDate'}}</dd>
         </div>
 
         <div class="flex flex-col-reverse">
           <dt class="text-sm font-medium text-gray-600">Hoạt động</dt>
-          <dd class="text-xs text-gray-500">3 phút trước</dd>
+          <dd class="text-xs text-gray-500">{{user.lastActive + 'Z' | timeago}}</dd>
         </div>
         <div>
           <a
             routerLink="/user-management"
+            *appHasRole="'Admin'"
             class="inline-block w-auto py-2 rounded-lg bg-red-600 font-medium text-white sm:w-auto"
           >
             Quay về trang quản lý người dùng
@@ -63,7 +64,7 @@
           </li>
           <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
             <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(2)" [ngClass]="{'text-red-600 bg-white': openTab !== 2, 'text-white bg-red-600': openTab === 2}">
-              <i class="fas fa-cog text-base mr-1"></i> Bộ sưu tập
+              <i class="fas fa-cog text-base mr-1"></i> Công thức đã thích
             </a>
           </li>
           <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -79,7 +80,28 @@
         </div>
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded" *ngIf="openTab == 2">
           <!-- HTML -->
-          <p>Tính năng này chưa được hỗ trợ. Xin lỗi vì sự bất tiện này</p>
+          <div class="overflow-x-auto">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+              <thead class="ltr:text-left rtl:text-right">
+              <tr>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tên</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Giới thiệt</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Lượt view</th>
+                <th class="px-4 py-2"></th>
+              </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-200">
+              <tr *ngFor="let recipe of likedRecipes">
+                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <a routerLink="/recipe/{{recipe.id}}">{{recipe.title}}</a>
+                </td>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{recipe.description | truncate: 5}}</td>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{recipe.numberOfViews}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded" *ngIf="openTab == 3">
           <ng-container *ngIf="followers.length > 0">

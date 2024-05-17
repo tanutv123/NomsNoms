@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Recipe} from "../../../_model/recipe.model";
 import {RecipeService} from "../../../_services/recipe.service";
 import {AccountService} from "../../../_services/account.service";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,12 @@ export class ProfileComponent implements OnInit{
   openTab = 1;
   user: User | undefined;
   recipes: Recipe[] = [];
+  likedRecipes: Recipe[] = [];
   followers: User[] = [];
+  dtOptions: DataTables.Settings = {
+    pagingType: 'full_numbers'
+  };
+  dtTrigger: Subject<any> = new Subject<any>();
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
               private accountService: AccountService) {
@@ -26,6 +32,14 @@ export class ProfileComponent implements OnInit{
         this.user = data['user'];
         this.loadRecipes();
         this.loadFollowers();
+      }
+    });
+  }
+  loadLikedRecipes() {
+    this.recipeService.getLikedRecipe().subscribe({
+      next: recipes => {
+        this.likedRecipes = recipes;
+        this.dtTrigger.next(null);
       }
     });
   }

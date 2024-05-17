@@ -34,12 +34,12 @@
               </div>
 
               <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-                <lucide-icon name="heart" [size]="16" [color]="'red'"></lucide-icon>
+                <lucide-icon name="heart" [size]="16" [color]="'red'" ></lucide-icon>
 
                 <div class="mt-1.5 sm:mt-0">
                   <p class="text-gray-500">Lượt thích</p>
 
-                  <p class="font-medium">2</p>
+                  <p class="font-medium">{{recipe.numberOfLikes}}</p>
                 </div>
               </div>
 
@@ -50,6 +50,26 @@
 
                   <p class="font-medium">{{recipe.numberOfViews}}</p>
                 </div>
+              </div>
+              <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                <button
+                  *ngIf="!isLiked"
+                  (click)="like()"
+                  type="button"
+                  class="inline-block w-full rounded-lg bg-white border border-red-600 px-5 py-3 font-medium text-red-600 sm:w-auto hover:bg-red-600 hover:text-white"
+                >
+                  Thích
+                </button>
+              </div>
+              <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                <button
+                  type="button"
+                  *ngIf="isLiked"
+                  (click)="like()"
+                  class="inline-block w-full rounded-lg bg-red-600 border border-red-600 px-5 py-3 font-medium text-white sm:w-auto hover:bg-white hover:text-red-600"
+                >
+                  Đã Thích
+                </button>
               </div>
             </div>
           </div>

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {RecipeService} from "../../_services/recipe.service";
 import {Recipe} from "../../_model/recipe.model";
+import {UserService} from "../../_services/user.service";
+import {TopFollow} from "../../_model/topFollow.model";
 
 @Component({
   selector: 'app-recipe',
@@ -9,7 +11,9 @@ import {Recipe} from "../../_model/recipe.model";
 })
 export class RecipeComponent implements OnInit{
   recipes: Recipe[] = [];
-  constructor(private recipeService: RecipeService) {
+  topFollow: TopFollow[] = [];
+  constructor(private recipeService: RecipeService,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -18,7 +22,15 @@ export class RecipeComponent implements OnInit{
         this.recipes = recipes;
       }
     });
+    this.loadTopUser();
   }
 
+  loadTopUser() {
+    this.userService.getTopUser().subscribe({
+      next: r => {
+        this.topFollow = r;
+      }
+    });
+  }
 
 }

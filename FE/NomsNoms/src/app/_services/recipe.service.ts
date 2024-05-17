@@ -73,8 +73,14 @@ export class RecipeService {
     if (recipe) return of(recipe);
     return this.http.get<Recipe>(this.baseUrl + 'recipe/' + id);
   }
-  getRecipeAdmin(id: number) {
-    return this.http.get<RecipeAdmin>(this.baseUrl + 'admin/recipe/' + id);
+  getLikedRecipe() {
+    return this.http.get<Recipe[]>(this.baseUrl + 'recipe/recipeLiked');
+  }
+  isLikeRecipe(recipeId: number) {
+    return this.http.get<boolean>(this.baseUrl + 'recipe/isLiked/' + recipeId);
+  }
+  likeRecipe(recipeId: number) {
+    return this.http.post(this.baseUrl + 'recipe/like/' + recipeId, null);
   }
   getRecipeSteps(id: number) {
     return this.http.get<RecipeStep[]>(this.baseUrl + 'recipe/recipe-steps/' + id);
