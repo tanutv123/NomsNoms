@@ -155,7 +155,8 @@ namespace NomsNoms.Data
             {
                 var l = await _context.Recipes.ToListAsync();
                 list = _mapper.Map<List<RecipeDTO>>(l);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -231,6 +232,65 @@ namespace NomsNoms.Data
                 throw new Exception($"{ex.Message}");
             }
             return list;
+        }
+        public async Task<List<RecipeDTO>> GetAllPendingRecipeAdmin()
+        {
+            List<RecipeDTO> list = null;
+            try
+            {
+                var l = await _context.Recipes.Where(r => r.RecipeStatusId == 3).ToListAsync();
+                list = _mapper.Map<List<RecipeDTO>>(l);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
+
+        public async Task<TasteProfile> GetTasteProfileById(int id)
+        {
+            TasteProfile tp = null;
+            try
+            {
+                tp = await _context.TasteProfiles.FirstOrDefaultAsync(t => t.Id == id);
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return tp;
+        }
+
+        public async Task SetTatseProfileAndStatus(int recipeId, TasteProfile tp)
+        {
+            try
+            {
+                var profile = await GetTasteProfileById(tp.Id);
+                if(profile == null)
+                {
+                    await _context.TasteProfiles.AddAsync(tp);
+                    await _context.SaveChangesAsync();
+
+                    var recipe = await _context.Recipes.FirstOrDefaultAsync(r => r.Id == recipeId);
+                    if(recipe != null)
+                    {
+                        recipe.TasteProfileId = tp.Id;
+                        recipe.RecipeStatusId = 1;
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        throw new Exception("Recipe not found");
+                    }
+                }
+                else
+                {
+                    throw new Exception("TasteProfile is existed");
+                }
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

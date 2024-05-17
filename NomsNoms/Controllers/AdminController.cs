@@ -102,12 +102,14 @@ namespace NomsNoms.Controllers
             return Ok(await _recipeRepository.GetAllRecipeAdmin());
         }
         [HttpGet("recipes/{id}")]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> GetRecipeById(int id)
         {
             return Ok(await _recipeRepository.GetRecipeById(id));
         }
 
         [HttpPut("recipes/update-recipe")]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> UpdateRecipe([FromBody] RecipeUpdateDTO recipe)
         {
             if (!ModelState.IsValid)
@@ -119,6 +121,7 @@ namespace NomsNoms.Controllers
         }
 
         [HttpDelete("recipes/delete-recipe")]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> DeleteRecipe([FromBody] RecipeUpdateDTO recipe)
         {
             if(!ModelState.IsValid)
@@ -127,6 +130,34 @@ namespace NomsNoms.Controllers
             }
             await _recipeRepository.DeleteRecipe(recipe);
             return Ok("Deleted Successfully");
+        }
+
+        [HttpPut("users/enable-user")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> EnableUserAdmin([FromBody] UserAdminDTO userDto)
+        {
+            var user = _mapper.Map<AppUser>(userDto);
+            await _userRepository.EnableUserAdmin(user);
+            return Ok("Enabled Successfully");
+        }
+
+        [HttpGet("pending-recipes")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> GetAllPendingRecipes()
+        {
+            return Ok(await _recipeRepository.GetAllPendingRecipeAdmin());
+        }
+
+        [HttpPost("pending-recipes/set-status-profile")]
+        public async Task<IActionResult> SetTasteProfileAndStatus([FromQuery] int recipeId, [FromBody] TasteProfile tp)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await _recipeRepository.SetTatseProfileAndStatus(recipeId, tp);
+            return Ok("Set successfully");
         }
     }
 }
