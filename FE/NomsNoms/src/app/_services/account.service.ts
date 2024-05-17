@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {environment} from "../../environments/environment";
+import {Image} from "../_model/image.model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,13 @@ export class AccountService {
 
   getUserProfile(email: string) {
     return this.http.get<User>(this.baseUrl + 'user/profile/' + email);
+  }
+  updateUserProfile(user: User) {
+    return this.http.put(this.baseUrl + 'user/edit-profile/', user);
+  }
+
+  updateAvatar(image: Image) {
+    return this.http.put(this.baseUrl + 'user/profile/userphoto', image);
   }
 
   getFollowers(email: string) {

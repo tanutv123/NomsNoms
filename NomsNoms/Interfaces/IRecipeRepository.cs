@@ -11,6 +11,7 @@ namespace NomsNoms.Interfaces
         Task<List<Category>> GetCategoriesAsync();
         Task<List<Ingredient>> GetIngredientsAsync();
         Task<RecipeDTO> GetRecipeAsync(int id);
+        Task<ViewRecipeAdminDTO> GetRecipeAdminAsync(int id);
 
         Task Like(string email, int recipeid);
         Task<List<RecipeLikeToShowDTO>> GetRecipeLikeByUserEmail(string email);

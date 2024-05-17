@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MealPlan} from "../../_model/mealPlan.model";
 import {MealPlanService} from "../../_services/meal-plan.service";
+import {PaymentService} from "../../_services/payment.service";
+import {CreatePaymentLinkRequest} from "../../_model/createPaymentLinkRequest.model";
 
 @Component({
   selector: 'app-meal-plan',
@@ -9,7 +11,12 @@ import {MealPlanService} from "../../_services/meal-plan.service";
 })
 export class MealPlanComponent implements OnInit{
   mealPlans: MealPlan[] = [];
-  constructor(private mpService: MealPlanService) {
+  createPaymentLinkRequest: CreatePaymentLinkRequest = {
+    returnUrl: "http://localhost:4200/payment-success",
+    cancelUrl: "http://localhost:4200/payment-fail"
+  } as CreatePaymentLinkRequest;
+  constructor(private mpService: MealPlanService,
+              private paymentService: PaymentService) {
   }
 
   ngOnInit() {
@@ -22,5 +29,16 @@ export class MealPlanComponent implements OnInit{
         this.mealPlans = mp;
       }
     })
+  }
+  payment(mealPlanId: number, productName: string, price: number) {
+    this.createPaymentLinkRequest.mealPlanId = mealPlanId;
+    this.createPaymentLinkRequest.productName = productName;
+    this.createPaymentLinkRequest.price = price;
+    this.createPaymentLinkRequest.description = "Mua goi mp";
+    this.paymentService.testPayment(this.createPaymentLinkRequest).subscribe({
+      next: response => {
+        window.location.href=''+response.data.checkoutUrl;
+      }
+    });
   }
 }

@@ -9,6 +9,7 @@ import {getPaginatedResult, getPaginationHeaders} from "./pagination-helper.serv
 import {RecipeStep} from "../_model/recipeStep.model";
 import {AddRecipe} from "../_model/AddRecipe/addRecipe.model";
 import {Ingredient} from "../_model/ingredient.model";
+import {RecipeAdmin} from "../_model/Admin/recipeAdmin.model";
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +72,9 @@ export class RecipeService {
       .reduce((arr, elm) => arr.concat(elm.result), []).find((recipe: Recipe) => recipe.id == id);
     if (recipe) return of(recipe);
     return this.http.get<Recipe>(this.baseUrl + 'recipe/' + id);
+  }
+  getRecipeAdmin(id: number) {
+    return this.http.get<RecipeAdmin>(this.baseUrl + 'admin/recipe/' + id);
   }
   getRecipeSteps(id: number) {
     return this.http.get<RecipeStep[]>(this.baseUrl + 'recipe/recipe-steps/' + id);

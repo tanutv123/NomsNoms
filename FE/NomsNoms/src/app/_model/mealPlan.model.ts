@@ -3,4 +3,5 @@ export interface MealPlan {
   description: string;
   createdDate: Date;
   price: number;
+  duration: number;
 }

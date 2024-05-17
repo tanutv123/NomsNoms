@@ -16,7 +16,9 @@
 
     <tbody class="divide-y divide-gray-200">
     <tr *ngFor="let recipe of recipes">
-      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{recipe.title}}</td>
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+        <a routerLink="/recipe/{{recipe.id}}">{{recipe.title}}</a>
+      </td>
       <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{recipe.recipeStatusName}}</td>
       <td class="whitespace-nowrap px-4 py-2">
         <a

@@ -19,6 +19,13 @@ import {userDetailResolver} from "./_resolvers/user-detail.resolver";
 import {PaymentTestsComponent} from "./components/payment-tests/payment-tests.component";
 import {SuccessComponent} from "./components/payment/success/success.component";
 import {FailComponent} from "./components/payment/fail/fail.component";
+import {ProfileEditComponent} from "./components/user/profile-edit/profile-edit.component";
+import {UserManagementComponent} from "./components/admin/user-management/user-management.component";
+import {RecipeManagementComponent} from "./components/admin/recipe-management/recipe-management.component";
+import {
+  RecipeDetailAdminComponent
+} from "./components/admin/recipe-management/recipe-detail-admin/recipe-detail-admin.component";
+import {recipeAdminResolver} from "./_resolvers/recipe-admin.resolver";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -42,7 +49,17 @@ const routes: Routes = [
     {path: 'my-recipe', component: MyRecipeComponent},
     {path: 'list', component: ListOfRecipeComponent},
     {path: 'profile/:email', component: ProfileComponent, resolve: {user: userDetailResolver}},
+    {path: 'profile-edit/:email', component: ProfileEditComponent, resolve: {user: userDetailResolver}},
   ]
+  },
+  {path:'',
+    children: [
+      {path: 'user-management', component: UserManagementComponent},
+      {path: 'recipe-management', component: RecipeManagementComponent},
+      {path: 'recipe-admin/:id', component: RecipeDetailAdminComponent,
+      resolve: {recipe: recipeAdminResolver}
+      },
+    ]
   },
   { path: 'server-error', component: ServerErrorComponent },
 
