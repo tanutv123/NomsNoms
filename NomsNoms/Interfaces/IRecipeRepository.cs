@@ -32,6 +32,7 @@ namespace NomsNoms.Interfaces
         Task HideRecipe(int recipeid);
         Task<bool> IsOwnerRecipe(int recipeid, string userEmail);
         Task DeletedRecipe(int recipeid);
+        Task<List<Recipe>> RecommendRecipes(TasteProfile userTaste, List<Recipe> allRecipes);
 
     }
 }

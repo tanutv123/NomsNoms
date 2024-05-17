@@ -17,12 +17,14 @@ namespace NomsNoms.Controllers
     public class RecipeController : ControllerBase
     {
         private readonly IRecipeRepository _recipeRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public RecipeController(IRecipeRepository recipeRepository, IMapper mapper)
+        public RecipeController(IRecipeRepository recipeRepository, IMapper mapper, IUserRepository userRepository)
         {
             _recipeRepository = recipeRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -169,6 +171,27 @@ namespace NomsNoms.Controllers
             {
                 return BadRequest("Bạn không có quyền truy cập vào nội dung này !!!");
             }
+        }
+
+        [HttpGet("recommendRecipe")]
+        [Authorize]
+        public async Task<IActionResult> RecommendRecipe(int recipeId)
+        {
+            // Get the user's taste profile from the repository
+            var email = User.GetEmail();
+            TasteProfile userTaste = await _userRepository.GetUserTasteProfile(email);
+            if (userTaste == null)
+            {
+                return NotFound("User taste profile not found");
+            }
+
+            // Get all recipes from the repository
+            List<Recipe> allRecipes = await _recipeRepository.GetAllRecipes();
+
+            // Get the top recommended recipes for the user
+            List<Recipe> recommendedRecipes = await _recipeRepository.RecommendRecipes(userTaste, allRecipes);
+
+            return Ok(recommendedRecipes);
         }
     }
 }
