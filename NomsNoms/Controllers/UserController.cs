@@ -92,7 +92,7 @@ namespace NomsNoms.Controllers
             return Ok(new { message = "Update Avatar successfully." });
         }
 
-        [HttpGet("transaction")]
+        [HttpGet("user-transaction")]
         [Authorize]
         public async Task<ActionResult<List<Transaction>>> GetUserTranstion()
         {
@@ -100,6 +100,14 @@ namespace NomsNoms.Controllers
             var transaction = await _userRepository.GetUserTransaction(email);
             return Ok(transaction);
         }
+        [HttpGet("transaction")]
+        [Authorize]
+        public async Task<ActionResult<List<Transaction>>> GetAllUserTranstion()
+        {            
+            var transaction = await _userRepository.GetAllUserTransaction();
+            return Ok(transaction);
+        }
+
         [HttpPost("transaction")]
         [Authorize]
         public async Task<IActionResult> AddTransaction([FromBody] TransactionDTO transaction)
@@ -109,6 +117,20 @@ namespace NomsNoms.Controllers
             transaction.CreateDate = DateTime.Now;
             await _userRepository.AddTransaction(transaction);
             return Ok(new { message = "Thanh toán thành công." });
+        }
+        [HttpGet("subscription-list-sub/{email}")]
+        public async Task<IActionResult> GetSubbers(string email)
+        {
+            return Ok(await _userRepository.GetSubberByCookId(email));
+        }
+
+        [HttpPost("userfollow/{cookEmail}")]
+        [Authorize]
+        public async Task<IActionResult> RegistMealPlan(string cookEmail)
+        {
+            var email = User.GetEmail();
+            await _userRepository.FollowUser(cookEmail, email);
+            return Ok();
         }
     }
 }

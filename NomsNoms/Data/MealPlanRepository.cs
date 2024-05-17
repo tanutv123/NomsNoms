@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using NomsNoms.DTOs;
 using NomsNoms.Entities;
 using NomsNoms.Interfaces;
 
@@ -7,9 +10,13 @@ namespace NomsNoms.Data
     public class MealPlanRepository : IMealPlanRepository
     {
         private readonly DataContext _context;
-        public MealPlanRepository(DataContext context)
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IMapper _mapper;
+        public MealPlanRepository(DataContext context, UserManager<AppUser> userManager, IMapper mapper)
         {
             _context = context;
+            _userManager = userManager;
+            _mapper = mapper;
         }
         public async Task<List<MealPlanType>> GetAllType()
         {
@@ -87,6 +94,19 @@ namespace NomsNoms.Data
         public async Task<List<MealPlanSubscription>> GetMealPlanSubscriptionsAsync()
         {
             return await _context.MealPlanSubscriptions.ToListAsync();
+        }
+        public async Task RegistMealPlan(string email, int mealplanid)
+        {
+            var user = _userManager.FindByEmailAsync(email);
+            var user_mealplan = new UserMealplanDTO
+            {
+                AppUserId = user.Id,
+                MealPlanId = mealplanid,
+                StartedDate = DateTime.Now
+            };
+            var mealplan_regist = _mapper.Map<UserMealPlanSubscriptions>(user_mealplan);
+            await _context.UserMealPlanSubscriptions.AddAsync(mealplan_regist);
+            await _context.SaveChangesAsync();
         }
     }
 }

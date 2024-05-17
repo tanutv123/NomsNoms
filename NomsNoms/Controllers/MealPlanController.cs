@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NomsNoms.Data;
 using NomsNoms.Entities;
@@ -50,6 +51,14 @@ namespace NomsNoms.Controllers
             List<Recipe> recommendedRecipes = await _mealPlanRepository.RecommendRecipes(userTaste, allRecipes);
 
             return Ok(recommendedRecipes);
+        }
+        [HttpPost("mealplan-registation/{mealplanId}")]
+        [Authorize]
+        public async Task<IActionResult> RegistMealPlan(int mealplanId)
+        {            
+            var email = User.GetEmail();
+            await _mealPlanRepository.RegistMealPlan(email, mealplanId);
+            return Ok();
         }
     }
 }

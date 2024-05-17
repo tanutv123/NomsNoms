@@ -380,6 +380,18 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<List<Transaction>> GetAllUserTransaction()
+        {
+            try
+            {
+                var transaction = await _context.Transactions.ToListAsync();
+                return transaction;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<List<Transaction>> GetUserTransaction(string email)
         {
             try
@@ -418,6 +430,44 @@ namespace NomsNoms.Data
             {
                 throw new Exception(ex.Message);
             }
+        }
+                
+        public async Task<List<UserProfileDTO>> GetSubberByCookId(string email)
+        {
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+                List<UserProfileDTO> list = new List<UserProfileDTO>();
+                var subs = await _context.AppUserSubscriptionRecords.Where(u => u.SourceUserId != user.Id).ToListAsync();
+                foreach (var subbers in subs)
+                {
+                    list.Add(
+                        await _context.Users
+                        .Where(x => x.Id == subbers.SourceUserId)
+                        .ProjectTo<UserProfileDTO>(_mapper.ConfigurationProvider)
+                        .FirstOrDefaultAsync()
+                        );
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task FollowUser(string cookEmail, string userEmail)
+        {
+            var cook = await _userManager.FindByEmailAsync(cookEmail);
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            var follow = new UserFollowDTO
+            {
+                SourceUserId = user.Id,
+                TargetUserId = cook.Id
+            };
+            var userfollow = _mapper.Map<UserFollow>(follow);
+            await _context.UserFollows.AddAsync(userfollow);
+            await _context.SaveChangesAsync();
         }
     }
 }

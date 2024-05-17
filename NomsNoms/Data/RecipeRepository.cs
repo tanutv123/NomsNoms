@@ -330,5 +330,61 @@ namespace NomsNoms.Data
             var result = await _context.RecipeLikes.AnyAsync(x => x.RecipeId == recipeid && x.AppUserId == user.Id);
             return result;
         }
+
+        public double CalculateSimilarity(TasteProfile userTaste, TasteProfile recipeTaste)
+        {
+            if (userTaste == null || recipeTaste == null)
+            {
+                return 0; // or handle it appropriately
+            }
+
+            // Using cosine similarity as an example
+            double dotProduct = (userTaste.Spiciness * recipeTaste.Spiciness) +
+                                (userTaste.Sweetness * recipeTaste.Sweetness) +
+                                (userTaste.Saltiness * recipeTaste.Saltiness);
+            // ... include other attributes in the dot product calculation
+
+            double userMagnitude = Math.Sqrt(userTaste.Spiciness * userTaste.Spiciness +
+                                             userTaste.Sweetness * userTaste.Sweetness +
+                                             userTaste.Saltiness * userTaste.Saltiness);
+            // ... include other attributes in the magnitude calculation for the user
+
+            double recipeMagnitude = Math.Sqrt(recipeTaste.Spiciness * recipeTaste.Spiciness +
+                                               recipeTaste.Sweetness * recipeTaste.Sweetness +
+                                               recipeTaste.Saltiness * recipeTaste.Saltiness);
+            // ... include other attributes in the magnitude calculation for the recipe
+
+            if (userMagnitude == 0 || recipeMagnitude == 0)
+            {
+                return 0; // To handle division by zero
+            }
+
+            return dotProduct / (userMagnitude * recipeMagnitude);
+        }
+
+        public async Task<List<Recipe>> RecommendRecipes(TasteProfile userTaste, List<Recipe> allRecipes)
+        {
+            // Create a new list to store the recipes and their scores
+            List<(Recipe, double)> recipeScores = new List<(Recipe, double)>();
+
+            // Loop through all the recipes
+            foreach (var recipe in allRecipes)
+            {
+                // Ensure that the recipe and its taste profile are not null
+                if (recipe != null && recipe.TastProfile != null)
+                {
+                    // Calculate the similarity score for the current recipe
+                    double similarityScore = CalculateSimilarity(userTaste, recipe.TastProfile);
+
+                    // Add the recipe and its similarity score to the list
+                    recipeScores.Add((recipe, similarityScore));
+                }
+            }
+
+            // Take the top recipes
+            var topRecipes = recipeScores.Select(item => item.Item1).ToList();
+
+            return topRecipes;
+        }
     }
 }

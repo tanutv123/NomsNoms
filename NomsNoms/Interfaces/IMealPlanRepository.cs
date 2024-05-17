@@ -7,5 +7,6 @@ namespace NomsNoms.Interfaces
         Task<List<MealPlanType>> GetAllType();
         Task<List<MealPlanSubscription>> GetMealPlanSubscriptionsAsync();
         Task<List<Recipe>> RecommendRecipes(TasteProfile userTaste, List<Recipe> allRecipes);
+        Task RegistMealPlan(string email, int mealplanid);
     }
 }

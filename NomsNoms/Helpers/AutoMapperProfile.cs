@@ -51,6 +51,10 @@ namespace NomsNoms.Helpers
                 .ReverseMap();
             CreateMap<Transaction, TransactionDTO>()
                 .ReverseMap();
+            CreateMap<UserMealPlanSubscriptions, UserMealplanDTO>()
+                .ReverseMap();
+            CreateMap<UserFollow, UserFollowDTO>()
+                .ReverseMap();
         }
     }
 }

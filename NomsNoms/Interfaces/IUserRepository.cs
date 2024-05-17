@@ -23,7 +23,10 @@ namespace NomsNoms.Interfaces
         Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO);
         Task<UserPhoto> GetUserPhotoByUserEmail(string email);
         Task AddTransaction(TransactionDTO transactionDTO);
+        Task<List<Transaction>> GetAllUserTransaction();
         Task<List<Transaction>> GetUserTransaction(string email);
         Task UpdateUserLastActive(int id);
+        Task<List<UserProfileDTO>> GetSubberByCookId(string email);
+        Task FollowUser(string cookEmail, string userEmail);
     }
 }
