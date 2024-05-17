@@ -146,7 +146,7 @@ namespace NomsNoms.Data.Seed
         }
         public static async Task SeedMealPlanSubscription(DataContext _context)
         {
-            if (await _context.MealPlans.AnyAsync()) { return; }
+            if (await _context.MealPlanSubscriptions.AnyAsync()) { return; }
 
             var mealPlan = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/MealPlanSubscriptionSeed.json");
             var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
