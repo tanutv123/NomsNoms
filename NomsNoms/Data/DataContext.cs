@@ -48,6 +48,8 @@ namespace NomsNoms.Data
         public DbSet<RecipeStepImage> RecipeStepImages{ get; set; }
         public DbSet<AppUserSubscriptionRecord> AppUserSubscriptionRecords { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<MealPlanSubscription> MealPlanSubscriptions{ get; set; }
+        public DbSet<UserMealPlanSubscriptions> UserMealPlanSubscriptions{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -178,6 +180,8 @@ namespace NomsNoms.Data
                 .WithMany(u => u.TransactionSents)
                 .HasForeignKey(t => t.SenderId)
                 .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<UserMealPlanSubscriptions>()
+                .HasKey(k => new {k.AppUserId, k.MealPlanSubscriptionId});
         }
 
     }

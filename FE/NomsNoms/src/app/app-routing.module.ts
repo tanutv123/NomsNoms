@@ -16,12 +16,18 @@ import {recipeDetailResolver} from "./_resolvers/recipe-detail.resolver";
 import {NewRecipeComponent} from "./components/user/new-recipe/new-recipe.component";
 import {MyRecipeComponent} from "./components/user/my-recipe/my-recipe.component";
 import {userDetailResolver} from "./_resolvers/user-detail.resolver";
+import {PaymentTestsComponent} from "./components/payment-tests/payment-tests.component";
+import {SuccessComponent} from "./components/payment/success/success.component";
+import {FailComponent} from "./components/payment/fail/fail.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'test-error', component: TestErrorComponent},
+  {path: 'payment-test', component: PaymentTestsComponent},
+  {path: 'payment-success', component: SuccessComponent},
+  {path: 'payment-fail', component: FailComponent},
   {path:'',
   children: [
     {path: 'meal-plan', component: MealPlanComponent},

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Net.payOS;
 using NomsNoms.Data;
 using NomsNoms.Data.Seed;
 using NomsNoms.Entities;
@@ -61,7 +62,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-
+IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+PayOS payOS = new PayOS(configuration["Environment:PAYOS_CLIENT_ID"] ?? throw new Exception("Cannot find environment"),
+                    configuration["Environment:PAYOS_API_KEY"] ?? throw new Exception("Cannot find environment"),
+                    configuration["Environment:PAYOS_CHECKSUM_KEY"] ?? throw new Exception("Cannot find environment"));
+builder.Services.AddSingleton(payOS);
 var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleware>();
 
@@ -100,6 +105,7 @@ try
     await Seed.SeedSubscription(context);
     await Seed.SeedMealPlanType(context);
     await Seed.SeedMealPlan(context);
+    await Seed.SeedMealPlanSubscription(context);
     await Seed.SeedIngredient(context);
     await Seed.SeedCategory(context);
     await Seed.SeedComplexity(context);
