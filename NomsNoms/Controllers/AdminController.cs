@@ -28,6 +28,12 @@ namespace NomsNoms.Controllers
         {
             return Ok(await _userRepository.GetAllUserAdmin());
         }
+        [HttpGet("recipe/{id}")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> GetRecipe(int id)
+        {
+            return Ok(await _recipeRepository.GetRecipeAdminAsync(id));
+        }
         [HttpPost("users/create-user")]
         [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> CreateUser([FromBody] UserCreateAdminDTO userDTO)
@@ -92,7 +98,7 @@ namespace NomsNoms.Controllers
         {
             var user = _mapper.Map<AppUser>(userDto);
             await _userRepository.DeleteUserAdmin(user);
-            return Ok("Deleted Successfully");
+            return Ok();
         }
 
         [HttpGet("recipes")]

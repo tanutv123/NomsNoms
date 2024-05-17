@@ -1,0 +1,57 @@
+<!--<div class="d-flex justify-content-center mt-5">-->
+<!--  <div class="col-3">-->
+<!--    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->
+<!--      <div class="text-center mb-4">-->
+<!--        <h1 class="h3 mb-3 font-weight-normal">Login</h1>-->
+<!--      </div>-->
+
+<!--      <app-text-input [formControl]="$any(loginForm.controls['email'])" [label]="'Email Address'"></app-text-input>-->
+<!--      <app-text-input [formControl]="$any(loginForm.controls['password'])" [label]="'Password'" [type]="'password'"></app-text-input>-->
+
+<!--      <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+<!--
+  Heads up! 👋
+
+  Plugins:
+    - @tailwindcss/forms
+-->
+
+<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-lg text-center">
+    <h1 class="text-2xl font-bold sm:text-3xl">Đăng nhập</h1>
+
+    <p class="mt-4 text-gray-500">
+      Đăng nhập để có trải nghiệm tốt nhất dành cho bạn
+    </p>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onSubmit()" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
+    <div class="row mt-5" *ngIf="validationErrs.length >= 0">
+      <ul class="text-danger">
+        <li *ngFor="let error of validationErrs">
+          {{error}}
+        </li>
+      </ul>
+    </div>
+    <app-text-input [formControl]="$any(loginForm.controls['email'])" [label]="'Email Address'"></app-text-input>
+    <app-text-input [formControl]="$any(loginForm.controls['password'])" [label]="'Password'" [type]="'password'"></app-text-input>
+    <div class="flex items-center justify-between">
+      <p class="text-sm text-gray-500">
+        No account?
+        <a class="underline" href="#">Sign up</a>
+      </p>
+
+      <button
+        type="submit"
+        class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+      >
+        Sign in
+      </button>
+    </div>
+  </form>
+</div>
+
+

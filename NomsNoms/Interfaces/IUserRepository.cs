@@ -11,14 +11,23 @@ namespace NomsNoms.Interfaces
         Task CreateUserAdmin(AppUser user);
         Task DeleteUserAdmin(AppUser user);
         Task UpdateUserAdmin(AppUser user);
+        Task<UserProfileDTO> GetUserProfile(string email);
         Task Follow(string email, int userid);
         Task<List<UserFollowToShowDTO>> GetTopCookByFollower();
         Task<AppUser> GetUserById(int id);
-        Task<List<AppUser>> GetFollowerByCookId(int userId);
+        Task<List<UserProfileDTO>> GetFollowerByCookId(string email);
         Task<bool> BuySubscription(string cookEmail,string email, int subscriptionId);
         Task<bool> HasUserHasAlreadySub(string cookEmail, string email);
         Task RecipeView(int recipeId);
         Task<TasteProfile> GetUserTasteProfile(string email);
+<<<<<<< HEAD
         Task EnableUserAdmin(AppUser user);
+=======
+        Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO);
+        Task<UserPhoto> GetUserPhotoByUserEmail(string email);
+        Task AddTransaction(TransactionDTO transactionDTO);
+        Task<List<Transaction>> GetUserTransaction(string email);
+        Task UpdateUserLastActive(int id);
+>>>>>>> main
     }
 }

@@ -38,6 +38,7 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
+    console.log(user.token);
     const expiry = this.getDecodedToken(user.token).exp;
     const now = Math.floor(new Date().getTime() / 1000);
     if (expiry < now) {

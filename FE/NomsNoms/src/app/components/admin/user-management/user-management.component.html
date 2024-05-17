@@ -1,0 +1,44 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<div class="overflow-x-auto">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+    <tr>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tên</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Email</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Số điện thoại</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Trạng thái</th>
+      <th class="px-4 py-2"></th>
+    </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+    <tr *ngFor="let user of users">
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+        <a routerLink="/recipe/{{user.email}}">{{user.knownAs}}</a>
+      </td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{user.email}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{user.phoneNumber}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700" [ngClass]="user.status == 1 ? 'text-green-500' : 'text-red-600'">{{user.status == 1 ? 'Hoạt động' : 'Bị vô hiệu hóa'}}</td>
+      <td class="whitespace-nowrap px-4 py-2">
+        <a
+          routerLink="/profile/{{user.email}}"
+          class="inline-block mx-2 rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+        >
+          Xem
+        </a>
+        <button
+          (click)="deleteUser(user)"
+          class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+        >
+          Vô hiệu hóa
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

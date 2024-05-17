@@ -21,13 +21,19 @@ namespace NomsNoms.Controllers
             _mapper = mapper;
             _userRepository = userRepository;
         }
-
+        [HttpGet("profile/{email}")]
+        public async Task<IActionResult> GetUserProfile(string email)
+        {
+            var user = await _userRepository.GetUserProfile(email);
+            return Ok(user);
+        }
         [HttpPut("edit-profile")]
         /*[Authorize]*/
         public async Task<IActionResult> EditUserProfile([FromBody] UserProfileDTO profileDTO)
         {
             try
             {
+                profileDTO.Email = User.GetEmail();
                 var user = _mapper.Map<AppUser>(profileDTO);
                 await _userRepository.UpdateUserDetail(user);
             }
@@ -50,10 +56,10 @@ namespace NomsNoms.Controllers
         {
             return Ok(await _userRepository.GetTopCookByFollower());
         }
-        [HttpGet("followers/{id}")]
-        public async Task<IActionResult> GetFollowers(int id)
+        [HttpGet("followers/{email}")]
+        public async Task<IActionResult> GetFollowers(string email)
         {
-            return Ok(await _userRepository.GetFollowerByCookId(id));
+            return Ok(await _userRepository.GetFollowerByCookId(email));
         }
         [HttpPost("subsctiption/buy/{subcriptionTypeId}")]
         [Authorize]
@@ -77,5 +83,32 @@ namespace NomsNoms.Controllers
             return Ok();
         }
 
+        [HttpPut("profile/userphoto")]
+        [Authorize]
+        public async Task<IActionResult> UpdateAvatar([FromBody] UserPhotoDTO userPhotoDTO)
+        {
+            userPhotoDTO.AppUserId = User.GetUserId();
+            await _userRepository.UpdateUserPhoto(userPhotoDTO);
+            return Ok(new { message = "Update Avatar successfully." });
+        }
+
+        [HttpGet("transaction")]
+        [Authorize]
+        public async Task<ActionResult<List<Transaction>>> GetUserTranstion()
+        {
+            var email = User.GetEmail();
+            var transaction = await _userRepository.GetUserTransaction(email);
+            return Ok(transaction);
+        }
+        [HttpPost("transaction")]
+        [Authorize]
+        public async Task<IActionResult> AddTransaction([FromBody] TransactionDTO transaction)
+        {
+            var email = User.GetEmail();
+            transaction.SenderId = User.GetUserId();
+            transaction.CreateDate = DateTime.Now;
+            await _userRepository.AddTransaction(transaction);
+            return Ok(new { message = "Thanh toán thành công." });
+        }
     }
 }

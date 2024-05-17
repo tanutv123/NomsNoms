@@ -7,6 +7,8 @@ import {Recipe} from "../_model/recipe.model";
 import {map, of} from "rxjs";
 import {getPaginatedResult, getPaginationHeaders} from "./pagination-helper.service";
 import {RecipeStep} from "../_model/recipeStep.model";
+import {AddRecipe} from "../_model/AddRecipe/addRecipe.model";
+import {Ingredient} from "../_model/ingredient.model";
 
 @Injectable({
   providedIn: 'root'
@@ -78,5 +80,11 @@ export class RecipeService {
   }
   getCategories() {
     return this.http.get<Category[]>(this.baseUrl + 'recipe/category');
+  }
+  addRecipe(recipe: AddRecipe) {
+    return this.http.post(this.baseUrl + 'recipe/add-recipe', recipe);
+  }
+  getIngredients() {
+    return this.http.get<Ingredient[]>(this.baseUrl + 'recipe/ingredient');
   }
 }

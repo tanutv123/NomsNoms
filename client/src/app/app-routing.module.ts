@@ -13,10 +13,14 @@ import {ServerErrorComponent} from "./components/error/server-error/server-error
 import {NotfoundErrorComponent} from "./components/error/notfound-error/notfound-error.component";
 import {ListOfRecipeComponent} from "./components/recipe/list-of-recipe/list-of-recipe.component";
 import {recipeDetailResolver} from "./_resolvers/recipe-detail.resolver";
+import {NewRecipeComponent} from "./components/user/new-recipe/new-recipe.component";
+import {MyRecipeComponent} from "./components/user/my-recipe/my-recipe.component";
+import {TestsComponent} from "./components/tests/tests.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'test', component: TestsComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'test-error', component: TestErrorComponent},
   {path:'',
@@ -29,6 +33,8 @@ const routes: Routes = [
       component: RecipeDetailComponent,
       resolve: {recipe: recipeDetailResolver}
     },
+    {path: 'new-recipe', component: NewRecipeComponent},
+    {path: 'my-recipe', component: MyRecipeComponent},
     {path: 'list', component: ListOfRecipeComponent},
     {path: 'profile', component: ProfileComponent},
   ]

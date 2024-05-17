@@ -1,0 +1,129 @@
+<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8" *ngIf="user">
+  <div class="rounded-lg h-auto">
+    <div
+      class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
+    >
+  <span
+    class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-red-300 via-pink-300 to-red-600"
+  ></span>
+
+      <div class="sm:flex sm:justify-between sm:gap-4">
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
+            {{user.knownAs}}
+          </h3>
+          <p class="mt-1 text-xs font-medium text-gray-600">{{user.roles}}</p>
+        </div>
+
+        <div class="hidden sm:block sm:shrink-0">
+          <img
+            alt=""
+            src="{{user.imageUrl || './assets/user.png'}}"
+            class="size-16 rounded-lg object-cover shadow-sm"
+          />
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-pretty text-sm text-gray-500">
+          {{user.introduction}}
+        </p>
+      </div>
+
+      <dl class="mt-6 flex gap-4 sm:gap-6">
+        <div class="flex flex-col-reverse">
+          <dt class="text-sm font-medium text-gray-600">Tham gia</dt>
+          <dd class="text-xs text-gray-500">{{user.createdDate | date: 'shortDate'}}</dd>
+        </div>
+
+        <div class="flex flex-col-reverse">
+          <dt class="text-sm font-medium text-gray-600">Hoạt động</dt>
+          <dd class="text-xs text-gray-500">{{user.lastActive + 'Z' | timeago}}</dd>
+        </div>
+        <div>
+          <a
+            routerLink="/user-management"
+            *appHasRole="'Admin'"
+            class="inline-block w-auto py-2 rounded-lg bg-red-600 font-medium text-white sm:w-auto"
+          >
+            Quay về trang quản lý người dùng
+          </a>
+        </div>
+      </dl>
+    </div>
+
+  </div>
+  <div class="rounded-lg bg-gray-200 lg:col-span-2 h-auto">
+    <div class="flex flex-wrap">
+      <div class="w-full">
+        <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(1)" [ngClass]="{'text-red-600 bg-white': openTab !== 1, 'text-white bg-red-600': openTab === 1}">
+              <i class="fas fa-space-shuttle text-base mr-1"></i> Công thức
+            </a>
+          </li>
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(2)" [ngClass]="{'text-red-600 bg-white': openTab !== 2, 'text-white bg-red-600': openTab === 2}">
+              <i class="fas fa-cog text-base mr-1"></i> Công thức đã thích
+            </a>
+          </li>
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(3)" [ngClass]="{'text-red-600 bg-white': openTab !== 3, 'text-white bg-red-600': openTab === 3}">
+              <i class="fas fa-briefcase text-base mr-1"></i> Người theo dõi
+            </a>
+          </li>
+        </ul>
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded" *ngIf="openTab == 1">
+          <!-- HTML -->
+            <app-recipe-list *ngIf="recipes.length > 0" [recipes]="recipes"></app-recipe-list>
+            <p class="font-bold text-xl" *ngIf="recipes.length <= 0">Người dùng này chưa đăng công thức nào</p>
+        </div>
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded" *ngIf="openTab == 2">
+          <!-- HTML -->
+          <div class="overflow-x-auto">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+              <thead class="ltr:text-left rtl:text-right">
+              <tr>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tên</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Giới thiệt</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Lượt view</th>
+                <th class="px-4 py-2"></th>
+              </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-200">
+              <tr *ngFor="let recipe of likedRecipes">
+                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <a routerLink="/recipe/{{recipe.id}}">{{recipe.title}}</a>
+                </td>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{recipe.description | truncate: 5}}</td>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{recipe.numberOfViews}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded" *ngIf="openTab == 3">
+          <ng-container *ngIf="followers.length > 0">
+            <!-- component -->
+            <!-- This is an example component -->
+            <a *ngFor="let follower of followers" routerLink="/profile/{{follower.email}}">
+              <div class="max-w-full">
+                <div class="p-3 flex items-center justify-between border-t cursor-pointer hover:bg-gray-200">
+                  <div class="flex items-center">
+                    <img class="rounded-full h-10 w-10" src="{{follower.imageUrl || './assets/user.png'}}">
+                    <div class="ml-2 flex flex-col">
+                      <div class="leading-snug text-sm text-gray-900 font-bold">{{follower.knownAs}}</div>
+                      <div class="leading-snug text-xs text-gray-600">{{follower.email}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </ng-container>
+          <p class="font-bold text-xl" *ngIf="followers.length <= 0">Hiện người này chưa có lượt theo dõi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

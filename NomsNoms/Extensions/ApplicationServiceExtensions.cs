@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NomsNoms.Data;
+using NomsNoms.Helpers;
 
 namespace NomsNoms.Extensions
 {
@@ -12,6 +13,7 @@ namespace NomsNoms.Extensions
             {
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             });
+            services.AddScoped<LogUserActivity>();
             return services;
         }
     }

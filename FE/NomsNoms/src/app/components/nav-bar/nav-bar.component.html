@@ -1,0 +1,120 @@
+<header class="bg-white">
+  <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <div class="flex-1 md:flex md:items-center md:gap-12">
+        <a class="block text-teal-600" href="#">
+          <span class="sr-only">Home</span>
+          <img class="h-12" style="width: 200px" src="./assets/red.png" alt="">
+        </a>
+      </div>
+
+      <div class="md:flex md:items-center md:gap-12">
+        <nav aria-label="Global" class="md:block">
+          <ul class="flex items-center gap-6 text-sm"  >
+            <li>
+              <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Home </a>
+            </li>
+
+            <li>
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan"> Meal Plans </a>
+            </li>
+
+            <li>
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought"> Meal Plans Bought</a>
+            </li>
+
+            <li>
+              <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Blog </a>
+            </li>
+
+            <li>
+              <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Your collection </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="flex items-center gap-4" >
+          <div class="sm:flex sm:gap-4" *ngIf="!(accountService.currentUser$ | async)" >
+            <a
+              class="rounded-md bg-red-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+              routerLink="/login"
+            >
+              Đăng nhập
+            </a>
+
+            <div class="hidden sm:flex">
+              <a
+                class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-red-600"
+                routerLink="/register"
+              >
+                Đăng ký
+              </a>
+            </div>
+          </div>
+          <div dropdown *ngIf="(accountService.currentUser$ | async) as user" class="relative inline-block text-left border border-red-600">
+            <div>
+              <span class="rounded-md shadow-sm">
+                <button type="button" (click)="showDropdown = !showDropdown"
+                        class="inline-flex justify-center w-full rounded-md px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
+                        id="options-menu" aria-haspopup="true" aria-expanded="true">
+                  Welcome, {{user.knownAs}}
+                  <svg class="-mr-1 ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clip-rule="evenodd"></path>
+                  </svg>
+                </button>
+              </span>
+            </div>
+
+            <div *appHasRole="'Client'" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
+              <div *ngIf="showDropdown" class="rounded-md bg-white ring-1 ring-black ring-opacity-5">
+                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <a routerLink="/profile-edit/{{user.email}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Cài đặt tài khoản</a>
+                  <a routerLink="/new-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Đăng công thức</a>
+                  <a routerLink="/my-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Công thức của bạn</a>
+                  <a (click)="logout()" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Đăng xuất</a>
+                </div>
+              </div>
+            </div>
+            <div *appHasRole="'Admin'" class="origin-top-right absolute z-50 right-0 mt-2 w-56 rounded-md shadow-lg">
+              <div  class="rounded-md bg-white ring-1 ring-black ring-opacity-5" *ngIf="showDropdown">
+                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <a routerLink="/profile-edit/{{user.email}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Cài đặt tài khoản</a>
+                  <a routerLink="/user-management" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Quản lý người dùng</a>
+                  <a routerLink="/my-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Quản lý công thức nấu ăn</a>
+                  <a routerLink="/my-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Danh sách công thức chờ duyệt</a>
+                  <a (click)="logout()" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Đăng xuất</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block md:hidden">
+            <button class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

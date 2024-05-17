@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NomsNoms.DTOs;
 using NomsNoms.Entities;
+using NomsNoms.Helpers;
 using NomsNoms.Interfaces;
 
 namespace NomsNoms.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase

@@ -6,14 +6,15 @@ namespace NomsNoms.DTOs
     {
         [Required]
         public string KnownAs { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Introduction { get; set; }
         [Required]
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be 10 digits")]
         public string PhoneNumber { get; set; }
-        [Required]
+        public DateTime LastActive { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string Email { get; set; }
+        public string ImageUrl { get; set; }
 
     }
 }

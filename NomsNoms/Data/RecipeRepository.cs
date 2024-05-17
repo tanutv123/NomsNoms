@@ -135,6 +135,12 @@ namespace NomsNoms.Data
             }
         }
 
+        public async Task AddRecipeAsync(Recipe recipe)
+        {
+            recipe.RecipeStatusId = 3;
+            _context.Recipes.Add(recipe);
+            await _context.SaveChangesAsync();
+        }
         public async Task<List<Recipe>> GetAllRecipes()
         {
             List<Recipe> list = null;
@@ -199,6 +205,7 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
+        
         public async Task DeleteRecipe(RecipeUpdateDTO recipeDto)
         {
             try
@@ -232,6 +239,97 @@ namespace NomsNoms.Data
                 throw new Exception($"{ex.Message}");
             }
             return list;
+            }
+        public async Task<List<Ingredient>> GetIngredientsAsync()
+        {
+            return await _context.Ingredients.ToListAsync();
+        }
+
+        public async Task<List<RecipeDTO>> GetRecipeForUser(int id)
+        {
+            var query = _context.Recipes.AsQueryable();
+            query = query.Where(x => x.AppUserId == id);
+            query = query.Where(x => x.RecipeStatusId != 4);
+            return await query.ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        public async Task<List<RecipeDTO>> GetUserRecipeForProfile(string email)
+        {
+            var query = _context.Recipes.AsQueryable();
+            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+            query = query.Where(x => x.AppUserId == user.Id);
+            query = query.Where(x => x.RecipeStatusId != 4 && x.RecipeStatusId != 1);
+            return await query.ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+        
+        
+        public async Task HideRecipe(int recipeid)
+        {            
+            try
+            {
+                var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
+                if (recipe.RecipeStatusId == 1)
+                {
+                    recipe.RecipeStatusId = 2;
+                    _context.Recipes.Update(recipe);
+                    await _context.SaveChangesAsync();
+                } else if (recipe.RecipeStatusId == 2)
+                {
+                    recipe.RecipeStatusId = 1;
+                    _context.Recipes.Update(recipe);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task DeletedRecipe(int recipeid)
+        {
+            try
+            {
+                var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
+                    recipe.RecipeStatusId = 4;
+                    _context.Recipes.Update(recipe);
+                    await _context.SaveChangesAsync();
+                    }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<bool> IsOwnerRecipe(int recipeid, string userEmail)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(userEmail);
+                var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
+                if (user != null && recipe != null && recipe.AppUserId == user.Id) 
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                } 
+                }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<ViewRecipeAdminDTO> GetRecipeAdminAsync(int id)
+        {
+            return await _context.Recipes.Where(x => x.Id == id).ProjectTo<ViewRecipeAdminDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> IsLike(string email, int recipeid)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            var result = await _context.RecipeLikes.AnyAsync(x => x.RecipeId == recipeid && x.AppUserId == user.Id);
+            return result;
         }
         public async Task<List<RecipeDTO>> GetAllPendingRecipeAdmin()
         {

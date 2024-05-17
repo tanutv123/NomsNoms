@@ -1,0 +1,385 @@
+<!--
+  Heads up! 👋
+
+  Plugins:
+    - @tailwindcss/forms
+-->
+
+<section class="bg-gray-100">
+  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-x-16 gap-y-8">
+
+      <div class="rounded-lg bg-white p-8 shadow-lg lg:p-12">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <p
+              class="w-full rounded-lg border-gray-200 p-3 font-bold text-xl"
+            >
+              Đăng công thức
+            </p>
+          </div>
+        </div>
+        <div>
+          <p
+            class="w-full rounded-lg border-gray-200 p-3 font-bold text-xl"
+          >
+            Chọn ảnh cho công thức của bạn
+          </p>
+        </div>
+        <div>
+          <app-photo-editor (imagesAdded)="onRecipeImageAdded($event)"></app-photo-editor>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4" *ngIf="recipe.recipeImage">
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src="{{recipe.recipeImage.url}}" alt="">
+          </div>
+        </div>
+        <form #recipeForm="ngForm" (ngSubmit)="onAddRecipe()" class="space-y-4 pt-4">
+          <div>
+            <div class="flex items-center mb-4">
+              <input
+                id="default-checkbox"
+                type="checkbox"
+                [(ngModel)]="recipe.isExclusive"
+                name="isExclusive"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Chỉ dành cho hội viên</label>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2" *ngIf="validationErrors.length > 0">
+            <div>
+              <p
+                class="w-full rounded-lg border-gray-200 p-3 text-sm text-red-600"
+                *ngFor="let error of validationErrors"
+              >
+                {{error}}
+              </p>
+            </div>
+          </div>
+          <div>
+            <label class="sr-only" for="name">Tên món ăn</label>
+            <input
+              class="w-full rounded-lg border border-gray-200 p-3 text-sm"
+              placeholder="Title"
+              type="text"
+              [ngClass]="title.invalid && title.touched ? 'border-red-600' : null"
+              #title="ngModel"
+              [(ngModel)]="recipe.title"
+              name="title"
+              required
+              id="name"
+            />
+            <span class="text-red-600" *ngIf="title.invalid && title.touched">Hãy nhập tên món ăn</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label class="sr-only">Thời gian nấu</label>
+              <input
+                class="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                placeholder="Thời gian nấu"
+                type="number"
+                name="completionTime"
+                required
+                #completionTime="ngModel"
+                [ngClass]="completionTime.invalid && completionTime.touched ? 'border-red-600' : null"
+                [(ngModel)]="recipe.completionTime"
+              />
+              <span class="text-red-600" *ngIf="completionTime.invalid && completionTime.touched">Hãy nhập thời gian hoàn thành món ăn</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <p
+                class="w-full rounded-lg border-gray-200 p-3 text-sm"
+              >
+                Độ khó:
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
+            <div>
+              <label
+                for="Option1"
+                class="block w-full cursor-pointer rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black has-[:checked]: has-[:checked]:bg-red-600 has-[:checked]:text-white"
+                tabindex="0"
+              >
+                <input
+                  class="sr-only"
+                  id="Option1"
+                  type="radio"
+                  tabindex="-1"
+                  name="option"
+                  [(ngModel)]="recipe.recipeComplexityId"
+                  [value]="1" />
+
+                <span class="text-sm"> Dễ </span>
+              </label>
+            </div>
+
+            <div>
+              <label
+                for="Option2"
+                class="block w-full cursor-pointer rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black has-[:checked]:border-black has-[:checked]:bg-red-600 has-[:checked]:text-white"
+                tabindex="0"
+              >
+                <input
+                  class="sr-only"
+                  id="Option2"
+                  type="radio"
+                  tabindex="-1"
+                  name="option"
+                  [(ngModel)]="recipe.recipeComplexityId"
+                  [value]="2" />
+
+                <span class="text-sm"> Trung bình </span>
+              </label>
+            </div>
+
+            <div>
+              <label
+                for="Option3"
+                class="block w-full cursor-pointer rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black has-[:checked]:border-black has-[:checked]:bg-red-600 has-[:checked]:text-white"
+                tabindex="0"
+              >
+                <input
+                  class="sr-only"
+                  id="Option3"
+                  type="radio"
+                  tabindex="-1"
+                  name="option"
+                  [(ngModel)]="recipe.recipeComplexityId"
+                  [value]="3"/>
+
+                <span class="text-sm"> Khó </span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="sr-only" for="description">Description</label>
+
+            <textarea
+              class="w-full rounded-lg border border-gray-200 p-3 text-sm"
+              placeholder="Mô tả món ăn"
+              rows="8"
+              name="recipeDescription"
+              [(ngModel)]="recipe.description"
+              id="description"
+            ></textarea>
+          </div>
+        </form>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <p
+              class="w-full rounded-lg border-gray-200 p-3 font-bold text-xl"
+            >
+              Món ăn thuộc thể loại:
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2" *ngIf="addedCategories">
+          <div>
+              <span
+                class="inline-flex items-center justify-center rounded-full bg-red-100 px-2.5 py-0.5 text-red-700"
+                *ngFor="let category of addedCategories"
+              >
+                <p class="whitespace-nowrap text-sm">{{category.name}}</p>
+
+                <button
+                  type="button"
+                  (click)="onDeleteCategory(category.id)"
+                  class="-me-1 ms-1.5 inline-block rounded-full bg-red-200 p-0.5 text-red-700 transition hover:bg-red-300"
+                >
+                  <span class="sr-only">Remove badge</span>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-3 w-3"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </span>
+          </div>
+        </div>
+        <form #categoryForm="ngForm" (ngSubmit)="onAddCategory()">
+          <div>
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Chọn thể loại cho món ăn của bạn</label>
+            <select
+              id="countries"
+              [(ngModel)]="selectedCategory.categoryId"
+              name="category"
+              required
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+          </div>
+          <div class="mt-4">
+            <button
+              type="submit"
+              class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
+              [disabled]="categoryForm.invalid"
+              [ngClass]="categoryForm.invalid ? 'bg-red-300 text-gray-400' : null"
+            >
+              Thêm thể loại
+            </button>
+          </div>
+        </form>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <p
+              class="w-full rounded-lg border-gray-200 p-3 font-bold text-xl"
+            >
+              Nguyên liệu món ăn:
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2" *ngIf="recipe.recipeIngredients.length > 0">
+          <div>
+            <p
+              class="w-full rounded-lg border-gray-200 p-3 text-sm"
+              *ngFor="let ingredient of addedIngredients"
+            >
+              {{ingredient.name}} - {{ingredient.serving}}
+              <button
+                type="button"
+                (click)="onDeleteIngredient(ingredient.id)"
+                class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
+              >
+                Xóa
+              </button>
+            </p>
+          </div>
+        </div>
+        <form #ingredientForm="ngForm" (ngSubmit)="onAddIngredient()">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Chọn thể loại cho món ăn của bạn</label>
+              <select
+                [(ngModel)]="selectedIngredient.ingredientId"
+                name="category"
+                required
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option *ngFor="let ingredient of ingredients" [value]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </div>
+            <div>
+              <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nhập khẩu phần(gram)</label>
+              <input
+                class="w-full rounded-lg border border-gray-200 p-3 text-sm mb-1"
+                placeholder="Khẩu phần(gram)"
+                [(ngModel)]="selectedIngredient.ingredientServing"
+                #serving="ngModel"
+                [ngClass]="serving.invalid && serving.touched ? 'border-red-600' : null"
+                required
+                name="serving"
+                type="number"
+              />
+              <span class="text-red-600" *ngIf="serving.invalid && serving.touched">Hãy nhập khẩu phần</span>
+            </div>
+            <div class="mt-4">
+              <button
+                type="submit"
+                class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
+                [disabled]="ingredientForm.invalid"
+                [ngClass]="ingredientForm.invalid ? 'bg-red-300 text-gray-400' : null"
+              >
+                Thêm nguyên liệu
+              </button>
+            </div>
+          </div>
+
+        </form>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <p
+              class="w-full rounded-lg border-gray-200 p-3 font-bold text-xl"
+            >
+              Các bước thực hiện:
+            </p>
+          </div>
+        </div>
+        <ng-container *ngFor="let step of recipe.recipeSteps">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label class="sr-only">Mô tả</label>
+              <p
+                class="w-full rounded-lg border-gray-200 p-3 text-sm font-bold"
+              >
+                Bước {{step.no}}:
+              </p>
+            </div>
+          </div>
+          <div>
+            <p
+              class="w-full rounded-lg border-gray-200 p-3 text-sm font-bold"
+            >
+              Mô tả: {{step.description}}
+            </p>
+          </div>
+          <div *ngIf="step.recipeStepImages" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div *ngFor="let image of step.recipeStepImages">
+              <img class="h-auto max-w-full rounded-lg" src="{{image.url}}" alt="">
+            </div>
+          </div>
+        </ng-container>
+
+
+          <form #addStepForm="ngForm" (ngSubmit)="onAddStep()">
+            <div class="border-2 border-gray-400 p-3 rounded-lg">
+              <div>
+                <label class="sr-only">Mô tả</label>
+                <input
+                  class="w-full rounded-lg border border-gray-200 p-3 text-sm mb-1"
+                  placeholder="Mô tả cho bước của bạn"
+                  [(ngModel)]="recipeStep.description"
+                  #stepDescription="ngModel"
+                  [ngClass]="stepDescription.invalid && stepDescription.touched ? 'border-red-600' : null"
+                  required
+                  name="description"
+                  type="text"
+                />
+                <span class="text-red-600" *ngIf="stepDescription.invalid && stepDescription.touched">Hãy nhập cách thực hiện bước này</span>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4" *ngIf="recipeStep.recipeStepImages.length > 0">
+                <div *ngFor="let image of recipeStep.recipeStepImages">
+                  <img class="h-auto max-w-full rounded-lg" src="{{image.url}}" alt="">
+                </div>
+              </div>
+              <div>
+                <app-photo-editor (imagesAdded)="onImageAdded($event)" [canUploadMultiple]="true"></app-photo-editor>
+              </div>
+              <div class="mt-4">
+                <button
+                  type="submit"
+                  class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
+                  [disabled]="addStepForm.invalid"
+                  [ngClass]="addStepForm.invalid ? 'bg-red-300 text-gray-400' : null"
+                >
+                  Thêm bước
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="mt-4">
+            <button
+              type="button"
+              (click)="recipeForm.ngSubmit.emit()"
+              class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
+              [disabled]="recipeForm.invalid"
+              [ngClass]="recipeForm.invalid ? 'bg-red-300 text-gray-400' : null"
+            >
+              Đăng công thức
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>

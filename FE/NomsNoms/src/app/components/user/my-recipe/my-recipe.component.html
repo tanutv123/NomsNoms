@@ -1,0 +1,46 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<div class="overflow-x-auto">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+    <tr>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tên món ăn</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Trạng thái</th>
+      <th class="px-4 py-2"></th>
+    </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+    <tr *ngFor="let recipe of recipes">
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+        <a routerLink="/recipe/{{recipe.id}}">{{recipe.title}}</a>
+      </td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{recipe.recipeStatusName}}</td>
+      <td class="whitespace-nowrap px-4 py-2">
+        <a
+          href="#"
+          class="inline-block mx-2 rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700"
+        >
+          Mở lại
+        </a>
+        <a
+          href="#"
+          class="inline-block mx-2 rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+        >
+          Riêng tư
+        </a>
+        <a
+          href="#"
+          class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+        >
+          Xóa
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
