@@ -12,6 +12,7 @@ using NomsNoms.Interfaces;
 namespace NomsNoms.Controllers
 {
     [Route("api/[controller]")]
+    [ServiceFilter(typeof(LogUserActivity))]
     [ApiController]
     public class RecipeController : ControllerBase
     {
@@ -104,6 +105,14 @@ namespace NomsNoms.Controllers
             string email = User.GetEmail();
             await _recipeRepository.Like(email, recipeId);
             return Ok(new { message = "User followed successfully." });
+        }
+        [HttpGet("isLiked/{recipeId}")]
+        [Authorize]
+        public async Task<IActionResult> IsRecipeLike(int recipeId)
+        {
+            string email = User.GetEmail();
+            var result = await _recipeRepository.IsLike(email, recipeId);
+            return Ok(result);
         }
         [HttpGet("recipeLiked")]
         [Authorize]

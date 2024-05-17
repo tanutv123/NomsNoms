@@ -210,10 +210,11 @@ namespace NomsNoms.Data
                     var countFollower = _context.UserFollows.Where(u => u.SourceUserId == user.Id).Count();
                     UserFollowToShowDTO follower = new UserFollowToShowDTO
                     {
-                        AppUserId = user.Id,
+                        Email = user.Email,
                         FollowerCount = countFollower,
                         Name = user.UserName,
-                        KnownAs = user.KnownAs                  
+                        KnownAs = user.KnownAs,
+                        ImageUrl = user.UserPhoto == null ? null : user.UserPhoto.Url
                 };
                     followers.Add(follower);
                 }
@@ -400,6 +401,20 @@ namespace NomsNoms.Data
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task UpdateUserLastActive(int id)
+        {
+            try
+            {
+                var user = await _context.Users.FindAsync(id);
+                user.LastActive = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
             {
                 throw new Exception(ex.Message);
             }

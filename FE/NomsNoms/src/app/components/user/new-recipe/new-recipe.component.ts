@@ -16,7 +16,6 @@ import {AddRecipeIngredient} from "../../../_model/AddRecipe/AddRecipeIngredient
   styleUrls: ['./new-recipe.component.scss']
 })
 export class NewRecipeComponent implements OnInit{
-  recipeImage: Image | undefined;
   recipe: AddRecipe  = {} as AddRecipe;
   recipeStep: AddRecipeStep = {} as AddRecipeStep;
   categories: Category[] = [];
@@ -156,9 +155,9 @@ export class NewRecipeComponent implements OnInit{
       this.recipeService.addRecipe(this.recipe).subscribe({
         next : _ => {
           this.toastr.success("Thêm công thức thành công");
+          this.router.navigateByUrl('/my-recipe');
         }
       });
-      // console.log(this.recipe);
     }
   }
 }

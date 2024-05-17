@@ -33,8 +33,9 @@ namespace NomsNoms.Data
             {
                 UserName = registerBody.Email,
                 Email = registerBody.Email,
-                KnownAs = registerBody.Name,
+                KnownAs = registerBody.KnownAs,
                 PhoneNumber = registerBody.PhoneNumber,
+                Status = 1,
                 Introduction = "",
             };
             if (await IsPhoneExistAsync(user.PhoneNumber))

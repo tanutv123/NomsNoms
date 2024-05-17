@@ -9,6 +9,7 @@ export interface Recipe {
   isExclusive: string;
   recipeImageUrl: string;
   numberOfViews: number;
+  numberOfLikes: number;
   completionTime: number;
   recipeComplexityName: string;
   recipeIngredients: RecipeIngredient[];

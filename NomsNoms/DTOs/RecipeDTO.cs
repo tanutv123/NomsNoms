@@ -14,6 +14,7 @@ namespace NomsNoms.DTOs
         public string RecipeImageUrl { get; set; }
         public int NumberOfViews { get; set; }
         public int CompletionTime { get; set; }
+        public int NumberOfLikes { get; set; }
         public string RecipeComplexityName { get; set; }
         public ICollection<RecipeIngredientDTO> RecipeIngredients { get; set; }
     }

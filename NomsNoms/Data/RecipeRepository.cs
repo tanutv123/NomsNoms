@@ -323,5 +323,12 @@ namespace NomsNoms.Data
         {
             return await _context.Recipes.Where(x => x.Id == id).ProjectTo<ViewRecipeAdminDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
         }
+
+        public async Task<bool> IsLike(string email, int recipeid)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            var result = await _context.RecipeLikes.AnyAsync(x => x.RecipeId == recipeid && x.AppUserId == user.Id);
+            return result;
+        }
     }
 }
