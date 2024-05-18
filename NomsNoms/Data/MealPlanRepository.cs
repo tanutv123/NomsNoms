@@ -97,11 +97,11 @@ namespace NomsNoms.Data
         }
         public async Task RegistMealPlan(string email, int mealplanid)
         {
-            var user = _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
             var user_mealplan = new UserMealplanDTO
             {
                 AppUserId = user.Id,
-                MealPlanId = mealplanid,
+                MealPlanSubscriptionId = mealplanid,
                 StartedDate = DateTime.Now
             };
             var mealplan_regist = _mapper.Map<UserMealPlanSubscriptions>(user_mealplan);
