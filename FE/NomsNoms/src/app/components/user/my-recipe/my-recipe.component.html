@@ -5,7 +5,7 @@
 -->
 
 <div class="overflow-x-auto">
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+  <table datatable #recipeTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
     <thead class="ltr:text-left rtl:text-right">
     <tr>
       <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tên món ăn</th>
@@ -19,26 +19,36 @@
       <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
         <a routerLink="/recipe/{{recipe.id}}">{{recipe.title}}</a>
       </td>
-      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{recipe.recipeStatusName}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-red-600" *ngIf="recipe.recipeStatusName == 'Hidden'">
+        {{recipe.recipeStatusName}}
+      </td>
+      <td class="whitespace-nowrap px-4 py-2 text-yellow-600" *ngIf="recipe.recipeStatusName == 'Pending'">
+        {{recipe.recipeStatusName}}
+      </td>
+      <td class="whitespace-nowrap px-4 py-2 text-green-600" *ngIf="recipe.recipeStatusName == 'Normal'">
+        {{recipe.recipeStatusName}}
+      </td>
       <td class="whitespace-nowrap px-4 py-2">
-        <a
-          href="#"
+        <button
+          *ngIf="recipe.recipeStatusName == 'Hidden'"
+          (click)="hideRecipe(recipe.id)"
           class="inline-block mx-2 rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700"
         >
           Mở lại
-        </a>
-        <a
-          href="#"
+        </button>
+        <button
+          *ngIf="recipe.recipeStatusName == 'Normal'"
           class="inline-block mx-2 rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+          (click)="hideRecipe(recipe.id)"
         >
           Riêng tư
-        </a>
-        <a
-          href="#"
+        </button>
+        <button
           class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+          (click)="deleteRecipe(recipe.id)"
         >
           Xóa
-        </a>
+        </button>
       </td>
     </tr>
     </tbody>
