@@ -267,6 +267,10 @@ namespace NomsNoms.Data
             try
             {
                 var recipe = await _context.Recipes.Where(r => r.Id == recipeid).FirstOrDefaultAsync();
+                if(recipe.RecipeStatusId == 3)
+                {
+                    throw new Exception("Công thức đang chờ duyệt");
+                }
                 if (recipe.RecipeStatusId == 1)
                 {
                     recipe.RecipeStatusId = 2;
@@ -277,6 +281,10 @@ namespace NomsNoms.Data
                     recipe.RecipeStatusId = 1;
                     _context.Recipes.Update(recipe);
                     await _context.SaveChangesAsync();
+                }
+                else if (recipe.RecipeStatusId == 4)
+                {
+                    throw new Exception("Bạn không thể mở công thức đã bị xóa.");
                 }
             }
             catch (Exception ex)

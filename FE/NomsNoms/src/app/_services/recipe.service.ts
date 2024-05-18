@@ -82,6 +82,12 @@ export class RecipeService {
   likeRecipe(recipeId: number) {
     return this.http.post(this.baseUrl + 'recipe/like/' + recipeId, null);
   }
+  deleteRecipe(recipeId: number) {
+    return this.http.put(this.baseUrl + 'recipe/deleteRecipe/' + recipeId, null);
+  }
+  hideRecipe(recipeId: number) {
+    return this.http.put(this.baseUrl + 'recipe/hideRecipe/' + recipeId, null);
+  }
   getRecipeSteps(id: number) {
     return this.http.get<RecipeStep[]>(this.baseUrl + 'recipe/recipe-steps/' + id);
   }
