@@ -97,7 +97,7 @@ namespace NomsNoms.Data
         }
         public async Task RegistMealPlan(string email, int mealplanid)
         {
-            var user = _userManager.FindByEmailAsync(email);
+            var user = _context.Users.FirstOrDefaultAsync(x => x.Email == email);
             var user_mealplan = new UserMealplanDTO
             {
                 AppUserId = user.Id,
