@@ -55,6 +55,8 @@ namespace NomsNoms.Helpers
                 .ReverseMap();
             CreateMap<UserFollow, UserFollowDTO>()
                 .ReverseMap();
+            CreateMap<TasteProfile, TasteProfileDTO>()
+                .ReverseMap();
         }
     }
 }

@@ -39,6 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="data\seed\TransactionSeed.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="D:\EXE201\NomsNoms\NomsNoms\.editorconfig" />
   </ItemGroup>
 

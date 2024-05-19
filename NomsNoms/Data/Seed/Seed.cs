@@ -244,5 +244,18 @@ namespace NomsNoms.Data.Seed
             }
             await _context.SaveChangesAsync();
         }
+        public static async Task SeedTransaction(DataContext _context)
+        {
+            if (await _context.Transactions.AnyAsync()) { return; }
+            var transaction = await File.ReadAllTextAsync("../NomsNoms/Data/Seed/SeedTransaction.json");
+            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var trans = JsonSerializer.Deserialize<List<Transaction>>(transaction, jsonOptions);
+
+            foreach (var i in trans)
+            {
+                await _context.Transactions.AddAsync(i);
+            }
+            await _context.SaveChangesAsync();
+        }
     }
 }

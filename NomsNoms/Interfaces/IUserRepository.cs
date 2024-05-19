@@ -29,5 +29,6 @@ namespace NomsNoms.Interfaces
         Task UpdateUserLastActive(int id);
         Task<List<UserProfileDTO>> GetSubberByCookId(string email);
         Task FollowUser(string cookEmail, string userEmail);
+        Task SetTasteProfileUser(TasteProfileDTO tasteProfileDTO, string userEmail);
     }
 }
