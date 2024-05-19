@@ -6,7 +6,11 @@ namespace NomsNoms.Interfaces
     {
         Task<List<MealPlanType>> GetAllType();
         Task<List<MealPlanSubscription>> GetMealPlanSubscriptionsAsync();
+        Task<MealPlanSubscription> GetMealPlanSubscriptionAsync(int id);
         Task<List<Recipe>> RecommendRecipes(TasteProfile userTaste, List<Recipe> allRecipes);
-        Task RegistMealPlan(string email, int mealplanid);
+        Task RegistMealPlan(int userId, int mealplanid);
+        Task<bool> IsRegisterMealPlan(string email);
+        Task AddPaymentIntent(long orderCode, int userId, int mealPlanId);
+        Task<MealPlanPayment> GetPaymentIntent(long orderCode);
     }
 }

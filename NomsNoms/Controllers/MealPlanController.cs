@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NomsNoms.Data;
+using NomsNoms.DTOs;
 using NomsNoms.Entities;
 using NomsNoms.Extensions;
 using NomsNoms.Interfaces;
@@ -15,11 +17,17 @@ namespace NomsNoms.Controllers
         private readonly IMealPlanRepository _mealPlanRepository;
         private readonly IRecipeRepository _recipeRepository;
         private readonly IUserRepository _userRepository;
-        public MealPlanController(IMealPlanRepository repository, IRecipeRepository recipeRepository, IUserRepository userRepository)
+        private readonly IMapper _mapper;
+
+        public MealPlanController(IMealPlanRepository repository, 
+            IRecipeRepository recipeRepository, 
+            IUserRepository userRepository,
+            IMapper mapper)
         {
             _mealPlanRepository = repository;
             _recipeRepository = recipeRepository;
             _userRepository = userRepository;
+            _mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> GetMealPlanSubscriptions()
@@ -31,6 +39,12 @@ namespace NomsNoms.Controllers
         public async Task<IActionResult> GetAllType()
         {
             return Ok(await _mealPlanRepository.GetAllType());
+        }
+        [HttpGet("is-registered")]
+        [Authorize]
+        public async Task<IActionResult> GetUserMealPlanStatus ()
+        {
+            return Ok(await _mealPlanRepository.IsRegisterMealPlan(User.GetEmail()));
         }
 
         [HttpGet("recommendations")]
@@ -49,16 +63,8 @@ namespace NomsNoms.Controllers
 
             // Get the top 3 recommended recipes for the user
             List<Recipe> recommendedRecipes = await _mealPlanRepository.RecommendRecipes(userTaste, allRecipes);
-
-            return Ok(recommendedRecipes);
-        }
-        [HttpPost("mealplan-registation/{mealplanId}")]
-        [Authorize]
-        public async Task<IActionResult> RegistMealPlan(int mealplanId)
-        {            
-            var email = User.GetEmail();
-            await _mealPlanRepository.RegistMealPlan(email, mealplanId);
-            return Ok();
+            var result = _mapper.Map<List<RecipeDTO>>(recommendedRecipes);
+            return Ok(result);
         }
     }
 }

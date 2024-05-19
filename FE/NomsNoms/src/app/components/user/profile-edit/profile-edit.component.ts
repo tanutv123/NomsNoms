@@ -6,6 +6,8 @@ import {RecipeService} from "../../../_services/recipe.service";
 import {AccountService} from "../../../_services/account.service";
 import {ToastrService} from "ngx-toastr";
 import {Image} from "../../../_model/image.model";
+import {SubscriptionModel} from "../../../_model/subscription.model";
+import {UserService} from "../../../_services/user.service";
 
 @Component({
   selector: 'app-profile-edit',
@@ -16,8 +18,17 @@ export class ProfileEditComponent implements OnInit{
   user: User | undefined;
   validationErrors: string[] = [];
   image :Image | undefined;
+  subscription: SubscriptionModel | undefined;
+  updateModel: {
+    price: number,
+    duration: number
+  } = {
+    price: 0,
+    duration: 0
+  }
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
+              private userService: UserService,
               private toastr: ToastrService) {
   }
 
@@ -26,6 +37,20 @@ export class ProfileEditComponent implements OnInit{
       next: data => {
         this.user = data['user'];
         console.log(this.user);
+      }
+    });
+    this.loadSubscription();
+  }
+
+  loadSubscription() {
+    if (!this.user) return;
+    this.userService.getUserSubscription(this.user.email).subscribe({
+      next: res => {
+        this.subscription = res;
+        if (this.subscription) {
+          this.updateModel.duration = this.subscription.duration;
+          this.updateModel.price = this.subscription.price;
+        }
       }
     });
   }
@@ -54,5 +79,13 @@ export class ProfileEditComponent implements OnInit{
         this.validationErrors = err;
       }
     });
+  }
+  updateSubscription() {
+    this.userService.updateUserSubscription(this.updateModel).subscribe({
+      next: _ => {
+        this.toastr.success('Thành công');
+      }
+    });
+    // console.log(this.updateModel);
   }
 }

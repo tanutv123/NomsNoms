@@ -140,7 +140,7 @@ namespace NomsNoms.Data
             List<Recipe> list = null;
             try
             {
-                list = await _context.Recipes.Include(u => u.TastProfile).ToListAsync();
+                list = await _context.Recipes.Include(u => u.TastProfile).Include(u => u.RecipeImage).ToListAsync();
             }catch(Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -153,8 +153,7 @@ namespace NomsNoms.Data
             List<RecipeDTO> list = null;
             try
             {
-                var l = await _context.Recipes.ToListAsync();
-                list = _mapper.Map<List<RecipeDTO>>(l);
+                list = await _context.Recipes.ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -238,8 +237,10 @@ namespace NomsNoms.Data
             List<RecipeDTO> list = null;
             try
             {
-                var l = await _context.Recipes.Where(r => r.RecipeStatusId == 3).ToListAsync();
-                list = _mapper.Map<List<RecipeDTO>>(l);
+                list = await _context.Recipes
+                    .Where(r => r.RecipeStatusId == 3)
+                    .ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {

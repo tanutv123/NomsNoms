@@ -13,6 +13,7 @@ namespace NomsNoms.DTOs
         public bool IsExclusive { get; set; }
         public string RecipeImageUrl { get; set; }
         public int NumberOfViews { get; set; }
+        public int Calories { get; set; }
         public int CompletionTime { get; set; }
         public int NumberOfLikes { get; set; }
         public string RecipeComplexityName { get; set; }

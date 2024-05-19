@@ -10,6 +10,7 @@ export interface Recipe {
   recipeImageUrl: string;
   numberOfViews: number;
   numberOfLikes: number;
+  calories: number;
   completionTime: number;
   recipeComplexityName: string;
   recipeIngredients: RecipeIngredient[];
