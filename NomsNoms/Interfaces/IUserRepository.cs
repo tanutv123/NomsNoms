@@ -16,11 +16,11 @@ namespace NomsNoms.Interfaces
         Task<List<UserFollowToShowDTO>> GetTopCookByFollower();
         Task<AppUser> GetUserById(int id);
         Task<List<UserProfileDTO>> GetFollowerByCookId(string email);
-        Task<bool> BuySubscription(string cookEmail,string email, int subscriptionId);
+        Task<bool> BuySubscription(int userId, int subscriptionId);
         Task<bool> HasUserHasAlreadySub(string cookEmail, string email);
         Task RecipeView(int recipeId);
         Task<TasteProfile> GetUserTasteProfile(string email);
-        Task EnableUserAdmin(AppUser user);
+        Task EnableUserAdmin(string email);
         Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO);
         Task<UserPhoto> GetUserPhotoByUserEmail(string email);
         Task AddTransaction(TransactionDTO transactionDTO);
@@ -29,5 +29,11 @@ namespace NomsNoms.Interfaces
         Task UpdateUserLastActive(int id);
         Task<List<UserProfileDTO>> GetSubberByCookId(string email);
         Task FollowUser(string cookEmail, string userEmail);
+        Task<SubscriptionUserDTO> GetUserSubscription(string email);
+        Task<Subscription> GetSubscriptionById(int id);
+        Task UpdateUserSubscription(UpdateUserSubsciprtionDTO updateDto);
+        Task AddPaymentIntent(long orderCode, int userId, int subscriptionId);
+        Task<SubscriptionPayment> GetPaymentIntent(long orderCode);
+
     }
 }

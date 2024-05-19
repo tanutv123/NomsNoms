@@ -12,8 +12,8 @@ using NomsNoms.Data;
 namespace NomsNoms.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240515222834_AddTransactionClass")]
-    partial class AddTransactionClass
+    [Migration("20240519072738_CaloriesRecipe")]
+    partial class CaloriesRecipe
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -375,6 +375,51 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("MealPlanIngredients");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanPayment", b =>
+                {
+                    b.Property<long>("OrderCode")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MealPlanId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderCode");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("MealPlanId");
+
+                    b.ToTable("MealPlanPayments");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanSubscription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MealPlanSubscriptions");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.MealPlanType", b =>
                 {
                     b.Property<int>("Id")
@@ -431,6 +476,9 @@ namespace NomsNoms.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Calories")
                         .HasColumnType("int");
 
                     b.Property<int>("CompletionTime")
@@ -765,6 +813,24 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("UserMealPlans");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.UserMealPlanSubscriptions", b =>
+                {
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MealPlanSubscriptionId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AppUserId", "MealPlanSubscriptionId");
+
+                    b.HasIndex("MealPlanSubscriptionId");
+
+                    b.ToTable("UserMealPlanSubscriptions");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.UserPhoto", b =>
                 {
                     b.Property<int>("Id")
@@ -955,6 +1021,25 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("Ingredient");
 
                     b.Navigation("MeanPlan");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanPayment", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NomsNoms.Entities.MealPlan", "MealPlan")
+                        .WithMany()
+                        .HasForeignKey("MealPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("MealPlan");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.Recipe", b =>
@@ -1154,6 +1239,25 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("MeanPlan");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.UserMealPlanSubscriptions", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NomsNoms.Entities.MealPlanSubscription", "MealPlanSubscription")
+                        .WithMany("UserMealPlanSubscriptions")
+                        .HasForeignKey("MealPlanSubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("MealPlanSubscription");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.UserPhoto", b =>
                 {
                     b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
@@ -1237,6 +1341,11 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("MealPlanIngredients");
 
                     b.Navigation("UserMealPlans");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanSubscription", b =>
+                {
+                    b.Navigation("UserMealPlanSubscriptions");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.Recipe", b =>

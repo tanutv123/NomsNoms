@@ -1,29 +1,28 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace NomsNoms.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class FixRecipeSeedAndRecipe : Migration
+    public partial class CaloriesRecipe : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<DateTime>(
-                name: "CreateDate",
+            migrationBuilder.AddColumn<int>(
+                name: "Calories",
                 table: "Recipes",
-                type: "datetime2",
+                type: "int",
                 nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                defaultValue: 0);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "CreateDate",
+                name: "Calories",
                 table: "Recipes");
         }
     }

@@ -26,6 +26,7 @@ import {
   RecipeDetailAdminComponent
 } from "./components/admin/recipe-management/recipe-detail-admin/recipe-detail-admin.component";
 import {recipeAdminResolver} from "./_resolvers/recipe-admin.resolver";
+import {PendingsComponent} from "./components/admin/recipe-management/pendings/pendings.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -56,6 +57,7 @@ const routes: Routes = [
     children: [
       {path: 'user-management', component: UserManagementComponent},
       {path: 'recipe-management', component: RecipeManagementComponent},
+      {path: 'pendings', component: PendingsComponent},
       {path: 'recipe-admin/:id', component: RecipeDetailAdminComponent,
       resolve: {recipe: recipeAdminResolver}
       },

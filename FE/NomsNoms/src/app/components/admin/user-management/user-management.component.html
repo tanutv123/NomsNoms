@@ -5,7 +5,7 @@
 -->
 
 <div class="overflow-x-auto">
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+  <table datatable #userTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
     <thead class="ltr:text-left rtl:text-right">
     <tr>
       <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tên</th>
@@ -32,7 +32,15 @@
           Xem
         </a>
         <button
+          (click)="enableUser(user)"
+          *ngIf="user.status == 0"
+          class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700"
+        >
+          Mở khóa
+        </button>
+        <button
           (click)="deleteUser(user)"
+          *ngIf="user.status == 1"
           class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
         >
           Vô hiệu hóa

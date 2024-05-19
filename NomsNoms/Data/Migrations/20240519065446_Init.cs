@@ -57,6 +57,22 @@ namespace NomsNoms.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MealPlanSubscriptions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MealPlanSubscriptions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MealPlanTypes",
                 columns: table => new
                 {
@@ -266,6 +282,37 @@ namespace NomsNoms.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AppUserSubscriptionRecords",
+                columns: table => new
+                {
+                    SourceUserId = table.Column<int>(type: "int", nullable: false),
+                    TargetUserId = table.Column<int>(type: "int", nullable: false),
+                    SubscriptionDuration = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SubscriptionId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserSubscriptionRecords", x => new { x.SourceUserId, x.TargetUserId });
+                    table.ForeignKey(
+                        name: "FK_AppUserSubscriptionRecords_AspNetUsers_SourceUserId",
+                        column: x => x.SourceUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AppUserSubscriptionRecords_AspNetUsers_TargetUserId",
+                        column: x => x.TargetUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_AppUserSubscriptionRecords_Subscriptions_SubscriptionId",
+                        column: x => x.SubscriptionId,
+                        principalTable: "Subscriptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -351,6 +398,31 @@ namespace NomsNoms.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MealPlanPayments",
+                columns: table => new
+                {
+                    OrderCode = table.Column<long>(type: "bigint", nullable: false),
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    MealPlanId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MealPlanPayments", x => x.OrderCode);
+                    table.ForeignKey(
+                        name: "FK_MealPlanPayments_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MealPlanPayments_MealPlans_MealPlanId",
+                        column: x => x.MealPlanId,
+                        principalTable: "MealPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Recipes",
                 columns: table => new
                 {
@@ -365,7 +437,8 @@ namespace NomsNoms.Data.Migrations
                     AppUserId = table.Column<int>(type: "int", nullable: false),
                     IsExclusive = table.Column<bool>(type: "bit", nullable: false),
                     RecipeImageId = table.Column<int>(type: "int", nullable: true),
-                    TasteProfileId = table.Column<int>(type: "int", nullable: true)
+                    TasteProfileId = table.Column<int>(type: "int", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -398,6 +471,28 @@ namespace NomsNoms.Data.Migrations
                         column: x => x.TasteProfileId,
                         principalTable: "TasteProfiles",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReportName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SenderId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transactions_AspNetUsers_SenderId",
+                        column: x => x.SenderId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -486,6 +581,31 @@ namespace NomsNoms.Data.Migrations
                         column: x => x.MealPlanId,
                         principalTable: "MealPlans",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserMealPlanSubscriptions",
+                columns: table => new
+                {
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    MealPlanSubscriptionId = table.Column<int>(type: "int", nullable: false),
+                    StartedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserMealPlanSubscriptions", x => new { x.AppUserId, x.MealPlanSubscriptionId });
+                    table.ForeignKey(
+                        name: "FK_UserMealPlanSubscriptions_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserMealPlanSubscriptions_MealPlanSubscriptions_MealPlanSubscriptionId",
+                        column: x => x.MealPlanSubscriptionId,
+                        principalTable: "MealPlanSubscriptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -666,6 +786,16 @@ namespace NomsNoms.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AppUserSubscriptionRecords_SubscriptionId",
+                table: "AppUserSubscriptionRecords",
+                column: "SubscriptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppUserSubscriptionRecords_TargetUserId",
+                table: "AppUserSubscriptionRecords",
+                column: "TargetUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
@@ -725,6 +855,16 @@ namespace NomsNoms.Data.Migrations
                 column: "IngredientId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MealPlanPayments_AppUserId",
+                table: "MealPlanPayments",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MealPlanPayments_MealPlanId",
+                table: "MealPlanPayments",
+                column: "MealPlanId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MealPlans_MealPlanTypeId",
                 table: "MealPlans",
                 column: "MealPlanTypeId");
@@ -780,6 +920,11 @@ namespace NomsNoms.Data.Migrations
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Transactions_SenderId",
+                table: "Transactions",
+                column: "SenderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserCollections_AppUserId",
                 table: "UserCollections",
                 column: "AppUserId");
@@ -800,6 +945,11 @@ namespace NomsNoms.Data.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserMealPlanSubscriptions_MealPlanSubscriptionId",
+                table: "UserMealPlanSubscriptions",
+                column: "MealPlanSubscriptionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserPhotos_AppUserId",
                 table: "UserPhotos",
                 column: "AppUserId",
@@ -814,6 +964,9 @@ namespace NomsNoms.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AppUserSubscriptionRecords");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -836,6 +989,9 @@ namespace NomsNoms.Data.Migrations
                 name: "MealPlanIngredients");
 
             migrationBuilder.DropTable(
+                name: "MealPlanPayments");
+
+            migrationBuilder.DropTable(
                 name: "Questions");
 
             migrationBuilder.DropTable(
@@ -851,6 +1007,9 @@ namespace NomsNoms.Data.Migrations
                 name: "RecipeStepImages");
 
             migrationBuilder.DropTable(
+                name: "Transactions");
+
+            migrationBuilder.DropTable(
                 name: "UserFavorites");
 
             migrationBuilder.DropTable(
@@ -858,6 +1017,9 @@ namespace NomsNoms.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserMealPlans");
+
+            migrationBuilder.DropTable(
+                name: "UserMealPlanSubscriptions");
 
             migrationBuilder.DropTable(
                 name: "UserPhotos");
@@ -882,6 +1044,9 @@ namespace NomsNoms.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "MealPlans");
+
+            migrationBuilder.DropTable(
+                name: "MealPlanSubscriptions");
 
             migrationBuilder.DropTable(
                 name: "Recipes");
