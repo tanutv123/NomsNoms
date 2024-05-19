@@ -12,8 +12,8 @@ using NomsNoms.Data;
 namespace NomsNoms.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240517064239_UpdateMealPlanSub")]
-    partial class UpdateMealPlanSub
+    [Migration("20240519065446_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -373,6 +373,26 @@ namespace NomsNoms.Data.Migrations
                     b.HasIndex("IngredientId");
 
                     b.ToTable("MealPlanIngredients");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanPayment", b =>
+                {
+                    b.Property<long>("OrderCode")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MealPlanId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderCode");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("MealPlanId");
+
+                    b.ToTable("MealPlanPayments");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.MealPlanSubscription", b =>
@@ -998,6 +1018,25 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("Ingredient");
 
                     b.Navigation("MeanPlan");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanPayment", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NomsNoms.Entities.MealPlan", "MealPlan")
+                        .WithMany()
+                        .HasForeignKey("MealPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("MealPlan");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.Recipe", b =>

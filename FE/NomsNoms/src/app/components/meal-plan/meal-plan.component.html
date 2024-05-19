@@ -1,6 +1,8 @@
+<p *ngIf="!hasRegistered" class="text-center">
+  Hệ thống ghi nhận bạn đã mua gói và còn thời gian. Nếu tiếp tục mua thì thời gian sử dụng còn lại của gói bạn đã mua sẽ bị xóa
+</p>
 <div class="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center md:gap-8">
-
     <div class="rounded-2xl border border-gray-200 p-6 shadow-sm sm:px-8 lg:p-12" *ngFor="let mp of mealPlans">
       <div class="text-center">
         <h2 class="text-lg font-medium text-gray-900">

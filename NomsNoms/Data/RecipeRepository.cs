@@ -56,9 +56,35 @@ namespace NomsNoms.Data
                                                             userParams.PageSize);
         }
 
-        public async Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id)
+        public async Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id, int userId)
         {
+            if(!await IsValidGetStep(id, userId)) 
+            {
+                throw new Exception("Công thức dành cho hội viên");
+            }
             return await _context.RecipeSteps.Where(x => x.RecipeId == id).ProjectTo<RecipeStepDTO>(_mapper.ConfigurationProvider).ToListAsync();
+
+        }
+
+        private async Task<bool> IsValidGetStep(int recipeId, int userId)
+        {
+            var recipe = await _context.Recipes.FirstOrDefaultAsync(x => x.Id == recipeId);
+            if(!recipe.IsExclusive || recipe.AppUserId == userId)
+            {
+                return true;
+            } 
+            else
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == recipe.AppUserId);
+                var subscription = await _context.Subscriptions.FirstOrDefaultAsync(x => x.Id == user.SubscriptionId);
+                var flag = await _context.UserSubscriptions
+                    .AnyAsync(x => 
+                    x.SubscriptionId == user.SubscriptionId && 
+                    x.AppUserId == userId && 
+                    DateTime.UtcNow < x.StartedDate.AddDays(subscription.Duration
+                    ));
+                return flag;
+            }
         }
 
         public async Task<List<RecipeDTO>> GetTrendingRecipe()
@@ -140,7 +166,7 @@ namespace NomsNoms.Data
             List<Recipe> list = null;
             try
             {
-                list = await _context.Recipes.Include(u => u.TastProfile).ToListAsync();
+                list = await _context.Recipes.Include(u => u.TastProfile).Include(u => u.RecipeImage).ToListAsync();
             }catch(Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -153,8 +179,7 @@ namespace NomsNoms.Data
             List<RecipeDTO> list = null;
             try
             {
-                var l = await _context.Recipes.ToListAsync();
-                list = _mapper.Map<List<RecipeDTO>>(l);
+                list = await _context.Recipes.ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -238,8 +263,10 @@ namespace NomsNoms.Data
             List<RecipeDTO> list = null;
             try
             {
-                var l = await _context.Recipes.Where(r => r.RecipeStatusId == 3).ToListAsync();
-                list = _mapper.Map<List<RecipeDTO>>(l);
+                list = await _context.Recipes
+                    .Where(r => r.RecipeStatusId == 3)
+                    .ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {

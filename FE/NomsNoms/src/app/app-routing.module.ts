@@ -26,6 +26,9 @@ import {
   RecipeDetailAdminComponent
 } from "./components/admin/recipe-management/recipe-detail-admin/recipe-detail-admin.component";
 import {recipeAdminResolver} from "./_resolvers/recipe-admin.resolver";
+import {PendingsComponent} from "./components/admin/recipe-management/pendings/pendings.component";
+import {authGuard} from "./_guards/auth.guard";
+import {adminGuard} from "./_guards/admin.guard";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -38,24 +41,27 @@ const routes: Routes = [
   {path:'',
   children: [
     {path: 'meal-plan', component: MealPlanComponent},
-    {path: 'meal-plan-bought', component: MealPlanBoughtComponent},
     {path: 'steps/:id', component: RecipeStepListComponent},
     {
       path: 'recipe/:id',
       component: RecipeDetailComponent,
       resolve: {recipe: recipeDetailResolver}
     },
-    {path: 'new-recipe', component: NewRecipeComponent},
-    {path: 'my-recipe', component: MyRecipeComponent},
     {path: 'list', component: ListOfRecipeComponent},
     {path: 'profile/:email', component: ProfileComponent, resolve: {user: userDetailResolver}},
-    {path: 'profile-edit/:email', component: ProfileEditComponent, resolve: {user: userDetailResolver}},
   ]
   },
   {path:'',
+    runGuardsAndResolvers:'always',
+    canActivate: [authGuard],
     children: [
-      {path: 'user-management', component: UserManagementComponent},
-      {path: 'recipe-management', component: RecipeManagementComponent},
+      {path: 'user-management', component: UserManagementComponent, canActivate: [adminGuard]},
+      {path: 'recipe-management', component: RecipeManagementComponent, canActivate: [adminGuard]},
+      {path: 'new-recipe', component: NewRecipeComponent},
+      {path: 'profile-edit/:email', component: ProfileEditComponent, resolve: {user: userDetailResolver}},
+      {path: 'my-recipe', component: MyRecipeComponent},
+      {path: 'meal-plan-bought', component: MealPlanBoughtComponent},
+      {path: 'pendings', component: PendingsComponent},
       {path: 'recipe-admin/:id', component: RecipeDetailAdminComponent,
       resolve: {recipe: recipeAdminResolver}
       },

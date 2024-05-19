@@ -69,12 +69,14 @@ namespace NomsNoms.Controllers
             return Ok(result);
         }
         [HttpGet("user-recipe")]
+        [Authorize]
         public async Task<IActionResult> GetUserRecipe()
         {
             var result = await _recipeRepository.GetRecipeForUser(User.GetUserId());
             return Ok(result);
         }
         [HttpGet("ingredient")]
+        [Authorize]
         public async Task<IActionResult> GetIngredients()
         {
             var result = await _recipeRepository.GetIngredientsAsync();
@@ -83,16 +85,34 @@ namespace NomsNoms.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeDTO>> GetRecipe(int id)
         {
-            var result = await _recipeRepository.GetRecipeAsync(id);
-            if(result == null) return BadRequest("Không tìm thấy công thức");
-            return Ok(result);
+            try
+            {
+                var result = await _recipeRepository.GetRecipeAsync(id);
+                if (result == null) return BadRequest("Không tìm thấy công thức");
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpGet("recipe-steps/{id}")]
         public async Task<ActionResult<RecipeDTO>> GetRecipeSteps(int id)
         {
-            var result = await _recipeRepository.GetRecipeStepAsync(id);
-            if (result == null) return BadRequest("Không tìm thấy nội dung");
-            return Ok(result);
+            try
+            {
+                if(!User.Identity.IsAuthenticated)
+                {
+                    return BadRequest("Công thức chỉ dành cho hội viên");
+                }
+                var result = await _recipeRepository.GetRecipeStepAsync(id, User.GetUserId());
+                if (result == null) return BadRequest("Không tìm thấy nội dung");
+                return Ok(result);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpGet("category")]
         public async Task<ActionResult<List<Category>>> GetCategories()

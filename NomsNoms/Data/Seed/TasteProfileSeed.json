@@ -70,5 +70,11 @@
     "Sweetness": 35,
     "Saltiness": 60,
     "Sauce": 77
+  },
+  {
+    "Spiciness": 95,
+    "Sweetness": 46,
+    "Saltiness": 3,
+    "Sauce": 70
   }
 ]

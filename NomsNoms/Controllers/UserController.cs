@@ -28,7 +28,7 @@ namespace NomsNoms.Controllers
             return Ok(user);
         }
         [HttpPut("edit-profile")]
-        /*[Authorize]*/
+        [Authorize]
         public async Task<IActionResult> EditUserProfile([FromBody] UserProfileDTO profileDTO)
         {
             try
@@ -61,19 +61,36 @@ namespace NomsNoms.Controllers
         {
             return Ok(await _userRepository.GetFollowerByCookId(email));
         }
-        [HttpPost("subsctiption/buy/{subcriptionTypeId}")]
-        [Authorize]
-        public async Task<IActionResult> BuySubscription(string cookEmail, int subcriptionTypeId)
-        {
-            if (cookEmail == User.GetEmail()) return BadRequest("You cannot buy your own subscription");
-            await _userRepository.BuySubscription(cookEmail ,User.GetEmail(), subcriptionTypeId);
-            return Ok(new { message = "Buying Subscription successfully." });
-        }
-        [HttpGet("subsctiption/{cookEmail}")]
+        [HttpGet("has-subbed/{cookEmail}")]
         [Authorize]
         public async Task<IActionResult> HasSubed(string cookEmail)
         {
             return Ok(await _userRepository.HasUserHasAlreadySub(cookEmail, User.GetEmail()));
+        }
+        [HttpGet("has-liked/{cookEmail}")]
+        [Authorize]
+        public async Task<IActionResult> HasLiked(string cookEmail)
+        {
+            return Ok(await _userRepository.HasLiked(cookEmail, User.GetUserId()));
+        }
+        [HttpGet("subscription-list-sub/{email}")]
+        public async Task<IActionResult> GetSubbers(string email)
+        {
+            return Ok(await _userRepository.GetSubberByCookId(email));
+        }
+        [HttpGet("subscription/{email}")]
+        [Authorize]
+        public async Task<IActionResult> GetSubscription(string email)
+        {
+            return Ok(await _userRepository.GetUserSubscription(email));
+        }
+        [HttpPut("update-subscription")]
+        [Authorize]
+        public async Task<IActionResult> UpdateSubscription(UpdateUserSubsciprtionDTO updateUserSubsciprtionDTO)
+        {
+            updateUserSubsciprtionDTO.UserId = User.GetUserId();
+            await _userRepository.UpdateUserSubscription(updateUserSubsciprtionDTO);
+            return Ok();
         }
         [HttpGet("view/{recipeId}")]
         [Authorize]
@@ -118,12 +135,6 @@ namespace NomsNoms.Controllers
             await _userRepository.AddTransaction(transaction);
             return Ok(new { message = "Thanh toán thành công." });
         }
-        [HttpGet("subscription-list-sub/{email}")]
-        public async Task<IActionResult> GetSubbers(string email)
-        {
-            return Ok(await _userRepository.GetSubberByCookId(email));
-        }
-
         [HttpPost("userfollow/{cookEmail}")]
         [Authorize]
         public async Task<IActionResult> RegistMealPlan(string cookEmail)

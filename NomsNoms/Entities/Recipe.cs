@@ -13,6 +13,7 @@
         public int AppUserId { get; set; }
         public bool IsExclusive { get; set; }
         public int? RecipeImageId { get; set; }
+        public int Calories { get; set; }
         public int? TasteProfileId { get; set; }
         public DateTime CreateDate { get; set; }
         public RecipeComplexity RecipeComplexity { get; set; }

@@ -40,6 +40,26 @@
           <dt class="text-sm font-medium text-gray-600">Hoạt động</dt>
           <dd class="text-xs text-gray-500">{{user.lastActive + 'Z' | timeago}}</dd>
         </div>
+        <div class="flex flex-col-reverse">
+          <button
+            type="button"
+            *ngIf="!hasLiked"
+            (click)="onLikeUser()"
+            class="inline-block w-full border border-red-600 rounded-lg bg-white px-5 py-3 font-medium text-red-600 sm:w-auto hover:bg-red-600 hover:text-white"
+          >
+            Thích
+          </button>
+        </div>
+        <div class="flex flex-col-reverse">
+          <button
+            type="button"
+            *ngIf="hasLiked"
+            (click)="onLikeUser()"
+            class="inline-block w-full border border-red-600 rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto hover:bg-white hover:text-red-600"
+          >
+            Đã thích
+          </button>
+        </div>
         <div>
           <a
             routerLink="/user-management"
@@ -51,7 +71,39 @@
         </div>
       </dl>
     </div>
+    <div
+      class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
+      *ngIf="subscription"
+    >
+  <span
+    class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-red-300 via-pink-300 to-red-600"
+  ></span>
 
+      <div class="text-center">
+        <h2 class="text-lg font-medium text-gray-900">
+          Gói hội viên
+          <span class="sr-only">Plan</span>
+        </h2>
+        <ng-container *ngIf="!hasSubed">
+          <p class="mt-2 sm:mt-4">
+            <span class="text-sm font-medium text-gray-700">Bạn đang là hội viên</span>
+          </p>
+        </ng-container>
+        <ng-container *ngIf="hasSubed">
+          <p class="mt-2 sm:mt-4">
+            <strong class="text-3xl font-bold text-gray-900 sm:text-4xl"> {{subscription.price | currency: 'VND'}} </strong>
+
+            <span class="text-sm font-medium text-gray-700">/{{subscription.duration}} ngày</span>
+          </p>
+          <button
+            (click)="subscribeUser()"
+            class="cursor-pointer mt-8 block rounded-full border border-red-600 bg-white px-12 py-3 text-center text-sm font-medium text-red-600 hover:ring-1 hover:ring-red-600 focus:outline-none focus:ring active:text-red-500"
+          >
+            Đăng ký
+          </button>
+        </ng-container>
+      </div>
+    </div>
   </div>
   <div class="rounded-lg bg-gray-200 lg:col-span-2 h-auto">
     <div class="flex flex-wrap">

@@ -5,6 +5,12 @@ import {Recipe} from "../../../_model/recipe.model";
 import {RecipeService} from "../../../_services/recipe.service";
 import {AccountService} from "../../../_services/account.service";
 import {Subject} from "rxjs";
+import {SubscriptionModel} from "../../../_model/subscription.model";
+import {UserService} from "../../../_services/user.service";
+import {PaymentService} from "../../../_services/payment.service";
+import {CreateSubscriptionPaymentLinkRequest} from "../../../_model/createSubscriptionPaymentLinkRequest.model";
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-profile',
@@ -21,9 +27,15 @@ export class ProfileComponent implements OnInit{
     pagingType: 'full_numbers'
   };
   dtTrigger: Subject<any> = new Subject<any>();
+  subscription: SubscriptionModel | undefined;
+  hasSubed = false;
+  hasLiked = false;
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
-              private accountService: AccountService) {
+              private userService: UserService,
+              private paymentService: PaymentService,
+              private accountService: AccountService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -32,8 +44,65 @@ export class ProfileComponent implements OnInit{
         this.user = data['user'];
         this.loadRecipes();
         this.loadFollowers();
+        this.loadLikedRecipes();
+        this.loadSubscription();
+        this.isLiked();
+        this.isSubbed();
       }
     });
+  }
+  isLiked() {
+    if (!this.user) return;
+    this.userService.hasLiked(this.user.email).subscribe({
+      next: res => {
+        this.hasLiked = res;
+      }
+    })
+  }
+  onLikeUser() {
+    if (!this.user) return;
+    this.userService.followUser(this.user.email).subscribe({
+      next: res => {
+        if (this.hasLiked) {
+          this.toastr.success("Hủy theo dõi thành công");
+        } else {
+          this.toastr.success('Theo dõi thành công');
+        }
+        this.hasLiked = !this.hasLiked;
+      }
+    });
+  }
+  isSubbed() {
+    if (!this.user) return;
+    this.userService.hasSubed(this.user.email).subscribe({
+      next: res => {
+        this.hasSubed = res;
+      }
+    })
+  }
+  loadSubscription() {
+    if (!this.user) return;
+    this.userService.getUserSubscription(this.user.email).subscribe({
+      next: res => {
+        this.subscription = res;
+      }
+    });
+  }
+  subscribeUser() {
+    if (!this.subscription || !this.user) return;
+    var request: CreateSubscriptionPaymentLinkRequest = {
+      subscriptionId: this.subscription.subscriptionId,
+      returnUrl: "http://localhost:4200/payment-success",
+      cancelUrl: "http://localhost:4200/payment-fail",
+      price: this.subscription.price,
+      productName: 'Gói hội viên của ' + this.user.email,
+      description: 'subscription'
+    };
+    this.paymentService.subcribePayment(request).subscribe({
+      next: res => {
+        window.location.href=''+res.data.checkoutUrl;
+      }
+    })
   }
   loadLikedRecipes() {
     this.recipeService.getLikedRecipe().subscribe({

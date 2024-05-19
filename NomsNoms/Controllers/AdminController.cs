@@ -138,13 +138,12 @@ namespace NomsNoms.Controllers
             return Ok("Deleted Successfully");
         }
 
-        [HttpPut("users/enable-user")]
+        [HttpPut("users/enable-user/{email}")]
         [Authorize(Policy = "RequireAdminRole")]
-        public async Task<IActionResult> EnableUserAdmin([FromBody] UserAdminDTO userDto)
+        public async Task<IActionResult> EnableUserAdmin(string email)
         {
-            var user = _mapper.Map<AppUser>(userDto);
-            await _userRepository.EnableUserAdmin(user);
-            return Ok("Enabled Successfully");
+            await _userRepository.EnableUserAdmin(email);
+            return Ok();
         }
 
         [HttpGet("pending-recipes")]

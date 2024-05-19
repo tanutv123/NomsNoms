@@ -15,12 +15,13 @@
               <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Home </a>
             </li>
 
-            <li>
-              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan"> Meal Plans </a>
+            <li *ngIf="!(accountService.currentUser$ | async)">
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan"> Dịch vụ </a>
             </li>
 
-            <li>
-              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought"> Meal Plans Bought</a>
+            <li *ngIf="(accountService.currentUser$ | async) as user">
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan" *ngIf="!user.isMealPlanRegistered"> Dịch vụ </a>
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought" *ngIf="user.isMealPlanRegistered"> Kế hoạch ăn uống</a>
             </li>
 
             <li>
@@ -88,9 +89,9 @@
                      role="menuitem">Cài đặt tài khoản</a>
                   <a routerLink="/user-management" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                      role="menuitem">Quản lý người dùng</a>
-                  <a routerLink="/my-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  <a routerLink="/recipe-management" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                      role="menuitem">Quản lý công thức nấu ăn</a>
-                  <a routerLink="/my-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  <a routerLink="/pendings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                      role="menuitem">Danh sách công thức chờ duyệt</a>
                   <a (click)="logout()" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                      role="menuitem">Đăng xuất</a>

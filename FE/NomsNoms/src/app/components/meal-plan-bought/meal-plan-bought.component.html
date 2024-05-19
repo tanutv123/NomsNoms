@@ -10,19 +10,18 @@
 
     <div class="mb-4">
       <!-- Insert pie chart graphic here -->
-      <p class="text-xl text-black mb-1">1001 Calories</p>
+      <p class="text-xl text-black mb-1">{{calories}} Calories</p>
       <!-- Insert information icon here -->
     </div>
 
     <!-- Meal Sections -->
-    <div>
+    <div *ngFor="let recipe of recipes; index as i">
       <!-- Example for Breakfast section -->
-      <h2 class="font-bold text-lg mb-2">Breakfast (300 cal)</h2>
+      <h2 class="font-bold text-lg mb-2">Buổi {{i + 1}} </h2>
       <div class="flex items-center justify-between mb-4">
-        <img class="rounded-full w-12 h-12 mr-4" src="path/to/breakfast_image" alt="Breakfast">
+        <img class="rounded-full w-12 h-12 mr-4" src="{{recipe.recipeImageUrl}}" alt="Breakfast">
         <div>
-          <p class="font-bold">Oatmeal</p>
-          <p class="text-gray-600">1 bowl</p>
+          <p class="font-bold">{{recipe.title}}</p>
         </div>
         <lucide-icon name="refresh-ccw" [size]="16"></lucide-icon>
         <!-- Insert refresh icon here -->

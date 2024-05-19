@@ -372,6 +372,29 @@ namespace NomsNoms.Data.Migrations
                     b.ToTable("MealPlanIngredients");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanPayment", b =>
+                {
+                    b.Property<long>("OrderCode")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MealPlanId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderCode");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("MealPlanId");
+
+                    b.ToTable("MealPlanPayments");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.MealPlanSubscription", b =>
                 {
                     b.Property<int>("Id")
@@ -453,6 +476,9 @@ namespace NomsNoms.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Calories")
                         .HasColumnType("int");
 
                     b.Property<int>("CompletionTime")
@@ -664,6 +690,29 @@ namespace NomsNoms.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subscriptions");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.SubscriptionPayment", b =>
+                {
+                    b.Property<long>("OrderCode")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SubscriptionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderCode");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("SubscriptionPayments");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.TasteProfile", b =>
@@ -997,6 +1046,25 @@ namespace NomsNoms.Data.Migrations
                     b.Navigation("MeanPlan");
                 });
 
+            modelBuilder.Entity("NomsNoms.Entities.MealPlanPayment", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NomsNoms.Entities.MealPlan", "MealPlan")
+                        .WithMany()
+                        .HasForeignKey("MealPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("MealPlan");
+                });
+
             modelBuilder.Entity("NomsNoms.Entities.Recipe", b =>
                 {
                     b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
@@ -1113,6 +1181,25 @@ namespace NomsNoms.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("RecipeStep");
+                });
+
+            modelBuilder.Entity("NomsNoms.Entities.SubscriptionPayment", b =>
+                {
+                    b.HasOne("NomsNoms.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NomsNoms.Entities.Subscription", "Subscription")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Subscription");
                 });
 
             modelBuilder.Entity("NomsNoms.Entities.Transaction", b =>

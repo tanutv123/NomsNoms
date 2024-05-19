@@ -55,8 +55,15 @@ namespace NomsNoms.Helpers
                 .ReverseMap();
             CreateMap<UserFollow, UserFollowDTO>()
                 .ReverseMap();
-            CreateMap<TasteProfile, TasteProfileDTO>()
+            CreateMap<AppUser, SubscriptionUserDTO>() 
+                .ForMember(dest => dest.SubscriptionId, opt => opt.MapFrom(src => src.SubscriptionId))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Subscription.Price))
+                .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Subscription.Duration))
+                .ForMember(dest => dest.UserKnownAs, opt => opt.MapFrom(src => src.KnownAs))
+                .ForMember(dest => dest.UserEmail, opt => opt.MapFrom(src => src.Email))
                 .ReverseMap();
+            CreateMap<TasteProfile, TasteProfileDTO>()
+              .ReverseMap();
         }
     }
 }

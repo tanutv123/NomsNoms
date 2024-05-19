@@ -267,32 +267,28 @@ namespace NomsNoms.Data
             }
         }
 
-        public async Task<bool> BuySubscription(string cookEmail, string email, int subscriptionId)
+        public async Task<bool> BuySubscription(int userId, int subscriptionId)
         {
             try
             {
-                var sourceUser = await _userManager.FindByEmailAsync(email);
-                var targetUser = await _userManager.FindByEmailAsync(cookEmail);
-                var subscription = _context.Subscriptions.Where(S => S.Id == subscriptionId).FirstOrDefault();
-                /*if (sourceUser.Money >= subscription.Price)
+                var existedSubscription = await _context.UserSubscriptions
+                    .Where(x => x.AppUserId == userId && x.SubscriptionId == subscriptionId)
+                    .ToListAsync();
+                if (existedSubscription != null)
                 {
-                    sourceUser.SubscriptionId = subscription.Id;
-                    await _context.SaveChangesAsync();
-
-                    var record = new SubscriptionRecordDTO()
+                    foreach (var item in existedSubscription)
                     {
-                        SourceUserId = sourceUser.Id,
-                        TargetUserId = targetUser.Id,
-                        SubscriptionId = subscription.Id,
-                        SubscriptionDuration = DateTime.Now
-                    };
-                    await _context.AppUserSubscriptionRecords.AddAsync(_mapper.Map<AppUserSubscriptionRecord>(record));
-                    await _context.SaveChangesAsync();
-
-                    return true;
-                }*/
-
-                return false;
+                        _context.UserSubscriptions.Remove(item);
+                    }
+                }
+                var userSubscription = new UserSubscription
+                {
+                    AppUserId = userId,
+                    SubscriptionId = subscriptionId,
+                    StartedDate= DateTime.UtcNow,
+                };
+                await _context.UserSubscriptions.AddAsync(userSubscription);
+                return await _context.SaveChangesAsync() > 0;
             }
             catch (Exception ex)
             {
@@ -333,7 +329,6 @@ namespace NomsNoms.Data
         {
             // Get the user from the database along with the TasteProfile
             var user = await _userManager.Users
-                .Include(u => u.TasteProfile)
                 .SingleOrDefaultAsync(u => u.Email == email);
 
             if (user == null)
@@ -342,15 +337,15 @@ namespace NomsNoms.Data
                 return null;
             }
 
-            return user.TasteProfile;
+            return await _context.TasteProfiles.FirstOrDefaultAsync(x => x.Id == user.TasteProfileId);
         }
 
 
-        public async Task EnableUserAdmin(AppUser user)
+        public async Task EnableUserAdmin(string email)
         {
             try
             {
-                var u = await _userManager.FindByEmailAsync(user.Email);
+                var u = await _userManager.FindByEmailAsync(email);
                 if (u != null)
                 {
                     u.Status = 1;
@@ -490,7 +485,74 @@ namespace NomsNoms.Data
             await _context.UserFollows.AddAsync(userfollow);
             await _context.SaveChangesAsync();
         }
+        
+        public async Task<SubscriptionUserDTO> GetUserSubscription(string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            if(user.SubscriptionId == null)
+            {
+                return null;
+            }
+            var result = await _context.Users.Where(x => x.Email == email)
+                .ProjectTo<SubscriptionUserDTO>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+            return result;
+        }
 
+        public async Task UpdateUserSubscription(UpdateUserSubsciprtionDTO updateDto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == updateDto.UserId);
+            if (user != null)
+            {
+                var subscription = await _context.Subscriptions.FirstOrDefaultAsync(x => x.Id == user.SubscriptionId);
+                if (subscription != null)
+                {
+                    subscription.Duration = updateDto.Duration;
+                    subscription.Price = updateDto.Price;
+                }
+                else
+                {
+                    var newSubscription = new Subscription
+                    {
+                        Duration = updateDto.Duration,
+                        Price = updateDto.Price,
+                    };
+                    user.Subscription = newSubscription;
+                }
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task AddPaymentIntent(long orderCode, int userId, int subscriptionId)
+        {
+            var payment = new SubscriptionPayment
+            {
+                OrderCode = orderCode,
+                AppUserId = userId,
+                SubscriptionId = subscriptionId,
+                CreatedDate = DateTime.UtcNow,
+            };
+            await _context.SubscriptionPayments.AddAsync(payment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Subscription> GetSubscriptionById(int id)
+        {
+            return await _context.Subscriptions.FindAsync(id);
+        }
+
+        public async Task<SubscriptionPayment> GetPaymentIntent(long orderCode)
+        {
+            return await _context.SubscriptionPayments.FirstOrDefaultAsync(x => x.OrderCode == orderCode);
+        }
+
+        public async Task<bool> HasLiked(string cookEmail, int userId)
+        {
+            var cook= await _context.Users.FirstOrDefaultAsync(x => x.Email == cookEmail);
+            var result = false;
+            result = await _context.UserFollows.AnyAsync(x => x.SourceUserId == userId && x.TargetUserId == cook.Id);
+            return result;
+        }
+        
         public async Task SetTasteProfileUser(TasteProfileDTO tasteProfileDTO, string userEmail)
         {
             var user = await _context.Users.Where(u => u.Email == userEmail).FirstOrDefaultAsync();

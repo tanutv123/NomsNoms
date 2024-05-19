@@ -65,10 +65,19 @@ export class AccountService {
       if (typeof roles == "string") {
         user.roles = roles;
       }
-      console.log(user);
       localStorage.setItem('user', JSON.stringify(user));
       this.currentUserSource.next(user);
+      this.isRegisteredMealPlan().subscribe({
+        next: result => {
+          user.isMealPlanRegistered = result;
+        }
+      });
+      this.currentUserSource.next(user);
     }
+  }
+
+  private isRegisteredMealPlan() {
+    return this.http.get<boolean>(this.baseUrl + 'mealplan/is-registered');
   }
 
   isAdmin() {

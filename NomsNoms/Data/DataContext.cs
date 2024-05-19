@@ -50,6 +50,8 @@ namespace NomsNoms.Data
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<MealPlanSubscription> MealPlanSubscriptions{ get; set; }
         public DbSet<UserMealPlanSubscriptions> UserMealPlanSubscriptions{ get; set; }
+        public DbSet<MealPlanPayment> MealPlanPayments{ get; set; }
+        public DbSet<SubscriptionPayment> SubscriptionPayments{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -182,6 +184,16 @@ namespace NomsNoms.Data
                 .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<UserMealPlanSubscriptions>()
                 .HasKey(k => new {k.AppUserId, k.MealPlanSubscriptionId});
+            builder.Entity<MealPlanPayment>(entity =>
+            {
+                entity.Property(e => e.OrderCode)
+                      .ValueGeneratedNever();
+            });
+            builder.Entity<SubscriptionPayment>(entity =>
+            {
+                entity.Property(e => e.OrderCode)
+                      .ValueGeneratedNever();
+            });
         }
 
     }
