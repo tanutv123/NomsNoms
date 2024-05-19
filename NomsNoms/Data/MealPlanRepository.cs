@@ -97,6 +97,16 @@ namespace NomsNoms.Data
         }
         public async Task RegistMealPlan(int userId, int mealplanid)
         {
+            var existedMealPlan = await _context.UserMealPlanSubscriptions
+                .Where(x => x.AppUserId == userId)
+                .ToListAsync();
+            if(existedMealPlan != null)
+            {
+                foreach (var subscription in existedMealPlan)
+                {
+                    _context.UserMealPlanSubscriptions.Remove(subscription);
+                }
+            }
             var user_mealplan = new UserMealplanDTO
             {
                 AppUserId = userId,

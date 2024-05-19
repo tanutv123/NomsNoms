@@ -19,7 +19,7 @@ namespace NomsNoms.Interfaces
         Task<List<RecipeDTO>> GetRecipeForUser(int id);
         Task<List<RecipeDTO>> GetUserRecipeForProfile(string email);
 
-        Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id);
+        Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id, int userId);
         Task AddRecipeAsync(Recipe recipe);
         Task<List<Recipe>> GetAllRecipes();
         Task<List<RecipeDTO>> GetAllRecipeAdmin();

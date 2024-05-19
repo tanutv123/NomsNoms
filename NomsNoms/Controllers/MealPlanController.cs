@@ -48,6 +48,7 @@ namespace NomsNoms.Controllers
         }
 
         [HttpGet("recommendations")]
+        [Authorize]
         public async Task<IActionResult> GetRecommendedRecipes()
         {
             // Get the user's taste profile from the repository

@@ -16,12 +16,12 @@
             </li>
 
             <li *ngIf="!(accountService.currentUser$ | async)">
-              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan"> Meal Plans </a>
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan"> Dịch vụ </a>
             </li>
 
             <li *ngIf="(accountService.currentUser$ | async) as user">
-              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan" *ngIf="!user.isMealPlanRegistered"> Meal Plans </a>
-              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought" *ngIf="user.isMealPlanRegistered"> Meal Plans Bought</a>
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan" *ngIf="!user.isMealPlanRegistered"> Dịch vụ </a>
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought" *ngIf="user.isMealPlanRegistered"> Kế hoạch ăn uống</a>
             </li>
 
             <li>

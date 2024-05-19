@@ -34,4 +34,14 @@ export class UserService {
   updateUserSubscription(model: any) {
     return this.http.put(this.baseUrl + 'user/update-subscription', model);
   }
+
+  followUser(email: string) {
+    return this.http.post(this.baseUrl + 'user/follow/' + email, null);
+  }
+  hasSubed(email: string) {
+    return this.http.get<boolean>(this.baseUrl + 'user/has-subbed/' + email);
+  }
+  hasLiked(email: string) {
+    return this.http.get<boolean>(this.baseUrl + 'user/has-liked/' + email);
+  }
 }

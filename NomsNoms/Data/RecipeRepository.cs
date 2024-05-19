@@ -56,9 +56,35 @@ namespace NomsNoms.Data
                                                             userParams.PageSize);
         }
 
-        public async Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id)
+        public async Task<List<RecipeStepDTO>> GetRecipeStepAsync(int id, int userId)
         {
+            if(!await IsValidGetStep(id, userId)) 
+            {
+                throw new Exception("Công thức dành cho hội viên");
+            }
             return await _context.RecipeSteps.Where(x => x.RecipeId == id).ProjectTo<RecipeStepDTO>(_mapper.ConfigurationProvider).ToListAsync();
+
+        }
+
+        private async Task<bool> IsValidGetStep(int recipeId, int userId)
+        {
+            var recipe = await _context.Recipes.FirstOrDefaultAsync(x => x.Id == recipeId);
+            if(!recipe.IsExclusive || recipe.AppUserId == userId)
+            {
+                return true;
+            } 
+            else
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == recipe.AppUserId);
+                var subscription = await _context.Subscriptions.FirstOrDefaultAsync(x => x.Id == user.SubscriptionId);
+                var flag = await _context.UserSubscriptions
+                    .AnyAsync(x => 
+                    x.SubscriptionId == user.SubscriptionId && 
+                    x.AppUserId == userId && 
+                    DateTime.UtcNow < x.StartedDate.AddDays(subscription.Duration
+                    ));
+                return flag;
+            }
         }
 
         public async Task<List<RecipeDTO>> GetTrendingRecipe()

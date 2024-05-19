@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Net.payOS;
 using Net.payOS.Types;
+using NomsNoms.DTOs;
 using NomsNoms.Extensions;
 using NomsNoms.Interfaces;
 using NomsNoms.Types;
@@ -30,6 +32,7 @@ namespace NomsNoms.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize]
         public async Task<IActionResult> CreatePaymentLink(CreatePaymentLinkRequest body)
         {
             try
@@ -53,6 +56,7 @@ namespace NomsNoms.Controllers
         }
 
         [HttpPost("create-subscription")]
+        [Authorize]
         public async Task<IActionResult> CreateSubscriptionPaymentLink(CreateSubscriptionPaymentLinkRequest body)
         {
             try
@@ -76,6 +80,7 @@ namespace NomsNoms.Controllers
         }
 
         [HttpGet("{orderId}")]
+        [Authorize]
         public async Task<IActionResult> GetOrder([FromRoute] int orderId)
         {
             try
@@ -88,6 +93,14 @@ namespace NomsNoms.Controllers
                     if (intent != null)
                     {
                         await _mealPlanRepository.RegistMealPlan(intent.AppUserId, intent.MealPlanId);
+                        var transaction = new TransactionDTO
+                        {
+                            SenderId = intent.AppUserId,
+                            ReportName = $"User {intent.AppUserId} đã thực hiện giao dịch mua meal plan {intent.MealPlanId}",
+                            CreateDate = DateTime.UtcNow,
+                            TotalPrice = paymentLinkInformation.amountPaid
+                        };
+                        await _userRepository.AddTransaction(transaction);
                     }
                     else
                     {
@@ -95,43 +108,18 @@ namespace NomsNoms.Controllers
                         if(subscriptionIntent != null)
                         {
                             await _userRepository.BuySubscription(subscriptionIntent.AppUserId, subscriptionIntent.SubscriptionId);
+                            var transaction = new TransactionDTO
+                            {
+                                SenderId = intent.AppUserId,
+                                ReportName = $"User {subscriptionIntent.AppUserId} đã thực hiện giao dịch mua gói hội viên {subscriptionIntent.SubscriptionId}",
+                                CreateDate = DateTime.UtcNow,
+                                TotalPrice = paymentLinkInformation.amountPaid
+                            };
+                            await _userRepository.AddTransaction(transaction);
                         }
                     }
                 }
                 return Ok(new Response(0, "Ok", paymentLinkInformation));
-            }
-            catch (System.Exception exception)
-            {
-
-                Console.WriteLine(exception);
-                return Ok(new Response(-1, "fail", null));
-            }
-
-        }
-        [HttpPut("{orderId}")]
-        public async Task<IActionResult> CancelOrder([FromRoute] int orderId)
-        {
-            try
-            {
-                PaymentLinkInformation paymentLinkInformation = await _payOS.cancelPaymentLink(orderId);
-                return Ok(new Response(0, "Ok", paymentLinkInformation));
-            }
-            catch (System.Exception exception)
-            {
-
-                Console.WriteLine(exception);
-                return Ok(new Response(-1, "fail", null));
-            }
-
-        }
-        [HttpPost("confirm-webhook")]
-        public async Task<IActionResult> ConfirmWebhook(ConfirmWebhook body)
-        {
-            try
-            {
-                await _payOS.confirmWebhook(body.webhook_url);
-                _logger.LogInformation("Confirm webhook");
-                return Ok(new Response(0, "Ok", null));
             }
             catch (System.Exception exception)
             {

@@ -271,12 +271,21 @@ namespace NomsNoms.Data
         {
             try
             {
+                var existedSubscription = await _context.UserSubscriptions
+                    .Where(x => x.AppUserId == userId && x.SubscriptionId == subscriptionId)
+                    .ToListAsync();
+                if (existedSubscription != null)
+                {
+                    foreach (var item in existedSubscription)
+                    {
+                        _context.UserSubscriptions.Remove(item);
+                    }
+                }
                 var userSubscription = new UserSubscription
                 {
                     AppUserId = userId,
                     SubscriptionId = subscriptionId,
                     StartedDate= DateTime.UtcNow,
-                    
                 };
                 await _context.UserSubscriptions.AddAsync(userSubscription);
                 return await _context.SaveChangesAsync() > 0;
@@ -534,6 +543,14 @@ namespace NomsNoms.Data
         public async Task<SubscriptionPayment> GetPaymentIntent(long orderCode)
         {
             return await _context.SubscriptionPayments.FirstOrDefaultAsync(x => x.OrderCode == orderCode);
+        }
+
+        public async Task<bool> HasLiked(string cookEmail, int userId)
+        {
+            var cook= await _context.Users.FirstOrDefaultAsync(x => x.Email == cookEmail);
+            var result = false;
+            result = await _context.UserFollows.AnyAsync(x => x.SourceUserId == userId && x.TargetUserId == cook.Id);
+            return result;
         }
     }
 }
