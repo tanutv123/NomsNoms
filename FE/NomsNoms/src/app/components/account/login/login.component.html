@@ -40,15 +40,15 @@
     <app-text-input [formControl]="$any(loginForm.controls['password'])" [label]="'Password'" [type]="'password'"></app-text-input>
     <div class="flex items-center justify-between">
       <p class="text-sm text-gray-500">
-        No account?
-        <a class="underline" href="#">Sign up</a>
+        Không có tài khoản?
+        <a class="underline" routerLink="/register">Đăng ký</a>
       </p>
 
       <button
         type="submit"
-        class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+        class="inline-block rounded-lg bg-red-500 px-5 py-3 text-sm font-medium text-white"
       >
-        Sign in
+        Đăng nhập
       </button>
     </div>
   </form>

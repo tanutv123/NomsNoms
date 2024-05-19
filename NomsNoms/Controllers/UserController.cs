@@ -28,7 +28,7 @@ namespace NomsNoms.Controllers
             return Ok(user);
         }
         [HttpPut("edit-profile")]
-        /*[Authorize]*/
+        [Authorize]
         public async Task<IActionResult> EditUserProfile([FromBody] UserProfileDTO profileDTO)
         {
             try
@@ -67,17 +67,25 @@ namespace NomsNoms.Controllers
         {
             return Ok(await _userRepository.HasUserHasAlreadySub(cookEmail, User.GetEmail()));
         }
+        [HttpGet("has-liked/{cookEmail}")]
+        [Authorize]
+        public async Task<IActionResult> HasLiked(string cookEmail)
+        {
+            return Ok(await _userRepository.HasLiked(cookEmail, User.GetUserId()));
+        }
         [HttpGet("subscription-list-sub/{email}")]
         public async Task<IActionResult> GetSubbers(string email)
         {
             return Ok(await _userRepository.GetSubberByCookId(email));
         }
         [HttpGet("subscription/{email}")]
+        [Authorize]
         public async Task<IActionResult> GetSubscription(string email)
         {
             return Ok(await _userRepository.GetUserSubscription(email));
         }
         [HttpPut("update-subscription")]
+        [Authorize]
         public async Task<IActionResult> UpdateSubscription(UpdateUserSubsciprtionDTO updateUserSubsciprtionDTO)
         {
             updateUserSubsciprtionDTO.UserId = User.GetUserId();

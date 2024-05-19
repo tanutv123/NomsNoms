@@ -18,6 +18,7 @@ namespace NomsNoms.Interfaces
         Task<List<UserProfileDTO>> GetFollowerByCookId(string email);
         Task<bool> BuySubscription(int userId, int subscriptionId);
         Task<bool> HasUserHasAlreadySub(string cookEmail, string email);
+        Task<bool> HasLiked(string cookEmail, int id);
         Task RecipeView(int recipeId);
         Task<TasteProfile> GetUserTasteProfile(string email);
         Task EnableUserAdmin(string email);

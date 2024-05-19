@@ -9,6 +9,8 @@ import {SubscriptionModel} from "../../../_model/subscription.model";
 import {UserService} from "../../../_services/user.service";
 import {PaymentService} from "../../../_services/payment.service";
 import {CreateSubscriptionPaymentLinkRequest} from "../../../_model/createSubscriptionPaymentLinkRequest.model";
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-profile',
@@ -26,11 +28,14 @@ export class ProfileComponent implements OnInit{
   };
   dtTrigger: Subject<any> = new Subject<any>();
   subscription: SubscriptionModel | undefined;
+  hasSubed = false;
+  hasLiked = false;
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
               private userService: UserService,
               private paymentService: PaymentService,
-              private accountService: AccountService) {
+              private accountService: AccountService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -41,8 +46,39 @@ export class ProfileComponent implements OnInit{
         this.loadFollowers();
         this.loadLikedRecipes();
         this.loadSubscription();
+        this.isLiked();
+        this.isSubbed();
       }
     });
+  }
+  isLiked() {
+    if (!this.user) return;
+    this.userService.hasLiked(this.user.email).subscribe({
+      next: res => {
+        this.hasLiked = res;
+      }
+    })
+  }
+  onLikeUser() {
+    if (!this.user) return;
+    this.userService.followUser(this.user.email).subscribe({
+      next: res => {
+        if (this.hasLiked) {
+          this.toastr.success("Hủy theo dõi thành công");
+        } else {
+          this.toastr.success('Theo dõi thành công');
+        }
+        this.hasLiked = !this.hasLiked;
+      }
+    });
+  }
+  isSubbed() {
+    if (!this.user) return;
+    this.userService.hasSubed(this.user.email).subscribe({
+      next: res => {
+        this.hasSubed = res;
+      }
+    })
   }
   loadSubscription() {
     if (!this.user) return;
