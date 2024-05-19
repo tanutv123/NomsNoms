@@ -62,6 +62,8 @@ namespace NomsNoms.Helpers
                 .ForMember(dest => dest.UserKnownAs, opt => opt.MapFrom(src => src.KnownAs))
                 .ForMember(dest => dest.UserEmail, opt => opt.MapFrom(src => src.Email))
                 .ReverseMap();
+            CreateMap<TasteProfile, TasteProfileDTO>()
+              .ReverseMap();
         }
     }
 }

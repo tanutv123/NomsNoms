@@ -29,6 +29,5 @@ namespace NomsNoms.Entities
         public ICollection<AppUserSubscriptionRecord> SubedUsers { get; set; }
         public ICollection<AppUserSubscriptionRecord> SubByUsers { get; set; }
         public List<Transaction> TransactionSents { get; set; }
-
     }
 }

@@ -143,5 +143,14 @@ namespace NomsNoms.Controllers
             await _userRepository.FollowUser(cookEmail, email);
             return Ok();
         }
+
+        [HttpPut("usertasteprofile/set")]
+        [Authorize]
+        public async Task<IActionResult> SetUserTasteProfile([FromBody] TasteProfileDTO tasteProfileDTO)
+        {
+            var email = User.GetEmail();
+            await _userRepository.SetTasteProfileUser(tasteProfileDTO, email);
+            return Ok();
+        }
     }
 }
