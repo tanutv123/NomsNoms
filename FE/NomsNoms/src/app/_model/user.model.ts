@@ -9,6 +9,7 @@ export interface User {
   lastActive: Date;
   createdDate: Date;
   status: number;
+  tasteProfileId: number;
   isMealPlanRegistered: boolean;
   roles: string;
 }

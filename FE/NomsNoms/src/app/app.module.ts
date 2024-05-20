@@ -59,6 +59,7 @@ import { RecipeDetailAdminComponent } from './components/admin/recipe-management
 import {TimeagoModule} from "ngx-timeago";
 import { Top10UserComponent } from './components/recipe/top-10-user/top-10-user.component';
 import { PendingsComponent } from './components/admin/recipe-management/pendings/pendings.component';
+import { TasteTestComponent } from './components/taste-test/taste-test.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -103,7 +104,8 @@ register();
     RecipeManagementComponent,
     RecipeDetailAdminComponent,
     Top10UserComponent,
-    PendingsComponent
+    PendingsComponent,
+    TasteTestComponent
   ],
   imports: [
     BrowserModule,
