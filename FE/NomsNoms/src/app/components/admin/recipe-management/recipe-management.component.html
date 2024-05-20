@@ -19,7 +19,7 @@
       <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
         <a routerLink="/recipe-admin/{{recipe.id}}">{{recipe.title}}</a>
       </td>
-      <td class="whitespace-nowrap px-4 py-2 text-red-600" *ngIf="recipe.recipeStatusName == 'Hidden'">
+      <td class="whitespace-nowrap px-4 py-2 text-indigo-600" *ngIf="recipe.recipeStatusName == 'Hidden'">
         {{recipe.recipeStatusName}}
       </td>
       <td class="whitespace-nowrap px-4 py-2 text-yellow-600" *ngIf="recipe.recipeStatusName == 'Pending'">
@@ -28,20 +28,13 @@
       <td class="whitespace-nowrap px-4 py-2 text-green-600" *ngIf="recipe.recipeStatusName == 'Normal'">
         {{recipe.recipeStatusName}}
       </td>
+      <td class="whitespace-nowrap px-4 py-2 text-red-600" *ngIf="recipe.recipeStatusName == 'Deleted'">
+        {{recipe.recipeStatusName}}
+      </td>
       <td class="whitespace-nowrap px-4 py-2">
         <button
-          *ngIf="recipe.recipeStatusName == 'Hidden'"
-          class="inline-block mx-2 rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700"
-        >
-          Mở lại
-        </button>
-        <button
-          *ngIf="recipe.recipeStatusName == 'Normal'"
-          class="inline-block mx-2 rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-        >
-          Riêng tư
-        </button>
-        <button
+          type="button"
+          (click)="deleteRecipe(recipe)"
           class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
         >
           Xóa

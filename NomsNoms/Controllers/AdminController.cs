@@ -135,7 +135,7 @@ namespace NomsNoms.Controllers
                 return BadRequest();
             }
             await _recipeRepository.DeleteRecipe(recipe);
-            return Ok("Deleted Successfully");
+            return Ok();
         }
 
         [HttpPut("users/enable-user/{email}")]
@@ -162,7 +162,7 @@ namespace NomsNoms.Controllers
             }
 
             await _recipeRepository.SetTatseProfileAndStatus(recipeId, tp);
-            return Ok("Set successfully");
+            return Ok();
         }
     }
 }
