@@ -60,6 +60,10 @@ import {TimeagoModule} from "ngx-timeago";
 import { Top10UserComponent } from './components/recipe/top-10-user/top-10-user.component';
 import { PendingsComponent } from './components/admin/recipe-management/pendings/pendings.component';
 import { TasteTestComponent } from './components/taste-test/taste-test.component';
+import {MatSliderModule} from "@angular/material/slider";
+import { TasteProfileComponent } from './components/admin/recipe-management/modal/taste-profile/taste-profile.component';
+import {ModalModule} from "ngx-bootstrap/modal";
+import {MatDialogModule} from "@angular/material/dialog";
 // register Swiper custom elements
 register();
 @NgModule({
@@ -105,7 +109,8 @@ register();
     RecipeDetailAdminComponent,
     Top10UserComponent,
     PendingsComponent,
-    TasteTestComponent
+    TasteTestComponent,
+    TasteProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -119,8 +124,10 @@ register();
     HttpClientModule,
     FileUploadModule,
     DataTablesModule,
+    MatSliderModule,
+    MatDialogModule,
     TimeagoModule.forRoot(),
-    BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),

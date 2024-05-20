@@ -231,8 +231,7 @@ namespace NomsNoms.Data
                 var existingRecipe = await _context.Recipes.FirstOrDefaultAsync(r => r.Id == recipeDto.Id);
                 if (existingRecipe != null)
                 {
-                    recipeDto.RecipeStatusId = 4;
-                    _mapper.Map(recipeDto, existingRecipe);
+                    existingRecipe.RecipeStatusId = 4;
                     await _context.SaveChangesAsync();
                 }
                 else

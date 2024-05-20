@@ -5,6 +5,7 @@ import {User} from "../_model/user.model";
 import {UserAdmin} from "../_model/Admin/userAdmin.model";
 import {TopFollow} from "../_model/topFollow.model";
 import {SubscriptionModel} from "../_model/subscription.model";
+import {TasteProfile} from "../_model/tasteProfile.model";
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,9 @@ export class UserService {
   }
   hasLiked(email: string) {
     return this.http.get<boolean>(this.baseUrl + 'user/has-liked/' + email);
+  }
+
+  setTasteProfile(tasteProfile: TasteProfile) {
+    return this.http.put(this.baseUrl + 'user/usertasteprofile/set', {body: tasteProfile});
   }
 }

@@ -23,14 +23,6 @@
               <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan" *ngIf="!user.isMealPlanRegistered"> Dịch vụ </a>
               <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought" *ngIf="user.isMealPlanRegistered"> Kế hoạch ăn uống</a>
             </li>
-
-            <li>
-              <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Blog </a>
-            </li>
-
-            <li>
-              <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Your collection </a>
-            </li>
           </ul>
         </nav>
 
@@ -77,6 +69,8 @@
                      role="menuitem">Đăng công thức</a>
                   <a routerLink="/my-recipe" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                      role="menuitem">Công thức của bạn</a>
+                  <a routerLink="/taste-test" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Cập nhật khẩu vị của bạn</a>
                   <a (click)="logout()" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                      role="menuitem">Đăng xuất</a>
                 </div>

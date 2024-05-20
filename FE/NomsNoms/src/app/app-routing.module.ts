@@ -29,6 +29,7 @@ import {recipeAdminResolver} from "./_resolvers/recipe-admin.resolver";
 import {PendingsComponent} from "./components/admin/recipe-management/pendings/pendings.component";
 import {authGuard} from "./_guards/auth.guard";
 import {adminGuard} from "./_guards/admin.guard";
+import {TasteTestComponent} from "./components/taste-test/taste-test.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -47,6 +48,7 @@ const routes: Routes = [
       component: RecipeDetailComponent,
       resolve: {recipe: recipeDetailResolver}
     },
+    {path: 'taste-test', component: TasteTestComponent},
     {path: 'list', component: ListOfRecipeComponent},
     {path: 'profile/:email', component: ProfileComponent, resolve: {user: userDetailResolver}},
   ]

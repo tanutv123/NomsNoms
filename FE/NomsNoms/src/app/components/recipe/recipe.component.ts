@@ -3,6 +3,7 @@ import {RecipeService} from "../../_services/recipe.service";
 import {Recipe} from "../../_model/recipe.model";
 import {UserService} from "../../_services/user.service";
 import {TopFollow} from "../../_model/topFollow.model";
+import {AccountService} from "../../_services/account.service";
 
 @Component({
   selector: 'app-recipe',
@@ -13,7 +14,8 @@ export class RecipeComponent implements OnInit{
   recipes: Recipe[] = [];
   topFollow: TopFollow[] = [];
   constructor(private recipeService: RecipeService,
-              private userService: UserService) {
+              private userService: UserService,
+              public accountService: AccountService) {
   }
 
   ngOnInit(): void {

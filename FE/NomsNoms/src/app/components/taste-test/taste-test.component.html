@@ -1,1 +1,125 @@
-<p>taste-test works!</p>
+<div class="w-full md:w-2/3 mx-auto p-5 bg-white rounded-lg shadow">
+  <div class="flex items-center justify-between">
+    <div class="w-2/3">
+      <h2 class="section-heading text-bold">
+        Vui lòng trả lời câu hỏi để có trải nghiệm tốt nhất
+      </h2>
+    </div>
+  </div>
+  <form #tasteForm="ngForm" (ngSubmit)="tasteForm.valid && submitForm()">
+    <div class="mt-8 space-y-8">
+      <div>
+        <div class="flex items-start">
+          <div>
+          <span class="inline-flex justify-center items-center w-6 h-6 rounded bg-green-500 text-white font-medium text-sm">
+              1.
+          </span>
+          </div>
+
+          <p class="ml-4 md:ml-6 text-bold">
+            Đánh giá mức độ ăn cay của bạn
+          </p>
+        </div>
+
+        <div class="flex items-start mt-3">
+
+          <mat-slider min="0" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel">
+            <input
+              matSliderThumb
+              name="spiciness"
+              #spiciness="ngModel"
+              [(ngModel)]="tasteProfile.spiciness"
+            >
+          </mat-slider>
+
+        </div>
+      </div>
+      <div>
+        <div class="flex items-start">
+          <div>
+          <span class="inline-flex justify-center items-center w-6 h-6 rounded bg-green-500 text-white font-medium text-sm">
+              2.
+          </span>
+          </div>
+
+          <p class="ml-4 md:ml-6 text-bold">
+            Đánh giá mức độ ăn mặn của bạn
+          </p>
+        </div>
+
+        <div class="flex items-start mt-3">
+
+          <mat-slider min="0" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel">
+            <input
+              matSliderThumb
+              name="saltiness"
+              #saltiness="ngModel"
+              [(ngModel)]="tasteProfile.saltiness"
+            >
+          </mat-slider>
+
+        </div>
+      </div>
+      <div>
+        <div class="flex items-start">
+          <div>
+          <span class="inline-flex justify-center items-center w-6 h-6 rounded bg-green-500 text-white font-medium text-sm">
+              3.
+          </span>
+          </div>
+
+          <p class="ml-4 md:ml-6 text-bold">
+            Đánh giá mức độ ăn ngọt của bạn
+          </p>
+        </div>
+
+        <div class="flex items-start mt-3">
+
+          <mat-slider min="0" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel">
+            <input
+              matSliderThumb
+              name="sweetness"
+              #sweetness="ngModel"
+              [(ngModel)]="tasteProfile.sweetness"
+            >
+          </mat-slider>
+
+        </div>
+      </div>
+      <div>
+        <div class="flex items-start">
+          <div>
+          <span class="inline-flex justify-center items-center w-6 h-6 rounded bg-green-500 text-white font-medium text-sm">
+              4.
+          </span>
+          </div>
+
+          <p class="ml-4 md:ml-6 text-bold">
+            Bạn có thích ăn nhiều sốt?
+          </p>
+        </div>
+
+        <div class="flex items-start mt-3">
+
+          <mat-slider min="0" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel">
+            <input
+              matSliderThumb
+              name="sauce"
+              #sauce="ngModel"
+              [(ngModel)]="tasteProfile.sauce"
+            >
+          </mat-slider>
+
+        </div>
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
+        >
+          Xác nhận
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
