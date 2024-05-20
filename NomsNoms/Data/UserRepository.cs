@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NomsNoms.DTOs;
@@ -32,7 +33,8 @@ namespace NomsNoms.Data
             {
                 var list = await _context.Users.Include(u => u.UserRoles).ThenInclude(u => u.AppRole).Include(u => u.UserPhoto).ToListAsync();
                 users = _mapper.Map<List<UserAdminDTO>>(list);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -154,7 +156,7 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
         }
-        public async Task Follow(string email,int userid)
+        public async Task Follow(string email, int userid)
         {
             try
             {
@@ -215,7 +217,7 @@ namespace NomsNoms.Data
                         Name = user.UserName,
                         KnownAs = user.KnownAs,
                         ImageUrl = user.UserPhoto == null ? null : user.UserPhoto.Url
-                };
+                    };
                     followers.Add(follower);
                 }
                 return followers;
@@ -285,7 +287,7 @@ namespace NomsNoms.Data
                 {
                     AppUserId = userId,
                     SubscriptionId = subscriptionId,
-                    StartedDate= DateTime.UtcNow,
+                    StartedDate = DateTime.UtcNow,
                 };
                 await _context.UserSubscriptions.AddAsync(userSubscription);
                 return await _context.SaveChangesAsync() > 0;
@@ -355,7 +357,8 @@ namespace NomsNoms.Data
                 {
                     throw new Exception("User is not exist");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -372,10 +375,10 @@ namespace NomsNoms.Data
         {
             try
             {
-                
+
                 var userphoto = _mapper.Map<UserPhoto>(userPhotoDTO);
                 _context.Update(userphoto);
-                
+
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -442,12 +445,12 @@ namespace NomsNoms.Data
                 user.LastActive = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-                
+
         public async Task<List<UserProfileDTO>> GetSubberByCookId(string email)
         {
             try
@@ -485,11 +488,11 @@ namespace NomsNoms.Data
             await _context.UserFollows.AddAsync(userfollow);
             await _context.SaveChangesAsync();
         }
-        
+
         public async Task<SubscriptionUserDTO> GetUserSubscription(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-            if(user.SubscriptionId == null)
+            if (user.SubscriptionId == null)
             {
                 return null;
             }
@@ -547,21 +550,110 @@ namespace NomsNoms.Data
 
         public async Task<bool> HasLiked(string cookEmail, int userId)
         {
-            var cook= await _context.Users.FirstOrDefaultAsync(x => x.Email == cookEmail);
+            var cook = await _context.Users.FirstOrDefaultAsync(x => x.Email == cookEmail);
             var result = false;
             result = await _context.UserFollows.AnyAsync(x => x.SourceUserId == userId && x.TargetUserId == cook.Id);
             return result;
         }
-        
+
         public async Task SetTasteProfileUser(TasteProfileDTO tasteProfileDTO, string userEmail)
         {
             var user = await _context.Users.Where(u => u.Email == userEmail).FirstOrDefaultAsync();
-            
+
             var usertaste = _mapper.Map<TasteProfile>(tasteProfileDTO);
 
             user.TasteProfile = usertaste;
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
+
+
+        public async Task<List<UserMealPlanAdminDTO>> GetUserMealPlan()
+        {
+            List<UserMealPlanAdminDTO> list = null;
+            try
+            {
+                var l = await _context.UserMealPlans.Include(m => m.AppUser).Include(m => m.MeanPlan).ToListAsync();
+                list = _mapper.Map<List<UserMealPlanAdminDTO>>(l);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
+
+        public AppUser GetCookWithRecipes(int cookId)
+        {
+            return _context.Users
+                    .Include(u => u.Recipes)
+                    .Include(u => u.UserSubscriptions)
+                    .ThenInclude(us => us.Subscription)
+                    .Include(u => u.SubByUsers)
+                    .ThenInclude(asr => asr.Subscription)
+                    .FirstOrDefault(u => u.Id == cookId);
+        }
+
+        public CookSalaryDTO CalculateCookSalary(int cookId)
+        {
+            const decimal MoneyPerThousandViews = 5000m;
+            const decimal SubscriptionSharePercentage = 0.70m;
+
+            var cook = GetCookWithRecipes(cookId);
+
+            if (cook == null)
+            {
+                throw new Exception("Cook not found");
+            }
+
+            DateTime now = DateTime.Now;
+            int year = now.Year;
+            int month = now.Month;
+
+
+
+            try
+            {
+                var recipesInMonth = cook.Recipes
+                    .Where(recipe => recipe.CreateDate.Year == year && recipe.CreateDate.Month == month)
+                    .ToList();
+
+                int totalViews = recipesInMonth.Sum(recipe => recipe.NumberOfViews);
+                decimal moneyFromViews = (totalViews / 1000) * MoneyPerThousandViews;
+
+                //Khuc' nay` t k biet phai query bang nao nen t set cung la cai duration -30 ngay la ra ngay dang ky
+                decimal moneyFromSubscriptions = _context.AppUserSubscriptionRecords
+                    .Where(asr => asr.TargetUserId == cookId
+                                && asr.SubscriptionDuration.Year == year
+                                && asr.SubscriptionDuration.AddDays(-30).Month == month) 
+                    .Sum(asr => asr.Subscription.Price * SubscriptionSharePercentage);
+
+
+                decimal totalMoney = moneyFromViews + moneyFromSubscriptions;
+
+                return new CookSalaryDTO
+                {
+                    CookName = cook.KnownAs,
+                    SalaryReportName = "Lương tháng " + month,
+                    TotalMoneyReceived = totalMoney,
+                    MoneyFromViews = moneyFromViews,
+                    MoneyFromSubscriptions = moneyFromSubscriptions
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<CookSalaryDTO>> GetCooksSalaries()
+        {
+            var cooks = await _context.Users.Where(user => user.UserRoles.Any(role => role.RoleId == 3)).ToListAsync();
+
+            var cookSalaries = cooks.Select(cook => CalculateCookSalary(cook.Id)).ToList();
+
+            return cookSalaries;
+        }
+
     }
 }

@@ -15,11 +15,13 @@ namespace NomsNoms.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IRecipeRepository _recipeRepository;
-        public AdminController(IUserRepository userRepository, IMapper mapper, IRecipeRepository recipeRepository) 
+        private readonly ITransactionRepository _transactionRepository;
+        public AdminController(IUserRepository userRepository, IMapper mapper, IRecipeRepository recipeRepository, ITransactionRepository transactionRepository) 
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _recipeRepository = recipeRepository;
+            _transactionRepository = transactionRepository;
         }
 
         [HttpGet("users")]
@@ -163,6 +165,21 @@ namespace NomsNoms.Controllers
 
             await _recipeRepository.SetTatseProfileAndStatus(recipeId, tp);
             return Ok();
+        }
+        [HttpGet("transactions")]
+        public async Task<IActionResult> GetAllTransaction()
+        {
+            return Ok(await _transactionRepository.GetAllTransactionAdmin());
+        }
+        [HttpGet("meal-plan/subscription")]
+        public async Task<IActionResult> GetAllUserMealPlan()
+        {
+            return Ok(await _userRepository.GetUserMealPlan());
+        }
+        [HttpGet("users/cook-salary")]
+        public async Task<IActionResult> GetCookSalaries()
+        {
+            return Ok(await _userRepository.GetCooksSalaries());
         }
     }
 }
