@@ -65,11 +65,11 @@ namespace NomsNoms.Helpers
             CreateMap<TasteProfile, TasteProfileDTO>()
                 .ReverseMap();
             CreateMap<Transaction, TransactionAdminDTO>()
-                .ForMember(dest => dest.Sender, opt => opt.MapFrom(src => src.Sender.KnownAs))
+                .ForMember(dest => dest.Sender, opt => opt.MapFrom(src => src.Sender.Email))
                 .ReverseMap();
-            CreateMap<UserMealPlan, UserMealPlanAdminDTO>()
-                .ForMember(dest => dest.AppUserName, opt => opt.MapFrom(src => src.AppUser.KnownAs))
-                .ForMember(dest => dest.MealPlanSubscriptionId, opt => opt.MapFrom(src => src.MeanPlan.Id))
+            CreateMap<UserMealPlanSubscriptions, UserMealPlanAdminDTO>()
+                .ForMember(dest => dest.AppUserEmail, opt => opt.MapFrom(src => src.AppUser.Email))
+                .ForMember(dest => dest.MealPlanSubscriptionId, opt => opt.MapFrom(src => src.MealPlanSubscription.Id))
                 .ReverseMap();
         }
     }

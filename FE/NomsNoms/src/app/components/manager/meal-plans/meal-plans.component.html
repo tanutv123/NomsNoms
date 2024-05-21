@@ -1,0 +1,34 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<div class="overflow-x-auto">
+  <button
+    type="button"
+    (click)="exportExcel()"
+    class="inline-block w-full rounded-lg bg-green-600 px-5 py-3 font-medium text-white sm:w-auto"
+  >
+    Xuất file Excel
+  </button>
+  <table datatable #userTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+    <tr>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Meal plan Id</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Người đăng ký</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Ngày tạo</th>
+    </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+    <tr *ngFor="let mp of mealPlans">
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+        {{mp.mealPlanSubscriptionId}}
+      </td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{mp.appUserEmail}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{mp.startedDate}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

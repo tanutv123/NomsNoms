@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using ClosedXML.Excel;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -573,7 +574,7 @@ namespace NomsNoms.Data
             List<UserMealPlanAdminDTO> list = null;
             try
             {
-                var l = await _context.UserMealPlans.Include(m => m.AppUser).Include(m => m.MeanPlan).ToListAsync();
+                var l = await _context.UserMealPlanSubscriptions.Include(m => m.AppUser).Include(m => m.MealPlanSubscription).ToListAsync();
                 list = _mapper.Map<List<UserMealPlanAdminDTO>>(l);
             }
             catch (Exception ex)
@@ -581,6 +582,30 @@ namespace NomsNoms.Data
                 throw new Exception(ex.Message);
             }
             return list;
+        }
+
+        public async Task<XLWorkbook> ExportUserMealPlanList()
+        {
+            var mealPlans = await GetUserMealPlan();
+            var workbook = new XLWorkbook();
+            var worksheet = workbook.AddWorksheet("Meal Plans");
+
+            // Thêm tiêu đề cho các cột
+            worksheet.Cell(1, 1).Value = "Gói meal plan Id";
+            worksheet.Cell(1, 2).Value = "Người đăng ký";
+            worksheet.Cell(1, 3).Value = "Ngày tạo";
+
+            int currentRow = 2;
+            foreach (var mp in mealPlans)
+            {
+                worksheet.Cell(currentRow, 1).Value = mp.MealPlanSubscriptionId;
+                worksheet.Cell(currentRow, 2).Value = mp.AppUserEmail;
+                worksheet.Cell(currentRow, 3).Value = mp.StartedDate;
+                currentRow++;
+            }
+            worksheet.Columns().AdjustToContents();
+            worksheet.Rows().AdjustToContents();
+            return workbook;
         }
 
         public AppUser GetCookWithRecipes(int cookId)
@@ -596,7 +621,6 @@ namespace NomsNoms.Data
 
         public CookSalaryDTO CalculateCookSalary(int cookId)
         {
-            const decimal MoneyPerThousandViews = 5000m;
             const decimal SubscriptionSharePercentage = 0.70m;
 
             var cook = GetCookWithRecipes(cookId);
@@ -618,26 +642,28 @@ namespace NomsNoms.Data
                     .Where(recipe => recipe.CreateDate.Year == year && recipe.CreateDate.Month == month)
                     .ToList();
 
-                int totalViews = recipesInMonth.Sum(recipe => recipe.NumberOfViews);
-                decimal moneyFromViews = (totalViews / 1000) * MoneyPerThousandViews;
-
                 //Khuc' nay` t k biet phai query bang nao nen t set cung la cai duration -30 ngay la ra ngay dang ky
-                decimal moneyFromSubscriptions = _context.AppUserSubscriptionRecords
-                    .Where(asr => asr.TargetUserId == cookId
-                                && asr.SubscriptionDuration.Year == year
-                                && asr.SubscriptionDuration.AddDays(-30).Month == month) 
-                    .Sum(asr => asr.Subscription.Price * SubscriptionSharePercentage);
+                //decimal moneyFromSubscriptions = _context.AppUserSubscriptionRecords
+                //    .Where(asr => asr.TargetUserId == cookId
+                //                && asr.SubscriptionDuration.Year == year
+                //                && asr.SubscriptionDuration.AddDays(-30).Month == month) 
+                //    .Sum(asr => asr.Subscription.Price * SubscriptionSharePercentage);
+
+                decimal moneySubscriptions = _context.UserSubscriptions.Include(x => x.Subscription)
+                    .Where(x => x.Subscription.Id == cook.SubscriptionId && x.StartedDate.Month == month && x.StartedDate.Year == year)
+                    .Sum(x => x.Subscription.Price * SubscriptionSharePercentage);
 
 
-                decimal totalMoney = moneyFromViews + moneyFromSubscriptions;
+                decimal totalMoney = moneySubscriptions;
 
                 return new CookSalaryDTO
                 {
                     CookName = cook.KnownAs,
+                    CookEmail = cook.Email,
+                    CookPhoneNumber = cook.PhoneNumber,
                     SalaryReportName = "Lương tháng " + month,
                     TotalMoneyReceived = totalMoney,
-                    MoneyFromViews = moneyFromViews,
-                    MoneyFromSubscriptions = moneyFromSubscriptions
+                    MoneyFromSubscriptions = moneySubscriptions
                 };
             }
             catch (Exception ex)
@@ -648,12 +674,41 @@ namespace NomsNoms.Data
 
         public async Task<List<CookSalaryDTO>> GetCooksSalaries()
         {
-            var cooks = await _context.Users.Where(user => user.UserRoles.Any(role => role.RoleId == 3)).ToListAsync();
+            var cooks = await _context.Users.Where(user => user.UserRoles.Any(role => role.RoleId == 1)).ToListAsync();
 
             var cookSalaries = cooks.Select(cook => CalculateCookSalary(cook.Id)).ToList();
 
-            return cookSalaries;
+            return cookSalaries.Where(x => x.TotalMoneyReceived > 0).ToList();
         }
 
+        public async Task<XLWorkbook> ExportSalaryList()
+        {
+            var salaryList = await GetCooksSalaries();
+            var workbook = new XLWorkbook();
+            var worksheet = workbook.AddWorksheet("Danh sách đăng ký hội viên");
+
+            // Thêm tiêu đề cho các cột
+            worksheet.Cell(1, 1).Value = "Tên";
+            worksheet.Cell(1, 2).Value = " Email";
+            worksheet.Cell(1, 3).Value = "Số điện thoại";
+            worksheet.Cell(1, 4).Value = "Nội dung";
+            worksheet.Cell(1, 5).Value = "Tổng tiền phải trả";
+            worksheet.Cell(1, 6).Value = "Tiền từ gói hội viên";
+
+            int currentRow = 2;
+            foreach (var salary in salaryList)
+            {
+                worksheet.Cell(currentRow, 1).Value = salary.CookName;
+                worksheet.Cell(currentRow, 2).Value = salary.CookEmail;
+                worksheet.Cell(currentRow, 3).Value = salary.CookPhoneNumber;
+                worksheet.Cell(currentRow, 4).Value = salary.SalaryReportName;
+                worksheet.Cell(currentRow, 5).Value = salary.TotalMoneyReceived;
+                worksheet.Cell(currentRow, 6).Value = salary.MoneyFromSubscriptions;
+                currentRow++;
+            }
+            worksheet.Columns().AdjustToContents();
+            worksheet.Rows().AdjustToContents();
+            return workbook;
+        }
     }
 }

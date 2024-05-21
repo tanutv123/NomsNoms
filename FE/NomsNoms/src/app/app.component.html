@@ -2,8 +2,8 @@
   <h3>Loading...</h3>
 </ngx-spinner>
 <ng-container *ngIf="(accountService.currentUser$ | async) as user">
-  <app-taste-test *ngIf="user.tasteProfileId == 0 && user.roles !== 'Admin'"></app-taste-test>
-  <ng-container *ngIf="user.tasteProfileId != 0 || user.roles == 'Admin'">
+  <app-taste-test *ngIf="user.tasteProfileId == 0 && user.roles !== 'Admin' && user.roles !== 'Manager'"></app-taste-test>
+  <ng-container *ngIf="user.tasteProfileId != 0 || user.roles == 'Admin' || user.roles == 'Manager'">
     <app-nav-bar></app-nav-bar>
     <router-outlet ></router-outlet>
   </ng-container>
