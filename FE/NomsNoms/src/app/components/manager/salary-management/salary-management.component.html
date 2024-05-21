@@ -1,0 +1,40 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<div class="overflow-x-auto">
+  <button
+    type="button"
+    (click)="exportExcel()"
+    class="inline-block w-full rounded-lg bg-green-600 px-5 py-3 font-medium text-white sm:w-auto"
+  >
+    Xuất file Excel
+  </button>
+  <table datatable #userTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+    <tr>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tên người dùng</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Email</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Số điện thoại</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nội dung</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tổng tiền</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tiền từ gói hội viên</th>
+    </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+    <tr *ngFor="let salary of salaryList">
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+        {{salary.cookName}}
+      </td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{salary.cookEmail}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{salary.cookPhoneNumber}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{salary.salaryReportName}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{salary.totalMoneyReceived}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{salary.moneyFromSubscriptions}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

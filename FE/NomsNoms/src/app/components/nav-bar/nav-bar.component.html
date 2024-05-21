@@ -92,6 +92,23 @@
                 </div>
               </div>
             </div>
+            <div *appHasRole="'Manager'" class="origin-top-right absolute z-50 right-0 mt-2 w-56 rounded-md shadow-lg">
+              <div  class="rounded-md bg-white ring-1 ring-black ring-opacity-5" *ngIf="showDropdown">
+                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <a routerLink="/profile-edit/{{user.email}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Cài đặt tài khoản</a>
+                  <a routerLink="/transactions" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Quản lý giao dịch</a>
+                  <a routerLink="/meal-plans" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Quản lý danh sách đăng ký meal plan</a>
+                  <a routerLink="/salary" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Quản lý tiền lương</a>
+                  <a (click)="logout()" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                     role="menuitem">Đăng xuất</a>
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <div class="block md:hidden">

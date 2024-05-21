@@ -64,6 +64,9 @@ import {MatSliderModule} from "@angular/material/slider";
 import { TasteProfileComponent } from './components/admin/recipe-management/modal/taste-profile/taste-profile.component';
 import {ModalModule} from "ngx-bootstrap/modal";
 import {MatDialogModule} from "@angular/material/dialog";
+import { TransactionsComponent } from './components/manager/transactions/transactions.component';
+import { MealPlansComponent } from './components/manager/meal-plans/meal-plans.component';
+import { SalaryManagementComponent } from './components/manager/salary-management/salary-management.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -110,7 +113,10 @@ register();
     Top10UserComponent,
     PendingsComponent,
     TasteTestComponent,
-    TasteProfileComponent
+    TasteProfileComponent,
+    TransactionsComponent,
+    MealPlansComponent,
+    SalaryManagementComponent
   ],
   imports: [
     BrowserModule,

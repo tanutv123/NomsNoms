@@ -1,0 +1,39 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<div class="overflow-x-auto">
+  <button
+    type="button"
+    (click)="exportTransactionList()"
+    class="inline-block w-full rounded-lg bg-green-600 px-5 py-3 font-medium text-white sm:w-auto"
+    >
+    Xuất file Excel
+  </button>
+  <table datatable #userTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+    <tr>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Id</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nội dung</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Ngày tạo</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tổng tiền</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Người gửi</th>
+      <th class="px-4 py-2"></th>
+    </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+    <tr *ngFor="let transaction of transactions">
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+        {{transaction.id}}
+      </td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{transaction.reportName}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{transaction.createdDate}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{transaction.totalPrice}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{transaction.sender}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

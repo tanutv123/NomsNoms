@@ -30,6 +30,10 @@ import {PendingsComponent} from "./components/admin/recipe-management/pendings/p
 import {authGuard} from "./_guards/auth.guard";
 import {adminGuard} from "./_guards/admin.guard";
 import {TasteTestComponent} from "./components/taste-test/taste-test.component";
+import {TransactionsComponent} from "./components/manager/transactions/transactions.component";
+import {managerGuard} from "./_guards/manager.guard";
+import {MealPlansComponent} from "./components/manager/meal-plans/meal-plans.component";
+import {SalaryManagementComponent} from "./components/manager/salary-management/salary-management.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -63,6 +67,9 @@ const routes: Routes = [
       {path: 'profile-edit/:email', component: ProfileEditComponent, resolve: {user: userDetailResolver}},
       {path: 'my-recipe', component: MyRecipeComponent},
       {path: 'meal-plan-bought', component: MealPlanBoughtComponent},
+      {path: 'transactions', component: TransactionsComponent, canActivate: [managerGuard]},
+      {path: 'meal-plans', component: MealPlansComponent, canActivate: [managerGuard]},
+      {path: 'salary', component: SalaryManagementComponent, canActivate: [managerGuard]},
       {path: 'pendings', component: PendingsComponent},
       {path: 'recipe-admin/:id', component: RecipeDetailAdminComponent,
       resolve: {recipe: recipeAdminResolver}

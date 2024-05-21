@@ -1,4 +1,5 @@
-﻿using NomsNoms.DTOs;
+﻿using ClosedXML.Excel;
+using NomsNoms.DTOs;
 using NomsNoms.Entities;
 
 namespace NomsNoms.Interfaces
@@ -37,6 +38,8 @@ namespace NomsNoms.Interfaces
         Task<SubscriptionPayment> GetPaymentIntent(long orderCode);
         Task SetTasteProfileUser(TasteProfileDTO tasteProfileDTO, string userEmail);
         Task<List<UserMealPlanAdminDTO>> GetUserMealPlan();
+        Task<XLWorkbook> ExportUserMealPlanList();
         Task<List<CookSalaryDTO>> GetCooksSalaries();
+        Task<XLWorkbook> ExportSalaryList();
     }
 }
