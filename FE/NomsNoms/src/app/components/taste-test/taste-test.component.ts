@@ -31,6 +31,7 @@ export class TasteTestComponent {
   }
 
   submitForm() {
+    console.log(this.tasteProfile);
     this.userService.setTasteProfile(this.tasteProfile).subscribe({
       next: _ => {
         this.toastr.success('Thành công. Vui lòng đăng nhập lại để có trải nghiệm tốt nhất');
