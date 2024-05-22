@@ -92,6 +92,7 @@ export class AccountService {
 
   logout() {
     localStorage.removeItem('user');
+    this.router.navigateByUrl('/');
     this.currentUserSource.next(null);
   }
 
