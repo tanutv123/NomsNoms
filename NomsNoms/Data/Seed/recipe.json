@@ -97,17 +97,17 @@
     ]
   },
   {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Description": "Bánh mì từ những nguyên liệu đơn giản",
-    "AppUserId": 3,
-    "RecipeComplexityId": 1,
-    "CreateDate": "2023-09-06",
-    "NumberOfViews": 2000,
-    "CompletionTime": 60,
-    "IsExclusive": false,
-    "Calories": 550,
+    "Title": "Hướng dẫn làm phở bò",
+    "Description": "Phở bò truyền thống Việt Nam",
+    "AppUserId": 4,
+    "RecipeComplexityId": 2,
+    "CreateDate": "2024-05-22",
+    "NumberOfViews": 0,
+    "CompletionTime": 90,
+    "Calories": 600,
+    "IsExclusive": true,
     "RecipeStatusId": 1,
-    "TasteProfileId": 4,
+    "TasteProfileId": 2,
     "RecipeImage": {
       "PublicId": "asp-net7/c6xswokamykw54sgplef",
       "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -115,52 +115,38 @@
     "RecipeCategories": [
       {
         "RecipeId": 2,
-        "CategoryId": 1
-      },
-      {
-        "RecipeId": 2,
-        "CategoryId": 2
+        "CategoryId": 5
       }
     ],
     "RecipeIngredients": [
       {
         "RecipeId": 2,
-        "IngredientId": 1,
-        "IngredientServing": 50
-      },
-      {
-        "RecipeId": 2,
-        "IngredientId": 2,
-        "IngredientServing": 100
-      },
-      {
-        "RecipeId": 2,
-        "IngredientId": 3,
-        "IngredientServing": 500
-      },
-      {
-        "RecipeId": 2,
-        "IngredientId": 4,
+        "IngredientId": 9,
         "IngredientServing": 150
       },
       {
         "RecipeId": 2,
-        "IngredientId": 5,
-        "IngredientServing": 45
+        "IngredientId": 10,
+        "IngredientServing": 200
       },
       {
         "RecipeId": 2,
-        "IngredientId": 6,
-        "IngredientServing": 510
+        "IngredientId": 11,
+        "IngredientServing": 300
       },
       {
         "RecipeId": 2,
-        "IngredientId": 7,
-        "IngredientServing": 15
+        "IngredientId": 12,
+        "IngredientServing": 20
       },
       {
         "RecipeId": 2,
-        "IngredientId": 8,
+        "IngredientId": 13,
+        "IngredientServing": 5
+      },
+      {
+        "RecipeId": 2,
+        "IngredientId": 14,
         "IngredientServing": 20
       }
     ],
@@ -168,12 +154,8 @@
       {
         "No": 1,
         "RecipeId": 2,
-        "Description": "Sơ chế các nguyên liệu",
+        "Description": "Hầm xương lấy nước dùng",
         "RecipeStepImages": [
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          },
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
             "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
@@ -183,7 +165,29 @@
       {
         "No": 2,
         "RecipeId": 2,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "Description": "Chuẩn bị nguyên liệu: thái thịt bò và sơ chế gia vị",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      },
+      {
+        "No": 3,
+        "RecipeId": 2,
+        "Description": "Pha chế nước dùng: nêm gia vị và thêm các loại hương liệu vào nồi nước dùng",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/c6xswokamykw54sgplef",
+            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+          }
+        ]
+      },
+      {
+        "No": 4,
+        "RecipeId": 2,
+        "Description": "Trụng bánh phở và thịt bò",
         "RecipeStepImages": [
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",

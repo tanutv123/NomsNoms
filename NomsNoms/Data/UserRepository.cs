@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using ClosedXML.Excel;
 using CloudinaryDotNet.Actions;
+using DocumentFormat.OpenXml;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NomsNoms.DTOs;
@@ -709,6 +710,31 @@ namespace NomsNoms.Data
             worksheet.Columns().AdjustToContents();
             worksheet.Rows().AdjustToContents();
             return workbook;
+        }
+
+        public async Task<float> CalculateIngredientCalories(int ingredientId, int weight)
+        {
+            var ingredient = await _context.Ingredients.Where(r => r.Id == ingredientId).FirstOrDefaultAsync();
+
+            var calories = (ingredient.Calories * weight) / ingredient.Weight;
+            return calories;
+        }
+        public async Task<float> CalculateRecipeCalories(int recipeId, List<IngredientDTO> ingredients)
+        {
+            var recipe = await _context.Recipes.Where(r => r.Id == recipeId).FirstOrDefaultAsync();
+
+            float totalRecipeCalories = 0;
+            foreach (var i in ingredients)
+            {
+                totalRecipeCalories += i.Calories;
+            }
+
+            recipe.Calories = (int) totalRecipeCalories;
+
+            _context.Recipes.Update(recipe);
+            await _context.SaveChangesAsync();
+            
+            return totalRecipeCalories;
         }
     }
 }
