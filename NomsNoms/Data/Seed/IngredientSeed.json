@@ -54,6 +54,42 @@
     "Calories": 7
   },
   {
+    "Name": "Xương Bò",
+    "Description": "Xương bò dùng để nấu nước dùng",
+    "Weight": 1000,
+    "Calories": 200
+  },
+  {
+    "Name": "Thịt Bò",
+    "Description": "Thịt bò thái mỏng dùng để nấu phở",
+    "Weight": 200,
+    "Calories": 250
+  },
+  {
+    "Name": "Bánh Phở",
+    "Description": "Bánh phở dẹt dùng cho món phở",
+    "Weight": 400,
+    "Calories": 300
+  },
+  {
+    "Name": "Quế",
+    "Description": "Quế thanh dùng để thêm hương vị thơm",
+    "Weight": 15,
+    "Calories": 0
+  },
+  {
+    "Name": "Hồi",
+    "Description": "Hồi hình sao dùng để gia vị",
+    "Weight": 3,
+    "Calories": 0
+  },
+  {
+    "Name": "Thảo Quả",
+    "Description": "Hạt thảo quả dùng cho mùi thơm của phở",
+    "Weight": 5,
+    "Calories": 0
+  },
+  {
     "Name": "Cà rốt",
     "Description": "Cà rốt là một loại rau phổ biến, có màu sắc từ cam đến đỏ. Chúng thường được dùng trong nấu ăn và là nguồn cung cấp vitamin A tốt.",
     "Weight": 15.13,
@@ -99,7 +135,13 @@
     "Name": "Dưa chuột",
     "Description": "Dưa chuột là một loại rau mát, thường được dùng làm salad hoặc ăn kèm với các món khác. Chúng chứa nhiều nước và cung cấp một lượng nhỏ vitamin K.",
     "Weight": 15.13,
-    "Calories": 15.54
+    "Calories": 3.03
+  },
+  {
+    "Name": "Dưa leo",
+    "Description": "Dưa leo, mát và giúp cung cấp nước cho cơ thể.",
+    "Weight": 150,
+    "Calories": 12
   },
   {
     "Name": "Cần tây",
@@ -112,5 +154,402 @@
     "Description": "Bí ngô là một loại rau phổ biến, thường được dùng trong nấu ăn và làm bánh. Chúng cung cấp nhiều vitamin A và chất chống oxi hóa.",
     "Weight": 15.13,
     "Calories": 26.00
+  },
+  {
+    "Name": "Ức gà",
+    "Description": "Thịt gà thơm ngon, nguồn protein dồi dào.",
+    "Weight": 150,
+    "Calories": 247
+  },
+  {
+    "Name": "Đùi gà",
+    "Description": "Thịt gà thơm ngon, nguồn protein dồi dào.",
+    "Weight": 150,
+    "Calories": 355
+  },
+  {
+    "Name": "Cánh gà",
+    "Description": "Thịt gà thơm ngon, nguồn protein dồi dào.",
+    "Weight": 150,
+    "Calories": 230
+  },
+  {
+    "Name": "Da gà",
+    "Description": "Thịt gà thơm ngon, nguồn protein dồi dào.",
+    "Weight": 150,
+    "Calories": 310
+  },
+  {
+    "Name": "Thăn bò",
+    "Description": "Thịt bò mềm, giàu sắt và zinc.",
+    "Weight": 200,
+    "Calories": 534
+  },
+  {
+    "Name": "Bắp bò",
+    "Description": "Thịt bò mềm, giàu sắt và zinc.",
+    "Weight": 200,
+    "Calories": 402
+  },
+  {
+    "Name": "Dẻ sườn bò",
+    "Description": "Thịt bò mềm, giàu sắt và zinc.",
+    "Weight": 200,
+    "Calories": 474
+  },
+  {
+    "Name": "Thịt bò xay",
+    "Description": "Thịt bò mềm, giàu sắt và zinc.",
+    "Weight": 200,
+    "Calories": 480
+  },
+  {
+    "Name": "Cá hồi",
+    "Description": "Cá hồi béo ngậy, nguồn omega-3 tuyệt vời.",
+    "Weight": 180,
+    "Calories": 206
+  },
+  // ... Thêm các nguyên liệu tương tự ...
+  {
+    "Name": "Nấm hương",
+    "Description": "Nấm hương thơm, tốt cho sức khỏe.",
+    "Weight": 10,
+    "Calories": 22
+  },
+  {
+    "Name": "Đậu phụ",
+    "Description": "Đậu phụ, nguồn protein từ thực vật.",
+    "Weight": 100,
+    "Calories": 144
+  },
+  {
+    "Name": "Rau mầm",
+    "Description": "Rau mầm đa dạng, giàu vitamin và khoáng chất.",
+    "Weight": 30,
+    "Calories": 29
+  },
+  {
+    "Name": "Táo xanh",
+    "Description": "Táo xanh giòn, vị chua nhẹ, tốt cho tiêu hóa.",
+    "Weight": 150,
+    "Calories": 77
+  },
+  {
+    "Name": "Dâu tây",
+    "Description": "Dâu tây thơm ngọt, nguồn vitamin C dồi dào.",
+    "Weight": 10,
+    "Calories": 4
+  },
+  {
+    "Name": "Bơ",
+    "Description": "Quả bơ béo ngậy, giàu chất xơ và vitamin E.",
+    "Weight": 200,
+    "Calories": 322
+  },
+  {
+    "Name": "Quinoa",
+    "Description": "Quinoa, hạt ngũ cốc giàu protein, không gluten.",
+    "Weight": 100,
+    "Calories": 120
+  },
+  {
+    "Name": "Gạo lứt",
+    "Description": "Gạo lứt, ngũ cốc nguyên hạt, giàu chất xơ.",
+    "Weight": 100,
+    "Calories": 111
+  },
+  {
+    "Name": "Lúa mạch",
+    "Description": "Lúa mạch, ngũ cốc giàu chất xơ, giúp tiêu hóa.",
+    "Weight": 100,
+    "Calories": 123
+  },
+  {
+    "Name": "Hạt dẻ cười",
+    "Description": "Hạt dẻ cười giàu axit folic và các loại đạm.",
+    "Weight": 100,
+    "Calories": 567
+  },
+  {
+    "Name": "Hạt bí ngô",
+    "Description": "Hạt bí ngô, giàu magiê, tốt cho tim mạch.",
+    "Weight": 30,
+    "Calories": 158
+  },
+  {
+    "Name": "Hạt chia",
+    "Description": "Hạt chia, nguồn omega-3 và chất xơ cao.",
+    "Weight": 10,
+    "Calories": 49
+  },
+  {
+    "Name": "Hành tím",
+    "Description": "Hành tím thơm, gia vị không thể thiếu trong nấu nướng.",
+    "Weight": 100,
+    "Calories": 40
+  },
+  {
+    "Name": "Cần giòn",
+    "Description": "Cần giòn, rau xanh giòn mát, giàu vitamin.",
+    "Weight": 30,
+    "Calories": 17
+  },
+  {
+    "Name": "Hạt tiêu đen",
+    "Description": "Hạt tiêu đen kích thích vị giác, tốt cho tiêu hóa.",
+    "Weight": 2,
+    "Calories": 5
+  },
+  {
+    "Name": "Chanh không hạt",
+    "Description": "Chanh không hạt, vị chua tinh tế, giàu vitamin C.",
+    "Weight": 100,
+    "Calories": 29
+  },
+  {
+    "Name": "Xà lách Romaine",
+    "Description": "Xà lách Romaine, giòn và ngọt, giàu vitamin A và K.",
+    "Weight": 85,
+    "Calories": 15
+  },
+  {
+    "Name": "Rau dền",
+    "Description": "Rau dền xanh mát, giàu sắt và vitamin.",
+    "Weight": 30,
+    "Calories": 22
+  },
+  {
+    "Name": "Nấm linh chi",
+    "Description": "Nấm linh chi, tốt cho sức khỏe, hỗ trợ miễn dịch.",
+    "Weight": 5,
+    "Calories": 15
+  },
+  {
+    "Name": "Rau bina",
+    "Description": "Rau bina xanh đậm, nguồn sắt và vitamin K dồi dào.",
+    "Weight": 30,
+    "Calories": 23
+  },
+  {
+    "Name": "Măng tây",
+    "Description": "Măng tây xanh, giàu vitamin và chất xơ.",
+    "Weight": 100,
+    "Calories": 20
+  },
+  {
+    "Name": "Hạt óc chó",
+    "Description": "Hạt óc chó giàu acid béo omega-3, tốt cho não bộ.",
+    "Weight": 30,
+    "Calories": 200
+  },
+  {
+    "Name": "Cam",
+    "Description": "Quả cam ngọt, giàu vitamin C và chất chống oxy hóa.",
+    "Weight": 150,
+    "Calories": 80
+  },
+  {
+    "Name": "Socola đen",
+    "Description": "Socola đen, ít đường, giàu chất chống oxy hóa.",
+    "Weight": 10,
+    "Calories": 55
+  },
+  {
+    "Name": "Yến mạch",
+    "Description": "Yến mạch nguyên hạt, giàu chất xơ và protein.",
+    "Weight": 50,
+    "Calories": 190
+  },
+  {
+    "Name": "Sữa chua không đường",
+    "Description": "Sữa chua tự nhiên, giàu probiotics, tốt cho tiêu hóa.",
+    "Weight": 100,
+    "Calories": 59
+  },
+  {
+    "Name": "Hạt điều",
+    "Description": "Hạt điều béo ngọt, nguồn chất béo tốt cho tim mạch.",
+    "Weight": 30,
+    "Calories": 165
+  },
+  {
+    "Name": "Mật ong",
+    "Description": "Mật ong tự nhiên, ngọt, với khả năng kháng khuẩn.",
+    "Weight": 21,
+    "Calories": 64
+  },
+  {
+    "Name": "Lá bạc hà",
+    "Description": "Lá bạc hà mát, thêm hương vị tươi mới cho món ăn.",
+    "Weight": 2,
+    "Calories": 1
+  },
+  {
+    "Name": "Chuối",
+    "Description": "Quả chuối chín, nguồn cung cấp potassium dồi dào.",
+    "Weight": 118,
+    "Calories": 105
+  },
+  {
+    "Name": "Bắp",
+    "Description": "Bắp, nguồn cung cấp carbohydrate và chất xơ.",
+    "Weight": 90,
+    "Calories": 80
+  },
+  {
+    "Name": "Bí đỏ",
+    "Description": "Bí đỏ, giàu beta-carotene và vitamin A.",
+    "Weight": 150,
+    "Calories": 30
+  },
+  {
+    "Name": "Hành lá",
+    "Description": "Hành lá, thêm hương vị và màu sắc cho món ăn.",
+    "Weight": 15,
+    "Calories": 5
+  },
+  {
+    "Name": "Thanh long",
+    "Description": "Thanh long màu hồng, giàu chất xơ và vitamin C.",
+    "Weight": 150,
+    "Calories": 60
+  },
+  {
+    "Name": "Hạt tiêu xanh",
+    "Description": "Hạt tiêu xanh, vị cay nhẹ, kích thích tiêu hóa.",
+    "Weight": 2,
+    "Calories": 5
+  },
+  {
+    "Name": "Hạt sen",
+    "Description": "Hạt sen, thêm vị ngọt dễ chịu cho món ăn.",
+    "Weight": 30,
+    "Calories": 25
+  },
+  {
+    "Name": "Gừng",
+    "Description": "Gừng, gia vị cay nồng, tốt cho sức khỏe.",
+    "Weight": 10,
+    "Calories": 8
+  },
+  {
+    "Name": "Đậu nành",
+    "Description": "Đậu nành, nguồn protein thực vật dồi dào.",
+    "Weight": 100,
+    "Calories": 122
+  },
+  {
+    "Name": "Đậu lăng",
+    "Description": "Đậu lăng, giàu chất xơ và protein, tốt cho tiêu hóa.",
+    "Weight": 100,
+    "Calories": 116
+  },
+  {
+    "Name": "Hạt mắc ca",
+    "Description": "Hạt mắc ca, nguồn chất béo không bão hòa đơn dồi dào.",
+    "Weight": 30,
+    "Calories": 203
+  },
+  {
+    "Name": "Khoai lang",
+    "Description": "Khoai lang, giàu vitamin A và B6.",
+    "Weight": 100,
+    "Calories": 86
+  },
+  {
+    "Name": "Kiwi",
+    "Description": "Kiwi, giàu vitamin C và E, tốt cho da.",
+    "Weight": 69,
+    "Calories": 42
+  },
+  {
+    "Name": "Dưa hấu",
+    "Description": "Dưa hấu, giải khát tốt, cung cấp vitamin C và A.",
+    "Weight": 300,
+    "Calories": 90
+  },
+  {
+    "Name": "Tôm",
+    "Description": "Tôm, nguồn protein và selenium.",
+    "Weight": 100,
+    "Calories": 99
+  },
+  {
+    "Name": "Cua",
+    "Description": "Cua, giàu protein và omega-3.",
+    "Weight": 100,
+    "Calories": 97
+  },
+  {
+    "Name": "Ốc",
+    "Description": "Ốc, nguồn canxi và sắt tốt.",
+    "Weight": 100,
+    "Calories": 90
+  },
+  {
+    "Name": "Sò điệp",
+    "Description": "Sò điệp, giàu omega-3 và vitamin B12.",
+    "Weight": 100,
+    "Calories": 88
+  },
+  {
+    "Name": "Cải bắp",
+    "Description": "Cải bắp, giàu chất xơ và vitamin K.",
+    "Weight": 89,
+    "Calories": 25
+  },
+  {
+    "Name": "Củ cải đỏ",
+    "Description": "Củ cải đỏ, chứa nhiều chất chống oxy hóa.",
+    "Weight": 100,
+    "Calories": 43
+  },
+  {
+    "Name": "Bắp cải",
+    "Description": "Bắp cải, giàu vitamin C và K.",
+    "Weight": 89,
+    "Calories": 25
+  },
+  {
+    "Name": "Bông cải xanh",
+    "Description": "Bông cải xanh, giàu vitamin C và chất xơ.",
+    "Weight": 148,
+    "Calories": 50
+  },
+  {
+    "Name": "Ớt chuông đỏ",
+    "Description": "Ớt chuông đỏ, nguồn cung cáp vitamin C cao.",
+    "Weight": 148,
+    "Calories": 46
+  },
+  {
+    "Name": "Ớt chuông xanh",
+    "Description": "Ớt chuông xanh, giàu chất chống oxy hóa.",
+    "Weight": 119,
+    "Calories": 24
+  },
+  {
+    "Name": "Cải kale",
+    "Description": "Cải kale, chứa nhiều vitamin K, A, và C.",
+    "Weight": 67,
+    "Calories": 33
+  },
+  {
+    "Name": "Hành hoa",
+    "Description": "Hành hoa, gia vị tốt cho sức khỏe tim mạch.",
+    "Weight": 100,
+    "Calories": 32
+  },
+  {
+    "Name": "Mướp đắng",
+    "Description": "Mướp đắng, tốt cho việc kiểm soát đường huyết.",
+    "Weight": 124,
+    "Calories": 17
+  },
+  {
+    "Name": "Nha đam",
+    "Description": "Nha đam, giúp giảm viêm và làm dịu da.",
+    "Weight": 100,
+    "Calories": 30
   }
 ]
