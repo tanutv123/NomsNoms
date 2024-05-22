@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {RecipeAdmin} from "../_model/Admin/recipeAdmin.model";
 import {Recipe} from "../_model/recipe.model";
 import {TasteProfile} from "../_model/tasteProfile.model";
+import {Register} from "../_model/register.model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class RecipeAdminService {
     return this.http.delete(this.baseUrl + 'admin/recipes/delete-recipe', {
       body: recipe
     });
+  }
+
+  createUser(register: Register) {
+    return this.http.post(this.baseUrl + 'admin/users/create-user', register);
   }
 }

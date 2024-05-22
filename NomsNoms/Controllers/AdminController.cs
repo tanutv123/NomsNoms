@@ -46,7 +46,7 @@ namespace NomsNoms.Controllers
                 {
                     Email = userDTO.Email,
                     PhoneNumber = userDTO.PhoneNumber,
-                    KnownAs = userDTO.Name,
+                    KnownAs = userDTO.KnownAs,
                     UserName = userDTO.Email,
                     Introduction = userDTO.Introduction,
                     Status = 1,
@@ -55,21 +55,21 @@ namespace NomsNoms.Controllers
                 };
                 await _userRepository.CreateUserAdmin(user);
 
-                var userRole = new AppUserRole
-                {
-                    UserId = user.Id,
-                    RoleId = userDTO.Role
-                };
+                //var userRole = new AppUserRole
+                //{
+                //    UserId = user.Id,
+                //    RoleId = userDTO.Role
+                //};
 
-                user.UserRoles = new List<AppUserRole> { userRole };
+                //user.UserRoles = new List<AppUserRole> { userRole };
 
-                user.UserPhoto = new UserPhoto
-                {
-                    AppUserId = user.Id,
-                    Url = "https://randomuser.me/api/portraits/men/80.jpg"
-                };
+                //user.UserPhoto = new UserPhoto
+                //{
+                //    AppUserId = user.Id,
+                //    Url = "https://randomuser.me/api/portraits/men/80.jpg"
+                //};
 
-                await _userRepository.UpdateUserAdmin(user);
+                //await _userRepository.UpdateUserAdmin(user);
                 return Ok(user);
             }
             catch (Exception ex)

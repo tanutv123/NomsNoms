@@ -1,7 +1,9 @@
 <section>
   <app-banner></app-banner>
   <app-filter></app-filter>
-  <app-recommend *ngIf="(accountService.currentUser$ | async)"></app-recommend>
+  <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+    <app-recommend *ngIf="user.roles === 'Client'"></app-recommend>
+  </ng-container>
   <app-trending [recipes]="recipes"></app-trending>
   <app-top-10-user [topFollows]="topFollow"></app-top-10-user>
 </section>

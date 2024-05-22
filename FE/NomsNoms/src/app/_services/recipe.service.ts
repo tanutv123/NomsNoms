@@ -109,4 +109,7 @@ export class RecipeService {
   getUserProfileRecipe(email: string) {
     return this.http.get<Recipe[]>(this.baseUrl + 'recipe/profile-recipe/' + email);
   }
+  getRecommendRecipes() {
+    return this.http.get<Recipe[]>(this.baseUrl + 'recipe/recommendRecipe');
+  }
 }

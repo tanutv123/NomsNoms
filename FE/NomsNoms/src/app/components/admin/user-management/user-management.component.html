@@ -5,6 +5,12 @@
 -->
 
 <div class="overflow-x-auto">
+  <a
+    routerLink="/create-user"
+    class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
+  >
+    Thêm người dùng
+  </a>
   <table datatable #userTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
     <thead class="ltr:text-left rtl:text-right">
     <tr>

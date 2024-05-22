@@ -10,7 +10,7 @@
         </h1>
         <form #registerForm="ngForm" (ngSubmit)="registerForm.valid && onSubmit()" class="space-y-4 md:space-y-6">
           <div class="row mt-5" *ngIf="validationErrors.length >= 0">
-            <ul class="text-danger">
+            <ul class="text-red-600">
               <li *ngFor="let error of validationErrors">
                 {{error}}
               </li>
@@ -20,7 +20,7 @@
             <label
               for="email"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Email của bạn
+            >Email
             </label>
             <input
               type="email"
@@ -38,7 +38,7 @@
             <label for="knownAs"
                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Tên của bạn
+              Tên
             </label>
             <input
               type="text"
@@ -121,9 +121,6 @@
           >
             Đăng ký
           </button>
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Đã có tài khoản? <a routerLink="/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
-          </p>
         </form>
       </div>
     </div>
