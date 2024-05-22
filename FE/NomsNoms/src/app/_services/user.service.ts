@@ -47,6 +47,6 @@ export class UserService {
   }
 
   setTasteProfile(tasteProfile: TasteProfile) {
-    return this.http.put(this.baseUrl + 'user/usertasteprofile/set', {body: tasteProfile});
+    return this.http.put(this.baseUrl + 'user/usertasteprofile/set', tasteProfile);
   }
 }
