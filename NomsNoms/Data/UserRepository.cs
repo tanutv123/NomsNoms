@@ -563,7 +563,7 @@ namespace NomsNoms.Data
         }
 
         public async Task SetTasteProfileUser(TasteProfileDTO tasteProfileDTO, string userEmail)
-        {
+            {
             var user = await _context.Users.Where(u => u.Email == userEmail).FirstOrDefaultAsync();
 
             var usertaste = _mapper.Map<TasteProfile>(tasteProfileDTO);
