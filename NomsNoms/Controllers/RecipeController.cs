@@ -210,8 +210,8 @@ namespace NomsNoms.Controllers
 
             // Get the top recommended recipes for the user
             List<Recipe> recommendedRecipes = await _recipeRepository.RecommendRecipes(userTaste, allRecipes);
-
-            return Ok(recommendedRecipes);
+            var result = _mapper.Map<List<RecipeDTO>>(recommendedRecipes);
+            return Ok(result);
         }
     }
 }

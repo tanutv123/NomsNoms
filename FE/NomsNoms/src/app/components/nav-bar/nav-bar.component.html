@@ -10,20 +10,35 @@
 
       <div class="md:flex md:items-center md:gap-12">
         <nav aria-label="Global" class="md:block">
-          <ul class="flex items-center gap-6 text-sm"  >
+          <ul class="flex items-center gap-6 text-sm" *ngIf="!(accountService.currentUser$ | async)"  >
             <li>
               <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Home </a>
             </li>
 
-            <li *ngIf="!(accountService.currentUser$ | async)">
+            <li>
               <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan"> Dịch vụ </a>
             </li>
 
-            <li *ngIf="(accountService.currentUser$ | async) as user">
+<!--            <li *ngIf="(accountService.currentUser$ | async) as user">-->
+<!--              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan" *ngIf="!user.isMealPlanRegistered"> Dịch vụ </a>-->
+<!--              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought" *ngIf="user.isMealPlanRegistered"> Kế hoạch ăn uống</a>-->
+<!--            </li>-->
+          </ul>
+          <ul class="flex items-center gap-6 text-sm" *ngIf="(accountService.currentUser$ | async) as user" >
+            <li *ngIf="user.roles === 'Client'">
+              <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Home </a>
+            </li>
+
+<!--            <li *ngIf="!(accountService.currentUser$ | async)">-->
+<!--              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan"> Dịch vụ </a>-->
+<!--            </li>-->
+
+            <li *ngIf="user.roles === 'Client'">
               <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan" *ngIf="!user.isMealPlanRegistered"> Dịch vụ </a>
               <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought" *ngIf="user.isMealPlanRegistered"> Kế hoạch ăn uống</a>
             </li>
           </ul>
+
         </nav>
 
         <div class="flex items-center gap-4" >
@@ -60,7 +75,7 @@
               </span>
             </div>
 
-            <div *appHasRole="'Client'" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
+            <div *appHasRole="'Client'" class="origin-top-right absolute z-50 right-0 mt-2 w-56 rounded-md shadow-lg">
               <div *ngIf="showDropdown" class="rounded-md bg-white ring-1 ring-black ring-opacity-5">
                 <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                   <a routerLink="/profile-edit/{{user.email}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"

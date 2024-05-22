@@ -67,6 +67,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { TransactionsComponent } from './components/manager/transactions/transactions.component';
 import { MealPlansComponent } from './components/manager/meal-plans/meal-plans.component';
 import { SalaryManagementComponent } from './components/manager/salary-management/salary-management.component';
+import { CreateUserComponent } from './components/admin/user-management/create-user/create-user.component';
+import { RecommendListComponent } from './components/recipe/recommend/recommend-list/recommend-list.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -116,7 +118,9 @@ register();
     TasteProfileComponent,
     TransactionsComponent,
     MealPlansComponent,
-    SalaryManagementComponent
+    SalaryManagementComponent,
+    CreateUserComponent,
+    RecommendListComponent
   ],
   imports: [
     BrowserModule,

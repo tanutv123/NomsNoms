@@ -90,6 +90,10 @@ namespace NomsNoms.Data
                     if (!result.Succeeded)
                     {
                         throw new Exception("User creation failed");
+                    } 
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
                     }
                 }
                 else

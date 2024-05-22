@@ -166,7 +166,11 @@ namespace NomsNoms.Data
             List<Recipe> list = null;
             try
             {
-                list = await _context.Recipes.Include(u => u.TastProfile).Include(u => u.RecipeImage).ToListAsync();
+                list = await _context.Recipes
+                    .Include(u => u.TastProfile)
+                    .Include(u => u.RecipeImage)
+                    .Where(x => x.RecipeStatusId != 4 && x.RecipeStatusId != 1)
+                    .ToListAsync();
             }catch(Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -298,10 +302,10 @@ namespace NomsNoms.Data
                     await _context.SaveChangesAsync();
 
                     var recipe = await _context.Recipes.FirstOrDefaultAsync(r => r.Id == recipeId);
-                    if(recipe != null || recipe.RecipeStatusId != 3)
+                    if(recipe != null && recipe.RecipeStatusId == 3)
                     {
                         recipe.TasteProfileId = tp.Id;
-                        recipe.RecipeStatusId = 1;
+                        recipe.RecipeStatusId = 2;
                         await _context.SaveChangesAsync();
                     }
                     else
