@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NomsNoms.DTOs;
@@ -485,6 +486,61 @@ namespace NomsNoms.Data
             recipe.RecipeStatusId = 3;
             _context.Recipes.Add(recipe);
             await _context.SaveChangesAsync();
+        }
+        public async Task AddIngredientAsync(IngredientDTO ingredientDTO)
+        {
+            var IsingredientExist = await _context.Ingredients.AnyAsync(i => i.Name == ingredientDTO.Name);
+            if (!IsingredientExist)
+            {
+                var ingredient = _mapper.Map<Ingredient>(ingredientDTO);
+                await _context.Ingredients.AddAsync(ingredient);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task DeleteIngredient(int ingredientId)
+        {
+            var ingredient = await _context.Ingredients.Where(i => i.Id == ingredientId).FirstOrDefaultAsync();
+            if (ingredient != null)
+            {
+                _context.Ingredients.Remove(ingredient);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task UpdateIngredient(IngredientDTO ingredientDTO)
+        {
+            var ingredientReal = await _context.Ingredients
+                                               .Where(i => i.Id == ingredientDTO.Id)
+                                               .FirstOrDefaultAsync();
+
+            if (ingredientReal != null)
+            {
+                _mapper.Map(ingredientDTO, ingredientReal);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task<float> CalculateIngredientCalories(int ingredientId, int weight)
+        {
+            var ingredient = await _context.Ingredients.Where(r => r.Id == ingredientId).FirstOrDefaultAsync();
+
+            var calories = (ingredient.Calories * weight) / ingredient.Weight;
+            return calories;
+        }
+        public async Task<float> CalculateRecipeCalories(int recipeId, List<IngredientDTO> ingredients)
+        {
+            var recipe = await _context.Recipes.Where(r => r.Id == recipeId).FirstOrDefaultAsync();
+
+            float totalRecipeCalories = 0;
+            foreach (var i in ingredients)
+            {
+                totalRecipeCalories += i.Calories;
+            }
+
+            recipe.Calories = (int)totalRecipeCalories;
+
+            _context.Recipes.Update(recipe);
+            await _context.SaveChangesAsync();
+
+            return totalRecipeCalories;
         }
     }
 }
