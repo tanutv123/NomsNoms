@@ -4,4 +4,5 @@ export interface MealPlan {
   createdDate: Date;
   price: number;
   duration: number;
+  status: number;
 }

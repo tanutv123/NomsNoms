@@ -37,6 +37,14 @@ import {SalaryManagementComponent} from "./components/manager/salary-management/
 import {CreateUserComponent} from "./components/admin/user-management/create-user/create-user.component";
 import {RecommendListComponent} from "./components/recipe/recommend/recommend-list/recommend-list.component";
 import {TestsComponent} from "./components/tests/tests.component";
+import {MealplanManagementComponent} from "./components/admin/mealplan-management/mealplan-management.component";
+import {
+  MealplanCreateComponent
+} from "./components/admin/mealplan-management/mealplan-create/mealplan-create.component";
+import {
+  MealplanDetailComponent
+} from "./components/admin/mealplan-management/mealplan-detail/mealplan-detail.component";
+import {mealplanResolver} from "./_resolvers/mealplan.resolver";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -76,9 +84,17 @@ const routes: Routes = [
       {path: 'meal-plans', component: MealPlansComponent, canActivate: [managerGuard]},
       {path: 'salary', component: SalaryManagementComponent, canActivate: [managerGuard]},
       {path: 'create-user', component: CreateUserComponent, canActivate: [adminGuard]},
-      {path: 'pendings', component: PendingsComponent},
+      {path: 'pendings', component: PendingsComponent, canActivate: [adminGuard]},
+      {path: 'admin-mp', component: MealplanManagementComponent, canActivate: [adminGuard]},
+      {path: 'admin-mp/:id',
+        component: MealplanDetailComponent,
+        resolve: {mealPlan: mealplanResolver},
+        canActivate: [adminGuard]
+      },
+      {path: 'admin-create-mp', component: MealplanCreateComponent, canActivate: [adminGuard]},
       {path: 'recipe-admin/:id', component: RecipeDetailAdminComponent,
-      resolve: {recipe: recipeAdminResolver}
+        resolve: {recipe: recipeAdminResolver},
+        canActivate: [adminGuard]
       },
     ]
   },

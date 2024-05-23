@@ -168,34 +168,47 @@ namespace NomsNoms.Controllers
             await _recipeRepository.SetTatseProfileAndStatus(recipeId, tp);
             return Ok();
         }
-        [HttpGet("transactions")]
-        public async Task<IActionResult> GetAllTransaction()
-        {
-            return Ok(await _transactionRepository.GetAllTransactionAdmin());
-        }
-        [HttpGet("meal-plan/subscription")]
-        public async Task<IActionResult> GetAllUserMealPlan()
-        {
-            return Ok(await _userRepository.GetUserMealPlan());
-        }
-        [HttpGet("users/cook-salary")]
-        public async Task<IActionResult> GetCookSalaries()
-        {
-            return Ok(await _userRepository.GetCooksSalaries());
-        }
-        [HttpPost("meal-plan/create-meal-plan")]
-        public async Task<IActionResult> CreateMealPlan([FromBody] MealPlanAdminDTO mealPlan)
+        [HttpGet("meal-plans")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> GetMealPlans()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
+            var result = await _mealPlanRepository.GetMealPlansAdmin();
+            return Ok(result);
+        }
+        [HttpGet("meal-plans/{id}")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> GetMealPlan(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var result = await _mealPlanRepository.GetMealPlanAdmin(id);
+            return Ok(result);
+        }
+        [HttpPost("meal-plan/create-meal-plan")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> CreateMealPlan([FromBody] MealPlanAdminDTO mealPlan)
+        {
+            mealPlan.CreatedDate = DateTime.UtcNow;
+            mealPlan.Status = 1;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             await _mealPlanRepository.CreateMealPlan(mealPlan);
-            return Ok("Mealplan created successfully");
+            return Ok();
         }
 
         [HttpPut("meal-plan/update-meal-plan")]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> UpdateMealPlan([FromBody] MealPlanAdminDTO mealPlan)
         {
             if (!ModelState.IsValid)
@@ -203,10 +216,22 @@ namespace NomsNoms.Controllers
                 return BadRequest();
             }
             await _mealPlanRepository.UpdateMealPlan(mealPlan);
-            return Ok("Mealplan updated successfully");
+            return Ok();
+        }
+        [HttpPut("meal-plan/enable-meal-plan")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> EnableMealPlan([FromBody] MealPlanAdminDTO mealPlan)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _mealPlanRepository.EnableMealPlan(mealPlan);
+            return Ok();
         }
 
         [HttpDelete("meal-plan/delete-meal-plan")]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> DeleteMealPlan([FromBody] MealPlanAdminDTO mealPlan)
         {
             if (!ModelState.IsValid)
@@ -214,7 +239,7 @@ namespace NomsNoms.Controllers
                 return BadRequest();
             }
             await _mealPlanRepository.DeleteMealPlan(mealPlan);
-            return Ok("Mealplan deleted successfully");
+            return Ok();
         }
         [HttpPut("ingredient/update-ingredient")]
         public async Task<IActionResult> UpdateIngredient([FromBody] IngredientDTO ingredientDTO)

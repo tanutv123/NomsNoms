@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NomsNoms.DTOs;
@@ -149,7 +150,7 @@ namespace NomsNoms.Data
 
         public async Task<MealPlanSubscription> GetMealPlanSubscriptionAsync(int id)
         {
-            return await _context.MealPlanSubscriptions.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.MealPlanSubscriptions.FirstOrDefaultAsync(x => x.Id == id && x.Status == 1);
         }
 
         public async Task AddPaymentIntent(long orderCode, int userId, int mealPlanId)
@@ -218,6 +219,7 @@ namespace NomsNoms.Data
             }
         }
 
+
         public async Task DeleteMealPlan(MealPlanAdminDTO mealPlan)
         {
             try
@@ -226,6 +228,42 @@ namespace NomsNoms.Data
                 if (mp != null)
                 {
                     mp.Status = 0; 
+
+                    _context.Update(mp);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<MealPlanAdminDTO>> GetMealPlansAdmin()
+        {
+            var result = await _context.MealPlanSubscriptions
+                .ProjectTo<MealPlanAdminDTO>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+            return result;
+        }
+
+        public async Task<MealPlanAdminDTO> GetMealPlanAdmin(int id)
+        {
+            var result = await _context.MealPlanSubscriptions
+                .Where(x => x.Id == id)
+                .ProjectTo<MealPlanAdminDTO>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+            return result; 
+        }
+
+        public async Task EnableMealPlan(MealPlanAdminDTO mealPlan)
+        {
+            try
+            {
+                var mp = await _context.MealPlanSubscriptions.FirstOrDefaultAsync(m => m.Id == mealPlan.Id);
+                if (mp != null)
+                {
+                    mp.Status = 1;
 
                     _context.Update(mp);
                     await _context.SaveChangesAsync();

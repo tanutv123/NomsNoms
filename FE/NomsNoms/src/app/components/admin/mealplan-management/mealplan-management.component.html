@@ -1,0 +1,60 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<div class="overflow-x-auto">
+  <a
+    routerLink="/admin-create-mp"
+    class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
+  >
+    Thêm gói
+  </a>
+  <table datatable #mealPlanTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+    <tr>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">ID</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Thời hạn</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Giá</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Giới thiệu</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Ngày tạo</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Trạng thái</th>
+      <th class="px-4 py-2"></th>
+    </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+    <tr *ngFor="let mp of mealPlans">
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{mp.id}}</td>
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{mp.duration}}</td>
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{mp.price}}</td>
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{mp.description}}</td>
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{mp.createdDate | date: 'mediumDate'}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700" [ngClass]="mp.status == 1 ? 'text-green-500' : 'text-red-600'">{{mp.status == 1 ? 'Hoạt động' : 'Bị vô hiệu hóa'}}</td>
+      <td class="whitespace-nowrap px-4 py-2">
+        <a
+          routerLink="/admin-mp/{{mp.id}}"
+          class="inline-block mx-2 rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+        >
+          Xem
+        </a>
+        <button
+          (click)="enableMp(mp)"
+          *ngIf="mp.status == 0"
+          class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700"
+        >
+          Mở khóa
+        </button>
+        <button
+          (click)="disableMp(mp)"
+          *ngIf="mp.status == 1"
+          class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+        >
+          Vô hiệu hóa
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
