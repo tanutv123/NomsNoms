@@ -7,6 +7,7 @@
         public int Duration { get; set; }
         public int MealPlanTypeId { get; set; }
         public DateTime CreatedDate { get; set; }
+        public byte Status { get; set; }
         public MealPlanType MealPlanType { get; set; }
         public ICollection<UserMealPlan> UserMealPlans { get; set; }
         public ICollection<MealPlanIngredient> MealPlanIngredients { get; set; }

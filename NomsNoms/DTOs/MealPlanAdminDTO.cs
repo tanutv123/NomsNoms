@@ -1,6 +1,6 @@
-﻿namespace NomsNoms.Entities
+﻿namespace NomsNoms.DTOs
 {
-    public class MealPlanSubscription
+    public class MealPlanAdminDTO
     {
         public int Id { get; set; }
         public int Duration { get; set; }
@@ -8,6 +8,5 @@
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }
         public byte Status { get; set; }
-        public ICollection<UserMealPlanSubscriptions> UserMealPlanSubscriptions { get; set; }
     }
 }
