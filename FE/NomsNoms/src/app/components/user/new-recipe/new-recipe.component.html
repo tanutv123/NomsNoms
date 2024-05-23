@@ -241,7 +241,7 @@
               class="w-full rounded-lg border-gray-200 p-3 text-sm"
               *ngFor="let ingredient of addedIngredients"
             >
-              {{ingredient.name}} - {{ingredient.serving}}
+              {{ingredient.name}} - {{ingredient.serving}} gram
               <button
                 type="button"
                 (click)="onDeleteIngredient(ingredient.id)"
@@ -256,14 +256,22 @@
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Chọn thể loại cho món ăn của bạn</label>
-              <select
+<!--              <select-->
+<!--                [(ngModel)]="selectedIngredient.ingredientId"-->
+<!--                name="category"-->
+<!--                required-->
+<!--                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"-->
+<!--              >-->
+<!--                <option *ngFor="let ingredient of ingredients" [value]="ingredient.id">{{ingredient.name}}</option>-->
+<!--              </select>-->
+              <ng-select
+                [items]="ingredients"
+                bindValue="id"
+                bindLabel="name"
                 [(ngModel)]="selectedIngredient.ingredientId"
-                name="category"
-                required
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                name="ingredientSelect"
               >
-                <option *ngFor="let ingredient of ingredients" [value]="ingredient.id">{{ingredient.name}}</option>
-              </select>
+              </ng-select>
             </div>
             <div>
               <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nhập khẩu phần(gram)</label>
@@ -290,7 +298,6 @@
               </button>
             </div>
           </div>
-
         </form>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>

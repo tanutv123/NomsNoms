@@ -23,6 +23,7 @@ export class NewRecipeComponent implements OnInit{
   addedCategories: Category[] = [];
   validationErrors: string[] = [];
   selectedCategory: AddRecipeCategory = {} as AddRecipeCategory;
+  selectedIngredientId: number;
   selectedIngredient: AddRecipeIngredient = {} as AddRecipeIngredient;
   addedIngredients: Ingredient[] = [];
   constructor(private recipeService: RecipeService,

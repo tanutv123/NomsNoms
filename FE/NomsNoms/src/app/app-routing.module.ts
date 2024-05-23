@@ -36,6 +36,7 @@ import {MealPlansComponent} from "./components/manager/meal-plans/meal-plans.com
 import {SalaryManagementComponent} from "./components/manager/salary-management/salary-management.component";
 import {CreateUserComponent} from "./components/admin/user-management/create-user/create-user.component";
 import {RecommendListComponent} from "./components/recipe/recommend/recommend-list/recommend-list.component";
+import {TestsComponent} from "./components/tests/tests.component";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -45,6 +46,7 @@ const routes: Routes = [
   {path: 'payment-test', component: PaymentTestsComponent},
   {path: 'payment-success', component: SuccessComponent},
   {path: 'payment-fail', component: FailComponent},
+  {path: 'testers', component: TestsComponent},
   {path:'',
   children: [
     {path: 'meal-plan', component: MealPlanComponent},
