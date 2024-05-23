@@ -216,5 +216,36 @@ namespace NomsNoms.Controllers
             await _mealPlanRepository.DeleteMealPlan(mealPlan);
             return Ok("Mealplan deleted successfully");
         }
+        [HttpPut("ingredient/update-ingredient")]
+        public async Task<IActionResult> UpdateIngredient([FromBody] IngredientDTO ingredientDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _recipeRepository.UpdateIngredient(ingredientDTO);
+            return Ok("Ingredient updated successfully");
+        }
+        [HttpPost("ingredient/create-ingredient")]
+        public async Task<IActionResult> CreateIngredient([FromBody] IngredientDTO ingredient)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await _recipeRepository.AddIngredientAsync(ingredient);
+            return Ok("Ingredient created successfully");
+        }
+        [HttpDelete("ingredient/delete-ingredient")]
+        public async Task<IActionResult> DeleteIngredient(int ingredientId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _recipeRepository.DeleteIngredient(ingredientId);
+            return Ok("Ingredient deleted successfully");
+        }
     }
 }
