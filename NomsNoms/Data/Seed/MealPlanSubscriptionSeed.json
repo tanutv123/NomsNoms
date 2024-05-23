@@ -3,12 +3,14 @@
     "Price": 5000,
     "CreatedDate": "2024-01-26T09:54:29",
     "Description": "Phiên bản dùng thử cho gói kế hoạch ăn uống",
-    "Duration": 7
+    "Duration": 7,
+    "Status": 1
   },
   {
     "Price": 10000,
     "CreatedDate": "2024-01-26T09:54:29",
     "Description": "Phiên bản 30 ngày cho gói kế hoạch ăn uống",
-    "Duration": 30
+    "Duration": 30,
+    "Status": 1
   }
 ]

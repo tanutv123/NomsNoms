@@ -71,6 +71,8 @@ namespace NomsNoms.Helpers
                 .ForMember(dest => dest.AppUserEmail, opt => opt.MapFrom(src => src.AppUser.Email))
                 .ForMember(dest => dest.MealPlanSubscriptionId, opt => opt.MapFrom(src => src.MealPlanSubscription.Id))
                 .ReverseMap();
+            CreateMap<MealPlanSubscription, MealPlanAdminDTO>()
+                .ReverseMap();
         }
     }
 }

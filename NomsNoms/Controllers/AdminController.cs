@@ -16,12 +16,14 @@ namespace NomsNoms.Controllers
         private readonly IMapper _mapper;
         private readonly IRecipeRepository _recipeRepository;
         private readonly ITransactionRepository _transactionRepository;
-        public AdminController(IUserRepository userRepository, IMapper mapper, IRecipeRepository recipeRepository, ITransactionRepository transactionRepository) 
+        private readonly IMealPlanRepository _mealPlanRepository;
+        public AdminController(IUserRepository userRepository, IMapper mapper, IRecipeRepository recipeRepository, ITransactionRepository transactionRepository, IMealPlanRepository mealPlanRepository) 
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _recipeRepository = recipeRepository;
             _transactionRepository = transactionRepository;
+            _mealPlanRepository = mealPlanRepository;
         }
 
         [HttpGet("users")]
@@ -180,6 +182,39 @@ namespace NomsNoms.Controllers
         public async Task<IActionResult> GetCookSalaries()
         {
             return Ok(await _userRepository.GetCooksSalaries());
+        }
+        [HttpPost("meal-plan/create-meal-plan")]
+        public async Task<IActionResult> CreateMealPlan([FromBody] MealPlanAdminDTO mealPlan)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await _mealPlanRepository.CreateMealPlan(mealPlan);
+            return Ok("Mealplan created successfully");
+        }
+
+        [HttpPut("meal-plan/update-meal-plan")]
+        public async Task<IActionResult> UpdateMealPlan([FromBody] MealPlanAdminDTO mealPlan)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _mealPlanRepository.UpdateMealPlan(mealPlan);
+            return Ok("Mealplan updated successfully");
+        }
+
+        [HttpDelete("meal-plan/delete-meal-plan")]
+        public async Task<IActionResult> DeleteMealPlan([FromBody] MealPlanAdminDTO mealPlan)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _mealPlanRepository.DeleteMealPlan(mealPlan);
+            return Ok("Mealplan deleted successfully");
         }
     }
 }

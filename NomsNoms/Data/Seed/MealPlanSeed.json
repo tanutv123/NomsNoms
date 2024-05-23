@@ -3,36 +3,42 @@
     "Price": 10000,
     "CreatedDate": "2024-01-26T09:54:29",
     "Duration": 30,
-    "MealPlanTypeId": 1
+    "MealPlanTypeId": 1,
+    "Status": 1
   },
   {
     "Price": 100000,
     "CreatedDate": "2024-01-26T09:54:29",
     "Duration": 30,
-    "MealPlanTypeId": 2
+    "MealPlanTypeId": 2,
+    "Status": 1
   },
   {
     "Price": 100000,
     "CreatedDate": "2024-01-26T09:54:29",
     "Duration": 30,
-    "MealPlanTypeId": 3
+    "MealPlanTypeId": 3,
+    "Status": 1
   },
   {
     "Price": 100000,
     "CreatedDate": "2024-01-26T09:54:29",
     "Duration": 30,
-    "MealPlanTypeId": 4
+    "MealPlanTypeId": 4,
+    "Status": 1
   },
   {
     "Price": 100000,
     "CreatedDate": "2024-01-26T09:54:29",
     "Duration": 30,
-    "MealPlanTypeId": 5
+    "MealPlanTypeId": 5,
+    "Status": 1
   },
   {
     "Price": 100000,
     "CreatedDate": "2024-01-26T09:54:29",
     "Duration": 30,
-    "MealPlanTypeId": 6
+    "MealPlanTypeId": 6,
+    "Status": 1
   }
 ]

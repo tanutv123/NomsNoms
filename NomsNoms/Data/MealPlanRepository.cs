@@ -169,5 +169,72 @@ namespace NomsNoms.Data
         {
             return await _context.MealPlanPayments.FirstOrDefaultAsync(x => x.OrderCode == orderCode);
         }
+
+        public async Task CreateMealPlan(MealPlanAdminDTO mealPlan)
+        {
+            try
+            {
+                var mp = await _context.MealPlanSubscriptions.FirstOrDefaultAsync(m => m.Id == mealPlan.Id);
+                if(mp == null)
+                {
+
+                    var mealPlanEntity = new MealPlanSubscription
+                    {
+                        Price = mealPlan.Price,
+                        Duration = mealPlan.Duration,
+                        CreatedDate = mealPlan.CreatedDate,
+                        Description = mealPlan.Description,
+                        Status = 1
+                    };
+
+                    await _context.AddAsync(mealPlanEntity);
+                    await _context.SaveChangesAsync();
+                }
+            }catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task UpdateMealPlan(MealPlanAdminDTO mealPlan)
+        {
+            try
+            {
+                var mp = await _context.MealPlanSubscriptions.FirstOrDefaultAsync(m => m.Id == mealPlan.Id);
+                if (mp != null)
+                {
+                    mp.Price = mealPlan.Price;
+                    mp.Duration = mealPlan.Duration;
+                    mp.Description = mealPlan.Description;
+                    mp.CreatedDate = mealPlan.CreatedDate;
+                    mp.Status = mealPlan.Status;        
+                    _context.Update(mp);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task DeleteMealPlan(MealPlanAdminDTO mealPlan)
+        {
+            try
+            {
+                var mp = await _context.MealPlanSubscriptions.FirstOrDefaultAsync(m => m.Id == mealPlan.Id);
+                if (mp != null)
+                {
+                    mp.Status = 0; 
+
+                    _context.Update(mp);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

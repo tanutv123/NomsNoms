@@ -1,4 +1,5 @@
-﻿using NomsNoms.Entities;
+﻿using NomsNoms.DTOs;
+using NomsNoms.Entities;
 
 namespace NomsNoms.Interfaces
 {
@@ -12,5 +13,8 @@ namespace NomsNoms.Interfaces
         Task<bool> IsRegisterMealPlan(string email);
         Task AddPaymentIntent(long orderCode, int userId, int mealPlanId);
         Task<MealPlanPayment> GetPaymentIntent(long orderCode);
+        Task CreateMealPlan(MealPlanAdminDTO mealPlan);
+        Task UpdateMealPlan(MealPlanAdminDTO mealPlan);
+        Task DeleteMealPlan(MealPlanAdminDTO mealPlan);
     }
 }
