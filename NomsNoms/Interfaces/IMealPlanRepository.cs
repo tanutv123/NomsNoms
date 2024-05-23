@@ -13,8 +13,11 @@ namespace NomsNoms.Interfaces
         Task<bool> IsRegisterMealPlan(string email);
         Task AddPaymentIntent(long orderCode, int userId, int mealPlanId);
         Task<MealPlanPayment> GetPaymentIntent(long orderCode);
+        Task<List<MealPlanAdminDTO>> GetMealPlansAdmin();
+        Task<MealPlanAdminDTO> GetMealPlanAdmin(int id);
         Task CreateMealPlan(MealPlanAdminDTO mealPlan);
         Task UpdateMealPlan(MealPlanAdminDTO mealPlan);
         Task DeleteMealPlan(MealPlanAdminDTO mealPlan);
+        Task EnableMealPlan(MealPlanAdminDTO mealPlan);
     }
 }

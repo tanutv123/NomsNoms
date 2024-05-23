@@ -71,6 +71,9 @@ import { CreateUserComponent } from './components/admin/user-management/create-u
 import { RecommendListComponent } from './components/recipe/recommend/recommend-list/recommend-list.component';
 import {NgSelectModule} from "@ng-select/ng-select";
 import {TestsComponent} from "./components/tests/tests.component";
+import { MealplanManagementComponent } from './components/admin/mealplan-management/mealplan-management.component';
+import { MealplanCreateComponent } from './components/admin/mealplan-management/mealplan-create/mealplan-create.component';
+import { MealplanDetailComponent } from './components/admin/mealplan-management/mealplan-detail/mealplan-detail.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -123,7 +126,10 @@ register();
     SalaryManagementComponent,
     CreateUserComponent,
     RecommendListComponent,
-    TestsComponent
+    TestsComponent,
+    MealplanManagementComponent,
+    MealplanCreateComponent,
+    MealplanDetailComponent
   ],
   imports: [
     BrowserModule,

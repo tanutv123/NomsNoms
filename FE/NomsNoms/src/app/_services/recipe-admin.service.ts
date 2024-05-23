@@ -5,6 +5,8 @@ import {RecipeAdmin} from "../_model/Admin/recipeAdmin.model";
 import {Recipe} from "../_model/recipe.model";
 import {TasteProfile} from "../_model/tasteProfile.model";
 import {Register} from "../_model/register.model";
+import {MealPlanSubscription} from "../_model/Manager/mealPlanSubscription.model";
+import {MealPlan} from "../_model/mealPlan.model";
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +38,26 @@ export class RecipeAdminService {
 
   createUser(register: Register) {
     return this.http.post(this.baseUrl + 'admin/users/create-user', register);
+  }
+
+  getMealPlans() {
+    return this.http.get<MealPlan[]>(this.baseUrl + 'admin/meal-plans');
+  }
+  getMealPlan(id: number) {
+    return this.http.get<MealPlan>(this.baseUrl + 'admin/meal-plans/' + id);
+  }
+
+  deleteMealPlan(mealPlan: MealPlan) {
+    return this.http.delete(this.baseUrl + 'admin/meal-plan/delete-meal-plan', {body: mealPlan});
+  }
+
+  createMealPlan(mealPlan: MealPlan) {
+    return this.http.post(this.baseUrl + 'admin/meal-plan/create-meal-plan', mealPlan);
+  }
+  updateMealPlan(mealPlan: MealPlan) {
+    return this.http.put(this.baseUrl + 'admin/meal-plan/update-meal-plan', mealPlan);
+  }
+  enableMealPlan(mealPlan: MealPlan) {
+    return this.http.put(this.baseUrl + 'admin/meal-plan/enable-meal-plan', mealPlan);
   }
 }
