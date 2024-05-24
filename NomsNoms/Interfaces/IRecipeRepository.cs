@@ -36,7 +36,8 @@ namespace NomsNoms.Interfaces
         Task UpdateIngredient(IngredientDTO ingredientDTO);
         Task AddIngredientAsync(IngredientDTO ingredientDTO);
         Task DeleteIngredient(int ingredientId);
-
+        /*Task<float> CalculateRecipeCalories(int recipeId, List<RecipeIngredientCalculateDTO> ingredients);*/
+        Task<float> CalculateRecipeCalories(int recipeId);
 
     }
 }
