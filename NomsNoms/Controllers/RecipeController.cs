@@ -213,5 +213,17 @@ namespace NomsNoms.Controllers
             var result = _mapper.Map<List<RecipeDTO>>(recommendedRecipes);
             return Ok(result);
         }
+        [HttpPut("calculateRecipeCalories")]
+        public async Task<IActionResult> CalculateRecipeCalories(int recipeId, [FromBody] List<RecipeIngredientCalculateDTO> ingredients)
+        {
+            var result = await _recipeRepository.CalculateRecipeCalories(recipeId, ingredients);
+            return Ok(result);
+        }
+        [HttpPut("calculateRecipeCalories2/{recipeId}")]
+        public async Task<IActionResult> CalculateRecipeCalories2(int recipeId)
+        {
+            var result = await _recipeRepository.CalculateRecipeCalories2(recipeId);
+            return Ok(result);
+        }
     }
 }

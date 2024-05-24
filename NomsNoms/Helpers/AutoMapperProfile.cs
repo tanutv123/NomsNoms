@@ -73,6 +73,8 @@ namespace NomsNoms.Helpers
                 .ReverseMap();
             CreateMap<MealPlanSubscription, MealPlanAdminDTO>()
                 .ReverseMap();
+            CreateMap<RecipeIngredient, RecipeIngredientCalculateDTO>()
+                .ReverseMap();
         }
     }
 }
