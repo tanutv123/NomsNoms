@@ -26,7 +26,8 @@ export class MealplanCreateComponent implements OnInit{
       next: _ => {
         this.toastr.success('Tạo thành công');
         this.router.navigateByUrl('/admin-mp');
-      }
+      },
+      error: err => this.validationErrors = err
     });
   }
 }

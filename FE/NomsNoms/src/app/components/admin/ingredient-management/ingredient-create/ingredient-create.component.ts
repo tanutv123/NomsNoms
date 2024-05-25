@@ -23,7 +23,8 @@ export class IngredientCreateComponent {
       next: _ => {
         this.router.navigateByUrl('ingredients');
         this.toastr.success('Tạo thành công');
-      }
+      },
+      error: err => this.validationErrors = err
     });
   }
 }

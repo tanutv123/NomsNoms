@@ -20,11 +20,10 @@ export class LoginComponent implements OnInit{
     this.initializeLoginForm()
   }
 
-  complexPassword = '(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;\'?/&gt;.&lt;,])(?!.*\\s).*$';
   initializeLoginForm() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required,  Validators.pattern(this.complexPassword)]],
+      password: ['', [Validators.required]],
     });
   }
   onSubmit() {

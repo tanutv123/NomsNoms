@@ -30,7 +30,8 @@ export class MealplanDetailComponent implements OnInit{
     this.adminService.updateMealPlan(this.mp).subscribe({
       next: _ => {
         this.toastr.success('Cập nhật thành công');
-      }
+      },
+      error: err => this.validationErrors = err
     });
   }
 

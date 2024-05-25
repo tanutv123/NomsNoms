@@ -157,7 +157,8 @@ export class NewRecipeComponent implements OnInit{
         next : _ => {
           this.toastr.success("Thêm công thức thành công");
           this.router.navigateByUrl('/my-recipe');
-        }
+        },
+        error: err => this.validationErrors = err
       });
     }
   }
