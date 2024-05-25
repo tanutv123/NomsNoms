@@ -325,7 +325,7 @@ namespace NomsNoms.Data
         }
         public async Task<List<Ingredient>> GetIngredientsAsync()
         {
-            return await _context.Ingredients.ToListAsync();
+            return await _context.Ingredients.Where(x => x.Status == 1).ToListAsync();
         }
 
         public async Task<List<RecipeDTO>> GetRecipeForUser(int id)
@@ -502,7 +502,16 @@ namespace NomsNoms.Data
             var ingredient = await _context.Ingredients.Where(i => i.Id == ingredientId).FirstOrDefaultAsync();
             if (ingredient != null)
             {
-                _context.Ingredients.Remove(ingredient);
+                ingredient.Status = 0;
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task EnableIngredient(int ingredientId)
+        {
+            var ingredient = await _context.Ingredients.Where(i => i.Id == ingredientId).FirstOrDefaultAsync();
+            if (ingredient != null)
+            {
+                ingredient.Status = 1;
                 await _context.SaveChangesAsync();
             }
         }
@@ -541,6 +550,19 @@ namespace NomsNoms.Data
             await _context.SaveChangesAsync();
 
             return totalRecipeCalories;
+        }
+
+        public async Task<List<IngredientDTO>> GetIngredientsAdmin()
+        {
+            return await _context.Ingredients
+                .ProjectTo<IngredientDTO>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
+        public async Task<IngredientDTO> GetIngredientAdmin(int id)
+        {
+            return await _context.Ingredients
+                .ProjectTo<IngredientDTO>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
         }
     }
 }

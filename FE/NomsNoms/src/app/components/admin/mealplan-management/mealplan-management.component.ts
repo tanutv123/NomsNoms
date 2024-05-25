@@ -31,6 +31,7 @@ export class MealplanManagementComponent implements OnInit{
     this.adminService.getMealPlans().subscribe({
       next: res => {
         this.mealPlans = res;
+        this.dtTrigger.next(null);
       }
     });
   }

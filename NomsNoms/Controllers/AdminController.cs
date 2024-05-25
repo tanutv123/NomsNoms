@@ -241,7 +241,28 @@ namespace NomsNoms.Controllers
             await _mealPlanRepository.DeleteMealPlan(mealPlan);
             return Ok();
         }
+        [HttpGet("ingredients")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> GetIngredients()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Ok(await _recipeRepository.GetIngredientsAdmin());
+        }
+        [HttpGet("ingredient-detail/{id}")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> GetIngredient(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Ok(await _recipeRepository.GetIngredientAdmin(id));
+        }
         [HttpPut("ingredient/update-ingredient")]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> UpdateIngredient([FromBody] IngredientDTO ingredientDTO)
         {
             if (!ModelState.IsValid)
@@ -249,20 +270,22 @@ namespace NomsNoms.Controllers
                 return BadRequest();
             }
             await _recipeRepository.UpdateIngredient(ingredientDTO);
-            return Ok("Ingredient updated successfully");
+            return Ok();
         }
         [HttpPost("ingredient/create-ingredient")]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> CreateIngredient([FromBody] IngredientDTO ingredient)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-
+            ingredient.Status = 1;
             await _recipeRepository.AddIngredientAsync(ingredient);
-            return Ok("Ingredient created successfully");
+            return Ok();
         }
-        [HttpDelete("ingredient/delete-ingredient")]
+        [HttpDelete("ingredient/delete-ingredient/{ingredientId}")]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> DeleteIngredient(int ingredientId)
         {
             if (!ModelState.IsValid)
@@ -270,7 +293,18 @@ namespace NomsNoms.Controllers
                 return BadRequest();
             }
             await _recipeRepository.DeleteIngredient(ingredientId);
-            return Ok("Ingredient deleted successfully");
+            return Ok();
+        }
+        [HttpPut("ingredient/enable-ingredient/{ingredientId}")]
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> EnableIngredient(int ingredientId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _recipeRepository.EnableIngredient(ingredientId);
+            return Ok();
         }
     }
 }

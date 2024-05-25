@@ -5,4 +5,5 @@ export interface Ingredient {
   description: string;
   calories: number;
   serving: number;
+  status: number;
 }

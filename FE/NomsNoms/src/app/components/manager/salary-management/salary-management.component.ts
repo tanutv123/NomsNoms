@@ -22,6 +22,7 @@ export class SalaryManagementComponent implements OnInit{
     this.managerService.getSalaryList().subscribe({
       next: res => {
         this.salaryList = res;
+        this.dtTrigger.next(null);
       }
     });
   }
