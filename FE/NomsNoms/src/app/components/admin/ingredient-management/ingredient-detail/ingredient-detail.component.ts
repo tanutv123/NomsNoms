@@ -31,7 +31,8 @@ export class IngredientDetailComponent implements OnInit{
     this.adminService.updateIngredient(this.ingredient).subscribe({
       next: _ => {
         this.toastr.success('Cập nhật thành công');
-      }
+      },
+      error: err => this.validationErrors = err
     });
   }
 
