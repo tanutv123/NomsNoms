@@ -41,7 +41,7 @@ namespace NomsNoms.Interfaces
         Task EnableIngredient(int ingredientId);
 
         /*Task<float> CalculateRecipeCalories(int recipeId, List<RecipeIngredientCalculateDTO> ingredients);*/
-        Task<float> CalculateRecipeCalories(List<RecipeIngredient> ingredients);
+        Task<int> CalculateRecipeCalories(ICollection<RecipeIngredient> ingredients);
 
     }
 }
