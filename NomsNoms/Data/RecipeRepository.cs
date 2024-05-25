@@ -484,6 +484,7 @@ namespace NomsNoms.Data
         public async Task AddRecipeAsync(Recipe recipe)
         {
             recipe.RecipeStatusId = 3;
+            recipe.Calories = (int) await CalculateRecipeCalories(recipe.RecipeIngredients);
             _context.Recipes.Add(recipe);
             await _context.SaveChangesAsync();
         }
@@ -550,10 +551,8 @@ namespace NomsNoms.Data
 
             return totalRecipeCalories;
         }*/
-        public async Task<float> CalculateRecipeCalories(int recipeId)
+        public async Task<float> CalculateRecipeCalories(ICollection<RecipeIngredient> ingredients)
         {
-            var recipe = await _context.Recipes.Where(r => r.Id == recipeId).FirstOrDefaultAsync();
-            var ingredients = await _context.RecipeIngredients.Where(r => r.RecipeId == recipeId).ToListAsync();
 
             float totalRecipeCalories = 0;
             foreach (var i in ingredients)
@@ -561,10 +560,6 @@ namespace NomsNoms.Data
                 var calories = await CalculateIngredientCalories(i.IngredientId, i.IngredientServing);
                 totalRecipeCalories += calories;
             }
-
-            recipe.Calories = (int)totalRecipeCalories;
-            await _context.SaveChangesAsync();
-
             return totalRecipeCalories;
         }
 
