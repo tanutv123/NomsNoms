@@ -33,9 +33,13 @@ namespace NomsNoms.Interfaces
         Task<bool> IsOwnerRecipe(int recipeid, string userEmail);
         Task DeletedRecipe(int recipeid);
         Task<List<Recipe>> RecommendRecipes(TasteProfile userTaste, List<Recipe> allRecipes);
+        Task<List<IngredientDTO>> GetIngredientsAdmin();
+        Task<IngredientDTO> GetIngredientAdmin(int id);
         Task UpdateIngredient(IngredientDTO ingredientDTO);
         Task AddIngredientAsync(IngredientDTO ingredientDTO);
         Task DeleteIngredient(int ingredientId);
+        Task EnableIngredient(int ingredientId);
+
         /*Task<float> CalculateRecipeCalories(int recipeId, List<RecipeIngredientCalculateDTO> ingredients);*/
         Task<float> CalculateRecipeCalories(int recipeId);
 

@@ -1,0 +1,62 @@
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<div class="overflow-x-auto">
+  <a
+    routerLink="/create-ingredient"
+    class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
+  >
+    Thêm nguyên liệu
+  </a>
+  <table datatable #ingredientTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+    <tr>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Id</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tên</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Trọng lượng</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Giới thiệu</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Calories</th>
+      <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Trạng thái</th>
+      <th class="px-4 py-2"></th>
+    </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+    <tr *ngFor="let ingredient of ingredients">
+      <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+        {{ingredient.id}}
+      </td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ingredient.name}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ingredient.weight}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ingredient.description | truncate: 3}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ingredient.calories}}</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700" [ngClass]="ingredient.status == 1 ? 'text-green-500' : 'text-red-600'">{{ingredient.status == 1 ? 'Hoạt động' : 'Bị vô hiệu hóa'}}</td>
+      <td class="whitespace-nowrap px-4 py-2">
+        <a
+          routerLink="/ingredients/{{ingredient.id}}"
+          class="inline-block mx-2 rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+        >
+          Xem
+        </a>
+        <button
+          (click)="enableIngredient(ingredient)"
+          *ngIf="ingredient.status == 0"
+          class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700"
+        >
+          Mở khóa
+        </button>
+        <button
+          (click)="disableIngredient(ingredient)"
+          *ngIf="ingredient.status == 1"
+          class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+        >
+          Vô hiệu hóa
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

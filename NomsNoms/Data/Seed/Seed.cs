@@ -169,6 +169,7 @@ namespace NomsNoms.Data.Seed
 
             foreach (var i in ing)
             {
+                i.Status = 1;
                 await _context.Ingredients.AddAsync(i);
                 await _context.SaveChangesAsync();
             }

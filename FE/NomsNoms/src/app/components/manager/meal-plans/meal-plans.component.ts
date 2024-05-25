@@ -21,6 +21,7 @@ export class MealPlansComponent implements OnInit{
     this.managerService.getMealPlanSubscriptions().subscribe({
       next: res => {
         this.mealPlans = res;
+        this.dtTrigger.next(null);
       }
     });
   }

@@ -74,6 +74,9 @@ import {TestsComponent} from "./components/tests/tests.component";
 import { MealplanManagementComponent } from './components/admin/mealplan-management/mealplan-management.component';
 import { MealplanCreateComponent } from './components/admin/mealplan-management/mealplan-create/mealplan-create.component';
 import { MealplanDetailComponent } from './components/admin/mealplan-management/mealplan-detail/mealplan-detail.component';
+import { IngredientManagementComponent } from './components/admin/ingredient-management/ingredient-management.component';
+import { IngredientCreateComponent } from './components/admin/ingredient-management/ingredient-create/ingredient-create.component';
+import { IngredientDetailComponent } from './components/admin/ingredient-management/ingredient-detail/ingredient-detail.component';
 // register Swiper custom elements
 register();
 @NgModule({
@@ -129,7 +132,10 @@ register();
     TestsComponent,
     MealplanManagementComponent,
     MealplanCreateComponent,
-    MealplanDetailComponent
+    MealplanDetailComponent,
+    IngredientManagementComponent,
+    IngredientCreateComponent,
+    IngredientDetailComponent
   ],
   imports: [
     BrowserModule,

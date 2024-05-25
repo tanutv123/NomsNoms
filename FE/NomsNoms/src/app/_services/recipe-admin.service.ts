@@ -7,6 +7,7 @@ import {TasteProfile} from "../_model/tasteProfile.model";
 import {Register} from "../_model/register.model";
 import {MealPlanSubscription} from "../_model/Manager/mealPlanSubscription.model";
 import {MealPlan} from "../_model/mealPlan.model";
+import {Ingredient} from "../_model/ingredient.model";
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +60,28 @@ export class RecipeAdminService {
   }
   enableMealPlan(mealPlan: MealPlan) {
     return this.http.put(this.baseUrl + 'admin/meal-plan/enable-meal-plan', mealPlan);
+  }
+
+  getIngredients() {
+    return this.http.get<Ingredient[]>(this.baseUrl + 'admin/ingredients');
+  }
+
+  deleteIngredients(id: number) {
+    return this.http.delete(this.baseUrl + 'admin/ingredient/delete-ingredient/' + id, {});
+  }
+  enableIngredients(id: number) {
+    return this.http.put(this.baseUrl + 'admin/ingredient/enable-ingredient/' + id, {});
+  }
+
+  createIngredient(ingredient: Ingredient) {
+    return this.http.post(this.baseUrl + 'admin/ingredient/create-ingredient', ingredient);
+  }
+
+  getIngredient(id: number) {
+    return this.http.get<Ingredient>(this.baseUrl + 'admin/ingredient-detail/' + id);
+  }
+
+  updateIngredient(ingredient: Ingredient) {
+    return this.http.put(this.baseUrl + 'admin/ingredient/update-ingredient', ingredient);
   }
 }

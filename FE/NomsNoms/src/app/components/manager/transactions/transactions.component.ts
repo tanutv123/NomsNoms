@@ -21,6 +21,7 @@ export class TransactionsComponent implements OnInit{
     this.managerService.getTransactions().subscribe({
       next: res => {
         this.transactions = res;
+        this.dtTrigger.next(null);
       }
     })
   }

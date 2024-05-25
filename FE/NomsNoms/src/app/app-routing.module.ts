@@ -45,6 +45,14 @@ import {
   MealplanDetailComponent
 } from "./components/admin/mealplan-management/mealplan-detail/mealplan-detail.component";
 import {mealplanResolver} from "./_resolvers/mealplan.resolver";
+import {IngredientManagementComponent} from "./components/admin/ingredient-management/ingredient-management.component";
+import {
+  IngredientCreateComponent
+} from "./components/admin/ingredient-management/ingredient-create/ingredient-create.component";
+import {
+  IngredientDetailComponent
+} from "./components/admin/ingredient-management/ingredient-detail/ingredient-detail.component";
+import {ingredientResolver} from "./_resolvers/ingredient.resolver";
 
 const routes: Routes = [
   {path: '', component: RecipeComponent},
@@ -85,6 +93,13 @@ const routes: Routes = [
       {path: 'salary', component: SalaryManagementComponent, canActivate: [managerGuard]},
       {path: 'create-user', component: CreateUserComponent, canActivate: [adminGuard]},
       {path: 'pendings', component: PendingsComponent, canActivate: [adminGuard]},
+      {path: 'ingredients', component: IngredientManagementComponent, canActivate: [adminGuard]},
+      {path: 'ingredients/:id',
+        component: IngredientDetailComponent,
+        canActivate: [adminGuard],
+        resolve: {ingredient: ingredientResolver}
+      },
+      {path: 'create-ingredient', component: IngredientCreateComponent, canActivate: [adminGuard]},
       {path: 'admin-mp', component: MealplanManagementComponent, canActivate: [adminGuard]},
       {path: 'admin-mp/:id',
         component: MealplanDetailComponent,
