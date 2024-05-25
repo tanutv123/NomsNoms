@@ -551,7 +551,7 @@ namespace NomsNoms.Data
 
             return totalRecipeCalories;
         }*/
-        public async Task<float> CalculateRecipeCalories(ICollection<RecipeIngredient> ingredients)
+        public async Task<int> CalculateRecipeCalories(ICollection<RecipeIngredient> ingredients)
         {
 
             float totalRecipeCalories = 0;
@@ -560,7 +560,7 @@ namespace NomsNoms.Data
                 var calories = await CalculateIngredientCalories(i.IngredientId, i.IngredientServing);
                 totalRecipeCalories += calories;
             }
-            return totalRecipeCalories;
+            return (int)totalRecipeCalories;
         }
 
         public async Task<List<IngredientDTO>> GetIngredientsAdmin()
