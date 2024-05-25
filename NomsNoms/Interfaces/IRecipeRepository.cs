@@ -40,6 +40,8 @@ namespace NomsNoms.Interfaces
         Task DeleteIngredient(int ingredientId);
         Task EnableIngredient(int ingredientId);
 
+        /*Task<float> CalculateRecipeCalories(int recipeId, List<RecipeIngredientCalculateDTO> ingredients);*/
+        Task<float> CalculateRecipeCalories(int recipeId);
 
     }
 }

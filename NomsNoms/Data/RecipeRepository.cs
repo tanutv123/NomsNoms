@@ -527,26 +527,42 @@ namespace NomsNoms.Data
                 await _context.SaveChangesAsync();
             }
         }
-        public async Task<float> CalculateIngredientCalories(int ingredientId, int weight)
+        public async Task<float> CalculateIngredientCalories(int ingredientId, float weight)
         {
             var ingredient = await _context.Ingredients.Where(r => r.Id == ingredientId).FirstOrDefaultAsync();
 
             var calories = (ingredient.Calories * weight) / ingredient.Weight;
             return calories;
         }
-        public async Task<float> CalculateRecipeCalories(int recipeId, List<IngredientDTO> ingredients)
+        /*public async Task<float> CalculateRecipeCalories(int recipeId, List<RecipeIngredientCalculateDTO> ingredients)
         {
             var recipe = await _context.Recipes.Where(r => r.Id == recipeId).FirstOrDefaultAsync();
 
             float totalRecipeCalories = 0;
             foreach (var i in ingredients)
             {
-                totalRecipeCalories += i.Calories;
+                var calories = await CalculateIngredientCalories(i.IngredientId, i.IngredientServing);
+                totalRecipeCalories += calories;
             }
 
             recipe.Calories = (int)totalRecipeCalories;
+            await _context.SaveChangesAsync();
 
-            _context.Recipes.Update(recipe);
+            return totalRecipeCalories;
+        }*/
+        public async Task<float> CalculateRecipeCalories(int recipeId)
+        {
+            var recipe = await _context.Recipes.Where(r => r.Id == recipeId).FirstOrDefaultAsync();
+            var ingredients = await _context.RecipeIngredients.Where(r => r.RecipeId == recipeId).ToListAsync();
+
+            float totalRecipeCalories = 0;
+            foreach (var i in ingredients)
+            {
+                var calories = await CalculateIngredientCalories(i.IngredientId, i.IngredientServing);
+                totalRecipeCalories += calories;
+            }
+
+            recipe.Calories = (int)totalRecipeCalories;
             await _context.SaveChangesAsync();
 
             return totalRecipeCalories;
