@@ -66,6 +66,12 @@
     "Calories": 250
   },
   {
+    "Name": "Hủ Tiếu Sợi",
+    "Description": "Hủ tiếu sợi dùng để nấu phở",
+    "Weight": 200,
+    "Calories": 280
+  },
+  {
     "Name": "Bánh Phở",
     "Description": "Bánh phở dẹt dùng cho món phở",
     "Weight": 400,
@@ -550,5 +556,101 @@
     "Description": "Nha đam, giúp giảm viêm và làm dịu da.",
     "Weight": 100,
     "Calories": 30
+  },
+  {
+    "Name": "Sả",
+    "Description": "Sả",
+    "Weight": 60,
+    "Calories": 20
+  },
+  {
+    "Name": "Bột Năng",
+    "Description": "Bột năng",
+    "Weight": 10,
+    "Calories": 35
+  },
+  {
+    "Name": "Bột Gạo",
+    "Description": "Bột gạo dùng làm bánh",
+    "Weight": 150,
+    "Calories": 540
+  },
+  {
+    "Name": "Thịt Heo Xay",
+    "Description": "Thịt Heo xay",
+    "Weight": 150,
+    "Calories": 375
+  },
+  {
+    "Name": "Nấm Mèo",
+    "Description": "Nấm mèo đã ngâm mềm và cắt nhỏ",
+    "Weight": 100,
+    "Calories": 25
+  },
+  {
+    "Name": "Giá",
+    "Description": "Giá dùng làm rau ăn kèm",
+    "Weight": 2,
+    "Calories": 1
+  },
+  {
+    "Name": "Rau Thơm",
+    "Description": "Rau thơm dùng làm rau ăn kèm",
+    "Weight": 2,
+    "Calories": 1
+  },
+  {
+    "Name": "Chả Lụa",
+    "Description": "Chả lụa dùng làm món ăn kèm",
+    "Weight": 50,
+    "Calories": 100
+  },
+  {
+    "Name": "Nước Mắm",
+    "Description": "Nước mắm dùng làm gia vị",
+    "Weight": 15,
+    "Calories": 10
+  },
+  {
+    "Name": "Muối",
+    "Description": "Muối dùng làm gia vị",
+    "Weight": 2,
+    "Calories": 0
+  },
+  {
+    "Name": "Đường",
+    "Description": "Đường dùng làm gia vị",
+    "Weight": 2,
+    "Calories": 8
+  },
+  {
+    "Name": "Hạt Nêm",
+    "Description": "Hạt nêm dùng làm gia vị",
+    "Weight": 2,
+    "Calories": 8
+  },
+  {
+    "Name": "Bưởi",
+    "Description": "Loại vỏ dày để lấy cùi bưởi",
+    "Weight": 100,
+    "Calories": 52
+  },
+  {
+    "Name": "Đậu xanh bóc vỏ",
+    "Description": "Đậu xanh đã bóc vỏ",
+    "Weight": 200,
+    "Calories": 670
+  },
+  {
+    "Name": "Lá dứa",
+    "Description": "Lá nếp",
+    "Weight": 10,
+    "Calories": 0
+  },
+  {
+    "Name": "Nước cốt dừa",
+    "Description": "",
+    "Weight": 100,
+    "Calories": 230
   }
 ]
