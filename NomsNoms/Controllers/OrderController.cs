@@ -110,7 +110,7 @@ namespace NomsNoms.Controllers
                             await _userRepository.BuySubscription(subscriptionIntent.AppUserId, subscriptionIntent.SubscriptionId);
                             var transaction = new TransactionDTO
                             {
-                                SenderId = intent.AppUserId,
+                                SenderId = subscriptionIntent.AppUserId,
                                 ReportName = $"User {subscriptionIntent.AppUserId} đã thực hiện giao dịch mua gói hội viên {subscriptionIntent.SubscriptionId}",
                                 CreateDate = DateTime.UtcNow,
                                 TotalPrice = paymentLinkInformation.amountPaid

@@ -12,21 +12,27 @@
         <nav aria-label="Global" class="md:block">
           <ul class="flex items-center gap-6 text-sm" *ngIf="!(accountService.currentUser$ | async)"  >
             <li>
-              <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Home </a>
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/"> Trang chủ </a>
             </li>
-
+            <li>
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/list"> Công thức nấu ăn </a>
+            </li>
+            <li>
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/new-recipe"> Đăng công thức </a>
+            </li>
             <li>
               <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan"> Dịch vụ </a>
             </li>
-
-<!--            <li *ngIf="(accountService.currentUser$ | async) as user">-->
-<!--              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan" *ngIf="!user.isMealPlanRegistered"> Dịch vụ </a>-->
-<!--              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought" *ngIf="user.isMealPlanRegistered"> Kế hoạch ăn uống</a>-->
-<!--            </li>-->
           </ul>
           <ul class="flex items-center gap-6 text-sm" *ngIf="(accountService.currentUser$ | async) as user" >
             <li *ngIf="user.roles === 'Client'">
               <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Home </a>
+            </li>
+            <li *ngIf="user.roles === 'Client'">
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/list"> Công thức nấu ăn </a>
+            </li>
+            <li *ngIf="user.roles === 'Client'">
+              <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/new-recipe"> Đăng công thức </a>
             </li>
 
 <!--            <li *ngIf="!(accountService.currentUser$ | async)">-->
@@ -37,6 +43,7 @@
               <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan" *ngIf="!user.isMealPlanRegistered"> Dịch vụ </a>
               <a class="text-gray-500 transition hover:text-gray-500/75" routerLink="/meal-plan-bought" *ngIf="user.isMealPlanRegistered"> Kế hoạch ăn uống</a>
             </li>
+
           </ul>
 
         </nav>

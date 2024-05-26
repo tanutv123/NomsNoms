@@ -136,11 +136,9 @@ namespace NomsNoms.Controllers
             var result = await _recipeRepository.IsLike(email, recipeId);
             return Ok(result);
         }
-        [HttpGet("recipeLiked")]
-        [Authorize]
-        public async Task<ActionResult<List<RecipeLikeToShowDTO>>> GetRecipeHasLiked()
+        [HttpGet("recipeLiked/{email}")]
+        public async Task<ActionResult<List<RecipeLikeToShowDTO>>> GetRecipeHasLiked(string email)
         {
-            var email = User.GetEmail();
             var result = await _recipeRepository.GetRecipeLikeByUserEmail(email);
             return Ok(result);
         }

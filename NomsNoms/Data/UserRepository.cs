@@ -310,7 +310,7 @@ namespace NomsNoms.Data
             {
                 var sourceUser = await _userManager.FindByEmailAsync(email);
                 var targetUser = await _userManager.FindByEmailAsync(cookEmail);
-                var isSubed = await _context.AppUserSubscriptionRecords.AnyAsync(u => u.SourceUserId == sourceUser.Id && u.TargetUserId == targetUser.Id);
+                var isSubed = await _context.UserSubscriptions.AnyAsync(u => u.AppUserId == sourceUser.Id && u.SubscriptionId == targetUser.SubscriptionId);
 
                 return isSubed;
             }

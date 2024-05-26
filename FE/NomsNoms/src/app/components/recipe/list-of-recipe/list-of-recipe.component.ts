@@ -32,7 +32,7 @@ export class ListOfRecipeComponent implements OnInit{
   }
   ngOnInit() {
     this.categoryId = +this.activedRoute.snapshot.queryParams['categoryId'];
-    console.log(this.categoryId);
+    if (this.categoryId)
     this.selectedCategories.push(this.categoryId);
     if (this.userParams && this.userParams.categoryIds) {
       this.userParams.categoryIds = this.selectedCategories;
