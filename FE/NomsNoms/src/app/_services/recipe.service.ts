@@ -73,8 +73,8 @@ export class RecipeService {
     if (recipe) return of(recipe);
     return this.http.get<Recipe>(this.baseUrl + 'recipe/' + id);
   }
-  getLikedRecipe() {
-    return this.http.get<Recipe[]>(this.baseUrl + 'recipe/recipeLiked');
+  getLikedRecipe(email: string) {
+    return this.http.get<Recipe[]>(this.baseUrl + 'recipe/recipeLiked/' + email);
   }
   isLikeRecipe(recipeId: number) {
     return this.http.get<boolean>(this.baseUrl + 'recipe/isLiked/' + recipeId);

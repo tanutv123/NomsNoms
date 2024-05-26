@@ -30,6 +30,11 @@ namespace NomsNoms.Data
 
         public async Task<RecipeDTO> GetRecipeAsync(int id)
         {
+            var recipe = await _context.Recipes.Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+            recipe.NumberOfViews++;
+            await _context.SaveChangesAsync();
+
             return await _context.Recipes.Where(x => x.Id == id)
                 .ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
@@ -78,19 +83,24 @@ namespace NomsNoms.Data
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == recipe.AppUserId);
                 var subscription = await _context.Subscriptions.FirstOrDefaultAsync(x => x.Id == user.SubscriptionId);
-                var flag = await _context.UserSubscriptions
-                    .AnyAsync(x => 
-                    x.SubscriptionId == user.SubscriptionId && 
-                    x.AppUserId == userId && 
+                if(subscription != null)
+                {
+                    var flag = await _context.UserSubscriptions
+                    .AnyAsync(x =>
+                    x.SubscriptionId == user.SubscriptionId &&
+                    x.AppUserId == userId &&
                     DateTime.UtcNow < x.StartedDate.AddDays(subscription.Duration
                     ));
-                return flag;
+                    return flag;
+                }
+                return false;
             }
         }
 
         public async Task<List<RecipeDTO>> GetTrendingRecipe()
         {
             var query = await _context.Recipes
+                .Where(x => x.RecipeStatusId == 2)
                 .OrderByDescending(r => r.RecipeLikes.Count)
                 .Take(10)
                 .ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider)

@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Recipe} from "../../../_model/recipe.model";
 import {RecipeService} from "../../../_services/recipe.service";
 import {AccountService} from "../../../_services/account.service";
-import {Subject} from "rxjs";
+import {Subject, take} from "rxjs";
 import {SubscriptionModel} from "../../../_model/subscription.model";
 import {UserService} from "../../../_services/user.service";
 import {PaymentService} from "../../../_services/payment.service";
@@ -30,12 +30,18 @@ export class ProfileComponent implements OnInit{
   subscription: SubscriptionModel | undefined;
   hasSubed = false;
   hasLiked = false;
+  visitor: User | undefined;
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
               private userService: UserService,
               private paymentService: PaymentService,
               private accountService: AccountService,
               private toastr: ToastrService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe({
+      next: user => {
+        if (user) this.visitor = user;
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -45,9 +51,11 @@ export class ProfileComponent implements OnInit{
         this.loadRecipes();
         this.loadFollowers();
         this.loadLikedRecipes();
-        this.loadSubscription();
-        this.isLiked();
-        this.isSubbed();
+        if (this.visitor) {
+          this.loadSubscription();
+          this.isLiked();
+          this.isSubbed();
+        }
       }
     });
   }
@@ -105,7 +113,8 @@ export class ProfileComponent implements OnInit{
     })
   }
   loadLikedRecipes() {
-    this.recipeService.getLikedRecipe().subscribe({
+    if (!this.user) return;
+    this.recipeService.getLikedRecipe(this.user.email).subscribe({
       next: recipes => {
         this.likedRecipes = recipes;
         this.dtTrigger.next(null);
