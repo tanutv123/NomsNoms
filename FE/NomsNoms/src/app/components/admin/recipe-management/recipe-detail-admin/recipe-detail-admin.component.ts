@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {RecipeAdminService} from "../../../../_services/recipe-admin.service";
 import {RecipeAdmin} from "../../../../_model/Admin/recipeAdmin.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {TasteProfileComponent} from "../modal/taste-profile/taste-profile.component";
-import {MatDialog} from "@angular/material/dialog";
 import {TasteProfile} from "../../../../_model/tasteProfile.model";
 import {ToastrService} from "ngx-toastr";
 import {Recipe} from "../../../../_model/recipe.model";
@@ -30,7 +28,6 @@ export class RecipeDetailAdminComponent implements OnInit{
   }
   constructor(private recipeAdminService: RecipeAdminService,
               private route: ActivatedRoute,
-              public dialog: MatDialog,
               private toastr: ToastrService,
               private router: Router) {
   }

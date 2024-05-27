@@ -59,6 +59,7 @@ export class ProfileEditComponent implements OnInit{
     if (!this.image) return;
     this.accountService.updateAvatar(this.image).subscribe({
       next: _ => {
+        if (this.user && this.image) this.user.imageUrl = this.image.url;
         this.toastr.success("Cập nhật ảnh đại diện thành công");
       }
     });

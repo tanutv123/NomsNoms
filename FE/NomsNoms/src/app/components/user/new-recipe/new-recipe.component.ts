@@ -9,6 +9,9 @@ import {Router} from "@angular/router";
 import {Ingredient} from "../../../_model/ingredient.model";
 import {AddRecipeCategory} from "../../../_model/AddRecipe/addRecipeCategory.model";
 import {AddRecipeIngredient} from "../../../_model/AddRecipe/AddRecipeIngredient.model";
+import {User} from "../../../_model/user.model";
+import {AccountService} from "../../../_services/account.service";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-new-recipe',
@@ -26,9 +29,20 @@ export class NewRecipeComponent implements OnInit{
   selectedIngredientId: number;
   selectedIngredient: AddRecipeIngredient = {} as AddRecipeIngredient;
   addedIngredients: Ingredient[] = [];
+  user: User | undefined;
+  hasSubscription = false;
   constructor(private recipeService: RecipeService,
               private toastr: ToastrService,
+              private accountService: AccountService,
               private router: Router) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe({
+      next: user => {
+        if (user) {
+          this.user = user;
+          this.hasSubscription = this.user.subscriptionId != 0;
+        }
+      }
+    });
   }
 
   ngOnInit() {

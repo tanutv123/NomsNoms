@@ -6,6 +6,7 @@ export interface Recipe {
   description: string;
   recipeStatusName: string;
   userKnownAs: string;
+  userEmail: string;
   isExclusive: string;
   recipeImageUrl: string;
   numberOfViews: number;

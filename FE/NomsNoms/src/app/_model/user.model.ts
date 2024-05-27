@@ -10,6 +10,7 @@ export interface User {
   createdDate: Date;
   status: number;
   tasteProfileId: number;
+  subscriptionId: number;
   isMealPlanRegistered: boolean;
   roles: string;
 }
