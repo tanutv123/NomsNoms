@@ -9,11 +9,11 @@
     "CompletionTime": 60,
     "Calories": 750,
     "IsExclusive": false,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 2,
     "TasteProfileId": 3,
     "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+      "PublicId": "asp-net7/iqlq8ahiymayos4jkcyr",
+      "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/iqlq8ahiymayos4jkcyr"
     },
     "RecipeCategories": [
       {
@@ -74,8 +74,8 @@
         "Description": "Sơ chế các nguyên liệu",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/cyptudn2kkyz0lzbcdsu",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/cyptudn2kkyz0lzbcdsu"
           },
           {
             "PublicId": "asp-net7/c6xswokamykw54sgplef",
@@ -89,8 +89,8 @@
         "Description": "Cho các nguyên liệu vào ổ bánh mì",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/iqlq8ahiymayos4jkcyr",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/iqlq8ahiymayos4jkcyr"
           }
         ]
       }
@@ -106,11 +106,11 @@
     "CompletionTime": 90,
     "Calories": 600,
     "IsExclusive": true,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 2,
     "TasteProfileId": 2,
     "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+      "PublicId": "asp-net7/jr6dlp1xsfdkvyvfkebo",
+      "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/jr6dlp1xsfdkvyvfkebo"
     },
     "RecipeCategories": [
       {
@@ -157,8 +157,8 @@
         "Description": "Hầm xương lấy nước dùng",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/gic3tvla7h4iuon5rjbl",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/gic3tvla7h4iuon5rjbl"
           }
         ]
       },
@@ -168,8 +168,8 @@
         "Description": "Chuẩn bị nguyên liệu: thái thịt bò và sơ chế gia vị",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/tv4trsiymb6vzabxehdk",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/tv4trsiymb6vzabxehdk"
           }
         ]
       },
@@ -179,8 +179,8 @@
         "Description": "Pha chế nước dùng: nêm gia vị và thêm các loại hương liệu vào nồi nước dùng",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/x86llsjwcg4uojpbojrr",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/x86llsjwcg4uojpbojrr"
           }
         ]
       },
@@ -190,16 +190,16 @@
         "Description": "Trụng bánh phở và thịt bò",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/ymm6g8aeskylgjfgdpla",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/ymm6g8aeskylgjfgdpla"
           }
         ]
       }
     ]
   },
   {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Description": "Bánh mì từ những nguyên liệu đơn giản",
+    "Title": "Hướng dẫn làm hủ tíu bò kho",
+    "Description": "Hủ tiếu bò kho là món ăn quen thuộc với hương vị đặc trưng Nam Bộ, thu hút thực khách bởi sự hòa quyện giữa sợi hủ tiếu dai dai, thịt bò mềm béo cùng nước dùng đậm đà, thơm nức mũi. Thưởng thức hủ tiếu bò kho nóng hổi cùng rau thơm, ớt cay sẽ mang đến trải nghiệm ẩm thực khó quên.",
     "AppUserId": 3,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
@@ -207,11 +207,11 @@
     "CompletionTime": 60,
     "Calories": 450,
     "IsExclusive": false,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 2,
     "TasteProfileId": 5,
     "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+      "PublicId": "asp-net7/xc361srqsrjizyntyngg",
+      "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/xc361srqsrjizyntyngg"
     },
     "RecipeCategories": [
       {
@@ -226,43 +226,38 @@
     "RecipeIngredients": [
       {
         "RecipeId": 3,
-        "IngredientId": 1,
-        "IngredientServing": 50
+        "IngredientId": 11,
+        "IngredientServing": 400
       },
       {
         "RecipeId": 3,
-        "IngredientId": 2,
-        "IngredientServing": 100
+        "IngredientId": 12,
+        "IngredientServing": 200
       },
       {
         "RecipeId": 3,
-        "IngredientId": 3,
-        "IngredientServing": 500
-      },
-      {
-        "RecipeId": 3,
-        "IngredientId": 4,
+        "IngredientId": 16,
         "IngredientServing": 150
       },
       {
         "RecipeId": 3,
-        "IngredientId": 5,
-        "IngredientServing": 45
+        "IngredientId": 48,
+        "IngredientServing": 50
       },
       {
         "RecipeId": 3,
-        "IngredientId": 6,
-        "IngredientServing": 510
+        "IngredientId": 94,
+        "IngredientServing": 60
       },
       {
         "RecipeId": 3,
-        "IngredientId": 7,
+        "IngredientId": 72,
         "IngredientServing": 15
       },
       {
         "RecipeId": 3,
-        "IngredientId": 8,
-        "IngredientServing": 20
+        "IngredientId": 95,
+        "IngredientServing": 10
       }
     ],
     "RecipeSteps": [
@@ -272,38 +267,60 @@
         "Description": "Sơ chế các nguyên liệu",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          },
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/xc361srqsrjizyntyngg",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/xc361srqsrjizyntyngg"
           }
         ]
       },
       {
         "No": 2,
         "RecipeId": 3,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "Description": "Uớp Thịt bò",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/h8ksbpujn7p4zwx1t2em",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/h8ksbpujn7p4zwx1t2em"
+          }
+        ]
+      },
+      {
+        "No": 3,
+        "RecipeId": 3,
+        "Description": "Nấu bò kho và trụng hủ tiếu",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/kul04bui0dpbgpymm1s1",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/kul04bui0dpbgpymm1s1"
+          },
+          {
+            "PublicId": "asp-net7/ub6neqsjsoi46ic8x5fc",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/ub6neqsjsoi46ic8x5fc"
+          }
+        ]
+      },
+      {
+        "No": 4,
+        "RecipeId": 3,
+        "Description": "Thành phẩm",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/ub6neqsjsoi46ic8x5fc",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/ub6neqsjsoi46ic8x5fc"
           }
         ]
       }
     ]
   },
   {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Description": "Bánh mì từ những nguyên liệu đơn giản",
+    "Title": "Hướng dẫn làm bánh cuốn",
+    "Description": "Bánh cuốn là món ăn dân dã, được làm từ bột gạo tráng mỏng, cuộn nhân thịt băm, mộc nhĩ, nấm hương. Thưởng thức bánh cuốn nóng hổi, mềm mịn cùng nước chấm chua ngọt, thêm chút rau thơm thanh tao, tạo nên hương vị khó quên.",
     "AppUserId": 3,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
     "CompletionTime": 60,
     "IsExclusive": false,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 2,
     "Calories": 700,
     "TasteProfileId": 6,
     "RecipeImage": {
@@ -323,89 +340,161 @@
     "RecipeIngredients": [
       {
         "RecipeId": 4,
-        "IngredientId": 1,
-        "IngredientServing": 50
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 2,
-        "IngredientServing": 100
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 3,
-        "IngredientServing": 500
-      },
-      {
-        "RecipeId": 4,
-        "IngredientId": 4,
+        "IngredientId": 95,
         "IngredientServing": 150
       },
       {
         "RecipeId": 4,
-        "IngredientId": 5,
-        "IngredientServing": 45
+        "IngredientId": 94,
+        "IngredientServing": 65
       },
       {
         "RecipeId": 4,
-        "IngredientId": 6,
-        "IngredientServing": 510
+        "IngredientId": 96,
+        "IngredientServing": 150
       },
       {
         "RecipeId": 4,
-        "IngredientId": 7,
+        "IngredientId": 97,
+        "IngredientServing": 100
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 48,
+        "IngredientServing": 40
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 98,
+        "IngredientServing": 2
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 24,
+        "IngredientServing": 300
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 99,
+        "IngredientServing": 2
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 21,
+        "IngredientServing": 1
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 101,
+        "IngredientServing": 2
+      },
+      {
+        "RecipeId": 4,
+        "IngredientId": 100,
         "IngredientServing": 15
       },
       {
         "RecipeId": 4,
-        "IngredientId": 8,
-        "IngredientServing": 20
+        "IngredientId": 102,
+        "IngredientServing": 2
       }
     ],
     "RecipeSteps": [
       {
         "No": 1,
         "RecipeId": 4,
-        "Description": "Sơ chế các nguyên liệu",
+        "Description": "Pha bột bánh cuốn",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
-          },
-          {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/wiws4yjik4agjtk3x0m2",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/wiws4yjik4agjtk3x0m2"
           }
         ]
       },
       {
         "No": 2,
         "RecipeId": 4,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "Description": "Làm nhân bánh",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/c1p8utqbnxr6x8fzs1xe",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/c1p8utqbnxr6x8fzs1xe"
+          }
+        ]
+      },
+      {
+        "No": 3,
+        "RecipeId": 4,
+        "Description": "Làm nước mắm chua ngọt",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/haqvuzajx6vsewuuzsjo",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/haqvuzajx6vsewuuzsjo"
+          }
+        ]
+      },
+      {
+        "No": 4,
+        "RecipeId": 4,
+        "Description": "Làm bánh",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/er40trh4okcqjvglxkes",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/er40trh4okcqjvglxkes"
+          },
+          {
+            "PublicId": "asp-net7/tjeg0lufuz5ynvifm9vn",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/tjeg0lufuz5ynvifm9vn"
+          },
+          {
+            "PublicId": "asp-net7/ivrmgfzd3jpfkowam99i",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/ivrmgfzd3jpfkowam99i"
+          },
+          {
+            "PublicId": "asp-net7/whx4n3mt2nmugfzo6ffm",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/whx4n3mt2nmugfzo6ffm"
+          }
+        ]
+      },
+      {
+        "No": 5,
+        "RecipeId": 4,
+        "Description": "Chuẩn bị đồ ăn kèm",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/ivcnir0reuxf0e70kwk1",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/ivcnir0reuxf0e70kwk1"
+          }
+        ]
+      },
+      {
+        "No": 6,
+        "RecipeId": 4,
+        "Description": "Thành phẩm",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/rg8xkr72alrxvgepvkaf",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/rg8xkr72alrxvgepvkaf"
           }
         ]
       }
     ]
   },
   {
-    "Title": "Hướng dẫn làm bánh mì",
-    "Description": "Bánh mì từ những nguyên liệu đơn giản",
+    "Title": "Hướng dẫn làm chè bưởi",
+    "Description": "Chè bưởi - Món chè miền Nam độc đáo với cùi bưởi dai giòn, vị ngọt thanh, quyện cùng nước dừa béo ngậy, tạo nên hương vị khó cưỡng.",
     "AppUserId": 10,
     "RecipeComplexityId": 1,
     "CreateDate": "2023-09-06",
     "NumberOfViews": 2000,
     "CompletionTime": 60,
     "IsExclusive": false,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 2,
     "Calories": 710,
     "TasteProfileId": 7,
     "RecipeImage": {
-      "PublicId": "asp-net7/c6xswokamykw54sgplef",
-      "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+      "PublicId": "asp-net7/sxjmd8gbhtrqtcubfxs5",
+      "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/sxjmd8gbhtrqtcubfxs5"
     },
     "RecipeCategories": [
       {
@@ -420,43 +509,38 @@
     "RecipeIngredients": [
       {
         "RecipeId": 5,
-        "IngredientId": 1,
-        "IngredientServing": 50
-      },
-      {
-        "RecipeId": 5,
-        "IngredientId": 2,
+        "IngredientId": 106,
         "IngredientServing": 100
       },
       {
         "RecipeId": 5,
-        "IngredientId": 3,
-        "IngredientServing": 500
+        "IngredientId": 107,
+        "IngredientServing": 100
       },
       {
         "RecipeId": 5,
-        "IngredientId": 4,
-        "IngredientServing": 150
+        "IngredientId": 108,
+        "IngredientServing": 10
       },
       {
         "RecipeId": 5,
-        "IngredientId": 5,
-        "IngredientServing": 45
+        "IngredientId": 109,
+        "IngredientServing": 100
       },
       {
         "RecipeId": 5,
-        "IngredientId": 6,
-        "IngredientServing": 510
+        "IngredientId": 95,
+        "IngredientServing": 120
       },
       {
         "RecipeId": 5,
-        "IngredientId": 7,
-        "IngredientServing": 15
+        "IngredientId": 104,
+        "IngredientServing": 2
       },
       {
         "RecipeId": 5,
-        "IngredientId": 8,
-        "IngredientServing": 20
+        "IngredientId": 103,
+        "IngredientServing": 2
       }
     ],
     "RecipeSteps": [
@@ -466,23 +550,72 @@
         "Description": "Sơ chế các nguyên liệu",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/uig0z2nguqcrbldtcasi",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/uig0z2nguqcrbldtcasi"
           },
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/thk4cvesqpjw4jpdwisf",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/thk4cvesqpjw4jpdwisf"
           }
         ]
       },
       {
         "No": 2,
         "RecipeId": 5,
-        "Description": "Cho các nguyên liệu vào ổ bánh mì",
+        "Description": "Luộc cùi bưởi",
         "RecipeStepImages": [
           {
-            "PublicId": "asp-net7/c6xswokamykw54sgplef",
-            "Url": "https://res.cloudinary.com/dpmjibfhc/image/upload/f_auto,q_auto/v1/asp-net7/c6xswokamykw54sgplef"
+            "PublicId": "asp-net7/bqvtnaazpecnzaacbpco",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/bqvtnaazpecnzaacbpco"
+          },
+          {
+            "PublicId": "asp-net7/fooymi3ud5avgepv2rri",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/fooymi3ud5avgepv2rri"
+          }
+        ]
+      },
+      {
+        "No": 3,
+        "RecipeId": 5,
+        "Description": "Xào cùi bưởi",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/ll42ighzpdm9cp6ywot7",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/ll42ighzpdm9cp6ywot7"
+          },
+          {
+            "PublicId": "asp-net7/fxtuzcqkr4pc298smm9l",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/fxtuzcqkr4pc298smm9l"
+          },
+          {
+            "PublicId": "asp-net7/gauxfo3uhqiyxyjm8wby",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/gauxfo3uhqiyxyjm8wby"
+          }
+        ]
+      },
+      {
+        "No": 4,
+        "RecipeId": 5,
+        "Description": "Nấu chè bưởi",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/xdrkoheirbtykjctyoyg",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/xdrkoheirbtykjctyoyg"
+          },
+          {
+            "PublicId": "asp-net7/pk4uzvcvrskjvpgmcua0",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/pk4uzvcvrskjvpgmcua0"
+          }
+        ]
+      },
+      {
+        "No": 5,
+        "RecipeId": 5,
+        "Description": "Thành phẩm",
+        "RecipeStepImages": [
+          {
+            "PublicId": "asp-net7/fovd6m0tztlvrlpe6biy",
+            "Url": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/fovd6m0tztlvrlpe6biy"
           }
         ]
       }
@@ -497,7 +630,7 @@
     "NumberOfViews": 2000,
     "CompletionTime": 60,
     "IsExclusive": false,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 3,
     "TasteProfileId": 8,
     "Calories": 600,
     "RecipeImage": {
@@ -594,7 +727,7 @@
     "NumberOfViews": 2000,
     "CompletionTime": 60,
     "IsExclusive": false,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 3,
     "Calories": 500,
     "TasteProfileId": 9,
     "RecipeImage": {
@@ -691,7 +824,7 @@
     "NumberOfViews": 2000,
     "CompletionTime": 60,
     "IsExclusive": false,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 3,
     "TasteProfileId": 10,
     "Calories": 400,
     "RecipeImage": {
@@ -788,7 +921,7 @@
     "NumberOfViews": 2000,
     "CompletionTime": 60,
     "IsExclusive": false,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 4,
     "Calories": 300,
     "TasteProfileId": 11,
     "RecipeImage": {
@@ -885,7 +1018,7 @@
     "NumberOfViews": 2000,
     "CompletionTime": 60,
     "IsExclusive": false,
-    "RecipeStatusId": 1,
+    "RecipeStatusId": 4,
     "TasteProfileId": 12,
     "Calories": 450,
     "RecipeImage": {
