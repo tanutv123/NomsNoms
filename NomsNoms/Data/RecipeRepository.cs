@@ -42,7 +42,9 @@ namespace NomsNoms.Data
 
         public async Task<PagedList<RecipeDTO>> GetRecipesAsync(UserParams userParams)
         {
-            var query = _context.Recipes.Include(x => x.RecipeCategories).AsQueryable();
+            var query = _context.Recipes.Include(x => x.RecipeCategories)
+                .Where(x => x.RecipeStatusId == 2)
+                .AsQueryable();
             if (!string.IsNullOrEmpty(userParams.Search))
                 query = query.Where(x => x.Title.Contains(userParams.Search));
             query = userParams.OrderByCompletionTime switch
@@ -351,7 +353,7 @@ namespace NomsNoms.Data
             var query = _context.Recipes.AsQueryable();
             var user = _context.Users.FirstOrDefault(x => x.Email == email);
             query = query.Where(x => x.AppUserId == user.Id);
-            query = query.Where(x => x.RecipeStatusId != 4 && x.RecipeStatusId != 1);
+            query = query.Where(x => x.RecipeStatusId == 2);
             return await query.ProjectTo<RecipeDTO>(_mapper.ConfigurationProvider).ToListAsync();
         }
 

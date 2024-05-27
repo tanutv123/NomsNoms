@@ -383,8 +383,16 @@ namespace NomsNoms.Data
             {
 
                 var userphoto = _mapper.Map<UserPhoto>(userPhotoDTO);
-                _context.Update(userphoto);
-
+                if (await _context.UserPhotos.AnyAsync(x => x.AppUserId == userphoto.AppUserId))
+                {
+                    var existedPhoto = await _context.UserPhotos.FirstOrDefaultAsync(x => x.AppUserId == userphoto.AppUserId);
+                    existedPhoto.Url = userphoto.Url;
+                    existedPhoto.PublicId = userphoto.PublicId;
+                }
+                else
+                {
+                    await _context.UserPhotos.AddAsync(userphoto);
+                }
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)

@@ -77,6 +77,7 @@ import { MealplanDetailComponent } from './components/admin/mealplan-management/
 import { IngredientManagementComponent } from './components/admin/ingredient-management/ingredient-management.component';
 import { IngredientCreateComponent } from './components/admin/ingredient-management/ingredient-create/ingredient-create.component';
 import { IngredientDetailComponent } from './components/admin/ingredient-management/ingredient-detail/ingredient-detail.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 // register Swiper custom elements
 register();
 @NgModule({
@@ -151,6 +152,7 @@ register();
     DataTablesModule,
     MatSliderModule,
     NgSelectModule,
+    MatTooltipModule,
     TimeagoModule.forRoot(),
     ModalModule.forRoot(),
     ToastrModule.forRoot({

@@ -10,6 +10,7 @@ namespace NomsNoms.DTOs
         public int RecipeStatusId { get; set; }  
         public string RecipeStatusName { get; set; }
         public string UserKnownAs { get; set; }
+        public string UserEmail { get; set; }
         public bool IsExclusive { get; set; }
         public string RecipeImageUrl { get; set; }
         public int NumberOfViews { get; set; }
