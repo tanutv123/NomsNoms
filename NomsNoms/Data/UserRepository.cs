@@ -377,7 +377,7 @@ namespace NomsNoms.Data
                 .FirstOrDefaultAsync();
             return user;
         }
-        public async Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO)
+        public async Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO, int userid)
         {
             try
             {

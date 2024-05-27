@@ -23,7 +23,7 @@ namespace NomsNoms.Interfaces
         Task RecipeView(int recipeId);
         Task<TasteProfile> GetUserTasteProfile(string email);
         Task EnableUserAdmin(string email);
-        Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO);
+        Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO, int userid);
         Task<UserPhoto> GetUserPhotoByUserEmail(string email);
         Task AddTransaction(TransactionDTO transactionDTO);
         Task<List<Transaction>> GetAllUserTransaction();
