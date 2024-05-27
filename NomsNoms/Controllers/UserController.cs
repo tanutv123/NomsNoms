@@ -105,7 +105,7 @@ namespace NomsNoms.Controllers
         public async Task<IActionResult> UpdateAvatar([FromBody] UserPhotoDTO userPhotoDTO)
         {
             userPhotoDTO.AppUserId = User.GetUserId();
-            await _userRepository.UpdateUserPhoto(userPhotoDTO);
+            await _userRepository.UpdateUserPhoto(userPhotoDTO, User.GetUserId());
             return Ok(new { message = "Update Avatar successfully." });
         }
 

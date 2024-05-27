@@ -377,14 +377,12 @@ namespace NomsNoms.Data
                 .FirstOrDefaultAsync();
             return user;
         }
-        public async Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO)
+        public async Task UpdateUserPhoto(UserPhotoDTO userPhotoDTO, int userid)
         {
             try
             {
-
-                var userphoto = _mapper.Map<UserPhoto>(userPhotoDTO);
-                _context.Update(userphoto);
-
+                var user = _context.UserPhotos.Where(u => u.AppUserId == userid).FirstOrDefault();
+                _mapper.Map(userPhotoDTO, user);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
