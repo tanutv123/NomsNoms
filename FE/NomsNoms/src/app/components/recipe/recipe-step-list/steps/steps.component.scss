@@ -1,0 +1,26 @@
+div {
+  height: 100%;
+}
+
+//swiper-container {
+//  width: 100%;
+//  height: 100%;
+//}
+
+swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  padding-top: 20px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-slide img {
+  display: block;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
