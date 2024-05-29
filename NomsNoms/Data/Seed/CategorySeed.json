@@ -2,27 +2,27 @@
   {
     "Name": "Miền Nam",
     "Description": "Các món ăn đậm chất miền Nam",
-    "ImageUrl": "https://ik.imagekit.io/tvlk/blog/2022/06/dac-san-mien-nam-4-1024x577.jpeg?tr=dpr-2,w-675"
+    "ImageUrl": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/qbsxvbfxhwqfa2dnvrl7"
   },
   {
     "Name": "Miền Bắc",
     "Description": "Các món ăn đậm chất miền Bắc",
-    "ImageUrl": "https://i1-dulich.vnecdn.net/2023/07/14/rieu3-1685069948-1689321339.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=T610gcW6vKyekxG4nfdmfA"
+    "ImageUrl": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/nfp0u46uscppfcinq4fu"
   },
   {
     "Name": "Miền Trung",
     "Description": "Các món ăn đậm chất miền Trung",
-    "ImageUrl": "https://banhkhome.com/uploads/images/nau-bun-bo-Hue-tai-nha.jpg"
+    "ImageUrl": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/mxho5cqto9thr36yvuam"
   },
   {
     "Name": "Trung Hoa",
     "Description": "Các món ăn có vị cay nồng đặc trưng đặc biệt của ớt bột Trung Quốc",
-    "ImageUrl": "https://media.cooky.vn/images/blog-2016/top-10-mon-an-ngon-noi-tieng-trung-hoa%201(1).jpg"
+    "ImageUrl": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/pgv5nlcu2h0us5fhkmsy"
   },
   {
     "Name": "Ấn Độ",
     "Description": "Các món ăn có nhiều hương vị đặc trưng của Ấn Độ",
-    "ImageUrl": "https://media.cooky.vn/images/blog-2016/top-11-mon-an-dac-san-an-do-hap-dan-nhat-cua-dat-nuoc-voi-cac-vi-than-hindu-nay-3.jpg"
+    "ImageUrl": "https://res.cloudinary.com/dlr9litcn/image/upload/f_auto,q_auto/v1/asp-net7/xwgvh4ez7pdzv4thhvrq"
   },
   {
     "Name": "Châu Âu",
