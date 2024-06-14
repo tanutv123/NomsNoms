@@ -63,7 +63,14 @@ namespace NomsNoms.Helpers
                 .ForMember(dest => dest.UserEmail, opt => opt.MapFrom(src => src.Email))
                 .ReverseMap();
             CreateMap<TasteProfile, TasteProfileDTO>()
-              .ReverseMap();
+                .ReverseMap();
+            CreateMap<Transaction, TransactionAdminDTO>()
+                .ForMember(dest => dest.Sender, opt => opt.MapFrom(src => src.Sender.KnownAs))
+                .ReverseMap();
+            CreateMap<UserMealPlan, UserMealPlanAdminDTO>()
+                .ForMember(dest => dest.AppUserName, opt => opt.MapFrom(src => src.AppUser.KnownAs))
+                .ForMember(dest => dest.MealPlanSubscriptionId, opt => opt.MapFrom(src => src.MeanPlan.Id))
+                .ReverseMap();
         }
     }
 }

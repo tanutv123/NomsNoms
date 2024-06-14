@@ -36,5 +36,7 @@ namespace NomsNoms.Interfaces
         Task AddPaymentIntent(long orderCode, int userId, int subscriptionId);
         Task<SubscriptionPayment> GetPaymentIntent(long orderCode);
         Task SetTasteProfileUser(TasteProfileDTO tasteProfileDTO, string userEmail);
+        Task<List<UserMealPlanAdminDTO>> GetUserMealPlan();
+        Task<List<CookSalaryDTO>> GetCooksSalaries();
     }
 }
